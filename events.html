@@ -1,10 +1,10 @@
 <!DOCTYPE html><html lang="en"><head>
 <meta charset="utf-8">
 <meta content="width=device-width, initial-scale=1.0" name="viewport">
-<title>Activities &amp; Events | Noddfa Community Centre</title>
+<title>Activities & Events | Noddfa Community Centre</title>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&amp;display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
 <script id="tailwind-config">
         tailwind.config = {
             darkMode: "class",
@@ -50,181 +50,175 @@
 <body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100">
 <div class="relative flex h-auto min-h-screen w-full flex-col group/design-root overflow-x-hidden">
 <div class="layout-container flex h-full grow flex-col">
-<!-- Navigation -->
 <header class="flex items-center justify-between whitespace-nowrap px-6 md:px-20 py-4 bg-white dark:bg-background-dark sticky top-0 z-50 shadow-sm">
 <div class="flex items-center gap-4 text-primary">
 <div class="size-10 overflow-hidden rounded-full">
-<img alt="Noddfa Glyncorrwg Community Centre Logo" class="w-full h-full object-cover" src="https://i.ibb.co/Q3byq78Y/Noddfa-Logo.jpg" style="">
+<img alt="Noddfa Glyncorrwg Community Centre Logo" class="w-full h-full object-cover" src="https://i.ibb.co/Q3byq78Y/Noddfa-Logo.jpg">
 </div>
-<h2 class="text-slate-900 dark:text-slate-100 text-xl font-bold leading-tight tracking-tight" style="">Noddfa Community Centre</h2>
+<h2 class="text-slate-900 dark:text-slate-100 text-xl font-bold leading-tight tracking-tight">Noddfa Community Centre</h2>
 </div>
-<div class="hidden md:flex flex-1 justify-end gap-8">
-<nav class="flex items-center gap-9">
-<a class="text-slate-700 dark:text-slate-300 text-sm font-medium hover:text-primary transition-colors" href="/" style="">Home</a>
-<a class="text-primary text-sm font-semibold border-b-2 border-primary" href="/events" style="">What's On</a>
-<a class="text-slate-700 dark:text-slate-300 text-sm font-medium hover:text-primary transition-colors" href="/hire" style="">Hire Space</a>
-<a class="text-slate-700 dark:text-slate-300 text-sm font-medium hover:text-primary transition-colors" href="/about" style="">About</a>
-<a class="text-slate-700 dark:text-slate-300 text-sm font-medium hover:text-primary transition-colors" href="/contact" style="">Contact</a>
+
+<div id="nav-menu" class="hidden md:flex flex-1 justify-end gap-8">
+<nav class="flex flex-col md:flex-row items-start md:items-center gap-6 md:gap-9">
+<a class="text-slate-700 dark:text-slate-300 text-sm font-medium hover:text-primary transition-colors" href="/">Home</a>
+<a class="text-primary text-sm font-semibold border-b-2 border-primary" href="/events">What's On</a>
+<a class="text-slate-700 dark:text-slate-300 text-sm font-medium hover:text-primary transition-colors" href="/hire">Hire Space</a>
+<a class="text-slate-700 dark:text-slate-300 text-sm font-medium hover:text-primary transition-colors" href="/about">About</a>
+<a class="text-slate-700 dark:text-slate-300 text-sm font-medium hover:text-primary transition-colors" href="/contact">Contact</a>
 </nav>
-<button class="flex min-w-[120px] cursor-pointer items-center justify-center rounded-lg h-10 px-5 bg-primary text-white text-sm font-bold tracking-wide hover:bg-primary/90 transition-all" style="">
+<button class="flex min-w-[120px] cursor-pointer items-center justify-center rounded-lg h-10 px-5 bg-primary text-white text-sm font-bold tracking-wide hover:bg-primary/90 transition-all">
                     Book Now</button>
 </div>
-<div class="md:hidden">
-<span class="material-symbols-outlined text-slate-900 dark:text-slate-100" style="">menu</span>
+
+<div class="md:hidden cursor-pointer p-2 flex items-center" id="menu-toggle">
+<span id="menu-icon" class="material-symbols-outlined text-slate-900 dark:text-slate-100 text-3xl">menu</span>
+<span id="close-icon" class="hidden material-symbols-outlined text-slate-900 dark:text-slate-100 text-3xl">close</span>
 </div>
 </header>
+
 <main class="flex-1 w-full">
-<!-- Hero Section (Updated to match SCREEN_71 style and alignment) -->
 <div class="relative w-full h-[300px] md:h-[500px] flex items-center justify-center text-center px-6 overflow-hidden">
-<div class="absolute inset-0 bg-cover bg-center" style="background-image: url(&quot;https://lh3.googleusercontent.com/aida-public/AB6AXuA6P1yyBoig9pk4EuCeQ_H3sZg_NOgtY0qfpbeShqcR35zVZNZ_BG9Wn55-UaQT_7rk_1OqvJQ4zMkTY26z61ZxiJNO4TCjU-LBMSWuPRGbe0Q9Lyp_iUbgB3izaCBombMu-OaWifgXMHDi-SpKwED_z0rAzGWERpvc70kzd9BbvkBtmPhGqNR8UU_FBIIFBoQI7b22WAz6mER-IiLE3HD4XANxK_ml6P6X345KdpanD6aW7txwdGGnpqFY19cUs1E-fYRlbWDj0BcM&quot;);"></div>
+<div class="absolute inset-0 bg-cover bg-center" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuA6P1yyBoig9pk4EuCeQ_H3sZg_NOgtY0qfpbeShqcR35zVZNZ_BG9Wn55-UaQT_7rk_1OqvJQ4zMkTY26z61ZxiJNO4TCjU-LBMSWuPRGbe0Q9Lyp_iUbgB3izaCBombMu-OaWifgXMHDi-SpKwED_z0rAzGWERpvc70kzd9BbvkBtmPhGqNR8UU_FBIIFBoQI7b22WAz6mER-IiLE3HD4XANxK_ml6P6X345KdpanD6aW7txwdGGnpqFY19cUs1E-fYRlbWDj0BcM');"></div>
 <div class="absolute inset-0 bg-black/50"></div>
 <div class="relative z-10 max-w-3xl mx-auto">
-<span class="bg-primary text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider mb-6 inline-block" style="">What's On</span>
-<h1 id="hero-header" class="text-white text-4xl md:text-6xl font-extrabold leading-tight mb-4" style="">Activities &amp; Events</h1>
-<p class="text-slate-200 text-lg md:text-xl font-medium" style="">Join us for weekly workshops, community gatherings, and special seasonal celebrations.</p>
+<span class="bg-primary text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider mb-6 inline-block">What's On</span>
+<h1 id="hero-header" class="text-white text-4xl md:text-6xl font-extrabold leading-tight mb-4">Activities & Events</h1>
+<p class="text-slate-200 text-lg md:text-xl font-medium">Join us for weekly workshops, community gatherings, and special seasonal celebrations.</p>
 </div>
 </div>
 <div class="max-w-7xl mx-auto w-full px-6 md:px-20 py-8">
-<!-- Tabs -->
 <div class="flex border-b border-primary/10 mb-8 overflow-x-auto no-scrollbar">
-<button class="px-6 py-4 border-b-2 border-primary text-primary font-bold whitespace-nowrap" style="">Upcoming Activities</button>
-<button class="px-6 py-4 border-b-2 border-transparent text-slate-500 hover:text-primary transition-colors font-medium whitespace-nowrap" style="">Special Events</button>
-<button class="px-6 py-4 border-b-2 border-transparent text-slate-500 hover:text-primary transition-colors font-medium whitespace-nowrap" style="">Past Events</button>
+<button class="px-6 py-4 border-b-2 border-primary text-primary font-bold whitespace-nowrap">Upcoming Activities</button>
+<button class="px-6 py-4 border-b-2 border-transparent text-slate-500 hover:text-primary transition-colors font-medium whitespace-nowrap">Special Events</button>
+<button class="px-6 py-4 border-b-2 border-transparent text-slate-500 hover:text-primary transition-colors font-medium whitespace-nowrap">Past Events</button>
 </div>
-<!-- Weekly Activities Grid -->
 <section class="mb-16">
 <div class="flex items-center justify-between mb-6">
-<h2 class="text-2xl font-bold tracking-tight" style="">Weekly Activities</h2>
-<a class="text-primary font-semibold text-sm flex items-center gap-1 hover:underline" href="#" style="">
-                            View Full Calendar <span class="material-symbols-outlined text-sm" style="">arrow_forward</span>
+<h2 class="text-2xl font-bold tracking-tight">Weekly Activities</h2>
+<a class="text-primary font-semibold text-sm flex items-center gap-1 hover:underline" href="#">
+                            View Full Calendar <span class="material-symbols-outlined text-sm">arrow_forward</span>
 </a>
 </div>
 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-<!-- Activity Card: Bingo -->
 <div class="bg-white dark:bg-background-dark border border-primary/5 rounded-xl overflow-hidden hover:shadow-lg transition-shadow group">
-<div class="h-48 bg-cover bg-center" style="background-image: url(&quot;https://lh3.googleusercontent.com/aida-public/AB6AXuAtkDeC6UdpYlQk6JqgAgYuRUMlxWmKKhH2Uzd3vabS4TgbfL-I7Hg7zwv3Xty38yctvtRVeTKLANTyghle8Aw4U1u6dUKnxboPqojmIyYFbRi59SceundVUz4ycJiN2cBJU2PqSEmWzEI_rgHvyY6epclN2lC2Dir9SfhXbGzR1sL9C3vTH0L83lxXkqM2tSwqQ4LV8tRvjeEcyJCIGwuc5T-kS_jBxeOralgNHkthUti5YFhYgk75MR2L6ctLztIN-uBubzF7y5k3&quot;);"></div>
+<div class="h-48 bg-cover bg-center" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAtkDeC6UdpYlQk6JqgAgYuRUMlxWmKKhH2Uzd3vabS4TgbfL-I7Hg7zwv3Xty38yctvtRVeTKLANTyghle8Aw4U1u6dUKnxboPqojmIyYFbRi59SceundVUz4ycJiN2cBJU2PqSEmWzEI_rgHvyY6epclN2lC2Dir9SfhXbGzR1sL9C3vTH0L83lxXkqM2tSwqQ4LV8tRvjeEcyJCIGwuc5T-kS_jBxeOralgNHkthUti5YFhYgk75MR2L6ctLztIN-uBubzF7y5k3');"></div>
 <div class="p-6">
 <div class="flex justify-between items-start mb-2">
-<h3 class="text-xl font-bold" style="">Community Bingo</h3>
-<span class="bg-primary/10 text-primary text-[10px] font-bold px-2 py-0.5 rounded uppercase" style="">Weekly</span>
+<h3 class="text-xl font-bold">Community Bingo</h3>
+<span class="bg-primary/10 text-primary text-[10px] font-bold px-2 py-0.5 rounded uppercase">Weekly</span>
 </div>
 <div class="flex items-center gap-2 text-slate-500 text-sm mb-4">
-<span class="material-symbols-outlined text-base" style="">calendar_today</span>
-<span class="" style="">Tuesdays @ 19:00</span>
+<span class="material-symbols-outlined text-base">calendar_today</span>
+<span>Tuesdays @ 19:00</span>
 </div>
-<p class="text-slate-600 dark:text-slate-400 text-sm mb-6 line-clamp-2" style="">Our famous weekly bingo night with cash prizes and local community spirit.</p>
-<button class="w-full bg-primary text-white font-bold py-3 rounded-lg hover:bg-primary/90 transition-colors flex items-center justify-center gap-2" style="">
-                                    Reserve Tickets <span class="material-symbols-outlined" style="">confirmation_number</span>
+<p class="text-slate-600 dark:text-slate-400 text-sm mb-6 line-clamp-2">Our famous weekly bingo night with cash prizes and local community spirit.</p>
+<button class="w-full bg-primary text-white font-bold py-3 rounded-lg hover:bg-primary/90 transition-colors flex items-center justify-center gap-2">
+                                    Reserve Tickets <span class="material-symbols-outlined">confirmation_number</span>
 </button>
 </div>
 </div>
-<!-- Activity Card: Yoga -->
 <div class="bg-white dark:bg-background-dark border border-primary/5 rounded-xl overflow-hidden hover:shadow-lg transition-shadow">
-<div class="h-48 bg-cover bg-center" style="background-image: url(&quot;https://lh3.googleusercontent.com/aida-public/AB6AXuBveNOGPmKCAGg0R-SPWOg1cWcrS6qNO7aBC0gpDkpHqZFJ-n7IwkJXKPQJOFlKKY0fMXSxhTkrRbq_3nyeJaaD_r7WbuM78M_8fLrQyYeTNESsidXU8TGcemdzRmYrMYjIVWdIxYHZ7yWLZYXjpz-D9E1IS2SdZJqhvA9bhRYBYrmoxysiLgGkCAj9N8zpp2mhQNB7zH6XTYQW78afvmdd7K2rAGMc64cExSxgKpNRTq-MjqnikiFEoojQdc94Enp3D4UDxDcuoEwq&quot;);"></div>
+<div class="h-48 bg-cover bg-center" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBveNOGPmKCAGg0R-SPWOg1cWcrS6qNO7aBC0gpDkpHqZFJ-n7IwkJXKPQJOFlKKY0fMXSxhTkrRbq_3nyeJaaD_r7WbuM78M_8fLrQyYeTNESsidXU8TGcemdzRmYrMYjIVWdIxYHZ7yWLZYXjpz-D9E1IS2SdZJqhvA9bhRYBYrmoxysiLgGkCAj9N8zpp2mhQNB7zH6XTYQW78afvmdd7K2rAGMc64cExSxgKpNRTq-MjqnikiFEoojQdc94Enp3D4UDxDcuoEwq');"></div>
 <div class="p-6">
 <div class="flex justify-between items-start mb-2">
-<h3 class="text-xl font-bold" style="">Gentle Yoga</h3>
-<span class="bg-primary/10 text-primary text-[10px] font-bold px-2 py-0.5 rounded uppercase" style="">Weekly</span>
+<h3 class="text-xl font-bold">Gentle Yoga</h3>
+<span class="bg-primary/10 text-primary text-[10px] font-bold px-2 py-0.5 rounded uppercase">Weekly</span>
 </div>
 <div class="flex items-center gap-2 text-slate-500 text-sm mb-4">
-<span class="material-symbols-outlined text-base" style="">calendar_today</span>
-<span class="" style="">Mondays @ 10:30</span>
+<span class="material-symbols-outlined text-base">calendar_today</span>
+<span>Mondays @ 10:30</span>
 </div>
-<p class="text-slate-600 dark:text-slate-400 text-sm mb-6 line-clamp-2" style="">All levels welcome for this relaxing flow session led by certified instructors.</p>
-<button class="w-full bg-primary text-white font-bold py-3 rounded-lg hover:bg-primary/90 transition-colors flex items-center justify-center gap-2" style="">
-                                    Reserve Tickets <span class="material-symbols-outlined" style="">confirmation_number</span>
+<p class="text-slate-600 dark:text-slate-400 text-sm mb-6 line-clamp-2">All levels welcome for this relaxing flow session led by certified instructors.</p>
+<button class="w-full bg-primary text-white font-bold py-3 rounded-lg hover:bg-primary/90 transition-colors flex items-center justify-center gap-2">
+                                    Reserve Tickets <span class="material-symbols-outlined">confirmation_number</span>
 </button>
 </div>
 </div>
-<!-- Activity Card: Youth Club -->
 <div class="bg-white dark:bg-background-dark border border-primary/5 rounded-xl overflow-hidden hover:shadow-lg transition-shadow">
-<div class="h-48 bg-cover bg-center" style="background-image: url(&quot;https://lh3.googleusercontent.com/aida-public/AB6AXuDm2OXXs2w0QN2qmQuzO9z4W1DyrlIXSPgMCtBNEdXSX30x9DSzh1KE-pAHzlIxKWLkNfTdsiU6Nj8kE0YY0JGRD00x0Xis3_zkHFm0wu0-FVnnZbqFp2M2bGHPhUyFggkR3TdXv_qMl83NZvQJXh48ismL-EmyWssYsT2OhPGMZF8wnKZnfQOgVAdq7Rd3M8SWh2FXOtZvuwkrnLgNCyOaCUpqp_ZYfc8k_Oz-SSgm46uWZ9xsCsrZQOp3FuKiPadx9jnztlmnnkcU&quot;);"></div>
+<div class="h-48 bg-cover bg-center" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDm2OXXs2w0QN2qmQuzO9z4W1DyrlIXSPgMCtBNEdXSX30x9DSzh1KE-pAHzlIxKWLkNfTdsiU6Nj8kE0YY0JGRD00x0Xis3_zkHFm0wu0-FVnnZbqFp2M2bGHPhUyFggkR3TdXv_qMl83NZvQJXh48ismL-EmyWssYsT2OhPGMZF8wnKZnfQOgVAdq7Rd3M8SWh2FXOtZvuwkrnLgNCyOaCUpqp_ZYfc8k_Oz-SSgm46uWZ9xsCsrZQOp3FuKiPadx9jnztlmnnkcU');"></div>
 <div class="p-6">
 <div class="flex justify-between items-start mb-2">
-<h3 class="text-xl font-bold" style="">Friday Youth Club</h3>
-<span class="bg-primary/10 text-primary text-[10px] font-bold px-2 py-0.5 rounded uppercase" style="">Weekly</span>
+<h3 class="text-xl font-bold">Friday Youth Club</h3>
+<span class="bg-primary/10 text-primary text-[10px] font-bold px-2 py-0.5 rounded uppercase">Weekly</span>
 </div>
 <div class="flex items-center gap-2 text-slate-500 text-sm mb-4">
-<span class="material-symbols-outlined text-base" style="">calendar_today</span>
-<span class="" style="">Fridays @ 18:00</span>
+<span class="material-symbols-outlined text-base">calendar_today</span>
+<span>Fridays @ 18:00</span>
 </div>
-<p class="text-slate-600 dark:text-slate-400 text-sm mb-6 line-clamp-2" style="">Safe space for ages 11-16 with gaming, pool, and workshops.</p>
-<button class="w-full bg-primary text-white font-bold py-3 rounded-lg hover:bg-primary/90 transition-colors flex items-center justify-center gap-2" style="">
-                                    Reserve Tickets <span class="material-symbols-outlined" style="">confirmation_number</span>
+<p class="text-slate-600 dark:text-slate-400 text-sm mb-6 line-clamp-2">Safe space for ages 11-16 with gaming, pool, and workshops.</p>
+<button class="w-full bg-primary text-white font-bold py-3 rounded-lg hover:bg-primary/90 transition-colors flex items-center justify-center gap-2">
+                                    Reserve Tickets <span class="material-symbols-outlined">confirmation_number</span>
 </button>
 </div>
 </div>
 </div>
 </section>
-<!-- Special Events Section -->
 <section class="mb-16">
 <div class="flex items-center gap-3 mb-8">
 <div class="h-8 w-1 bg-primary rounded-full"></div>
-<h2 class="text-2xl font-bold tracking-tight uppercase" style="">Special Events</h2>
+<h2 class="text-2xl font-bold tracking-tight uppercase">Special Events</h2>
 </div>
 <div class="space-y-6">
-<!-- Event Row 1 -->
 <div class="bg-white dark:bg-background-dark border border-primary/5 rounded-xl p-4 flex flex-col md:flex-row gap-6 items-center">
 <div class="w-full md:w-48 h-48 rounded-lg overflow-hidden shrink-0">
-<img alt="Local artisans display crafts at a market" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC9cn0qXu0Tix-XC0vOZWZHsD_1B8jIqzDwlcWIdZrtnGdgRbD89Hi6zIzO3htD-_z6hgHRRPo6lYDQqgIfVjJ3FVadrG2GzxDmIr2FxnBgQH1nbnk0o7kTVX6NGZMr3rTdmSxo-7QWsfhJh4snyht_-UxDr_tNrjX054352DhjFf5G5Xb2p_nLI_HJYYDCRWQNVubeNQl8xINk3H7bPDyCTeAgpg0sK5wl7acHl74g6leN8l4gXIyybj2BFDkqGopVupSHy5cZG3HC" style="">
+<img alt="Local artisans display crafts at a market" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC9cn0qXu0Tix-XC0vOZWZHsD_1B8jIqzDwlcWIdZrtnGdgRbD89Hi6zIzO3htD-_z6hgHRRPo6lYDQqgIfVjJ3FVadrG2GzxDmIr2FxnBgQH1nbnk0o7kTVX6NGZMr3rTdmSxo-7QWsfhJh4snyht_-UxDr_tNrjX054352DhjFf5G5Xb2p_nLI_HJYYDCRWQNVubeNQl8xINk3H7bPDyCTeAgpg0sK5wl7acHl74g6leN8l4gXIyybj2BFDkqGopVupSHy5cZG3HC">
 </div>
 <div class="flex-1">
 <div class="flex items-center gap-2 text-primary font-bold text-xs mb-1 uppercase">
-<span class="material-symbols-outlined text-xs" style="">celebration</span>
-<span class="" style="">One-Time Event</span>
+<span class="material-symbols-outlined text-xs">celebration</span>
+<span>One-Time Event</span>
 </div>
-<h3 class="text-2xl font-bold mb-2" style="">Artisan Summer Fair</h3>
+<h3 class="text-2xl font-bold mb-2">Artisan Summer Fair</h3>
 <div class="flex flex-wrap gap-4 text-slate-500 text-sm mb-4">
 <div class="flex items-center gap-1">
-<span class="material-symbols-outlined text-sm" style="">calendar_month</span>
-<span class="" style="">August 12, 2024</span>
+<span class="material-symbols-outlined text-sm">calendar_month</span>
+<span>August 12, 2024</span>
 </div>
 <div class="flex items-center gap-1">
-<span class="material-symbols-outlined text-sm" style="">schedule</span>
-<span class="" style="">10:00 - 16:00</span>
+<span class="material-symbols-outlined text-sm">schedule</span>
+<span>10:00 - 16:00</span>
 </div>
 <div class="flex items-center gap-1">
-<span class="material-symbols-outlined text-sm" style="">location_on</span>
-<span class="" style="">Main Hall &amp; Grounds</span>
+<span class="material-symbols-outlined text-sm">location_on</span>
+<span>Main Hall & Grounds</span>
 </div>
 </div>
-<p class="text-slate-600 dark:text-slate-400 text-sm max-w-2xl" style="">Celebrating local talent with over 40 stalls of handmade crafts, local food, and live music from the community choir.</p>
+<p class="text-slate-600 dark:text-slate-400 text-sm max-w-2xl">Celebrating local talent with over 40 stalls of handmade crafts, local food, and live music from the community choir.</p>
 </div>
 <div class="shrink-0 w-full md:w-auto">
-<button class="w-full md:w-auto px-8 py-3 bg-primary text-white font-bold rounded-lg hover:shadow-md hover:translate-y-[-1px] transition-all" style="">
+<button class="w-full md:w-auto px-8 py-3 bg-primary text-white font-bold rounded-lg hover:shadow-md hover:translate-y-[-1px] transition-all">
                                     Book Now
                                 </button>
 </div>
 </div>
-<!-- Event Row 2 -->
 <div class="bg-white dark:bg-background-dark border border-primary/5 rounded-xl p-4 flex flex-col md:flex-row gap-6 items-center">
 <div class="w-full md:w-48 h-48 rounded-lg overflow-hidden shrink-0">
-<img alt="Classic horror movie screening" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCa7GAFdydaGH9Wr5VVnCqlyUhDxtEuW9CE35403ZaGrbMnvuMXPZQHDpUTg8IFozj9rXh0kV3ZR0TGhKY18Fwsf7NpdryR6PgY1jnuUzRu371pPLwYfG8i3hFzPBHh7dM6aqOCDq7Xw8FqqR6hoqxdCN223zmrsCBt-5F9M0Rtwpf5Abw3glnfweBQ4erjLi6zwh7ccZQ9P6D14LVZM3yPtqp-uqPDD0a6USGZM_EUbbJoHMGPphVakWrURBE5xAzcwrFfkGzece2J" style="">
+<img alt="Classic horror movie screening" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCa7GAFdydaGH9Wr5VVnCqlyUhDxtEuW9CE35403ZaGrbMnvuMXPZQHDpUTg8IFozj9rXh0kV3ZR0TGhKY18Fwsf7NpdryR6PgY1jnuUzRu371pPLwYfG8i3hFzPBHh7dM6aqOCDq7Xw8FqqR6hoqxdCN223zmrsCBt-5F9M0Rtwpf5Abw3glnfweBQ4erjLi6zwh7ccZQ9P6D14LVZM3yPtqp-uqPDD0a6USGZM_EUbbJoHMGPphVakWrURBE5xAzcwrFfkGzece2J">
 </div>
 <div class="flex-1">
 <div class="flex items-center gap-2 text-primary font-bold text-xs mb-1 uppercase">
-<span class="material-symbols-outlined text-xs" style="">movie</span>
-<span class="" style="">Film Night</span>
+<span class="material-symbols-outlined text-xs">movie</span>
+<span>Film Night</span>
 </div>
-<h3 class="text-2xl font-bold mb-2" style="">Outdoor Cinema: "Classic Night"</h3>
+<h3 class="text-2xl font-bold mb-2">Outdoor Cinema: "Classic Night"</h3>
 <div class="flex flex-wrap gap-4 text-slate-500 text-sm mb-4">
 <div class="flex items-center gap-1">
-<span class="material-symbols-outlined text-sm" style="">calendar_month</span>
-<span class="" style="">August 25, 2024</span>
+<span class="material-symbols-outlined text-sm">calendar_month</span>
+<span>August 25, 2024</span>
 </div>
 <div class="flex items-center gap-1">
-<span class="material-symbols-outlined text-sm" style="">schedule</span>
-<span class="" style="">20:30 - 23:00</span>
+<span class="material-symbols-outlined text-sm">schedule</span>
+<span>20:30 - 23:00</span>
 </div>
 <div class="flex items-center gap-1">
-<span class="material-symbols-outlined text-sm" style="">location_on</span>
-<span class="" style="">Rear Lawn</span>
+<span class="material-symbols-outlined text-sm">location_on</span>
+<span>Rear Lawn</span>
 </div>
 </div>
-<p class="text-slate-600 dark:text-slate-400 text-sm max-w-2xl" style="">Grab your blankets for an evening under the stars. Refreshments and popcorn available on-site.</p>
+<p class="text-slate-600 dark:text-slate-400 text-sm max-w-2xl">Grab your blankets for an evening under the stars. Refreshments and popcorn available on-site.</p>
 </div>
 <div class="shrink-0 w-full md:w-auto">
-<button class="w-full md:w-auto px-8 py-3 bg-primary text-white font-bold rounded-lg hover:shadow-md hover:translate-y-[-1px] transition-all" style="">
+<button class="w-full md:w-auto px-8 py-3 bg-primary text-white font-bold rounded-lg hover:shadow-md hover:translate-y-[-1px] transition-all">
                                     Book Now
                                 </button>
 </div>
@@ -233,77 +227,69 @@
 </section>
 </div>
 </main>
-<!-- Footer (Replicated from SCREEN_56) -->
+
 <footer class="text-slate-200 py-12 px-6 md:px-20 border-t border-primary/20" style="background-color: #1a301a;">
 <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-12">
 <div class="col-span-1 md:col-span-1">
 <div class="flex items-center gap-3 text-white mb-6">
-<img alt="Noddfa Logo" class="size-10 rounded-full border border-white/20" src="https://i.ibb.co/Q3byq78Y/Noddfa-Logo.jpg" style="">
-<h2 class="text-xl font-bold" style="">Noddfa Community Centre</h2>
+<img alt="Noddfa Logo" class="size-10 rounded-full border border-white/20" src="https://i.ibb.co/Q3byq78Y/Noddfa-Logo.jpg">
+<h2 class="text-xl font-bold">Noddfa Community Centre</h2>
 </div>
-<p class="text-sm leading-relaxed mb-6 opacity-80" style="">A hub for the community, providing space for growth, connection, and celebration since 1982.</p>
+<p class="text-sm leading-relaxed mb-6 opacity-80">A hub for the community, providing space for growth, connection, and celebration since 1982.</p>
 <div class="flex gap-4">
-<a class="hover:text-primary transition-colors" href="#" style=""><span class="material-symbols-outlined" style="">public</span></a>
-<a class="hover:text-primary transition-colors" href="#" style=""><span class="material-symbols-outlined" style="">mail</span></a>
-<a class="hover:text-primary transition-colors" href="#" style=""><span class="material-symbols-outlined" style="">call</span></a>
+<a class="hover:text-primary transition-colors" href="#"><span class="material-symbols-outlined">public</span></a>
+<a class="hover:text-primary transition-colors" href="#"><span class="material-symbols-outlined">mail</span></a>
+<a class="hover:text-primary transition-colors" href="#"><span class="material-symbols-outlined">call</span></a>
 </div>
 </div>
 <div>
-<h4 class="text-white font-bold mb-6" style="">Quick Links</h4>
+<h4 class="text-white font-bold mb-6">Quick Links</h4>
 <ul class="space-y-4 text-sm">
-<li class="" style=""><a class="hover:text-primary transition-colors" href="#" style="">Activities Schedule</a></li>
-<li class="" style=""><a class="hover:text-primary transition-colors" href="#" style="">Room Bookings</a></li>
-<li class="" style=""><a class="hover:text-primary transition-colors" href="#" style="">Volunteering</a></li>
-<li class="" style=""><a class="hover:text-primary transition-colors" href="#" style="">Support Us</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Activities Schedule</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Room Bookings</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Volunteering</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Support Us</a></li>
 </ul>
 </div>
 <div>
-<h4 class="text-white font-bold mb-6" style="">Support</h4>
+<h4 class="text-white font-bold mb-6">Support</h4>
 <ul class="space-y-4 text-sm">
-<li class="" style=""><a class="hover:text-primary transition-colors" href="#" style="">Contact Us</a></li>
-<li class="" style=""><a class="hover:text-primary transition-colors" href="#" style="">FAQs</a></li>
-<li class="" style=""><a class="hover:text-primary transition-colors" href="#" style="">Privacy Policy</a></li>
-<li class="" style=""><a class="hover:text-primary transition-colors" href="#" style="">Accessibility</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Contact Us</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">FAQs</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Privacy Policy</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Accessibility</a></li>
 </ul>
 </div>
 <div>
-<h4 class="text-white font-bold mb-6" style="">Newsletter</h4>
-<p class="text-sm mb-4 opacity-80" style="">Stay updated with our latest news and events.</p>
+<h4 class="text-white font-bold mb-6">Newsletter</h4>
+<p class="text-sm mb-4 opacity-80">Stay updated with our latest news and events.</p>
 <div class="flex h-10">
 <input class="bg-[#1d2913] border-none rounded-l-lg text-sm px-4 flex-1 focus:ring-1 focus:ring-primary text-white placeholder:text-slate-400" placeholder="Email address" type="email">
-<button class="bg-primary text-white px-4 rounded-r-lg hover:bg-primary/90 transition-colors" style="">
-<span class="material-symbols-outlined text-sm" style="">send</span>
+<button class="bg-primary text-white px-4 rounded-r-lg hover:bg-primary/90 transition-colors">
+<span class="material-symbols-outlined text-sm">send</span>
 </button>
 </div>
 </div>
 </div>
 <div class="max-w-7xl mx-auto border-t border-white/10 mt-12 pt-8 text-xs text-center opacity-60">
-<p class="" style="">© 2024 Noddfa Community Centre. Registered Charity Glyncorrwg.</p>
+<p>© 2024 Noddfa Community Centre. Registered Charity Glyncorrwg.</p>
 </div>
 </footer>
 </div>
 </div>
 
 <script>
+  // 1. ACF Banner Sync Function
   async function syncPageBanner() {
-    // 1. Identify the current page slug (e.g., 'activities')
     const path = window.location.pathname;
     const slug = path.split("/").pop().replace(".html", "") || "home";
-
     try {
-      // 2. Fetch the data from your new backend URL
       const response = await fetch(`https://noddfa-j3nkslkrxc.live-website.com/wp-json/wp/v2/pages?slug=${slug}`);
       const data = await response.json();
-
       if (data && data.length > 0) {
         const pageData = data[0];
-        
-        // 3. Target your specific ACF field name
         const bannerText = pageData.acf ? pageData.acf.hero_benner_header : null;
-
         if (bannerText) {
-          // 4. Update the <h1> or element in your Stitch design
-          // Ensure your HTML tag has id="hero-header"
           const headerElement = document.getElementById('hero-header');
           if (headerElement) {
             headerElement.innerHTML = bannerText;
@@ -314,6 +300,38 @@
       console.error("Banner sync failed:", error);
     }
   }
+
+  // 2. Mobile Menu Toggle Logic
+  document.addEventListener('DOMContentLoaded', () => {
+    const toggleBtn = document.getElementById('menu-toggle');
+    const navMenu = document.getElementById('nav-menu');
+    const menuIcon = document.getElementById('menu-icon');
+    const closeIcon = document.getElementById('close-icon');
+
+    if (toggleBtn && navMenu) {
+      toggleBtn.addEventListener('click', () => {
+        // Toggle visibility
+        navMenu.classList.toggle('hidden');
+        
+        // Mobile styles
+        navMenu.classList.toggle('flex');
+        navMenu.classList.toggle('flex-col');
+        navMenu.classList.toggle('absolute');
+        navMenu.classList.toggle('top-[72px]');
+        navMenu.classList.toggle('left-0');
+        navMenu.classList.toggle('w-full');
+        navMenu.classList.toggle('bg-white');
+        navMenu.classList.toggle('dark:bg-background-dark');
+        navMenu.classList.toggle('p-8');
+        navMenu.classList.toggle('shadow-xl');
+        navMenu.classList.toggle('z-50');
+
+        // Icon Swap
+        menuIcon.classList.toggle('hidden');
+        closeIcon.classList.toggle('hidden');
+      });
+    }
+  });
 
   syncPageBanner();
 </script>

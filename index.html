@@ -2,8 +2,8 @@
 <meta charset="utf-8">
 <meta content="width=device-width, initial-scale=1.0" name="viewport">
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700;800&amp;family=Lexend:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700;800&family=Lexend:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
 <script id="tailwind-config">
         tailwind.config = {
             darkMode: "class",
@@ -34,188 +34,193 @@
 <body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100">
 <div class="relative flex h-auto min-h-screen w-full flex-col group/design-root overflow-x-hidden">
 <div class="layout-container flex h-full grow flex-col">
-<!-- Header updated to match SCREEN_44 exactly -->
 <header class="flex items-center justify-between whitespace-nowrap px-6 md:px-20 py-4 bg-white dark:bg-background-dark sticky top-0 z-50 shadow-sm">
 <div class="flex items-center gap-4 text-primary">
 <div class="size-10 overflow-hidden rounded-full">
-<img alt="Noddfa Glyncorrwg Community Centre Logo" class="w-full h-full object-cover" src="https://i.ibb.co/Q3byq78Y/Noddfa-Logo.jpg" style="">
+<img alt="Noddfa Glyncorrwg Community Centre Logo" class="w-full h-full object-cover" src="https://i.ibb.co/Q3byq78Y/Noddfa-Logo.jpg">
 </div>
-<h2 class="text-slate-900 dark:text-slate-100 text-xl font-bold leading-tight tracking-tight" style="">Noddfa Community Centre</h2>
+<h2 class="text-slate-900 dark:text-slate-100 text-xl font-bold leading-tight tracking-tight">Noddfa Community Centre</h2>
 </div>
-<div class="hidden md:flex flex-1 justify-end gap-8">
-<nav class="flex items-center gap-9">
-<a class="text-slate-700 dark:text-slate-300 text-sm font-medium hover:text-primary transition-colors" href="/" style="">Home</a>
-<a class="text-slate-700 dark:text-slate-300 text-sm font-medium hover:text-primary transition-colors" href="/events" style="">What's On</a>
-<a class="text-slate-700 dark:text-slate-300 text-sm font-medium hover:text-primary transition-colors" href="/hire" style="">Hire Space</a>
-<a class="text-slate-700 dark:text-slate-300 text-sm font-medium hover:text-primary transition-colors" href="/about" style="">About</a>
-<a class="text-slate-700 dark:text-slate-300 text-sm font-medium hover:text-primary transition-colors" href="/contact" style="">Contact</a>
+
+<div id="nav-menu" class="hidden md:flex flex-1 justify-end gap-8">
+<nav class="flex flex-col md:flex-row items-start md:items-center gap-6 md:gap-9">
+<a class="text-slate-700 dark:text-slate-300 text-sm font-medium hover:text-primary transition-colors" href="/">Home</a>
+<a class="text-slate-700 dark:text-slate-300 text-sm font-medium hover:text-primary transition-colors" href="/events">What's On</a>
+<a class="text-slate-700 dark:text-slate-300 text-sm font-medium hover:text-primary transition-colors" href="/hire">Hire Space</a>
+<a class="text-slate-700 dark:text-slate-300 text-sm font-medium hover:text-primary transition-colors" href="/about">About</a>
+<a class="text-slate-700 dark:text-slate-300 text-sm font-medium hover:text-primary transition-colors" href="/contact">Contact</a>
 </nav>
-<button class="flex min-w-[120px] cursor-pointer items-center justify-center rounded-lg h-10 px-5 bg-primary text-white text-sm font-bold tracking-wide hover:bg-primary/90 transition-all" style="">
+<button class="flex min-w-[120px] cursor-pointer items-center justify-center rounded-lg h-10 px-5 bg-primary text-white text-sm font-bold tracking-wide hover:bg-primary/90 transition-all">
                         Book Now</button>
 </div>
-<div class="md:hidden">
-<span class="material-symbols-outlined text-slate-900 dark:text-slate-100" style="">menu</span>
+
+<div class="md:hidden cursor-pointer p-2 flex items-center" id="menu-toggle">
+<span id="menu-icon" class="material-symbols-outlined text-slate-900 dark:text-slate-100 text-3xl">menu</span>
+<span id="close-icon" class="hidden material-symbols-outlined text-slate-900 dark:text-slate-100 text-3xl">close</span>
 </div>
 </header>
+
 <main class="flex flex-col flex-1">
-<!-- Hero Banner updated to match SCREEN_71 style, size, and alignment exactly -->
 <section class="relative w-full">
 <div class="relative w-full h-[300px] md:h-[500px] flex items-center justify-center text-center px-6 overflow-hidden">
-<div class="absolute inset-0 bg-cover bg-center bg-no-repeat" style="background-image: url(&quot;https://lh3.googleusercontent.com/aida-public/AB6AXuCoazdtQ42qhqPyggyv61x913Z8nw3jXc61y4n8dynArtnGp_xIepDRDx-1kRNEtnQK4WIDWBtXQ8NNwoPF_cC5JlIC0qrzjD1Amx85FRYYGKkKt4hQLGSlqQnFIyisZk5zly8vkJfqWP1z4nphe7bC3YFMpurGjq3F1m2NCQaIrOFpTSOSCYomVi4PVBwsihslHg9-cBmNIeefj-BXHLTcisOeWa8ni90IWA61UemyVlGuywdelR-WhSmlDnAVZI-n0TkkEyVqpQIj&quot;);"></div>
+<div class="absolute inset-0 bg-cover bg-center bg-no-repeat" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCoazdtQ42qhqPyggyv61x913Z8nw3jXc61y4n8dynArtnGp_xIepDRDx-1kRNEtnQK4WIDWBtXQ8NNwoPF_cC5JlIC0qrzjD1Amx85FRYYGKkKt4hQLGSlqQnFIyisZk5zly8vkJfqWP1z4nphe7bC3YFMpurGjq3F1m2NCQaIrOFpTSOSCYomVi4PVBwsihslHg9-cBmNIeefj-BXHLTcisOeWa8ni90IWA61UemyVlGuywdelR-WhSmlDnAVZI-n0TkkEyVqpQIj');"></div>
 <div class="absolute inset-0 bg-black/50"></div>
 <div class="relative z-10 max-w-3xl mx-auto">
-<span class="bg-primary text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider mb-6 inline-block" style="">Valley Community</span>
-<h1 id="hero-header" class="text-white text-4xl md:text-6xl font-extrabold leading-tight mb-4" style="">Heart of the Glyncorrwg<br>Community</h1>
-<p class="text-slate-200 text-lg md:text-xl font-medium" style="">A welcoming space for everyone to connect, learn, and grow together in the beautiful South Wales Valleys.</p>
+<span class="bg-primary text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider mb-6 inline-block">Valley Community</span>
+<h1 id="hero-header" class="text-white text-4xl md:text-6xl font-extrabold leading-tight mb-4">Heart of the Glyncorrwg<br>Community</h1>
+<p class="text-slate-200 text-lg md:text-xl font-medium">A welcoming space for everyone to connect, learn, and grow together in the beautiful South Wales Valleys.</p>
 </div>
 </div>
 </section>
+
 <section class="px-6 md:px-20 py-16">
 <div class="flex items-center justify-between mb-10">
 <div>
-<h2 class="text-slate-900 dark:text-white text-3xl font-bold" style="">What's On</h2>
-<p class="text-slate-500 dark:text-slate-400 mt-2" style="">Join us for activities and events this week</p>
+<h2 class="text-slate-900 dark:text-white text-3xl font-bold">What's On</h2>
+<p class="text-slate-500 dark:text-slate-400 mt-2">Join us for activities and events this week</p>
 </div>
-<button class="flex items-center gap-2 text-primary font-bold hover:underline" style="">
-                            View Full Calendar <span class="material-symbols-outlined" style="">arrow_forward</span>
+<button class="flex items-center gap-2 text-primary font-bold hover:underline">
+                            View Full Calendar <span class="material-symbols-outlined">arrow_forward</span>
 </button>
 </div>
 <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
 <div class="flex flex-col group cursor-pointer">
-<div class="w-full aspect-[16/10] bg-center bg-no-repeat bg-cover rounded-xl mb-4 overflow-hidden shadow-sm" style="background-image: url(&quot;https://lh3.googleusercontent.com/aida-public/AB6AXuAsNzvL49dsmBHO45m3S3ty7zn_RkUR4p_u47Ux7-hE_l-9qbxXVJ7kRE10Uhj5jFmTfJgW_1S2he4o3aXeBpVeS2PiG_WumLrvoIlnJBUXwkpojkTFC2vqXJ-ECxVPwUzgyrOHtegAMvnILz2SmuavotwdGrybrGXtMgjwEmEL9LPVi4O7RmyEJSoVCfvl2E6z4EkB0fmBkYlKk03Rmp1vx684PEMJI4sINtlwA89vuL4tkgK4eSpGzmCYX9_tbUCcHOXmBDFxKfAH&quot;);">
+<div class="w-full aspect-[16/10] bg-center bg-no-repeat bg-cover rounded-xl mb-4 overflow-hidden shadow-sm" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAsNzvL49dsmBHO45m3S3ty7zn_RkUR4p_u47Ux7-hE_l-9qbxXVJ7kRE10Uhj5jFmTfJgW_1S2he4o3aXeBpVeS2PiG_WumLrvoIlnJBUXwkpojkTFC2vqXJ-ECxVPwUzgyrOHtegAMvnILz2SmuavotwdGrybrGXtMgjwEmEL9LPVi4O7RmyEJSoVCfvl2E6z4EkB0fmBkYlKk03Rmp1vx684PEMJI4sINtlwA89vuL4tkgK4eSpGzmCYX9_tbUCcHOXmBDFxKfAH');">
 <div class="w-full h-full bg-primary/0 group-hover:bg-primary/10 transition-colors"></div>
 </div>
 <div class="px-1">
-<span class="text-primary text-xs font-bold uppercase tracking-wider" style="">Weekly</span>
-<h3 class="text-slate-900 dark:text-white text-xl font-bold mt-1" style="">Valley Coffee Morning</h3>
-<p class="text-slate-600 dark:text-slate-400 mt-2 leading-relaxed" style="">Every Tuesday at 10am. Free tea, coffee, and plenty of local chat.</p>
+<span class="text-primary text-xs font-bold uppercase tracking-wider">Weekly</span>
+<h3 class="text-slate-900 dark:text-white text-xl font-bold mt-1">Valley Coffee Morning</h3>
+<p class="text-slate-600 dark:text-slate-400 mt-2 leading-relaxed">Every Tuesday at 10am. Free tea, coffee, and plenty of local chat.</p>
 </div>
 </div>
 <div class="flex flex-col group cursor-pointer">
-<div class="w-full aspect-[16/10] bg-center bg-no-repeat bg-cover rounded-xl mb-4 overflow-hidden shadow-sm" style="background-image: url(&quot;https://lh3.googleusercontent.com/aida-public/AB6AXuCk4sZBpNrHU6XnCqoAFHDkz7QS23FFyUlsLqQ9GEs6LW5ic3YKPO3kyzsUK2g1qgzop5GkoyNyhjePs0UQzj3YW9CXgZYz53MIaLV6XS58YAs1sAp5245m1k6DcE9olCIqnURieCHU4IFYanDK81T-R2iC65uszgz6Yw9HmnTXliyp58DMjk0YxSe1D0Z6YwSrS9zG5qm6tHVxA5cbz1uOkFRoHbJKTKGzhCVno9dUNPKkhsjEXXXgRjSTvLv0IrHdmNA_kizzHGQ3&quot;);">
+<div class="w-full aspect-[16/10] bg-center bg-no-repeat bg-cover rounded-xl mb-4 overflow-hidden shadow-sm" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCk4sZBpNrHU6XnCqoAFHDkz7QS23FFyUlsLqQ9GEs6LW5ic3YKPO3kyzsUK2g1qgzop5GkoyNyhjePs0UQzj3YW9CXgZYz53MIaLV6XS58YAs1sAp5245m1k6DcE9olCIqnURieCHU4IFYanDK81T-R2iC65uszgz6Yw9HmnTXliyp58DMjk0YxSe1D0Z6YwSrS9zG5qm6tHVxA5cbz1uOkFRoHbJKTKGzhCVno9dUNPKkhsjEXXXgRjSTvLv0IrHdmNA_kizzHGQ3');">
 <div class="w-full h-full bg-primary/0 group-hover:bg-primary/10 transition-colors"></div>
 </div>
 <div class="px-1">
-<span class="text-primary text-xs font-bold uppercase tracking-wider" style="">Health</span>
-<h3 class="text-slate-900 dark:text-white text-xl font-bold mt-1" style="">Gentle Senior Fitness</h3>
-<p class="text-slate-600 dark:text-slate-400 mt-2 leading-relaxed" style="">Thursdays at 2pm. Keep active and mobile with our expert-led sessions.</p>
+<span class="text-primary text-xs font-bold uppercase tracking-wider">Health</span>
+<h3 class="text-slate-900 dark:text-white text-xl font-bold mt-1">Gentle Senior Fitness</h3>
+<p class="text-slate-600 dark:text-slate-400 mt-2 leading-relaxed">Thursdays at 2pm. Keep active and mobile with our expert-led sessions.</p>
 </div>
 </div>
 <div class="flex flex-col group cursor-pointer">
-<div class="w-full aspect-[16/10] bg-center bg-no-repeat bg-cover rounded-xl mb-4 overflow-hidden shadow-sm" style="background-image: url(&quot;https://lh3.googleusercontent.com/aida-public/AB6AXuDzAmORW_ilrNVWmAfm_v6QoNt80anKXv2yBOd7JXbfGbs45he75q0eQNHpDe9-66sWy7_7kOOCwWhpUkaqBp8OkIySkG5IxW21PJMAViKMV_qxIA2zRzvCCRLLkZItJXGO7ujzF8aidFtHK4kb4FxoXaSpaFdapK_bH_U3VTY1D9h_2Bh33Gn3Oovjr66Oznt8YPNnwqRReKcykLFttcJyzkSm3gfrmdC9Gqt_tH0Wzkt1NCn3R9iKKm76lylXCltnou-8ZncD9Rv9&quot;);">
+<div class="w-full aspect-[16/10] bg-center bg-no-repeat bg-cover rounded-xl mb-4 overflow-hidden shadow-sm" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDzAmORW_ilrNVWmAfm_v6QoNt80anKXv2yBOd7JXbfGbs45he75q0eQNHpDe9-66sWy7_7kOOCwWhpUkaqBp8OkIySkG5IxW21PJMAViKMV_qxIA2zRzvCCRLLkZItJXGO7ujzF8aidFtHK4kb4FxoXaSpaFdapK_bH_U3VTY1D9h_2Bh33Gn3Oovjr66Oznt8YPNnwqRReKcykLFttcJyzkSm3gfrmdC9Gqt_tH0Wzkt1NCn3R9iKKm76lylXCltnou-8ZncD9Rv9');">
 <div class="w-full h-full bg-primary/0 group-hover:bg-primary/10 transition-colors"></div>
 </div>
 <div class="px-1">
-<span class="text-primary text-xs font-bold uppercase tracking-wider" style="">Youth</span>
-<h3 class="text-slate-900 dark:text-white text-xl font-bold mt-1" style="">Glyncorrwg Youth Club</h3>
-<p class="text-slate-600 dark:text-slate-400 mt-2 leading-relaxed" style="">Friday evenings for ages 11-16. Safe space for fun and friendship.</p>
+<span class="text-primary text-xs font-bold uppercase tracking-wider">Youth</span>
+<h3 class="text-slate-900 dark:text-white text-xl font-bold mt-1">Glyncorrwg Youth Club</h3>
+<p class="text-slate-600 dark:text-slate-400 mt-2 leading-relaxed">Friday evenings for ages 11-16. Safe space for fun and friendship.</p>
 </div>
 </div>
 </div>
 </section>
+
 <section class="px-6 md:px-20 py-20 bg-[#f0f4f0] dark:bg-opacity-10">
 <div class="grid md:grid-cols-2 gap-12 items-center">
 <div class="order-2 md:order-1">
 <div class="grid grid-cols-2 gap-4">
-<div class="aspect-square rounded-xl bg-cover bg-center shadow-lg" style="background-image: url(&quot;https://lh3.googleusercontent.com/aida-public/AB6AXuAxUwFfwV0uTktLy1pgHVxgD7WL8U-OMjny8NkMeKmzH40q__-uQ8lSgcHG9WyhdkF7L9onMsDDG6nI-P3Jon9k2r9YBY08FbW4LDlqr7EwvnHGQgRNK5RRST9N5nAZ9CdB2q53huAZTQ1uRmSWgBYzmE_zKBheUMHMvpXFxX_gqzNERd3HuEzVKfx6tHNutpckwtFjOYZl0U7YnZ6VBoSwtUE_VnQmyFyxdVjzKntrRaGVP47fJ_7K2JzIr0soYeaFkV9kJBfrbav2&quot;);"></div>
-<div class="aspect-square rounded-xl bg-cover bg-center mt-8 shadow-lg" style="background-image: url(&quot;https://lh3.googleusercontent.com/aida-public/AB6AXuAaVWbDIU1STEiB7DpKhi3_dcz6n3AtVBjf8k0aKCJzOSQxgBnr6BVNNodm_SLdMcb7-t6f739TE9_-Wtl9keILYiU4MDU0j7Z_FYa3AwXXYwSSAu0B9RPZeckBA_v2J77JpyaPnBwUCPs5NzLn5xxKhYuzL5cGSCGK9_GzTEmqgpZ73vsCMMXxYLLpRR-9Cwx7jWKUJtwo5YdOSs7rrGVwY3tyty84rAnEm_E8MHGNJu4TLG_V1v7DKjh5P8BX0xwuQmMB0-9bgE0M&quot;);"></div>
+<div class="aspect-square rounded-xl bg-cover bg-center shadow-lg" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAxUwFfwV0uTktLy1pgHVxgD7WL8U-OMjny8NkMeKmzH40q__-uQ8lSgcHG9WyhdkF7L9onMsDDG6nI-P3Jon9k2r9YBY08FbW4LDlqr7EwvnHGQgRNK5RRST9N5nAZ9CdB2q53huAZTQ1uRmSWgBYzmE_zKBheUMHMvpXFxX_gqzNERd3HuEzVKfx6tHNutpckwtFjOYZl0U7YnZ6VBoSwtUE_VnQmyFyxdVjzKntrRaGVP47fJ_7K2JzIr0soYeaFkV9kJBfrbav2');"></div>
+<div class="aspect-square rounded-xl bg-cover bg-center mt-8 shadow-lg" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAaVWbDIU1STEiB7DpKhi3_dcz6n3AtVBjf8k0aKCJzOSQxgBnr6BVNNodm_SLdMcb7-t6f739TE9_-Wtl9keILYiU4MDU0j7Z_FYa3AwXXYwSSAu0B9RPZeckBA_v2J77JpyaPnBwUCPs5NzLn5xxKhYuzL5cGSCGK9_GzTEmqgpZ73vsCMMXxYLLpRR-9Cwx7jWKUJtwo5YdOSs7rrGVwY3tyty84rAnEm_E8MHGNJu4TLG_V1v7DKjh5P8BX0xwuQmMB0-9bgE0M');"></div>
 </div>
 </div>
 <div class="order-1 md:order-2">
-<h2 class="text-slate-900 dark:text-white text-3xl font-bold mb-6" style="">Hire Our Space</h2>
-<p class="text-slate-600 dark:text-slate-300 text-lg mb-8 leading-relaxed" style="">
+<h2 class="text-slate-900 dark:text-white text-3xl font-bold mb-6">Hire Our Space</h2>
+<p class="text-slate-600 dark:text-slate-300 text-lg mb-8 leading-relaxed">
                                 From children's birthday parties and family celebrations to business meetings and local club gatherings. Our modern, flexible facilities are available at affordable rates for the community.
                             </p>
 <ul class="space-y-4 mb-8 text-slate-700 dark:text-slate-200">
-<li class="flex items-center gap-3" style="">
-<span class="material-symbols-outlined text-primary" style="">check_circle</span>
+<li class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary">check_circle</span>
                                     Large Main Hall (up to 120 people)
                                 </li>
-<li class="flex items-center gap-3" style="">
-<span class="material-symbols-outlined text-primary" style="">check_circle</span>
+<li class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary">check_circle</span>
                                     Fully Equipped Kitchen Facilities
                                 </li>
-<li class="flex items-center gap-3" style="">
-<span class="material-symbols-outlined text-primary" style="">check_circle</span>
+<li class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary">check_circle</span>
                                     Accessible Private Meeting Rooms
                                 </li>
 </ul>
-<button class="bg-primary text-white px-8 py-3 rounded-lg font-bold hover:bg-primary/90 transition-all shadow-md" style="">
+<button class="bg-primary text-white px-8 py-3 rounded-lg font-bold hover:bg-primary/90 transition-all shadow-md">
                                 Check Availability
                             </button>
 </div>
 </div>
 </section>
+
 <section class="px-6 md:px-20 py-20 text-center max-w-4xl mx-auto">
-<h2 class="text-slate-900 dark:text-white text-3xl font-bold mb-6" style="">About Noddfa</h2>
-<p class="text-slate-600 dark:text-slate-400 text-lg leading-relaxed mb-10" style="">
+<h2 class="text-slate-900 dark:text-white text-3xl font-bold mb-6">About Noddfa</h2>
+<p class="text-slate-600 dark:text-slate-400 text-lg leading-relaxed mb-10">
                         Noddfa Community Centre has been a cornerstone of Glyncorrwg for decades. Run by dedicated volunteers, our mission is to provide a vibrant hub where people of all ages can find support, entertainment, and a sense of belonging in our unique valley community.
                     </p>
 <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
 <div>
-<p class="text-primary text-3xl font-black mb-1" style="">50+</p>
-<p class="text-slate-500 text-sm uppercase font-bold" style="">Years Serving</p>
+<p class="text-primary text-3xl font-black mb-1">50+</p>
+<p class="text-slate-500 text-sm uppercase font-bold">Years Serving</p>
 </div>
 <div>
-<p class="text-primary text-3xl font-black mb-1" style="">15+</p>
-<p class="text-slate-500 text-sm uppercase font-bold" style="">Weekly Groups</p>
+<p class="text-primary text-3xl font-black mb-1">15+</p>
+<p class="text-slate-500 text-sm uppercase font-bold">Weekly Groups</p>
 </div>
 <div>
-<p class="text-primary text-3xl font-black mb-1" style="">100%</p>
-<p class="text-slate-500 text-sm uppercase font-bold" style="">Community Led</p>
+<p class="text-primary text-3xl font-black mb-1">100%</p>
+<p class="text-slate-500 text-sm uppercase font-bold">Community Led</p>
 </div>
 <div>
-<p class="text-primary text-3xl font-black mb-1" style="">2k+</p>
-<p class="text-slate-500 text-sm uppercase font-bold" style="">Monthly Visits</p>
+<p class="text-primary text-3xl font-black mb-1">2k+</p>
+<p class="text-slate-500 text-sm uppercase font-bold">Monthly Visits</p>
 </div>
 </div>
 </section>
-<!-- Footer updated to match SCREEN_56 exactly -->
+
 <footer class="text-slate-200 py-12 px-6 md:px-20 border-t border-primary/20" style="background-color: #1a301a;">
 <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-12">
 <div class="col-span-1 md:col-span-1">
 <div class="flex items-center gap-3 text-white mb-6">
-<img alt="Noddfa Logo" class="size-10 rounded-full border border-white/20" src="https://i.ibb.co/Q3byq78Y/Noddfa-Logo.jpg" style="">
-<h2 class="text-xl font-bold" style="">Noddfa Community Centre</h2>
+<img alt="Noddfa Logo" class="size-10 rounded-full border border-white/20" src="https://i.ibb.co/Q3byq78Y/Noddfa-Logo.jpg">
+<h2 class="text-xl font-bold">Noddfa Community Centre</h2>
 </div>
-<p class="text-sm leading-relaxed mb-6 opacity-80" style="">A hub for the community, providing space for growth, connection, and celebration since 1982.</p>
+<p class="text-sm leading-relaxed mb-6 opacity-80">A hub for the community, providing space for growth, connection, and celebration since 1982.</p>
 <div class="flex gap-4">
-<a class="hover:text-primary transition-colors" href="#" style=""><span class="material-symbols-outlined" style="">public</span></a>
-<a class="hover:text-primary transition-colors" href="#" style=""><span class="material-symbols-outlined" style="">mail</span></a>
-<a class="hover:text-primary transition-colors" href="#" style=""><span class="material-symbols-outlined" style="">call</span></a>
+<a class="hover:text-primary transition-colors" href="#"><span class="material-symbols-outlined">public</span></a>
+<a class="hover:text-primary transition-colors" href="#"><span class="material-symbols-outlined">mail</span></a>
+<a class="hover:text-primary transition-colors" href="#"><span class="material-symbols-outlined">call</span></a>
 </div>
 </div>
 <div>
-<h4 class="text-white font-bold mb-6" style="">Quick Links</h4>
+<h4 class="text-white font-bold mb-6">Quick Links</h4>
 <ul class="space-y-4 text-sm">
-<li class="" style=""><a class="hover:text-primary transition-colors" href="#" style="">Activities Schedule</a></li>
-<li class="" style=""><a class="hover:text-primary transition-colors" href="#" style="">Room Bookings</a></li>
-<li class="" style=""><a class="hover:text-primary transition-colors" href="#" style="">Volunteering</a></li>
-<li class="" style=""><a class="hover:text-primary transition-colors" href="#" style="">Support Us</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Activities Schedule</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Room Bookings</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Volunteering</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Support Us</a></li>
 </ul>
 </div>
 <div>
-<h4 class="text-white font-bold mb-6" style="">Support</h4>
+<h4 class="text-white font-bold mb-6">Support</h4>
 <ul class="space-y-4 text-sm">
-<li class="" style=""><a class="hover:text-primary transition-colors" href="#" style="">Contact Us</a></li>
-<li class="" style=""><a class="hover:text-primary transition-colors" href="#" style="">FAQs</a></li>
-<li class="" style=""><a class="hover:text-primary transition-colors" href="#" style="">Privacy Policy</a></li>
-<li class="" style=""><a class="hover:text-primary transition-colors" href="#" style="">Accessibility</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Contact Us</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">FAQs</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Privacy Policy</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Accessibility</a></li>
 </ul>
 </div>
 <div>
-<h4 class="text-white font-bold mb-6" style="">Newsletter</h4>
-<p class="text-sm mb-4 opacity-80" style="">Stay updated with our latest news and events.</p>
+<h4 class="text-white font-bold mb-6">Newsletter</h4>
+<p class="text-sm mb-4 opacity-80">Stay updated with our latest news and events.</p>
 <div class="flex h-10">
 <input class="bg-[#1d2913] border-none rounded-l-lg text-sm px-4 flex-1 focus:ring-1 focus:ring-primary text-white placeholder:text-slate-400" placeholder="Email address" style="background-color: #0d1a0d;" type="email">
-<button class="bg-primary text-white px-4 rounded-r-lg hover:bg-primary/90 transition-colors" style="">
-<span class="material-symbols-outlined text-sm" style="">send</span>
+<button class="bg-primary text-white px-4 rounded-r-lg hover:bg-primary/90 transition-colors">
+<span class="material-symbols-outlined text-sm">send</span>
 </button>
 </div>
 </div>
 </div>
 <div class="max-w-7xl mx-auto border-t border-white/10 mt-12 pt-8 text-xs text-center opacity-60">
-<p class="" style="">© 2024 Noddfa Community Centre. Registered Charity Glyncorrwg.</p>
+<p>© 2024 Noddfa Community Centre. Registered Charity Glyncorrwg.</p>
 </div>
 </footer>
 </main>
@@ -223,25 +228,20 @@
 </div>
 
 <script>
+  // 1. ACF Banner Sync Function
   async function syncPageBanner() {
-    // 1. Identify the current page slug (e.g., 'activities')
     const path = window.location.pathname;
     const slug = path.split("/").pop().replace(".html", "") || "home";
 
     try {
-      // 2. Fetch the data from your new backend URL
       const response = await fetch(`https://noddfa-j3nkslkrxc.live-website.com/wp-json/wp/v2/pages?slug=${slug}`);
       const data = await response.json();
 
       if (data && data.length > 0) {
         const pageData = data[0];
-        
-        // 3. Target your specific ACF field name
         const bannerText = pageData.acf ? pageData.acf.hero_benner_header : null;
 
         if (bannerText) {
-          // 4. Update the <h1> or element in your Stitch design
-          // Ensure your HTML tag has id="hero-header"
           const headerElement = document.getElementById('hero-header');
           if (headerElement) {
             headerElement.innerHTML = bannerText;
@@ -252,6 +252,38 @@
       console.error("Banner sync failed:", error);
     }
   }
+
+  // 2. Mobile Menu Toggle Logic
+  document.addEventListener('DOMContentLoaded', () => {
+    const toggleBtn = document.getElementById('menu-toggle');
+    const navMenu = document.getElementById('nav-menu');
+    const menuIcon = document.getElementById('menu-icon');
+    const closeIcon = document.getElementById('close-icon');
+
+    if (toggleBtn && navMenu) {
+      toggleBtn.addEventListener('click', () => {
+        // Toggle the visibility of the menu
+        navMenu.classList.toggle('hidden');
+        
+        // Apply mobile styles dynamically
+        navMenu.classList.toggle('flex');
+        navMenu.classList.toggle('flex-col');
+        navMenu.classList.toggle('absolute');
+        navMenu.classList.toggle('top-[72px]');
+        navMenu.classList.toggle('left-0');
+        navMenu.classList.toggle('w-full');
+        navMenu.classList.toggle('bg-white');
+        navMenu.classList.toggle('dark:bg-background-dark');
+        navMenu.classList.toggle('p-8');
+        navMenu.classList.toggle('shadow-xl');
+        navMenu.classList.toggle('z-50');
+
+        // Toggle Icons (Menu vs Close)
+        menuIcon.classList.toggle('hidden');
+        closeIcon.classList.toggle('hidden');
+      });
+    }
+  });
 
   syncPageBanner();
 </script>
