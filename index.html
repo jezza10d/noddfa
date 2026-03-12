@@ -160,7 +160,7 @@
 </div>
 
 <script>
-  // Unified loader for Header and Footer
+  // 1. Unified loader for Header and Footer
   async function loadSharedComponents() {
     try {
       // Load Header
@@ -168,6 +168,8 @@
       if (headerResponse.ok) {
         const headerHtml = await headerResponse.text();
         document.getElementById('header-placeholder').innerHTML = headerHtml;
+        
+        // These now exist below, so the script won't crash
         initMobileMenu();
         highlightActiveLink();
       }
@@ -178,16 +180,55 @@
         const footerHtml = await footerResponse.text();
         document.getElementById('footer-placeholder').innerHTML = footerHtml;
       }
-
     } catch (error) {
       console.error("Error loading shared components:", error);
     }
   }
 
-  // ... (Keep your initMobileMenu, highlightActiveLink, and syncPageBanner functions exactly as they are) ...
+  // 2. Mobile Menu Logic
+  function initMobileMenu() {
+    const toggleBtn = document.getElementById('menu-toggle');
+    const navMenu = document.getElementById('nav-menu');
+    if (toggleBtn && navMenu) {
+      toggleBtn.addEventListener('click', () => {
+        navMenu.classList.toggle('hidden');
+        navMenu.classList.add('flex', 'flex-col', 'absolute', 'top-[72px]', 'left-0', 'w-full', 'bg-white', 'p-8', 'shadow-xl', 'z-50');
+      });
+    }
+  }
 
+  // 3. Highlight the current page in the nav
+  function highlightActiveLink() {
+    const currentPath = window.location.pathname;
+    const navLinks = document.querySelectorAll('.nav-link');
+    navLinks.forEach(link => {
+      const href = link.getAttribute('href');
+      if (currentPath.endsWith(href) || (currentPath === '/' && href.includes('index.html'))) {
+        link.classList.add('text-primary', 'font-semibold', 'border-b-2', 'border-primary');
+        link.classList.remove('text-slate-700');
+      }
+    });
+  }
+
+  // 4. ACF Banner Sync
+  async function syncPageBanner() {
+    const path = window.location.pathname;
+    const slug = path.split("/").pop().replace(".html", "") || "home";
+    try {
+      const response = await fetch(`https://noddfa-j3nkslkrxc.live-website.com/wp-json/wp/v2/pages?slug=${slug}`);
+      const data = await response.json();
+      if (data && data.length > 0 && data[0].acf?.hero_benner_header) {
+        const headerElement = document.getElementById('hero-header');
+        if (headerElement) headerElement.innerHTML = data[0].acf.hero_benner_header;
+      }
+    } catch (error) {
+      console.error("Banner sync failed:", error);
+    }
+  }
+
+  // Start everything
   document.addEventListener('DOMContentLoaded', () => {
-    loadSharedComponents(); // Call the unified loader
+    loadSharedComponents();
     syncPageBanner();
   });
 </script>
