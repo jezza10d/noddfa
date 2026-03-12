@@ -44,11 +44,11 @@
 </div>
 <div class="hidden md:flex flex-1 justify-end gap-8">
 <nav class="flex items-center gap-9">
-<a class="text-slate-700 dark:text-slate-300 text-sm font-medium hover:text-primary transition-colors" href="#" style="">Home</a>
-<a class="text-slate-700 dark:text-slate-300 text-sm font-medium hover:text-primary transition-colors" href="#" style="">What's On</a>
-<a class="text-slate-700 dark:text-slate-300 text-sm font-medium hover:text-primary transition-colors" href="#" style="">Hire Space</a>
-<a class="text-slate-700 dark:text-slate-300 text-sm font-medium hover:text-primary transition-colors" href="#" style="">About</a>
-<a class="text-slate-700 dark:text-slate-300 text-sm font-medium hover:text-primary transition-colors" href="#" style="">Contact</a>
+<a class="text-slate-700 dark:text-slate-300 text-sm font-medium hover:text-primary transition-colors" href="/" style="">Home</a>
+<a class="text-slate-700 dark:text-slate-300 text-sm font-medium hover:text-primary transition-colors" href="/events" style="">What's On</a>
+<a class="text-slate-700 dark:text-slate-300 text-sm font-medium hover:text-primary transition-colors" href="/hire" style="">Hire Space</a>
+<a class="text-slate-700 dark:text-slate-300 text-sm font-medium hover:text-primary transition-colors" href="/about" style="">About</a>
+<a class="text-slate-700 dark:text-slate-300 text-sm font-medium hover:text-primary transition-colors" href="/contact" style="">Contact</a>
 </nav>
 <button class="flex min-w-[120px] cursor-pointer items-center justify-center rounded-lg h-10 px-5 bg-primary text-white text-sm font-bold tracking-wide hover:bg-primary/90 transition-all" style="">
                         Book Now</button>
@@ -65,7 +65,7 @@
 <div class="absolute inset-0 bg-black/50"></div>
 <div class="relative z-10 max-w-3xl mx-auto">
 <span class="bg-primary text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider mb-6 inline-block" style="">Valley Community</span>
-<h1 id="home_hero_message" class="text-white text-4xl md:text-6xl font-extrabold leading-tight mb-4" style="">Heart of the Glyncorrwg<br>Community</h1>
+<h1 id="hero-header" class="text-white text-4xl md:text-6xl font-extrabold leading-tight mb-4" style="">Heart of the Glyncorrwg<br>Community</h1>
 <p class="text-slate-200 text-lg md:text-xl font-medium" style="">A welcoming space for everyone to connect, learn, and grow together in the beautiful South Wales Valleys.</p>
 </div>
 </div>
@@ -221,31 +221,39 @@
 </main>
 </div>
 </div>
+
 <script>
-  async function syncHomeHero() {
+  async function syncPageBanner() {
+    // 1. Identify the current page slug (e.g., 'activities')
+    const path = window.location.pathname;
+    const slug = path.split("/").pop().replace(".html", "") || "home";
+
     try {
-      const response = await fetch('https://noddfa-j3nkslkrxc.live-website.com/wp-json/wp/v2/pages?slug=home&_embed');
+      // 2. Fetch the data from your new backend URL
+      const response = await fetch(`https://noddfa-j3nkslkrxc.live-website.com/wp-json/wp/v2/pages?slug=${slug}`);
       const data = await response.json();
 
       if (data && data.length > 0) {
-        const homePage = data[0];
+        const pageData = data[0];
         
-        // This will show us EVERY field available in your browser console
-        console.log("Full Page Data:", homePage);
+        // 3. Target your specific ACF field name
+        const bannerText = pageData.acf ? pageData.acf.hero_benner_header : null;
 
-        // Check ACF first, then check standard Meta as a backup
-        const content = homePage.acf ? homePage.acf.home_hero_message : homePage.meta ? homePage.meta.home_hero_message : null;
-
-        if (content) {
-          document.getElementById('home_hero_message').innerHTML = content;
-        } else {
-          console.warn("Found the page, but 'home_hero_message' is not in the ACF or Meta sections. Check ACF 'Show in REST API' settings.");
+        if (bannerText) {
+          // 4. Update the <h1> or element in your Stitch design
+          // Ensure your HTML tag has id="hero-header"
+          const headerElement = document.getElementById('hero-header');
+          if (headerElement) {
+            headerElement.innerHTML = bannerText;
+          }
         }
       }
     } catch (error) {
-      console.error("Connection failed:", error);
+      console.error("Banner sync failed:", error);
     }
   }
-  syncHomeHero();
+
+  syncPageBanner();
 </script>
+
 </body></html>
