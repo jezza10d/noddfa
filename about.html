@@ -124,121 +124,64 @@
 </section>
 </div>
 </main>
-<footer class="text-slate-200 py-12 px-6 md:px-20 border-t border-primary/20" style="background-color: #1a301a;">
-<div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-12">
-<div class="col-span-1 md:col-span-1">
-<div class="flex items-center gap-3 text-white mb-6">
-<img alt="Noddfa Logo" class="size-10 rounded-full border border-white/20" src="https://i.ibb.co/Q3byq78Y/Noddfa-Logo.jpg">
-<h2 class="text-xl font-bold">Noddfa Community Centre</h2>
-</div>
-<p class="text-sm leading-relaxed mb-6 opacity-80">A hub for the community, providing space for growth, connection, and celebration since 1982.</p>
-<div class="flex gap-4">
-<a class="hover:text-primary transition-colors" href="#"><span class="material-symbols-outlined">public</span></a>
-<a class="hover:text-primary transition-colors" href="#"><span class="material-symbols-outlined">mail</span></a>
-<a class="hover:text-primary transition-colors" href="#"><span class="material-symbols-outlined">call</span></a>
-</div>
-</div>
-<div>
-<h4 class="text-white font-bold mb-6">Quick Links</h4>
-<ul class="space-y-4 text-sm">
-<li><a class="hover:text-primary transition-colors" href="#">Activities Schedule</a></li>
-<li><a class="hover:text-primary transition-colors" href="#">Room Bookings</a></li>
-<li><a class="hover:text-primary transition-colors" href="#">Volunteering</a></li>
-<li><a class="hover:text-primary transition-colors" href="#">Support Us</a></li>
-</ul>
-</div>
-<div>
-<h4 class="text-white font-bold mb-6">Support</h4>
-<ul class="space-y-4 text-sm">
-<li><a class="hover:text-primary transition-colors" href="#">Contact Us</a></li>
-<li><a class="hover:text-primary transition-colors" href="#">FAQs</a></li>
-<li><a class="hover:text-primary transition-colors" href="#">Privacy Policy</a></li>
-<li><a class="hover:text-primary transition-colors" href="#">Accessibility</a></li>
-</ul>
-</div>
-<div>
-<h4 class="text-white font-bold mb-6">Newsletter</h4>
-<p class="text-sm mb-4 opacity-80">Stay updated with our latest news and events.</p>
-<div class="flex h-10">
-<input class="bg-[#1d2913] border-none rounded-l-lg text-sm px-4 flex-1 focus:ring-1 focus:ring-primary text-white placeholder:text-slate-400" placeholder="Email address" style="background-color: #0d1a0d;" type="email">
-<button class="bg-primary text-white px-4 rounded-r-lg hover:bg-primary/90 transition-colors">
-<span class="material-symbols-outlined text-sm">send</span>
-</button>
-</div>
-</div>
-</div>
-<div class="max-w-7xl mx-auto border-t border-white/10 mt-12 pt-8 text-xs text-center opacity-60">
-<p>© 2024 Noddfa Community Centre. Registered Charity Glyncorrwg.</p>
-</div>
-</footer>
+
+<div id="footer-placeholder"></div>
+
 </div>
 </div>
 
 <script>
-  // 1. Load the shared header
-  async function loadHeader() {
+  // 1. Unified loader for Header and Footer
+  async function loadSharedComponents() {
     try {
-      const response = await fetch('header.html');
-      if (!response.ok) throw new Error('Header file not found');
-      const html = await response.text();
-      document.getElementById('header-placeholder').innerHTML = html;
-      
-      // Setup the interactive features after loading
-      initMobileMenu();
-      highlightActiveLink();
+      // Load Header
+      const headerResponse = await fetch('header.html');
+      if (headerResponse.ok) {
+        const headerHtml = await headerResponse.text();
+        document.getElementById('header-placeholder').innerHTML = headerHtml;
+        
+        // These now exist below, so the script won't crash
+        initMobileMenu();
+        highlightActiveLink();
+      }
+
+      // Load Footer
+      const footerResponse = await fetch('footer.html');
+      if (footerResponse.ok) {
+        const footerHtml = await footerResponse.text();
+        document.getElementById('footer-placeholder').innerHTML = footerHtml;
+      }
     } catch (error) {
-      console.error("Error loading header:", error);
+      console.error("Error loading shared components:", error);
     }
   }
 
-  // 2. Mobile Menu Logic (Vertical Stacking)
+  // 2. Mobile Menu Logic
   function initMobileMenu() {
     const toggleBtn = document.getElementById('menu-toggle');
     const navMenu = document.getElementById('nav-menu');
-    const navLinksContainer = document.getElementById('nav-links');
-    const menuIcon = document.getElementById('menu-icon');
-    const closeIcon = document.getElementById('close-icon');
-
     if (toggleBtn && navMenu) {
       toggleBtn.addEventListener('click', () => {
         navMenu.classList.toggle('hidden');
-        navMenu.classList.toggle('flex');
-        navMenu.classList.toggle('flex-col');
-        navMenu.classList.toggle('absolute');
-        navMenu.classList.toggle('top-[72px]');
-        navMenu.classList.toggle('left-0');
-        navMenu.classList.toggle('w-full');
-        navMenu.classList.toggle('bg-white');
-        navMenu.classList.toggle('dark:bg-background-dark');
-        navMenu.classList.toggle('p-8');
-        navMenu.classList.toggle('shadow-xl');
-        navMenu.classList.toggle('z-50');
-        navMenu.classList.toggle('gap-8');
-
-        if (navLinksContainer) {
-          navLinksContainer.classList.toggle('flex-col');
-          navLinksContainer.classList.toggle('items-start');
-        }
-        menuIcon.classList.toggle('hidden');
-        closeIcon.classList.toggle('hidden');
+        navMenu.classList.add('flex', 'flex-col', 'absolute', 'top-[72px]', 'left-0', 'w-full', 'bg-white', 'p-8', 'shadow-xl', 'z-50');
       });
     }
   }
 
-  // 3. Highlight current page
+  // 3. Highlight the current page in the nav
   function highlightActiveLink() {
     const currentPath = window.location.pathname;
     const navLinks = document.querySelectorAll('.nav-link');
     navLinks.forEach(link => {
       const href = link.getAttribute('href');
-      if (currentPath.endsWith(href) || (currentPath === '/' && href === '/index.html')) {
+      if (currentPath.endsWith(href) || (currentPath === '/' && href.includes('index.html'))) {
         link.classList.add('text-primary', 'font-semibold', 'border-b-2', 'border-primary');
         link.classList.remove('text-slate-700');
       }
     });
   }
 
-  // 4. Original ACF Banner Sync
+  // 4. ACF Banner Sync
   async function syncPageBanner() {
     const path = window.location.pathname;
     const slug = path.split("/").pop().replace(".html", "") || "home";
@@ -256,7 +199,7 @@
 
   // Start everything
   document.addEventListener('DOMContentLoaded', () => {
-    loadHeader();
+    loadSharedComponents();
     syncPageBanner();
   });
 </script>
