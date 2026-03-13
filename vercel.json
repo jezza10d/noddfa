@@ -10,5 +10,14 @@
       "source": "/wp-content/:path*",
       "destination": "https://noddfa-j3nkslkrxc.live-website.com/wp-content/:path*"
     }
+  ],
+  "headers": [
+    {
+      "source": "/events/(.*)",
+      "headers": [
+        { "key": "X-Forwarded-Host", "value": "glyncorrwg.wales" },
+        { "key": "X-Forwarded-Proto", "value": "https" }
+      ]
+    }
   ]
 }
