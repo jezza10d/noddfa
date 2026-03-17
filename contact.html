@@ -4,12 +4,31 @@
  */
 get_header(); ?>
 
-<main class="flex-grow bg-background-light dark:bg-background-dark font-display">
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script>
+    tailwind.config = {
+        darkMode: "class",
+        theme: {
+            extend: {
+                colors: {
+                    "primary": "#ae0000",
+                    "background-light": "#f8f5f5",
+                    "background-dark": "#230f0f",
+                    "forest-green": "#1a301a",
+                },
+                fontFamily: {
+                    "display": ["Lexend"]
+                },
+                borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+            },
+        },
+    }
+</script>
+
+<main class="flex-grow font-display bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100">
     <div class="@container">
         <div class="w-full h-[320px] md:h-[480px] relative overflow-hidden">
-            <div class="absolute inset-0 bg-cover bg-center" 
-                 style='background-image: linear-gradient(rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.6) 100%), url("<?php echo get_template_directory_uri(); ?>/assets/images/contact-hero.jpg");'>
-            </div>
+            <div class="absolute inset-0 bg-cover bg-center" style='background-image: linear-gradient(rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.6) 100%), url("https://images.unsplash.com/photo-1511795409834-ef04bbd61622?q=80&w=2069");'></div>
             <div class="relative h-full flex items-center justify-center p-4">
                 <h1 class="text-white text-4xl font-black leading-tight tracking-[-0.033em] md:text-6xl text-center">
                     Contact Us
@@ -20,7 +39,6 @@ get_header(); ?>
 
     <div class="max-w-[1200px] mx-auto px-6 py-12 md:py-20">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-16">
-            
             <div class="space-y-12">
                 <div class="space-y-6">
                     <h2 class="text-3xl font-bold tracking-tight text-slate-900 dark:text-white">Get in Touch</h2>
@@ -28,64 +46,41 @@ get_header(); ?>
                 </div>
 
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <div class="flex flex-col gap-3 rounded-xl border border-primary/10 bg-white dark:bg-slate-800/50 p-6 shadow-sm hover:shadow-md transition-shadow">
+                    <div class="flex flex-col gap-3 rounded-xl border border-primary/10 bg-white dark:bg-slate-800/50 p-6 shadow-sm">
                         <span class="material-symbols-outlined text-primary text-3xl">location_on</span>
                         <div class="flex flex-col gap-1">
                             <h3 class="text-slate-900 dark:text-white text-base font-bold">Our Address</h3>
                             <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">Dunraven Street, Glyncorrwg, SA13 3AD</p>
                         </div>
                     </div>
-                    <div class="flex flex-col gap-3 rounded-xl border border-primary/10 bg-white dark:bg-slate-800/50 p-6 shadow-sm hover:shadow-md transition-shadow">
+                    <div class="flex flex-col gap-3 rounded-xl border border-primary/10 bg-white dark:bg-slate-800/50 p-6 shadow-sm">
                         <span class="material-symbols-outlined text-primary text-3xl">mail</span>
                         <div class="flex flex-col gap-1">
                             <h3 class="text-slate-900 dark:text-white text-base font-bold">Email Us</h3>
                             <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">bookings@nccg.org.uk</p>
                         </div>
                     </div>
-                    <div class="flex flex-col gap-3 rounded-xl border border-primary/10 bg-white dark:bg-slate-800/50 p-6 shadow-sm hover:shadow-md transition-shadow">
-                        <span class="material-symbols-outlined text-primary text-3xl">call</span>
-                        <div class="flex flex-col gap-1">
-                            <h3 class="text-slate-900 dark:text-white text-base font-bold">Call Us</h3>
-                            <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">01639 850xxx</p>
-                        </div>
-                    </div>
-                    <div class="flex flex-col gap-3 rounded-xl border border-primary/10 bg-white dark:bg-slate-800/50 p-6 shadow-sm hover:shadow-md transition-shadow">
-                        <span class="material-symbols-outlined text-primary text-3xl">schedule</span>
-                        <div class="flex flex-col gap-1">
-                            <h3 class="text-slate-900 dark:text-white text-base font-bold">Opening Hours</h3>
-                            <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">Mon - Fri: 9am - 8pm<br/>Sat - Sun: 10am - 4pm</p>
-                        </div>
-                    </div>
                 </div>
 
                 <div class="bg-white dark:bg-slate-800/50 p-8 rounded-2xl border border-primary/10 shadow-sm">
                     <h3 class="text-xl font-bold mb-6 text-slate-900 dark:text-white">Send us a Message</h3>
-                    
-                    <?php 
-                    // If you use a plugin like Contact Form 7 or WPForms, replace the form below with your shortcode:
-                    // echo do_shortcode('[your-form-shortcode]'); 
-                    ?>
-                    
-                    <form class="space-y-4">
+                    <form action="<?php echo esc_url( admin_url('admin-post.php') ); ?>" method="post" class="space-y-4">
+                        <input type="hidden" name="action" value="contact_form">
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                             <div class="space-y-2">
                                 <label class="text-sm font-semibold text-slate-700 dark:text-slate-300">Name</label>
-                                <input class="w-full rounded-lg border-primary/20 bg-background-light/50 dark:bg-slate-900 focus:border-primary focus:ring-primary text-sm p-3" placeholder="Your full name" type="text"/>
+                                <input name="user_name" class="w-full rounded-lg border-primary/20 bg-background-light/50 dark:bg-slate-900 p-3" placeholder="Your full name" type="text" required/>
                             </div>
                             <div class="space-y-2">
                                 <label class="text-sm font-semibold text-slate-700 dark:text-slate-300">Email</label>
-                                <input class="w-full rounded-lg border-primary/20 bg-background-light/50 dark:bg-slate-900 focus:border-primary focus:ring-primary text-sm p-3" placeholder="your@email.com" type="email"/>
+                                <input name="user_email" class="w-full rounded-lg border-primary/20 bg-background-light/50 dark:bg-slate-900 p-3" placeholder="your@email.com" type="email" required/>
                             </div>
                         </div>
                         <div class="space-y-2">
-                            <label class="text-sm font-semibold text-slate-700 dark:text-slate-300">Subject</label>
-                            <input class="w-full rounded-lg border-primary/20 bg-background-light/50 dark:bg-slate-900 focus:border-primary focus:ring-primary text-sm p-3" placeholder="What is this regarding?" type="text"/>
-                        </div>
-                        <div class="space-y-2">
                             <label class="text-sm font-semibold text-slate-700 dark:text-slate-300">Message</label>
-                            <textarea class="w-full rounded-lg border-primary/20 bg-background-light/50 dark:bg-slate-900 focus:border-primary focus:ring-primary text-sm p-3" placeholder="Your message here..." rows="4"></textarea>
+                            <textarea name="user_message" class="w-full rounded-lg border-primary/20 bg-background-light/50 dark:bg-slate-900 p-3" rows="4" required></textarea>
                         </div>
-                        <button class="w-full bg-primary text-white font-bold py-3 rounded-lg hover:bg-primary/90 transition-all shadow-lg shadow-primary/20" type="submit">
+                        <button class="w-full bg-primary text-white font-bold py-3 rounded-lg hover:bg-primary/90 transition-all" type="submit">
                             Send Message
                         </button>
                     </form>
@@ -93,22 +88,11 @@ get_header(); ?>
             </div>
 
             <div class="lg:sticky lg:top-32 h-fit">
-                <div class="rounded-2xl overflow-hidden border-4 border-white dark:border-slate-800 shadow-2xl h-[400px] lg:h-[700px] relative bg-slate-200">
-                    <img class="w-full h-full object-cover grayscale opacity-80" src="https://images.unsplash.com/photo-1526778548025-fa2f459cd5c1?q=80&w=2033" alt="Glyncorrwg Map"/>
-                    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
-                        <div class="relative flex flex-col items-center">
-                            <span class="material-symbols-outlined text-primary text-5xl fill-1">location_on</span>
-                            <div class="bg-white px-3 py-1 rounded shadow-md text-xs font-bold whitespace-nowrap mt-1 border border-primary/20 text-slate-900">Noddfa Centre</div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="mt-6 flex items-start gap-4 p-4 rounded-xl bg-primary/5 border border-primary/10">
-                    <span class="material-symbols-outlined text-primary">directions</span>
-                    <div>
-                        <h4 class="text-sm font-bold text-slate-900 dark:text-white">Getting Here</h4>
-                        <p class="text-xs text-slate-600 dark:text-slate-400 mt-1">Located in the heart of Glyncorrwg, we are easily accessible by local bus routes and have limited on-site parking available for visitors.</p>
-                    </div>
+                <div class="rounded-2xl overflow-hidden border-4 border-white dark:border-slate-800 shadow-2xl h-[400px] lg:h-[700px] relative">
+                    <iframe 
+                        class="w-full h-full"
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2481.56234321!2d-3.6133!3d51.6585!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNTHCsDM5JzMwLjYiTiAzwrAzNic0Ny45Ilc!5e0!3m2!1sen!2suk!4v1620000000000!5m2!1sen!2suk" 
+                        style="border:0;" allowfullscreen="" loading="lazy"></iframe>
                 </div>
             </div>
         </div>
