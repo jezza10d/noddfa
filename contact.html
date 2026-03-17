@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Contact Us - Noddfa Community Centre</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#ae0000",
+                        "background-light": "#f8f5f5",
+                        "background-dark": "#230f0f",
+                        "forest-green": "#1a301a",
+                    },
+                    fontFamily: {
+                        "display": ["Lexend"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100">
+<div class="relative flex min-h-screen flex-col">
+<!-- Header -->
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-primary/10 bg-white dark:bg-background-dark px-6 md:px-20 lg:px-40 py-4 sticky top-0 z-50">
+<div class="flex items-center gap-4">
+<div class="size-10 overflow-hidden rounded-full">
+<img class="w-full h-full object-cover" data-alt="Noddfa Community Centre Circular Logo" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDYLtMHb5yrQJ3HXXcRaeKd6qi-NF7LgLbCcTi4_iBeIZTUwM_n6EsqMSzQAcwvHjMcT9Nrup5fwo-gy-MI_ghsEMtmi-XI6sksv5idyIPuMv_FZc6j3vlR-gXSmiKdUuBMx3hIXOFQfoTi7ncIp5y5G6TTW55XiyNBkQfX8Mvu0wL_MW1AYw8YiaD0qdmvo7qdvAPq0F12bFsU9kCFg67db2Yji4Hs7xWSIU21aKtL6EkBk9mDXnhPXQFSgZVgtz20cWww9598tTeP"/>
+</div>
+<h2 class="text-slate-900 dark:text-white text-lg font-bold leading-tight tracking-[-0.015em]">Noddfa Community Centre</h2>
+</div>
+<div class="flex flex-1 justify-end gap-8 items-center">
+<nav class="hidden lg:flex items-center gap-9">
+<a class="text-slate-700 dark:text-slate-200 text-sm font-medium hover:text-primary transition-colors" href="#">Home</a>
+<a class="text-slate-700 dark:text-slate-200 text-sm font-medium hover:text-primary transition-colors" href="#">What's On</a>
+<a class="text-slate-700 dark:text-slate-200 text-sm font-medium hover:text-primary transition-colors" href="#">Hire Space</a>
+<a class="text-slate-700 dark:text-slate-200 text-sm font-medium hover:text-primary transition-colors" href="#">About</a>
+<a class="text-primary text-sm font-bold border-b-2 border-primary" href="#">Contact</a>
+</nav>
+<button class="flex min-w-[84px] cursor-pointer items-center justify-center rounded-lg h-10 px-4 bg-primary text-white text-sm font-bold leading-normal tracking-[0.015em] hover:bg-primary/90 transition-all">
+<span class="truncate">Book Now</span>
+</button>
+</div>
+</header>
+<main class="flex-grow">
+<!-- Hero Banner -->
+<div class="@container">
+<div class="w-full h-[320px] md:h-[480px] relative overflow-hidden">
+<div class="absolute inset-0 bg-cover bg-center" data-alt="Exterior view of Noddfa Community Centre building" style='background-image: linear-gradient(rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.6) 100%), url("https://lh3.googleusercontent.com/aida-public/AB6AXuBKXIpySZe1LVxRxeCPL9PFkXqSX2n-OGLNxw4Ng212THAIYAJkkyuTQFmqs5t0zprhi9oF4I_154sIey9NJbQS9RCM54Dzp7IUCXtTIVoNibPn3y79T3fQig_KF8Vg5ikUVh-8W35AtFzSyXVt2amP7fajWMvtkZnAsaiXTdbY98eh9XAm8wdJ5uzqxs4Y0I3DCPFDokM7Qs7RsP95YMmavoThgcbW8a_WwmMUNU6HSzZQLoEarXAO4dQBjYUfEBavHVL8b8QcWCqV");'></div>
+<div class="relative h-full flex items-center justify-center p-4">
+<h1 class="text-white text-4xl font-black leading-tight tracking-[-0.033em] md:text-6xl text-center">
+                            Contact Us
+                        </h1>
+</div>
+</div>
+</div>
+<!-- Content Container -->
+<div class="max-w-[1200px] mx-auto px-6 py-12 md:py-20">
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-16">
+<!-- Left Column: Info & Form -->
+<div class="space-y-12">
+<div class="space-y-6">
+<h2 class="text-3xl font-bold tracking-tight text-slate-900 dark:text-white">Get in Touch</h2>
+<p class="text-slate-600 dark:text-slate-400 text-lg">We're here to help. Whether you want to book a room, join a class, or just have a question, please don't hesitate to reach out.</p>
+</div>
+<!-- Contact Cards Grid -->
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+<div class="flex flex-col gap-3 rounded-xl border border-primary/10 bg-white dark:bg-slate-800/50 p-6 shadow-sm hover:shadow-md transition-shadow">
+<span class="material-symbols-outlined text-primary text-3xl">location_on</span>
+<div class="flex flex-col gap-1">
+<h3 class="text-slate-900 dark:text-white text-base font-bold">Our Address</h3>
+<p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">Dunraven Street, Glyncorrwg, SA13 3AD</p>
+</div>
+</div>
+<div class="flex flex-col gap-3 rounded-xl border border-primary/10 bg-white dark:bg-slate-800/50 p-6 shadow-sm hover:shadow-md transition-shadow">
+<span class="material-symbols-outlined text-primary text-3xl">mail</span>
+<div class="flex flex-col gap-1">
+<h3 class="text-slate-900 dark:text-white text-base font-bold">Email Us</h3>
+<p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">bookings@nccg.org.uk</p>
+</div>
+</div>
+<div class="flex flex-col gap-3 rounded-xl border border-primary/10 bg-white dark:bg-slate-800/50 p-6 shadow-sm hover:shadow-md transition-shadow">
+<span class="material-symbols-outlined text-primary text-3xl">call</span>
+<div class="flex flex-col gap-1">
+<h3 class="text-slate-900 dark:text-white text-base font-bold">Call Us</h3>
+<p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">01639 850xxx</p>
+</div>
+</div>
+<div class="flex flex-col gap-3 rounded-xl border border-primary/10 bg-white dark:bg-slate-800/50 p-6 shadow-sm hover:shadow-md transition-shadow">
+<span class="material-symbols-outlined text-primary text-3xl">schedule</span>
+<div class="flex flex-col gap-1">
+<h3 class="text-slate-900 dark:text-white text-base font-bold">Opening Hours</h3>
+<p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">Mon - Fri: 9am - 8pm<br/>Sat - Sun: 10am - 4pm</p>
+</div>
+</div>
+</div>
+<!-- Contact Form -->
+<div class="bg-white dark:bg-slate-800/50 p-8 rounded-2xl border border-primary/10 shadow-sm">
+<h3 class="text-xl font-bold mb-6 text-slate-900 dark:text-white">Send us a Message</h3>
+<form class="space-y-4">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<div class="space-y-2">
+<label class="text-sm font-semibold text-slate-700 dark:text-slate-300">Name</label>
+<input class="w-full rounded-lg border-primary/20 bg-background-light/50 dark:bg-slate-900 focus:border-primary focus:ring-primary text-sm p-3" placeholder="Your full name" type="text"/>
+</div>
+<div class="space-y-2">
+<label class="text-sm font-semibold text-slate-700 dark:text-slate-300">Email</label>
+<input class="w-full rounded-lg border-primary/20 bg-background-light/50 dark:bg-slate-900 focus:border-primary focus:ring-primary text-sm p-3" placeholder="your@email.com" type="email"/>
+</div>
+</div>
+<div class="space-y-2">
+<label class="text-sm font-semibold text-slate-700 dark:text-slate-300">Subject</label>
+<input class="w-full rounded-lg border-primary/20 bg-background-light/50 dark:bg-slate-900 focus:border-primary focus:ring-primary text-sm p-3" placeholder="What is this regarding?" type="text"/>
+</div>
+<div class="space-y-2">
+<label class="text-sm font-semibold text-slate-700 dark:text-slate-300">Message</label>
+<textarea class="w-full rounded-lg border-primary/20 bg-background-light/50 dark:bg-slate-900 focus:border-primary focus:ring-primary text-sm p-3" placeholder="Your message here..." rows="4"></textarea>
+</div>
+<button class="w-full bg-primary text-white font-bold py-3 rounded-lg hover:bg-primary/90 transition-all shadow-lg shadow-primary/20" type="submit">
+                                    Send Message
+                                </button>
+</form>
+</div>
+</div>
+<!-- Right Column: Map -->
+<div class="lg:sticky lg:top-32 h-fit">
+<div class="rounded-2xl overflow-hidden border-4 border-white dark:border-slate-800 shadow-2xl h-[400px] lg:h-[700px] relative">
+<div class="absolute inset-0 bg-slate-200" data-location="Glyncorrwg" style="">
+<img class="w-full h-full object-cover" data-alt="Street map of Glyncorrwg showing center location" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAOdUUZ2_y9USRDPV66_OYcogE1zkfNhn3iFGw4vAQpeINPmbfew_z-IwH-iktHSAl_2VD1CGsFIdwhtGEDwAvkFIHJjr7na9GS8ilsuJPttXCeL7FSe1tC_yCi_6m8rnfsEnLGsFVlT4q3Ivge_JjBILYdhGRkGr72VpndSZqVJgHPklxiU9cu1O4u-Z-qXmFHd7e123cMpMfz33DmY93gnDM4Ub0YBYnGKW7Ego49YGbHG_UhY_CHetNbb-J1d0QHfkCfIYXwbFPZ"/>
+<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+<div class="relative flex flex-col items-center">
+<span class="material-symbols-outlined text-primary text-5xl fill-1">location_on</span>
+<div class="bg-white px-3 py-1 rounded shadow-md text-xs font-bold whitespace-nowrap mt-1 border border-primary/20">Noddfa Centre</div>
+</div>
+</div>
+</div>
+</div>
+<div class="mt-6 flex items-start gap-4 p-4 rounded-xl bg-primary/5 border border-primary/10">
+<span class="material-symbols-outlined text-primary">directions</span>
+<div>
+<h4 class="text-sm font-bold text-slate-900 dark:text-white">Getting Here</h4>
+<p class="text-xs text-slate-600 dark:text-slate-400 mt-1">Located in the heart of Glyncorrwg, we are easily accessible by local bus routes and have limited on-site parking available for visitors.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="bg-forest-green text-white py-16 px-6 md:px-20 lg:px-40">
+<div class="max-w-[1200px] mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+<div class="space-y-6">
+<div class="flex items-center gap-3">
+<div class="size-10 overflow-hidden rounded-full border border-white/20">
+<img class="w-full h-full object-cover" data-alt="Noddfa Community Centre Logo" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA_o0M2SuXIQoKZDUPz-w7Lbl31WDUosGNKl6JPRi051V2Uob2ELD_mgzVNa2vi7GSiv300YfpTP_r29cwe6pQVbeADqXxHsN137C59FQNpBrlgQ8T6Nb7v1V1BzNn6LjVhmAPSisL__kzXlR6bNbhqVtCD51nRA4HFav475kZWX8pfu2abfICIWYGm1uxChwZezbtvgt6RxExL59y1uCRNvK1_V-xQVKIBNOpZbRB7mZnGS1QoSTyUznSZDyO7HtYps9mLosR5W0ha"/>
+</div>
+<h2 class="text-lg font-bold">Noddfa Community Centre</h2>
+</div>
+<p class="text-white/70 text-sm leading-relaxed">
+                        Supporting our community through inclusion, education, and shared spaces for all ages in Glyncorrwg.
+                    </p>
+<div class="flex gap-4">
+<a class="size-8 rounded-full bg-white/10 flex items-center justify-center hover:bg-primary transition-colors" href="#">
+<img class="invert opacity-80" data-alt="Facebook icon" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAB1UaEujZj2-btktVEbT_J55cf_ZtoDKpSwX7C_iLAwmeKEbn5BDJUxY-RqpDvTGGn2sp17Kdl-5Om46FVX8qspRzBkPrTujVj5SIgCTxlU-gAJxlOR7UKVgS4GjXEmTWh0XT4DEhYC7nd26RvNTvCHlLb0nurGF5f4nc8GpkUBDa3bnAHukIP1OUiDK7psD6Nphna0B_hVCdKBFRIQgrTNEcc1ZNYp2vfTkidte3WIchnnB9ASe5UoOMjMbLF7UftFzmuWwm9Njy9"/>
+</a>
+<a class="size-8 rounded-full bg-white/10 flex items-center justify-center hover:bg-primary transition-colors" href="#">
+<img class="invert opacity-80" data-alt="Twitter icon" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBFT8dsHi9kh4-5CcvWFYs6BHtMnufSUXrXb_YVfnA4pLErlyEH5QhklTL-MpUe6lU035aOajRm1bW-HxIKuURXIzyaQDFcH3yCUXRgLAXONeLfLrB8_oMcZ56BfpYRlwkfxqpAwKrIuch7aCuPKDPN-kjZf9_CJ4k0fx2rAUO0Bj8cNcwrqQPl_8dJpKoChyReCIV4pqtVxrXQvVKRaW3czz-U4MMLKk9B8JLMKyBL9lZ-FONToZiu24TRqIW28Cz-ep4eMwrrJdj6"/>
+</a>
+<a class="size-8 rounded-full bg-white/10 flex items-center justify-center hover:bg-primary transition-colors" href="#">
+<img class="invert opacity-80" data-alt="Instagram icon" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAzTTD4RbfFnuMIuJqYCdgOQgDnlpQqhkrGXaXwUg8idK4xRj2OglGxVNj0anBdi-UdqI7BWkLEhFi8A2bcHH0E1PE2UmHtM9VFqhjLpYZ0AziqeoF4E5eNTzoP2O0Gj-cNtLC6mxXGqbTAfrjLAUC4MJs4Hl1KxCpyn2_EfQp4YsSb9ojnczd-SnzS7pLMdAih69mG-BEpgh1loYOAxZlMDaiDJNutFwjPbIF_A1xb7tqJMgAHUyVLolIRKwsJAczXOq1tRFmwzqBJ"/>
+</a>
+</div>
+</div>
+<div class="space-y-6">
+<h3 class="text-lg font-bold">Quick Links</h3>
+<ul class="space-y-4">
+<li><a class="text-white/70 text-sm hover:text-white transition-colors" href="#">Home</a></li>
+<li><a class="text-white/70 text-sm hover:text-white transition-colors" href="#">What's On</a></li>
+<li><a class="text-white/70 text-sm hover:text-white transition-colors" href="#">Hire Space</a></li>
+<li><a class="text-white/70 text-sm hover:text-white transition-colors" href="#">About Us</a></li>
+<li><a class="text-white text-sm font-bold border-l-2 border-primary pl-2" href="#">Contact</a></li>
+</ul>
+</div>
+<div class="space-y-6">
+<h3 class="text-lg font-bold">Contact Info</h3>
+<ul class="space-y-4">
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary text-xl">location_on</span>
+<span class="text-white/70 text-sm">Dunraven Street, Glyncorrwg, SA13 3AD</span>
+</li>
+<li class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary text-xl">call</span>
+<span class="text-white/70 text-sm">01639 850xxx</span>
+</li>
+<li class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary text-xl">mail</span>
+<span class="text-white/70 text-sm">bookings@nccg.org.uk</span>
+</li>
+</ul>
+</div>
+<div class="space-y-6">
+<h3 class="text-lg font-bold">Our Location</h3>
+<div class="rounded-lg overflow-hidden h-40 border border-white/10">
+<img class="w-full h-full object-cover grayscale opacity-50" data-alt="Simplified map thumbnail" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAmf7OBdFKYgRJN09Hz5cobPM-6HEEbEdmsC1Da3U_wrXah4ZK2ewS_eWmIAmnPHlg9T3goqWxymzAMh3t5EfTWUf2KMNZbKVNhD7XSIAzwfJ0HiQ_H50cydMLUgLiSmggWybsdNIQ0lak4u98FRBaNgg_WsdnQ6mJbwN6dqPrtiDAVKZRIpghfcAnactGav9K6eG-6kYNxLQ-Z6gDxuLlQ5JwWFyQcJl75b-C5FGKmS0a1oeHXCVy8-vUOPYAJawVMxeQy5L7nWoRD"/>
+</div>
+</div>
+</div>
+<div class="max-w-[1200px] mx-auto mt-16 pt-8 border-t border-white/10 text-center">
+<p class="text-white/40 text-xs">
+                    © 2024 Noddfa Community Centre. Registered Charity No. 1234567. All Rights Reserved.
+                </p>
+</div>
+</footer>
+</div>
+</body></html>
