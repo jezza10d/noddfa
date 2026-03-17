@@ -4,20 +4,15 @@
   "rewrites": [
     {
       "source": "/events/:path*",
-      "destination": "https://noddfa-j3nkslkrxc.live-website.com/events/:path*"
+      "destination": "https://noddfa-j3nkslkrxc.live-website.com/events/:path*/"
     },
     {
       "source": "/wp-content/:path*",
       "destination": "https://noddfa-j3nkslkrxc.live-website.com/wp-content/:path*"
-    }
-  ],
-  "headers": [
+    },
     {
-      "source": "/events/(.*)",
-      "headers": [
-        { "key": "X-Forwarded-Host", "value": "glyncorrwg.wales" },
-        { "key": "X-Forwarded-Proto", "value": "https" }
-      ]
+      "source": "/wp-includes/:path*",
+      "destination": "https://noddfa-j3nkslkrxc.live-website.com/wp-includes/:path*"
     }
   ]
 }
