@@ -7,6 +7,10 @@
       "destination": "https://noddfa-j3nkslkrxc.live-website.com/events/:path*/"
     },
     {
+      "source": "/events",
+      "destination": "https://noddfa-j3nkslkrxc.live-website.com/events/"
+    },
+    {
       "source": "/wp-content/:path*",
       "destination": "https://noddfa-j3nkslkrxc.live-website.com/wp-content/:path*"
     },
