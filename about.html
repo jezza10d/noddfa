@@ -32,50 +32,88 @@
 <div class="layout-container flex h-full grow flex-col">
 
 <script>
-async function fetchRemoteHeader() {
+  // 1. Central Loader for Header, Footer, and ACF Banners
+  async function loadAllRemoteData() {
     try {
-        // 1. Fetch the header from your live CMS
-        const response = await fetch('https://noddfa-j3nkslkrxc.live-website.com/wp-json/noddfa/v1/header');
-        const data = await response.json();
-        
-        // 2. Inject it into the placeholder
-        document.getElementById('header-placeholder').innerHTML = data.html;
-        
-        // 3. Start the mobile menu logic now that the HTML exists
-        initMobileMenu(); 
-        
-    } catch (error) {
-        console.error("Header failed to load", error);
-    }
-}
+      // FETCH HEADER FROM CMS
+      const headerResp = await fetch('https://noddfa-j3nkslkrxc.live-website.com/wp-json/noddfa/v1/header');
+      const headerData = await headerResp.json();
+      document.getElementById('header-placeholder').innerHTML = headerData.html;
+      
+      // Initialize Nav Logic after Header loads
+      initMobileMenu();
+      highlightActiveLink();
 
-function initMobileMenu() {
-    const menuToggle = document.getElementById('menu-toggle');
+      // FETCH FOOTER (Local or Remote - assuming local for now)
+      const footerResp = await fetch('footer.html');
+      if (footerResp.ok) {
+        const footerHtml = await footerResp.text();
+        document.getElementById('footer-placeholder').innerHTML = footerHtml;
+      }
+
+      // SYNC ACF BANNER
+      syncPageBanner();
+
+    } catch (error) {
+      console.error("Critical Load Error:", error);
+    }
+  }
+
+  // 2. Mobile Menu Logic
+  function initMobileMenu() {
+    const toggleBtn = document.getElementById('menu-toggle');
     const navMenu = document.getElementById('nav-menu');
     const menuIcon = document.getElementById('menu-icon');
     const closeIcon = document.getElementById('close-icon');
 
-    if (menuToggle && navMenu) {
-        menuToggle.addEventListener('click', function() {
-            const isHidden = navMenu.classList.contains('hidden');
-            if (isHidden) {
-                navMenu.classList.remove('hidden');
-                navMenu.classList.add('flex', 'flex-col', 'absolute', 'top-[72px]', 'left-0', 'w-full', 'bg-white', 'p-8', 'shadow-xl', 'z-50');
-                menuIcon.classList.add('hidden');
-                closeIcon.classList.remove('hidden');
-            } else {
-                navMenu.classList.add('hidden');
-                navMenu.classList.remove('flex', 'flex-col', 'absolute', 'top-[72px]', 'left-0', 'w-full', 'bg-white', 'p-8', 'shadow-xl', 'z-50');
-                menuIcon.classList.remove('hidden');
-                closeIcon.classList.add('hidden');
-            }
-        });
+    if (toggleBtn && navMenu) {
+      toggleBtn.addEventListener('click', () => {
+        const isHidden = navMenu.classList.contains('hidden');
+        if (isHidden) {
+          navMenu.classList.remove('hidden');
+          navMenu.classList.add('flex', 'flex-col', 'absolute', 'top-[72px]', 'left-0', 'w-full', 'bg-white', 'p-8', 'shadow-xl', 'z-50');
+          if(menuIcon) menuIcon.classList.add('hidden');
+          if(closeIcon) closeIcon.classList.remove('hidden');
+        } else {
+          navMenu.classList.add('hidden');
+          navMenu.classList.remove('flex', 'flex-col', 'absolute', 'top-[72px]', 'left-0', 'w-full', 'bg-white', 'p-8', 'shadow-xl', 'z-50');
+          if(menuIcon) menuIcon.classList.remove('hidden');
+          if(closeIcon) closeIcon.classList.add('hidden');
+        }
+      });
     }
-}
+  }
 
-// Run the fetch command
-fetchRemoteHeader();
+  // 3. Highlight Active Link
+  function highlightActiveLink() {
+    const currentPath = window.location.pathname;
+    document.querySelectorAll('.nav-link').forEach(link => {
+      if (currentPath.endsWith(link.getAttribute('href'))) {
+        link.classList.add('text-primary', 'font-semibold', 'border-b-2', 'border-primary');
+      }
+    });
+  }
+
+  // 4. ACF Banner Sync
+  async function syncPageBanner() {
+    const path = window.location.pathname;
+    const slug = path.split("/").pop().replace(".html", "") || "home";
+    try {
+      const response = await fetch(`https://noddfa-j3nkslkrxc.live-website.com/wp-json/wp/v2/pages?slug=${slug}`);
+      const data = await response.json();
+      if (data?.[0]?.acf?.hero_benner_header) {
+        const el = document.getElementById('hero-header');
+        if (el) el.innerHTML = data[0].acf.hero_benner_header;
+      }
+    } catch (e) { console.log("Banner sync skipped"); }
+  }
+
+  // Start the engine
+  document.addEventListener('DOMContentLoaded', loadAllRemoteData);
 </script>
+
+<div id="header-placeholder"></div>
+        
 <main class="flex flex-col items-center">
 <div class="relative w-full h-[300px] md:h-[500px] flex items-center justify-center text-center px-6 overflow-hidden">
 <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuD-Ptpz1Fl6WtwR1daVTZMbtirZ8qMdBwe9rl9iii5tGoaC9TkiKxir1N_DrL8r8oBCHAWaieh54yfdL712zf6dZH07G1uYTwRtlBcDJszFNy1DfWuYCz_uNATqJCSCfb7gydr8U0fWdGIKsmQLpIsryEq0h8klEql8y4XBwHmq_dE4wPHPisVzfdERkuFzxqg8raYL9R8K_VzGpqplbEEHp4BLni08ovcPgsT7iCnoDcByja1U4RZMoo_L81TnMggPU5jyYRfpd1tQ');"></div>
