@@ -131,36 +131,35 @@
 </div>
 
 <script>
-  // 1. Unified Loader
+  // 1. Unified loader for Header (Remote) and Footer (Remote)
   async function loadSharedComponents() {
     try {
-      // FETCH HEADER FROM CMS (The "Source of Truth")
-      const headerResp = await fetch('https://noddfa-j3nkslkrxc.live-website.com/wp-json/noddfa/v1/header');
-      if (headerResp.ok) {
-        const headerData = await headerResp.json();
-        document.getElementById('header-placeholder').innerHTML = headerData.html;
+      // --- LOAD HEADER FROM WORDPRESS ---
+      const headerResponse = await fetch('https://noddfa-j3nkslkrxc.live-website.com/wp-json/noddfa/v1/header');
+      if (headerResponse.ok) {
+        const data = await headerResponse.json();
+        // data.html is the key we created in your functions.php
+        document.getElementById('header-placeholder').innerHTML = data.html;
         
-        // Initialize Nav logic ONLY after the header HTML exists
+        // Start scripts only after HTML exists
         initMobileMenu();
         highlightActiveLink();
       }
 
-      // FETCH FOOTER (Assumes footer.html is in your GitHub root)
-      const footerResp = await fetch('/footer.html');
-      if (footerResp.ok) {
-        const footerHtml = await footerResp.text();
+      // --- LOAD FOOTER FROM WORDPRESS (Optional: Or keep 'footer.html' if local) ---
+      // If you want the footer to also come from WP, you'd need a similar API route.
+      // For now, let's stick to the local github footer.html:
+      const footerResponse = await fetch('/footer.html');
+      if (footerResponse.ok) {
+        const footerHtml = await footerResponse.text();
         document.getElementById('footer-placeholder').innerHTML = footerHtml;
       }
-
-      // SYNC ACF BANNER (Matches the slug of your page to the WP Page title)
-      syncPageBanner();
-
     } catch (error) {
-      console.error("Critical Load Error:", error);
+      console.error("Error loading shared components:", error);
     }
   }
 
-  // 2. Mobile Menu Logic (Fixed to handle both Menu and Close icons)
+  // 2. Mobile Menu Logic (Stays the same)
   function initMobileMenu() {
     const toggleBtn = document.getElementById('menu-toggle');
     const navMenu = document.getElementById('nav-menu');
@@ -185,10 +184,11 @@
     }
   }
 
-  // 3. Highlight current page link
+  // 3. Highlight the current page (Stays the same)
   function highlightActiveLink() {
     const currentPath = window.location.pathname;
-    document.querySelectorAll('.nav-link').forEach(link => {
+    const navLinks = document.querySelectorAll('.nav-link');
+    navLinks.forEach(link => {
       const href = link.getAttribute('href');
       if (currentPath.endsWith(href) || (currentPath === '/' && href === '/')) {
         link.classList.add('text-primary', 'font-semibold', 'border-b-2', 'border-primary');
@@ -196,23 +196,27 @@
     });
   }
 
-  // 4. ACF Banner Sync
+  // 4. ACF Banner Sync (Stays the same)
   async function syncPageBanner() {
     const path = window.location.pathname;
-    // Gets 'about' from '/about.html'
-    const slug = path.split("/").pop().replace(".html", "") || "home"; 
+    const slug = path.split("/").pop().replace(".html", "") || "home";
     try {
       const response = await fetch(`https://noddfa-j3nkslkrxc.live-website.com/wp-json/wp/v2/pages?slug=${slug}`);
       const data = await response.json();
-      if (data?.[0]?.acf?.hero_benner_header) {
-        const el = document.getElementById('hero-header');
-        if (el) el.innerHTML = data[0].acf.hero_benner_header;
+      if (data && data.length > 0 && data[0].acf?.hero_benner_header) {
+        const headerElement = document.getElementById('hero-header');
+        if (headerElement) headerElement.innerHTML = data[0].acf.hero_benner_header;
       }
-    } catch (e) { /* Fallback to static HTML if WP fails */ }
+    } catch (error) {
+      console.error("Banner sync failed:", error);
+    }
   }
 
-  // Start everything on Page Load
-  document.addEventListener('DOMContentLoaded', loadSharedComponents);
+  // Start everything
+  document.addEventListener('DOMContentLoaded', () => {
+    loadSharedComponents();
+    syncPageBanner();
+  });
 </script>
 
 </body></html>
