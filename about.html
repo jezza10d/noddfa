@@ -31,87 +31,6 @@
 <div class="relative flex h-auto min-h-screen w-full flex-col group/design-root overflow-x-hidden">
 <div class="layout-container flex h-full grow flex-col">
 
-<script>
-  // 1. Central Loader for Header, Footer, and ACF Banners
-  async function loadAllRemoteData() {
-    try {
-      // FETCH HEADER FROM CMS
-      const headerResp = await fetch('https://noddfa-j3nkslkrxc.live-website.com/wp-json/noddfa/v1/header');
-      const headerData = await headerResp.json();
-      document.getElementById('header-placeholder').innerHTML = headerData.html;
-      
-      // Initialize Nav Logic after Header loads
-      initMobileMenu();
-      highlightActiveLink();
-
-      // FETCH FOOTER (Local or Remote - assuming local for now)
-      const footerResp = await fetch('footer.html');
-      if (footerResp.ok) {
-        const footerHtml = await footerResp.text();
-        document.getElementById('footer-placeholder').innerHTML = footerHtml;
-      }
-
-      // SYNC ACF BANNER
-      syncPageBanner();
-
-    } catch (error) {
-      console.error("Critical Load Error:", error);
-    }
-  }
-
-  // 2. Mobile Menu Logic
-  function initMobileMenu() {
-    const toggleBtn = document.getElementById('menu-toggle');
-    const navMenu = document.getElementById('nav-menu');
-    const menuIcon = document.getElementById('menu-icon');
-    const closeIcon = document.getElementById('close-icon');
-
-    if (toggleBtn && navMenu) {
-      toggleBtn.addEventListener('click', () => {
-        const isHidden = navMenu.classList.contains('hidden');
-        if (isHidden) {
-          navMenu.classList.remove('hidden');
-          navMenu.classList.add('flex', 'flex-col', 'absolute', 'top-[72px]', 'left-0', 'w-full', 'bg-white', 'p-8', 'shadow-xl', 'z-50');
-          if(menuIcon) menuIcon.classList.add('hidden');
-          if(closeIcon) closeIcon.classList.remove('hidden');
-        } else {
-          navMenu.classList.add('hidden');
-          navMenu.classList.remove('flex', 'flex-col', 'absolute', 'top-[72px]', 'left-0', 'w-full', 'bg-white', 'p-8', 'shadow-xl', 'z-50');
-          if(menuIcon) menuIcon.classList.remove('hidden');
-          if(closeIcon) closeIcon.classList.add('hidden');
-        }
-      });
-    }
-  }
-
-  // 3. Highlight Active Link
-  function highlightActiveLink() {
-    const currentPath = window.location.pathname;
-    document.querySelectorAll('.nav-link').forEach(link => {
-      if (currentPath.endsWith(link.getAttribute('href'))) {
-        link.classList.add('text-primary', 'font-semibold', 'border-b-2', 'border-primary');
-      }
-    });
-  }
-
-  // 4. ACF Banner Sync
-  async function syncPageBanner() {
-    const path = window.location.pathname;
-    const slug = path.split("/").pop().replace(".html", "") || "home";
-    try {
-      const response = await fetch(`https://noddfa-j3nkslkrxc.live-website.com/wp-json/wp/v2/pages?slug=${slug}`);
-      const data = await response.json();
-      if (data?.[0]?.acf?.hero_benner_header) {
-        const el = document.getElementById('hero-header');
-        if (el) el.innerHTML = data[0].acf.hero_benner_header;
-      }
-    } catch (e) { console.log("Banner sync skipped"); }
-  }
-
-  // Start the engine
-  document.addEventListener('DOMContentLoaded', loadAllRemoteData);
-</script>
-
 <div id="header-placeholder"></div>
         
 <main class="flex flex-col items-center">
@@ -212,52 +131,67 @@
 </div>
 
 <script>
-  // 1. Unified loader for Header and Footer
+  // 1. Unified Loader
   async function loadSharedComponents() {
     try {
-      // Load Header
-      const headerResponse = await fetch('header.html');
-      if (headerResponse.ok) {
-        const headerHtml = await headerResponse.text();
-        document.getElementById('header-placeholder').innerHTML = headerHtml;
+      // FETCH HEADER FROM CMS (The "Source of Truth")
+      const headerResp = await fetch('https://noddfa-j3nkslkrxc.live-website.com/wp-json/noddfa/v1/header');
+      if (headerResp.ok) {
+        const headerData = await headerResp.json();
+        document.getElementById('header-placeholder').innerHTML = headerData.html;
         
-        // These now exist below, so the script won't crash
+        // Initialize Nav logic ONLY after the header HTML exists
         initMobileMenu();
         highlightActiveLink();
       }
 
-      // Load Footer
-      const footerResponse = await fetch('footer.html');
-      if (footerResponse.ok) {
-        const footerHtml = await footerResponse.text();
+      // FETCH FOOTER (Assumes footer.html is in your GitHub root)
+      const footerResp = await fetch('/footer.html');
+      if (footerResp.ok) {
+        const footerHtml = await footerResp.text();
         document.getElementById('footer-placeholder').innerHTML = footerHtml;
       }
+
+      // SYNC ACF BANNER (Matches the slug of your page to the WP Page title)
+      syncPageBanner();
+
     } catch (error) {
-      console.error("Error loading shared components:", error);
+      console.error("Critical Load Error:", error);
     }
   }
 
-  // 2. Mobile Menu Logic
+  // 2. Mobile Menu Logic (Fixed to handle both Menu and Close icons)
   function initMobileMenu() {
     const toggleBtn = document.getElementById('menu-toggle');
     const navMenu = document.getElementById('nav-menu');
+    const menuIcon = document.getElementById('menu-icon');
+    const closeIcon = document.getElementById('close-icon');
+
     if (toggleBtn && navMenu) {
       toggleBtn.addEventListener('click', () => {
-        navMenu.classList.toggle('hidden');
-        navMenu.classList.add('flex', 'flex-col', 'absolute', 'top-[72px]', 'left-0', 'w-full', 'bg-white', 'p-8', 'shadow-xl', 'z-50');
+        const isHidden = navMenu.classList.contains('hidden');
+        if (isHidden) {
+          navMenu.classList.remove('hidden');
+          navMenu.classList.add('flex', 'flex-col', 'absolute', 'top-[72px]', 'left-0', 'w-full', 'bg-white', 'p-8', 'shadow-xl', 'z-50');
+          if(menuIcon) menuIcon.classList.add('hidden');
+          if(closeIcon) closeIcon.classList.remove('hidden');
+        } else {
+          navMenu.classList.add('hidden');
+          navMenu.classList.remove('flex', 'flex-col', 'absolute', 'top-[72px]', 'left-0', 'w-full', 'bg-white', 'p-8', 'shadow-xl', 'z-50');
+          if(menuIcon) menuIcon.classList.remove('hidden');
+          if(closeIcon) closeIcon.classList.add('hidden');
+        }
       });
     }
   }
 
-  // 3. Highlight the current page in the nav
+  // 3. Highlight current page link
   function highlightActiveLink() {
     const currentPath = window.location.pathname;
-    const navLinks = document.querySelectorAll('.nav-link');
-    navLinks.forEach(link => {
+    document.querySelectorAll('.nav-link').forEach(link => {
       const href = link.getAttribute('href');
-      if (currentPath.endsWith(href) || (currentPath === '/' && href.includes('index.html'))) {
+      if (currentPath.endsWith(href) || (currentPath === '/' && href === '/')) {
         link.classList.add('text-primary', 'font-semibold', 'border-b-2', 'border-primary');
-        link.classList.remove('text-slate-700');
       }
     });
   }
@@ -265,24 +199,20 @@
   // 4. ACF Banner Sync
   async function syncPageBanner() {
     const path = window.location.pathname;
-    const slug = path.split("/").pop().replace(".html", "") || "home";
+    // Gets 'about' from '/about.html'
+    const slug = path.split("/").pop().replace(".html", "") || "home"; 
     try {
       const response = await fetch(`https://noddfa-j3nkslkrxc.live-website.com/wp-json/wp/v2/pages?slug=${slug}`);
       const data = await response.json();
-      if (data && data.length > 0 && data[0].acf?.hero_benner_header) {
-        const headerElement = document.getElementById('hero-header');
-        if (headerElement) headerElement.innerHTML = data[0].acf.hero_benner_header;
+      if (data?.[0]?.acf?.hero_benner_header) {
+        const el = document.getElementById('hero-header');
+        if (el) el.innerHTML = data[0].acf.hero_benner_header;
       }
-    } catch (error) {
-      console.error("Banner sync failed:", error);
-    }
+    } catch (e) { /* Fallback to static HTML if WP fails */ }
   }
 
-  // Start everything
-  document.addEventListener('DOMContentLoaded', () => {
-    loadSharedComponents();
-    syncPageBanner();
-  });
+  // Start everything on Page Load
+  document.addEventListener('DOMContentLoaded', loadSharedComponents);
 </script>
 
 </body></html>
