@@ -134,7 +134,6 @@
       const headerResponse = await fetch('https://noddfa-j3nkslkrxc.live-website.com/wp-json/noddfa/v1/header');
       if (headerResponse.ok) {
         const data = await headerResponse.json();
-        // data.html is the key we created in your functions.php
         document.getElementById('header-placeholder').innerHTML = data.html;
         
         // Start scripts only after HTML exists
@@ -142,13 +141,12 @@
         highlightActiveLink();
       }
 
-      // --- LOAD FOOTER FROM WORDPRESS (Optional: Or keep 'footer.html' if local) ---
-      // If you want the footer to also come from WP, you'd need a similar API route.
-      // For now, let's stick to the local github footer.html:
-      const footerResponse = await fetch('/footer.html');
+      // --- LOAD FOOTER FROM WORDPRESS (Updated to Remote) ---
+      const footerResponse = await fetch('https://noddfa-j3nkslkrxc.live-website.com/wp-json/noddfa/v1/footer');
       if (footerResponse.ok) {
-        const footerHtml = await footerResponse.text();
-        document.getElementById('footer-placeholder').innerHTML = footerHtml;
+        const data = await footerResponse.json();
+        // Since we are returning 'html' in our WP API, we use data.html
+        document.getElementById('footer-placeholder').innerHTML = data.html;
       }
     } catch (error) {
       console.error("Error loading shared components:", error);
