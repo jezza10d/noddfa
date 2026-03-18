@@ -160,22 +160,25 @@
 </div>
 
 <script>
-  // 1. Unified loader for Header and Footer
+  // 1. Unified loader for Header (Remote) and Footer (Remote)
   async function loadSharedComponents() {
     try {
-      // Load Header
-      const headerResponse = await fetch('header.html');
+      // --- LOAD HEADER FROM WORDPRESS ---
+      const headerResponse = await fetch('https://noddfa-j3nkslkrxc.live-website.com/wp-json/noddfa/v1/header');
       if (headerResponse.ok) {
-        const headerHtml = await headerResponse.text();
-        document.getElementById('header-placeholder').innerHTML = headerHtml;
+        const data = await headerResponse.json();
+        // data.html is the key we created in your functions.php
+        document.getElementById('header-placeholder').innerHTML = data.html;
         
-        // These now exist below, so the script won't crash
+        // Start scripts only after HTML exists
         initMobileMenu();
         highlightActiveLink();
       }
 
-      // Load Footer
-      const footerResponse = await fetch('footer.html');
+      // --- LOAD FOOTER FROM WORDPRESS (Optional: Or keep 'footer.html' if local) ---
+      // If you want the footer to also come from WP, you'd need a similar API route.
+      // For now, let's stick to the local github footer.html:
+      const footerResponse = await fetch('/footer.html');
       if (footerResponse.ok) {
         const footerHtml = await footerResponse.text();
         document.getElementById('footer-placeholder').innerHTML = footerHtml;
@@ -185,32 +188,44 @@
     }
   }
 
-  // 2. Mobile Menu Logic
+  // 2. Mobile Menu Logic (Stays the same)
   function initMobileMenu() {
     const toggleBtn = document.getElementById('menu-toggle');
     const navMenu = document.getElementById('nav-menu');
+    const menuIcon = document.getElementById('menu-icon');
+    const closeIcon = document.getElementById('close-icon');
+
     if (toggleBtn && navMenu) {
       toggleBtn.addEventListener('click', () => {
-        navMenu.classList.toggle('hidden');
-        navMenu.classList.add('flex', 'flex-col', 'absolute', 'top-[72px]', 'left-0', 'w-full', 'bg-white', 'p-8', 'shadow-xl', 'z-50');
+        const isHidden = navMenu.classList.contains('hidden');
+        if (isHidden) {
+          navMenu.classList.remove('hidden');
+          navMenu.classList.add('flex', 'flex-col', 'absolute', 'top-[72px]', 'left-0', 'w-full', 'bg-white', 'p-8', 'shadow-xl', 'z-50');
+          if(menuIcon) menuIcon.classList.add('hidden');
+          if(closeIcon) closeIcon.classList.remove('hidden');
+        } else {
+          navMenu.classList.add('hidden');
+          navMenu.classList.remove('flex', 'flex-col', 'absolute', 'top-[72px]', 'left-0', 'w-full', 'bg-white', 'p-8', 'shadow-xl', 'z-50');
+          if(menuIcon) menuIcon.classList.remove('hidden');
+          if(closeIcon) closeIcon.classList.add('hidden');
+        }
       });
     }
   }
 
-  // 3. Highlight the current page in the nav
+  // 3. Highlight the current page (Stays the same)
   function highlightActiveLink() {
     const currentPath = window.location.pathname;
     const navLinks = document.querySelectorAll('.nav-link');
     navLinks.forEach(link => {
       const href = link.getAttribute('href');
-      if (currentPath.endsWith(href) || (currentPath === '/' && href.includes('index.html'))) {
+      if (currentPath.endsWith(href) || (currentPath === '/' && href === '/')) {
         link.classList.add('text-primary', 'font-semibold', 'border-b-2', 'border-primary');
-        link.classList.remove('text-slate-700');
       }
     });
   }
 
-  // 4. ACF Banner Sync
+  // 4. ACF Banner Sync (Stays the same)
   async function syncPageBanner() {
     const path = window.location.pathname;
     const slug = path.split("/").pop().replace(".html", "") || "home";
