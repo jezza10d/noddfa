@@ -31,8 +31,51 @@
 <div class="relative flex h-auto min-h-screen w-full flex-col group/design-root overflow-x-hidden">
 <div class="layout-container flex h-full grow flex-col">
 
-<div id="header-placeholder"></div>
+<script>
+async function fetchRemoteHeader() {
+    try {
+        // 1. Fetch the header from your live CMS
+        const response = await fetch('https://noddfa-j3nkslkrxc.live-website.com/wp-json/noddfa/v1/header');
+        const data = await response.json();
+        
+        // 2. Inject it into the placeholder
+        document.getElementById('header-placeholder').innerHTML = data.html;
+        
+        // 3. Start the mobile menu logic now that the HTML exists
+        initMobileMenu(); 
+        
+    } catch (error) {
+        console.error("Header failed to load", error);
+    }
+}
 
+function initMobileMenu() {
+    const menuToggle = document.getElementById('menu-toggle');
+    const navMenu = document.getElementById('nav-menu');
+    const menuIcon = document.getElementById('menu-icon');
+    const closeIcon = document.getElementById('close-icon');
+
+    if (menuToggle && navMenu) {
+        menuToggle.addEventListener('click', function() {
+            const isHidden = navMenu.classList.contains('hidden');
+            if (isHidden) {
+                navMenu.classList.remove('hidden');
+                navMenu.classList.add('flex', 'flex-col', 'absolute', 'top-[72px]', 'left-0', 'w-full', 'bg-white', 'p-8', 'shadow-xl', 'z-50');
+                menuIcon.classList.add('hidden');
+                closeIcon.classList.remove('hidden');
+            } else {
+                navMenu.classList.add('hidden');
+                navMenu.classList.remove('flex', 'flex-col', 'absolute', 'top-[72px]', 'left-0', 'w-full', 'bg-white', 'p-8', 'shadow-xl', 'z-50');
+                menuIcon.classList.remove('hidden');
+                closeIcon.classList.add('hidden');
+            }
+        });
+    }
+}
+
+// Run the fetch command
+fetchRemoteHeader();
+</script>
 <main class="flex flex-col items-center">
 <div class="relative w-full h-[300px] md:h-[500px] flex items-center justify-center text-center px-6 overflow-hidden">
 <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuD-Ptpz1Fl6WtwR1daVTZMbtirZ8qMdBwe9rl9iii5tGoaC9TkiKxir1N_DrL8r8oBCHAWaieh54yfdL712zf6dZH07G1uYTwRtlBcDJszFNy1DfWuYCz_uNATqJCSCfb7gydr8U0fWdGIKsmQLpIsryEq0h8klEql8y4XBwHmq_dE4wPHPisVzfdERkuFzxqg8raYL9R8K_VzGpqplbEEHp4BLni08ovcPgsT7iCnoDcByja1U4RZMoo_L81TnMggPU5jyYRfpd1tQ');"></div>
