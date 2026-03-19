@@ -28,7 +28,7 @@
         };
     </script>
     <style>
-        /* The Grey Map Filter */
+        /* Grey Map Filter */
         .grayscale-map iframe {
             filter: grayscale(100%) contrast(1.2) brightness(0.9);
         }
@@ -47,7 +47,7 @@
                     <div class="absolute inset-0 bg-black/50"></div>
                     <div class="relative z-10 max-w-3xl mx-auto">
                         <span class="bg-primary text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider mb-6 inline-block">Venue Hire</span>
-                        <h1 id="hero-header" class="text-white text-4xl md:text-6xl font-extrabold leading-tight mb-4 text-pretty">Exceptional Spaces for Your Events</h1>
+                        <h1 id="hero-header" class="text-white text-4xl md:text-6xl font-extrabold leading-tight mb-4">Exceptional Spaces for Your Events</h1>
                         <p class="text-slate-200 text-lg md:text-xl font-medium">From intimate community gatherings to grand wedding receptions, Noddfa provides the perfect backdrop.</p>
                     </div>
                 </div>
@@ -82,7 +82,7 @@
                         <div class="h-56 w-full bg-cover bg-center transition-transform group-hover:scale-105" style="background-image: url('https://images.unsplash.com/photo-1431540015161-0bf868a2d407?q=80&w=2070');"></div>
                         <div class="p-6">
                             <h3 class="text-xl font-bold mb-2">Committee Room</h3>
-                            <p class="text-slate-500 dark:text-slate-400 text-sm mb-4 leading-relaxed">Ideal for business meetings, training workshops, or small club gatherings with natural lighting.</p>
+                            <p class="text-slate-500 dark:text-slate-400 text-sm mb-4 leading-relaxed">Ideal for business meetings, training workshops, or small club gatherings.</p>
                             <div class="flex items-center gap-2 text-sm font-semibold text-slate-700 dark:text-slate-300">
                                 <span class="material-symbols-outlined text-sm text-primary">groups</span><span>Capacity: 30 people</span>
                             </div>
@@ -205,19 +205,14 @@
                                     <div><p class="font-semibold text-white">Office Hours</p><p class="text-sm text-slate-300">Mon - Fri: 9:00 AM - 5:00 PM</p></div>
                                 </div>
                             </div>
-<div class="mt-10 pt-10 border-t border-white/10 grayscale-map">
-    <div class="h-48 w-full rounded-lg overflow-hidden border border-white/10 shadow-2xl">
-        <iframe 
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2481.046524385153!2d-3.6583733233765187!3d51.6601000718471!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x486e5cc7d23f3743%3A0x67341e988229e612!2sNoddfa%20Community%20Centre!5e0!3m2!1sen!2suk!4v1710000000000!5m2!1sen!2suk" 
-            width="100%" 
-            height="100%" 
-            style="border:0;" 
-            allowfullscreen="" 
-            loading="lazy" 
-            referrerpolicy="no-referrer-when-downgrade">
-        </iframe>
-    </div>
-</div>
+                            <div class="mt-10 pt-10 border-t border-white/10 grayscale-map">
+                                <div class="h-48 w-full rounded-lg overflow-hidden border border-white/10 shadow-2xl">
+                                    <iframe 
+                                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2473.0851859664183!2d-3.6583750233714577!3d51.66009997184852!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x486e5c949767252f%3A0xc3f6089d8137358b!2sNoddfa%20Community%20Centre!5e0!3m2!1sen!2suk!4v1710000000000!5m2!1sen!2suk" 
+                                        width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy">
+                                    </iframe>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -230,7 +225,7 @@
 </div>
 
 <script>
-    // SHARED COMPONENT LOADER (Exactly as Contact Page)
+    // SHARED COMPONENT LOADER
     async function loadSharedComponents() {
         const base = 'https://noddfa-j3nkslkrxc.live-website.com/wp-json/noddfa/v1';
         try {
