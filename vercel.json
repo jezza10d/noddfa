@@ -11,6 +11,10 @@
       "destination": "https://noddfa-j3nkslkrxc.live-website.com/events/"
     },
     {
+      "source": "/availability",
+      "destination": "https://noddfa-j3nkslkrxc.live-website.com/availability/"
+    },
+    {
       "source": "/wp-content/:path*",
       "destination": "https://noddfa-j3nkslkrxc.live-website.com/wp-content/:path*"
     },
