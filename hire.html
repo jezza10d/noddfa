@@ -6,7 +6,8 @@
     <title>Venue Hire | Noddfa Community Centre</title>
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet" />
+    
     <script id="tailwind-config">
         tailwind.config = {
             darkMode: "class",
@@ -28,7 +29,7 @@
     </script>
     <style>
         body { font-family: 'Lexend', sans-serif; }
-        .form-status { transition: all 0.3s ease; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
     </style>
 </head>
 <body class="bg-background-light font-display text-slate-900 dark:text-slate-100 dark:bg-background-dark">
@@ -156,7 +157,7 @@
                                     <span class="material-symbols-outlined text-primary">location_on</span>
                                     <div>
                                         <p class="font-semibold">Our Location</p>
-                                        <p class="text-sm text-slate-300">Noddfa Community Centre, Dunraven Street, Glyncorrwg, SA13 3AD</p>
+                                        <p class="text-sm text-slate-300 text-pretty">Noddfa Community Centre, Dunraven Street, Glyncorrwg, SA13 3AD</p>
                                     </div>
                                 </div>
                                 <div class="flex items-start gap-4">
@@ -168,10 +169,10 @@
                                 </div>
                             </div>
                             <div class="mt-10 pt-10 border-t border-forest-dark/30">
-                                <div class="h-48 w-full bg-forest-dark/30 rounded-lg overflow-hidden grayscale hover:grayscale-0 transition-all">
+                                <div class="h-48 w-full bg-forest-dark/30 rounded-lg overflow-hidden grayscale hover:grayscale-0 transition-all border border-white/10">
                                     <iframe 
-                                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2478.435471464306!2d-3.6121406!3d51.6521501!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x486e41712a831e3d%3A0xe543598971f496!2sNoddfa%20Community%20Centre!5e0!3m2!1sen!2suk!4v1710000000000!5m2!1sen!2suk" 
-                                        width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy">
+                                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2480.0573967305944!2d-3.6120815233777776!3d51.65875957184852!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x486e68076df3ef9d%3A0x83e264629471f496!2sNoddfa%20Community%20Centre!5e0!3m2!1sen!2suk!4v1710000000000!5m2!1sen!2suk" 
+                                        width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
                                     </iframe>
                                 </div>
                             </div>
@@ -186,7 +187,6 @@
 </div>
 
 <script>
-    // --- COMPONENT LOADER ---
     async function loadSharedComponents() {
         try {
             const headerResponse = await fetch('https://noddfa-j3nkslkrxc.live-website.com/wp-json/noddfa/v1/header');
@@ -204,7 +204,6 @@
         } catch (error) { console.error("Error loading components:", error); }
     }
 
-    // --- ENQUIRY FORM LOGIC ---
     const enquiryForm = document.getElementById('enquiry-form');
     const formMessage = document.getElementById('form-message');
     const submitBtn = document.getElementById('submit-btn');
@@ -212,7 +211,7 @@
     enquiryForm.addEventListener('submit', async (e) => {
         e.preventDefault();
         submitBtn.disabled = true;
-        submitBtn.innerText = "Sending Enquiry...";
+        submitBtn.innerText = "Sending...";
         
         const formData = new FormData(enquiryForm);
         const payload = Object.fromEntries(formData.entries());
@@ -225,12 +224,12 @@
             });
 
             if (response.ok) {
-                formMessage.innerText = "Success! Your enquiry has been sent to our team.";
+                formMessage.innerText = "Success! Enquiry sent. We'll be in touch soon.";
                 formMessage.className = "text-center p-4 rounded-lg font-bold mt-4 bg-green-100 text-green-800";
                 enquiryForm.reset();
             } else { throw new Error(); }
         } catch (err) {
-            formMessage.innerText = "Error: Could not send enquiry. Please call us directly.";
+            formMessage.innerText = "Something went wrong. Please call us directly.";
             formMessage.className = "text-center p-4 rounded-lg font-bold mt-4 bg-red-100 text-red-800";
         } finally {
             submitBtn.disabled = false;
@@ -238,7 +237,6 @@
         }
     });
 
-    // --- STANDARD UTILITIES ---
     function initMobileMenu() {
         const toggleBtn = document.getElementById('menu-toggle');
         const navMenu = document.getElementById('nav-menu');
