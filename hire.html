@@ -21,8 +21,7 @@
                         "forest-dark": "#2d4030",
                         "forest-deep": "#1a301a"
                     },
-                    fontFamily: { display: "Lexend" },
-                    borderRadius: { DEFAULT: "0.25rem", lg: "0.5rem", xl: "0.75rem", full: "9999px" }
+                    fontFamily: { display: "Lexend" }
                 }
             }
         };
@@ -30,7 +29,6 @@
     <style>
         body { font-family: 'Lexend', sans-serif; }
         .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
-        /* Re-adding the grayscale look to the working map */
         .grayscale-map { filter: grayscale(100%) contrast(1.1) brightness(0.9); }
     </style>
 </head>
@@ -60,7 +58,7 @@
                         <p class="text-slate-900 dark:text-slate-100 text-4xl font-black leading-tight">Versatile Facilities for Every Occasion</p>
                         <p class="text-slate-600 dark:text-slate-400 text-lg leading-relaxed">Located in the heart of Glyncorrwg, Noddfa offers multiple hall options and a fully equipped kitchen.</p>
                     </div>
-                    <div class="flex flex-col gap-4 justify-center">
+                    <div class="flex flex-col gap-4 justify-center text-sm md:text-base">
                         <div class="flex items-center gap-3"><span class="material-symbols-outlined text-primary bg-primary/10 p-2 rounded-full">check_circle</span><span class="font-medium">Fully Accessible Entrance</span></div>
                         <div class="flex items-center gap-3"><span class="material-symbols-outlined text-primary bg-primary/10 p-2 rounded-full">check_circle</span><span class="font-medium">On-site Parking Available</span></div>
                         <div class="flex items-center gap-3"><span class="material-symbols-outlined text-primary bg-primary/10 p-2 rounded-full">check_circle</span><span class="font-medium">Free High-Speed Wi-Fi</span></div>
@@ -126,12 +124,6 @@
                                 <label class="text-sm font-semibold">Event Description</label>
                                 <textarea name="description" class="rounded-lg border-slate-200 dark:border-forest-dark/30 bg-white dark:bg-forest-deep focus:ring-primary" rows="4"></textarea>
                             </div>
-                            
-                            <div class="flex items-center gap-3 bg-white/50 dark:bg-slate-800/30 p-4 rounded-lg border border-slate-100 dark:border-slate-800">
-                                <input type="checkbox" name="newsletter_signup" id="newsletter_signup" class="rounded border-slate-300 text-primary focus:ring-primary">
-                                <label for="newsletter_signup" class="text-sm font-medium cursor-pointer">Sign up for our newsletter to stay updated on community events</label>
-                            </div>
-
                             <button id="submit-btn" class="w-full bg-primary text-white font-bold py-3 rounded-lg hover:bg-primary/90 transition-all shadow-lg" type="submit">Send Enquiry</button>
                             <div id="form-message" class="hidden text-center p-4 rounded-lg font-bold mt-4"></div>
                         </form>
@@ -149,15 +141,11 @@
                                     <span class="material-symbols-outlined text-primary">mail</span>
                                     <div><p class="font-semibold text-white">Email</p><p class="text-sm text-slate-300">bookings@nccg.org.uk</p></div>
                                 </div>
-                                <div class="flex items-start gap-4">
-                                    <span class="material-symbols-outlined text-primary">schedule</span>
-                                    <div><p class="font-semibold text-white">Office Hours</p><p class="text-sm text-slate-300 text-pretty">Mon - Fri: 9:00 AM - 5:00 PM</p></div>
-                                </div>
                             </div>
                             
                             <div class="mt-10 pt-10 border-t border-forest-dark/30">
                                 <div class="h-56 w-full bg-forest-dark/30 rounded-lg overflow-hidden border border-white/10 grayscale-map">
-                                    <iframe width="100%" height="100%" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?q=Noddfa%20Community%20Centre%2C%20Glyncorrwg&t=&z=15&ie=UTF8&iwloc=&output=embed"></iframe>
+                                    <iframe width="100%" height="100%" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="http://googleusercontent.com/maps.google.com/32"></iframe>
                                 </div>
                             </div>
                         </div>
@@ -171,15 +159,27 @@
 </div>
 
 <script>
+    // Robust Header/Footer Loader
     async function loadShared() {
+        const domain = 'https://glyncorrwg.wales';
         try {
-            const h = await fetch('https://glyncorrwg.wales/wp-json/noddfa/v1/header');
-            if (h.ok) { document.getElementById('header-placeholder').innerHTML = (await h.json()).html; initMobileMenu(); }
-            const f = await fetch('https://glyncorrwg.wales/wp-json/noddfa/v1/footer');
-            if (f.ok) { document.getElementById('footer-placeholder').innerHTML = (await f.json()).html; }
-        } catch (e) { console.error(e); }
+            // Fetch Header
+            const h = await fetch(`${domain}/wp-json/noddfa/v1/header`);
+            if (h.ok) { 
+                const data = await h.json();
+                document.getElementById('header-placeholder').innerHTML = data.html; 
+                initMobileMenu(); 
+            }
+            // Fetch Footer
+            const f = await fetch(`${domain}/wp-json/noddfa/v1/footer`);
+            if (f.ok) { 
+                const data = await f.json();
+                document.getElementById('footer-placeholder').innerHTML = data.html; 
+            }
+        } catch (e) { console.error("Component load error:", e); }
     }
 
+    // Form logic
     const form = document.getElementById('enquiry-form');
     const msg = document.getElementById('form-message');
     const btn = document.getElementById('submit-btn');
@@ -187,11 +187,8 @@
     form.addEventListener('submit', async (e) => {
         e.preventDefault();
         btn.disabled = true;
-        btn.innerText = "Sending Enquiry...";
-        
-        const formData = new FormData(form);
-        const payload = Object.fromEntries(formData.entries());
-        payload.newsletter_signup = document.getElementById('newsletter_signup').checked;
+        btn.innerText = "Sending...";
+        const payload = Object.fromEntries(new FormData(form).entries());
 
         try {
             const res = await fetch('https://glyncorrwg.wales/wp-json/noddfa/v1/submit-enquiry', {
@@ -201,12 +198,12 @@
             });
 
             if (res.ok) {
-                msg.innerText = "Success! Your enquiry has been sent.";
+                msg.innerText = "Success! Enquiry sent.";
                 msg.className = "text-center p-4 rounded-lg font-bold mt-4 bg-green-100 text-green-800";
                 form.reset();
             } else { throw new Error(); }
         } catch (err) {
-            msg.innerText = "Error sending enquiry. Please email bookings@nccg.org.uk directly.";
+            msg.innerText = "Error. Please email bookings@nccg.org.uk directly.";
             msg.className = "text-center p-4 rounded-lg font-bold mt-4 bg-red-100 text-red-800";
         } finally {
             btn.disabled = false;
