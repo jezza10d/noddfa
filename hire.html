@@ -29,193 +29,120 @@
     <style>
         body { font-family: 'Lexend', sans-serif; }
         .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
-        .grayscale-map { filter: grayscale(100%) contrast(1.1) brightness(0.9); }
+        .grayscale-map { filter: grayscale(1) contrast(1.1) brightness(0.9); }
     </style>
 </head>
 <body class="bg-background-light font-display text-slate-900 dark:text-slate-100 dark:bg-background-dark">
-<div class="relative flex h-auto min-h-screen w-full flex-col group/design-root overflow-x-hidden">
-    <div class="layout-container flex h-full grow flex-col">
+<div class="relative flex h-auto min-h-screen w-full flex-col overflow-x-hidden">
+    
+    <div id="header-placeholder"></div>
 
-        <div id="header-placeholder"></div>
+    <main class="flex flex-col items-center">
+        <div class="w-full relative h-[400px] flex items-center justify-center text-center px-6 overflow-hidden">
+            <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1519167758481-83f550bb49b3?q=80&w=2074');"></div>
+            <div class="absolute inset-0 bg-black/50"></div>
+            <div class="relative z-10 max-w-3xl mx-auto">
+                <span class="bg-primary text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider mb-6 inline-block">Venue Hire</span>
+                <h1 class="text-white text-4xl md:text-6xl font-extrabold leading-tight mb-4">Exceptional Spaces</h1>
+                <p class="text-slate-200 text-lg md:text-xl font-medium">Book your next event at Noddfa Community Centre.</p>
+            </div>
+        </div>
 
-        <main class="flex flex-col items-center">
-            <div class="w-full">
-                <div class="relative w-full h-[300px] md:h-[500px] flex items-center justify-center text-center px-6 overflow-hidden">
-                    <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1519167758481-83f550bb49b3?q=80&w=2074');"></div>
-                    <div class="absolute inset-0 bg-black/50"></div>
-                    <div class="relative z-10 max-w-3xl mx-auto">
-                        <span class="bg-primary text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider mb-6 inline-block">Venue Hire</span>
-                        <h1 class="text-white text-4xl md:text-6xl font-extrabold leading-tight mb-4">Exceptional Spaces for<br>Your Events</h1>
-                        <p class="text-slate-200 text-lg md:text-xl font-medium">From intimate community gatherings to grand wedding receptions, Noddfa provides the perfect backdrop.</p>
-                    </div>
+        <div class="max-w-7xl w-full px-6 md:px-20 py-12">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-20">
+                <div class="bg-white dark:bg-slate-800/50 rounded-xl overflow-hidden shadow-sm border border-slate-100 dark:border-slate-800 p-6">
+                    <h3 class="text-xl font-bold mb-2 text-primary">Main Hall</h3>
+                    <p class="text-slate-500 text-sm">Large events & weddings. Capacity: 200.</p>
+                </div>
+                <div class="bg-white dark:bg-slate-800/50 rounded-xl overflow-hidden shadow-sm border border-slate-100 dark:border-slate-800 p-6">
+                    <h3 class="text-xl font-bold mb-2 text-primary">Committee Room</h3>
+                    <p class="text-slate-500 text-sm">Meetings & workshops. Capacity: 30.</p>
+                </div>
+                <div class="bg-white dark:bg-slate-800/50 rounded-xl overflow-hidden shadow-sm border border-slate-100 dark:border-slate-800 p-6">
+                    <h3 class="text-xl font-bold mb-2 text-primary">Commercial Kitchen</h3>
+                    <p class="text-slate-500 text-sm">Professional catering equipment.</p>
                 </div>
             </div>
 
-            <div class="layout-content-container flex flex-col max-w-7xl w-full flex-1 px-6 md:px-20 py-12">
-                <div class="flex flex-col md:flex-row justify-between gap-10 mb-16">
-                    <div class="flex flex-col gap-4 max-w-xl">
-                        <h2 class="text-primary font-bold tracking-widest uppercase text-sm">Our Facilities</h2>
-                        <p class="text-slate-900 dark:text-slate-100 text-4xl font-black leading-tight">Versatile Facilities for Every Occasion</p>
-                        <p class="text-slate-600 dark:text-slate-400 text-lg leading-relaxed">Located in the heart of Glyncorrwg, Noddfa offers multiple hall options and a fully equipped kitchen.</p>
-                    </div>
-                    <div class="flex flex-col gap-4 justify-center text-sm md:text-base">
-                        <div class="flex items-center gap-3"><span class="material-symbols-outlined text-primary bg-primary/10 p-2 rounded-full">check_circle</span><span class="font-medium">Fully Accessible Entrance</span></div>
-                        <div class="flex items-center gap-3"><span class="material-symbols-outlined text-primary bg-primary/10 p-2 rounded-full">check_circle</span><span class="font-medium">On-site Parking Available</span></div>
-                        <div class="flex items-center gap-3"><span class="material-symbols-outlined text-primary bg-primary/10 p-2 rounded-full">check_circle</span><span class="font-medium">Free High-Speed Wi-Fi</span></div>
-                    </div>
+            <div class="flex flex-col lg:flex-row gap-16">
+                <div class="flex-1">
+                    <h2 class="text-3xl font-bold mb-6">Make an Enquiry</h2>
+                    <form id="enquiry-form" class="space-y-6">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <input name="full_name" placeholder="Full Name" required class="rounded-lg border-slate-200 dark:bg-forest-deep" type="text">
+                            <input name="email" placeholder="Email Address" required class="rounded-lg border-slate-200 dark:bg-forest-deep" type="email">
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <input name="event_date" required class="rounded-lg border-slate-200 dark:bg-forest-deep" type="date">
+                            <select name="hall_selection" class="rounded-lg border-slate-200 dark:bg-forest-deep">
+                                <option value="Main Hall">Main Hall</option>
+                                <option value="Committee Room">Committee Room</option>
+                            </select>
+                        </div>
+                        <textarea name="description" placeholder="Event Details" class="w-full rounded-lg border-slate-200 dark:bg-forest-deep" rows="4"></textarea>
+                        <button id="submit-btn" class="w-full bg-primary text-white font-bold py-3 rounded-lg shadow-lg" type="submit">Send Enquiry</button>
+                        <div id="form-message" class="hidden text-center p-4 rounded-lg font-bold mt-4"></div>
+                    </form>
                 </div>
 
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-20">
-                    <div class="group bg-white dark:bg-slate-800/50 rounded-xl overflow-hidden shadow-sm border border-slate-100 dark:border-slate-800">
-                        <div class="h-56 w-full bg-cover bg-center transition-transform group-hover:scale-105" style="background-image: url('https://images.unsplash.com/photo-1511795409834-ef04bbd61622?q=80&w=2069');"></div>
-                        <div class="p-6">
-                            <h3 class="text-xl font-bold mb-2">Main Hall</h3>
-                            <p class="text-slate-500 dark:text-slate-400 text-sm mb-4">Perfect for weddings and large parties. Features a raised stage.</p>
-                            <div class="flex items-center gap-2 text-sm font-semibold text-slate-700 dark:text-slate-300"><span class="material-symbols-outlined text-sm text-primary">groups</span><span>Capacity: 200 seated</span></div>
-                        </div>
-                    </div>
-                    <div class="group bg-white dark:bg-slate-800/50 rounded-xl overflow-hidden shadow-sm border border-slate-100 dark:border-slate-800">
-                        <div class="h-56 w-full bg-cover bg-center transition-transform group-hover:scale-105" style="background-image: url('https://images.unsplash.com/photo-1431540015161-0bf868a2d407?q=80&w=2070');"></div>
-                        <div class="p-6">
-                            <h3 class="text-xl font-bold mb-2">Committee Room</h3>
-                            <p class="text-slate-500 dark:text-slate-400 text-sm mb-4">Ideal for meetings, training workshops, or small club gatherings.</p>
-                            <div class="flex items-center gap-2 text-sm font-semibold text-slate-700 dark:text-slate-300"><span class="material-symbols-outlined text-sm text-primary">groups</span><span>Capacity: 30 people</span></div>
-                        </div>
-                    </div>
-                    <div class="group bg-white dark:bg-slate-800/50 rounded-xl overflow-hidden shadow-sm border border-slate-100 dark:border-slate-800">
-                        <div class="h-56 w-full bg-cover bg-center transition-transform group-hover:scale-105" style="background-image: url('https://images.unsplash.com/photo-1556910103-1c02745aae4d?q=80&w=2070');"></div>
-                        <div class="p-6">
-                            <h3 class="text-xl font-bold mb-2">Commercial Kitchen</h3>
-                            <p class="text-slate-500 dark:text-slate-400 text-sm mb-4">Fully equipped commercial standard kitchen available for catering.</p>
-                            <div class="flex items-center gap-2 text-sm font-semibold text-slate-700 dark:text-slate-300"><span class="material-symbols-outlined text-sm text-primary">restaurant</span><span>Professional Equipment</span></div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="flex flex-col lg:flex-row gap-16 mb-20">
-                    <div class="flex-1">
-                        <h2 id="enquiry" class="text-3xl font-bold mb-6">Make an Enquiry</h2>
-                        <form id="enquiry-form" class="space-y-6">
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                <div class="flex flex-col gap-2">
-                                    <label class="text-sm font-semibold">Full Name</label>
-                                    <input name="full_name" required class="rounded-lg border-slate-200 dark:border-forest-dark/30 bg-white dark:bg-forest-deep focus:ring-primary" type="text">
-                                </div>
-                                <div class="flex flex-col gap-2">
-                                    <label class="text-sm font-semibold">Email Address</label>
-                                    <input name="email" required class="rounded-lg border-slate-200 dark:border-forest-dark/30 bg-white dark:bg-forest-deep focus:ring-primary" type="email">
-                                </div>
-                            </div>
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                <div class="flex flex-col gap-2">
-                                    <label class="text-sm font-semibold">Event Date</label>
-                                    <input name="event_date" required class="rounded-lg border-slate-200 dark:border-forest-dark/30 bg-white dark:bg-forest-deep focus:ring-primary" type="date">
-                                </div>
-                                <div class="flex flex-col gap-2">
-                                    <label class="text-sm font-semibold">Hall Selection</label>
-                                    <select name="hall_selection" class="rounded-lg border-slate-200 dark:border-forest-dark/30 bg-white dark:bg-forest-deep focus:ring-primary">
-                                        <option value="Main Hall">Main Hall</option>
-                                        <option value="Committee Room">Committee Room</option>
-                                        <option value="Both Halls">Both Halls</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="flex flex-col gap-2">
-                                <label class="text-sm font-semibold">Event Description</label>
-                                <textarea name="description" class="rounded-lg border-slate-200 dark:border-forest-dark/30 bg-white dark:bg-forest-deep focus:ring-primary" rows="4"></textarea>
-                            </div>
-                            <button id="submit-btn" class="w-full bg-primary text-white font-bold py-3 rounded-lg hover:bg-primary/90 transition-all shadow-lg" type="submit">Send Enquiry</button>
-                            <div id="form-message" class="hidden text-center p-4 rounded-lg font-bold mt-4"></div>
-                        </form>
-                    </div>
-
-                    <div class="lg:w-1/3">
-                        <div class="bg-forest-deep text-white rounded-2xl p-8 sticky top-24 shadow-xl">
-                            <h3 class="text-xl font-bold mb-6 border-b border-white/10 pb-4">Contact Information</h3>
-                            <div class="space-y-6">
-                                <div class="flex items-start gap-4">
-                                    <span class="material-symbols-outlined text-primary">location_on</span>
-                                    <div><p class="font-semibold text-white">Our Location</p><p class="text-sm text-slate-300">Noddfa Community Centre, Dunraven Street, Glyncorrwg, SA13 3AD</p></div>
-                                </div>
-                                <div class="flex items-start gap-4">
-                                    <span class="material-symbols-outlined text-primary">mail</span>
-                                    <div><p class="font-semibold text-white">Email</p><p class="text-sm text-slate-300">bookings@nccg.org.uk</p></div>
-                                </div>
-                            </div>
-                            
-                            <div class="mt-10 pt-10 border-t border-forest-dark/30">
-                                <div class="h-56 w-full bg-forest-dark/30 rounded-lg overflow-hidden border border-white/10 grayscale-map">
-                                    <iframe width="100%" height="100%" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="http://googleusercontent.com/maps.google.com/32"></iframe>
-                                </div>
-                            </div>
+                <div class="lg:w-1/3">
+                    <div class="bg-forest-deep text-white rounded-2xl p-8 shadow-xl">
+                        <h3 class="text-xl font-bold mb-6">Contact Us</h3>
+                        <p class="text-sm mb-4"><span class="text-primary font-bold">Address:</span> Dunraven St, Glyncorrwg, SA13 3AD</p>
+                        
+                        <div class="h-64 w-full rounded-lg overflow-hidden grayscale-map border border-white/10">
+                            <iframe 
+                                width="100%" 
+                                height="100%" 
+                                style="border:0" 
+                                loading="lazy" 
+                                allowfullscreen 
+                                referrerpolicy="no-referrer-when-downgrade"
+                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2477.086303254359!2d-3.610531!3d51.658249!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x486e40003f8f484d%3A0xc4c490badab96b70!2sNoddfa%20Community%20Centre!5e0!3m2!1sen!2suk!4v1700000000000">
+                            </iframe>
                         </div>
                     </div>
                 </div>
             </div>
-        </main>
+        </div>
+    </main>
 
-        <div id="footer-placeholder"></div>
-    </div>
+    <div id="footer-placeholder"></div>
 </div>
 
 <script>
-    // Robust Header/Footer Loader
     async function loadShared() {
-        const domain = 'https://glyncorrwg.wales';
+        const domain = 'https://glyncorrwg.wales/wp-json/noddfa/v1';
         try {
-            // Fetch Header
-            const h = await fetch(`${domain}/wp-json/noddfa/v1/header`);
-            if (h.ok) { 
-                const data = await h.json();
-                document.getElementById('header-placeholder').innerHTML = data.html; 
-                initMobileMenu(); 
-            }
-            // Fetch Footer
-            const f = await fetch(`${domain}/wp-json/noddfa/v1/footer`);
-            if (f.ok) { 
-                const data = await f.json();
-                document.getElementById('footer-placeholder').innerHTML = data.html; 
-            }
-        } catch (e) { console.error("Component load error:", e); }
+            const h = await fetch(`${domain}/header`);
+            const f = await fetch(`${domain}/footer`);
+            if (h.ok) document.getElementById('header-placeholder').innerHTML = (await h.json()).html;
+            if (f.ok) document.getElementById('footer-placeholder').innerHTML = (await f.json()).html;
+        } catch (e) { console.error("API error", e); }
     }
 
-    // Form logic
     const form = document.getElementById('enquiry-form');
     const msg = document.getElementById('form-message');
-    const btn = document.getElementById('submit-btn');
 
     form.addEventListener('submit', async (e) => {
         e.preventDefault();
-        btn.disabled = true;
-        btn.innerText = "Sending...";
         const payload = Object.fromEntries(new FormData(form).entries());
-
         try {
             const res = await fetch('https://glyncorrwg.wales/wp-json/noddfa/v1/submit-enquiry', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(payload)
             });
-
             if (res.ok) {
-                msg.innerText = "Success! Enquiry sent.";
-                msg.className = "text-center p-4 rounded-lg font-bold mt-4 bg-green-100 text-green-800";
+                msg.innerText = "Enquiry Sent Successfully!";
+                msg.className = "text-center p-4 rounded-lg font-bold mt-4 bg-green-100 text-green-800 block";
                 form.reset();
             } else { throw new Error(); }
         } catch (err) {
-            msg.innerText = "Error. Please email bookings@nccg.org.uk directly.";
-            msg.className = "text-center p-4 rounded-lg font-bold mt-4 bg-red-100 text-red-800";
-        } finally {
-            btn.disabled = false;
-            btn.innerText = "Send Enquiry";
+            msg.innerText = "Error. Please check Permalinks or email us directly.";
+            msg.className = "text-center p-4 rounded-lg font-bold mt-4 bg-red-100 text-red-800 block";
         }
     });
-
-    function initMobileMenu() {
-        const t = document.getElementById('menu-toggle');
-        const n = document.getElementById('nav-menu');
-        if (t && n) t.addEventListener('click', () => n.classList.toggle('hidden'));
-    }
 
     document.addEventListener('DOMContentLoaded', loadShared);
 </script>
