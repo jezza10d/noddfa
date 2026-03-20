@@ -23,12 +23,19 @@
             }
         };
     </script>
+    <style>
+        /* Extra safety to ensure Contact doesn't touch the button on mobile */
+        @media (max-width: 768px) {
+            #nav-menu a { margin-bottom: 0.5rem; }
+            #nav-menu .bg-primary { margin-top: 1rem; }
+        }
+    </style>
 </head>
 <body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100">
     <div class="relative flex h-auto min-h-screen w-full flex-col group/design-root overflow-x-hidden">
         <div class="layout-container flex h-full grow flex-col">
 
-            <div id="header-placeholder"></div>
+            <div id="header-placeholder" class="min-h-[72px]"></div>
 
             <main class="flex flex-col flex-1">
                 <section class="relative w-full">
@@ -113,11 +120,15 @@
 
         async function loadSharedComponents() {
             try {
+                // Fetching with cache busting to ensure latest header version
                 const hRes = await fetch(`${API_BASE}/noddfa/v1/header?v=${Date.now()}`);
                 if (hRes.ok) {
                     const data = await hRes.json();
-                    document.getElementById('header-placeholder').innerHTML = data.html;
-                    initMobileMenu();
+                    const container = document.getElementById('header-placeholder');
+                    container.innerHTML = data.html;
+                    
+                    // Small delay ensures Tailwind has processed the injected HTML before we init the menu
+                    setTimeout(initMobileMenu, 100);
                 }
                 const fRes = await fetch(`${API_BASE}/noddfa/v1/footer?v=${Date.now()}`);
                 if (fRes.ok) {
@@ -158,7 +169,6 @@
                 }).join('');
             } catch (err) {
                 console.error("Events fetch error", err);
-                container.innerHTML = '<p class="col-span-3 text-center text-red-500">Events could not be loaded.</p>';
             }
         }
 
@@ -166,9 +176,11 @@
             const btn = document.getElementById('menu-toggle');
             const nav = document.getElementById('nav-menu');
             if (btn && nav) {
-                btn.onclick = () => {
+                btn.onclick = (e) => {
+                    e.preventDefault();
                     nav.classList.toggle('hidden');
-                    nav.classList.add('absolute', 'top-[72px]', 'left-0', 'w-full', 'bg-white', 'p-8', 'shadow-xl', 'z-50');
+                    // Force vertical layout with spacing for the Contact/Button gap
+                    nav.classList.add('absolute', 'top-[72px]', 'left-0', 'w-full', 'bg-white', 'p-8', 'shadow-xl', 'z-50', 'flex', 'flex-col', 'gap-4');
                 };
             }
         }
