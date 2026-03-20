@@ -40,6 +40,12 @@
                 box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
             }
         }
+        .line-clamp-2 {
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;  
+            overflow: hidden;
+        }
     </style>
 </head>
 <body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100">
@@ -73,8 +79,9 @@
                             </button>
                         </a>
                     </div>
+                    
                     <div id="events-feed-container" class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                        <div class="col-span-3 py-20 text-center text-slate-500">Fetching latest activities...</div>
+                        <div class="col-span-3 py-20 text-center text-slate-500 italic animate-pulse">Checking for upcoming activities...</div>
                     </div>
                 </section>
 
@@ -89,7 +96,7 @@
                         <div class="order-1 md:order-2">
                             <h2 class="text-slate-900 dark:text-white text-3xl font-bold mb-6">Hire Our Space</h2>
                             <p class="text-slate-600 dark:text-slate-300 text-lg mb-8 leading-relaxed">
-                                From children's birthday parties and family celebrations to business meetings and local club gatherings.
+                                Our modern, flexible facilities are available at affordable rates for the community.
                             </p>
                             <ul class="space-y-4 mb-8 text-slate-700 dark:text-slate-200">
                                 <li class="flex items-center gap-3">
@@ -132,46 +139,72 @@
                     const data = await fRes.json();
                     document.getElementById('footer-placeholder').innerHTML = data.html;
                 }
-            } catch (e) { console.error("Loader error", e); }
+            } catch (e) { console.error("Component Loader error", e); }
         }
 
-        // Updated for Events Manager Plugin
+        /**
+         * UPDATED: Fetches from Events Manager REST API
+         * This uses 'event' (singular) which is the EM default.
+         */
         async function loadLiveEvents() {
             const container = document.getElementById('events-feed-container');
+            
             try {
-                // Fetching from 'event' post type registered by Events Manager
+                // 1. Fetch data. _embed includes featured images.
                 const response = await fetch(`${API_BASE}/wp/v2/event?per_page=3&_embed`);
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP Error: ${response.status}`);
+                }
+
                 const events = await response.json();
                 
+                // 2. Handle Empty State
                 if (!events || events.length === 0) {
-                    container.innerHTML = `<div class="col-span-3 py-10 text-center text-slate-500 italic">No upcoming events scheduled right now.</div>`;
+                    container.innerHTML = `
+                        <div class="col-span-3 py-12 text-center border-2 border-dashed border-slate-200 rounded-2xl">
+                            <p class="text-slate-500 italic">No upcoming activities found in the calendar.</p>
+                            <a href="/events" class="text-primary font-bold mt-2 inline-block hover:underline">View All Events</a>
+                        </div>`;
                     return;
                 }
 
+                // 3. Build the Grid
                 container.innerHTML = events.map(event => {
-                    const img = event._embedded?.['wp:featuredmedia']?.[0]?.source_url || 'https://images.unsplash.com/photo-1517457373958-b7bdd4587205?q=80&w=2069';
+                    // Get Image (Featured Image or fallback)
+                    const img = event._embedded?.['wp:featuredmedia']?.[0]?.source_url || 
+                                'https://images.unsplash.com/photo-1517457373958-b7bdd4587205?q=80&w=2069';
                     
-                    // Format excerpt (Stripping HTML tags)
-                    const excerpt = event.excerpt.rendered.replace(/<[^>]*>?/gm, '').substring(0, 90) + '...';
+                    // Clean up the description (Strip HTML tags)
+                    const cleanExcerpt = event.excerpt.rendered.replace(/<[^>]*>?/gm, '');
+                    const shortDesc = cleanExcerpt.substring(0, 95) + '...';
 
                     return `
-                        <a href="${event.link}" class="flex flex-col group transition-all">
-                            <div class="w-full aspect-[16/10] bg-center bg-cover rounded-xl mb-4 overflow-hidden shadow-sm relative" style="background-image: url('${img}');">
-                                <div class="w-full h-full group-hover:bg-primary/10 transition-colors"></div>
+                        <div class="flex flex-col group bg-white dark:bg-slate-800/50 rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-all">
+                            <div class="w-full aspect-[16/10] overflow-hidden">
+                                <img src="${img}" alt="${event.title.rendered}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
                             </div>
-                            <div class="px-1">
-                                <span class="text-primary text-xs font-bold uppercase tracking-wider">Upcoming Activity</span>
-                                <h3 class="text-slate-900 dark:text-white text-xl font-bold mt-1 group-hover:text-primary transition-colors">${event.title.rendered}</h3>
-                                <p class="text-slate-600 dark:text-slate-400 mt-2 leading-relaxed text-sm">${excerpt}</p>
-                                <div class="mt-4 flex items-center text-primary font-bold text-sm">
-                                    Learn More <span class="material-symbols-outlined text-xs ml-1">arrow_forward</span>
+                            <div class="p-6 flex flex-col flex-1">
+                                <span class="text-primary text-[10px] font-black uppercase tracking-[0.2em] mb-2 inline-block">Upcoming Activity</span>
+                                <h3 class="text-slate-900 dark:text-white text-xl font-bold mb-3 leading-snug">${event.title.rendered}</h3>
+                                <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed mb-6 line-clamp-2">${shortDesc}</p>
+                                <div class="mt-auto">
+                                    <a href="${event.link}" class="inline-flex items-center gap-2 text-primary font-bold text-sm group/btn">
+                                        View Details 
+                                        <span class="material-symbols-outlined text-sm group-hover/btn:translate-x-1 transition-transform">arrow_forward</span>
+                                    </a>
                                 </div>
                             </div>
-                        </a>`;
+                        </div>`;
                 }).join('');
+
             } catch (err) { 
-                console.error("Event error", err); 
-                container.innerHTML = `<div class="col-span-3 py-10 text-center text-slate-500">Events are currently unavailable.</div>`;
+                console.error("Critical Event Feed Error:", err); 
+                container.innerHTML = `
+                    <div class="col-span-3 py-10 text-center text-slate-500">
+                        <span class="material-symbols-outlined text-4xl mb-2 opacity-20">event_busy</span>
+                        <p>We're having trouble loading the live feed. <br>Please <a href="/events" class="underline text-primary">click here</a> to view the main calendar.</p>
+                    </div>`;
             }
         }
 
