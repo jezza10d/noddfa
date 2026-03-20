@@ -24,12 +24,12 @@
         };
     </script>
     <style>
-        /* This CSS block forces the mobile menu to behave regardless of how WP sends the HTML */
+        /* Mobile Menu Spacing Fix */
         @media (max-width: 768px) {
             #nav-menu.active-menu {
                 display: flex !important;
                 flex-direction: column !important;
-                gap: 1.5rem !important; /* Forces the gap you see on other pages */
+                gap: 1.5rem !important;
                 padding: 2rem !important;
                 align-items: flex-start !important;
                 position: absolute !important;
@@ -39,11 +39,6 @@
                 background: white !important;
                 z-index: 50 !important;
                 box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-            }
-            /* Ensures the button doesn't stretch weirdly */
-            #nav-menu a.bg-primary {
-                width: auto !important;
-                align-self: flex-start !important;
             }
         }
     </style>
@@ -88,21 +83,48 @@
                     <div class="grid md:grid-cols-2 gap-12 items-center">
                         <div class="order-2 md:order-1">
                             <div class="grid grid-cols-2 gap-4">
-                                <div class="aspect-square rounded-xl bg-cover bg-center shadow-lg" style="background-image: url('https://images.unsplash.com/photo-1519167758481-83f550bb49b3?q=80&w=2074');"></div>
-                                <div class="aspect-square rounded-xl bg-cover bg-center mt-8 shadow-lg" style="background-image: url('https://images.unsplash.com/photo-1431540015161-0bf868a2d407?auto=format&fit=crop&q=80');"></div>
+                                <div class="aspect-square rounded-xl bg-cover bg-center shadow-lg" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAxUwFfwV0uTktLy1pgHVxgD7WL8U-OMjny8NkMeKmzH40q__-uQ8lSgcHG9WyhdkF7L9onMsDDG6nI-P3Jon9k2r9YBY08FbW4LDlqr7EwvnHGQgRNK5RRST9N5nAZ9CdB2q53huAZTQ1uRmSWgBYzmE_zKBheUMHMvpXFxX_gqzNERd3HuEzVKfx6tHNutpckwtFjOYZl0U7YnZ6VBoSwtUE_VnQmyFyxdVjzKntrRaGVP47fJ_7K2JzIr0soYeaFkV9kJBfrbav2');"></div>
+                                <div class="aspect-square rounded-xl bg-cover bg-center mt-8 shadow-lg" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAaVWbDIU1STEiB7DpKhi3_dcz6n3AtVBjf8k0aKCJzOSQxgBnr6BVNNodm_SLdMcb7-t6f739TE9_-Wtl9keILYiU4MDU0j7Z_FYa3AwXXYwSSAu0B9RPZeckBA_v2J77JpyaPnBwUCPs5NzLn5xxKhYuzL5cGSCGK9_GzTEmqgpZ73vsCMMXxYLLpRR-9Cwx7jWKUJtwo5YdOSs7rrGVwY3tyty84rAnEm_E8MHGNJu4TLG_V1v7DKjh5P8BX0xwuQmMB0-9bgE0M');"></div>
                             </div>
                         </div>
                         <div class="order-1 md:order-2">
                             <h2 class="text-slate-900 dark:text-white text-3xl font-bold mb-6">Hire Our Space</h2>
-                            <p class="text-slate-600 dark:text-slate-300 text-lg mb-8 leading-relaxed">From children's birthday parties to business meetings, our modern facilities are available at affordable rates.</p>
+                            <p class="text-slate-600 dark:text-slate-300 text-lg mb-8 leading-relaxed">
+                                From children's birthday parties and family celebrations to business meetings and local club gatherings. Our modern, flexible facilities are available at affordable rates for the community.
+                            </p>
                             <ul class="space-y-4 mb-8 text-slate-700 dark:text-slate-200">
-                                <li class="flex items-center gap-3"><span class="material-symbols-outlined text-primary">check_circle</span> Large Main Hall (up to 120 people)</li>
-                                <li class="flex items-center gap-3"><span class="material-symbols-outlined text-primary">check_circle</span> Fully Equipped Kitchen</li>
+                                <li class="flex items-center gap-3">
+                                    <span class="material-symbols-outlined text-primary">check_circle</span>
+                                    Large Main Hall (up to 120 people)
+                                </li>
+                                <li class="flex items-center gap-3">
+                                    <span class="material-symbols-outlined text-primary">check_circle</span>
+                                    Fully Equipped Kitchen Facilities
+                                </li>
+                                <li class="flex items-center gap-3">
+                                    <span class="material-symbols-outlined text-primary">check_circle</span>
+                                    Accessible Private Meeting Rooms
+                                </li>
                             </ul>
                             <a href="https://glyncorrwg.wales/availability">
-                                <button class="bg-primary text-white px-8 py-3 rounded-lg font-bold hover:bg-primary/90 transition-all shadow-md">Check Availability</button>
+                                <button class="bg-primary text-white px-8 py-3 rounded-lg font-bold hover:bg-primary/90 transition-all shadow-md">
+                                    Check Availability
+                                </button>
                             </a>
                         </div>
+                    </div>
+                </section>
+
+                <section class="px-6 md:px-20 py-20 text-center max-w-4xl mx-auto">
+                    <h2 class="text-slate-900 dark:text-white text-3xl font-bold mb-6">About Noddfa</h2>
+                    <p class="text-slate-600 dark:text-slate-400 text-lg leading-relaxed mb-10">
+                        Noddfa Community Centre has been a cornerstone of Glyncorrwg for decades. Run by dedicated volunteers, our mission is to provide a vibrant hub where people of all ages can find support, entertainment, and a sense of belonging in our unique valley community.
+                    </p>
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+                        <div><p class="text-primary text-3xl font-black mb-1">50+</p><p class="text-slate-500 text-sm uppercase font-bold">Years Serving</p></div>
+                        <div><p class="text-primary text-3xl font-black mb-1">15+</p><p class="text-slate-500 text-sm uppercase font-bold">Weekly Groups</p></div>
+                        <div><p class="text-primary text-3xl font-black mb-1">100%</p><p class="text-slate-500 text-sm uppercase font-bold">Community Led</p></div>
+                        <div><p class="text-primary text-3xl font-black mb-1">2k+</p><p class="text-slate-500 text-sm uppercase font-bold">Monthly Visits</p></div>
                     </div>
                 </section>
 
@@ -121,6 +143,7 @@
                     const data = await hRes.json();
                     document.getElementById('header-placeholder').innerHTML = data.html;
                     initMobileMenu();
+                    highlightActiveLink();
                 }
                 const fRes = await fetch(`${API_BASE}/noddfa/v1/footer?v=${Date.now()}`);
                 if (fRes.ok) {
@@ -140,7 +163,7 @@
                 container.innerHTML = events.map(event => {
                     const img = event._embedded?.['wp:featuredmedia']?.[0]?.source_url || 'https://images.unsplash.com/photo-1517457373958-b7bdd4587205?q=80&w=2069';
                     const category = event.acf?.event_type || 'Weekly';
-                    const subtitle = event.acf?.event_subtitle || 'View details';
+                    const subtitle = event.acf?.event_subtitle || 'View details for more info';
                     return `
                         <a href="events.html" class="flex flex-col group transition-all">
                             <div class="w-full aspect-[16/10] bg-center bg-cover rounded-xl mb-4 overflow-hidden shadow-sm" style="background-image: url('${img}');">
@@ -162,11 +185,24 @@
             if (btn && nav) {
                 btn.onclick = (e) => {
                     e.preventDefault();
-                    // We use a custom class 'active-menu' to trigger the CSS block in <head>
                     nav.classList.toggle('active-menu');
                     nav.classList.toggle('hidden');
                 };
             }
+        }
+
+        function highlightActiveLink() {
+            const path = window.location.pathname;
+            const navLinks = document.querySelectorAll('.nav-link');
+            navLinks.forEach(link => {
+                const href = link.getAttribute('href');
+                // Specifically check if we are on the homepage (root path)
+                if ((path === '/' || path === '/index.html') && (href === '/' || href === 'index.html')) {
+                    link.classList.add('text-primary', 'font-semibold', 'border-b-2', 'border-primary');
+                } else if (path.endsWith(href) && href !== '/' && href !== 'index.html') {
+                    link.classList.add('text-primary', 'font-semibold', 'border-b-2', 'border-primary');
+                }
+            });
         }
 
         document.addEventListener('DOMContentLoaded', () => {
