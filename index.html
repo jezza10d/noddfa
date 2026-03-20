@@ -81,7 +81,7 @@
                     </div>
                     
                     <div id="events-feed-container" class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                        <div class="col-span-3 py-20 text-center text-slate-500 italic animate-pulse">Checking for upcoming activities...</div>
+                        <div class="col-span-3 py-20 text-center text-slate-500 italic">Checking for upcoming activities...</div>
                     </div>
                 </section>
 
@@ -143,15 +143,14 @@
         }
 
         /**
-         * UPDATED: Fetches from Events Manager REST API
-         * This uses 'event' (singular) which is the EM default.
+         * UPDATED: Uses your custom 'events-api' base from functions.php
          */
         async function loadLiveEvents() {
             const container = document.getElementById('events-feed-container');
             
             try {
-                // 1. Fetch data. _embed includes featured images.
-                const response = await fetch(`${API_BASE}/wp/v2/event?per_page=3&_embed`);
+                // We are using /wp/v2/events-api because that is what you defined in PHP
+                const response = await fetch(`${API_BASE}/wp/v2/events-api?per_page=3&_embed`);
                 
                 if (!response.ok) {
                     throw new Error(`HTTP Error: ${response.status}`);
@@ -159,24 +158,16 @@
 
                 const events = await response.json();
                 
-                // 2. Handle Empty State
                 if (!events || events.length === 0) {
-                    container.innerHTML = `
-                        <div class="col-span-3 py-12 text-center border-2 border-dashed border-slate-200 rounded-2xl">
-                            <p class="text-slate-500 italic">No upcoming activities found in the calendar.</p>
-                            <a href="/events" class="text-primary font-bold mt-2 inline-block hover:underline">View All Events</a>
-                        </div>`;
+                    container.innerHTML = `<div class="col-span-3 py-10 text-center text-slate-500 italic">No upcoming activities scheduled right now.</div>`;
                     return;
                 }
 
-                // 3. Build the Grid
                 container.innerHTML = events.map(event => {
-                    // Get Image (Featured Image or fallback)
                     const img = event._embedded?.['wp:featuredmedia']?.[0]?.source_url || 
                                 'https://images.unsplash.com/photo-1517457373958-b7bdd4587205?q=80&w=2069';
                     
-                    // Clean up the description (Strip HTML tags)
-                    const cleanExcerpt = event.excerpt.rendered.replace(/<[^>]*>?/gm, '');
+                    const cleanExcerpt = event.excerpt.rendered ? event.excerpt.rendered.replace(/<[^>]*>?/gm, '') : "";
                     const shortDesc = cleanExcerpt.substring(0, 95) + '...';
 
                     return `
@@ -200,11 +191,7 @@
 
             } catch (err) { 
                 console.error("Critical Event Feed Error:", err); 
-                container.innerHTML = `
-                    <div class="col-span-3 py-10 text-center text-slate-500">
-                        <span class="material-symbols-outlined text-4xl mb-2 opacity-20">event_busy</span>
-                        <p>We're having trouble loading the live feed. <br>Please <a href="/events" class="underline text-primary">click here</a> to view the main calendar.</p>
-                    </div>`;
+                container.innerHTML = `<div class="col-span-3 py-10 text-center text-slate-500 italic">Unable to load live activities.</div>`;
             }
         }
 
