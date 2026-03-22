@@ -21,6 +21,14 @@
     {
       "source": "/wp-includes/:path*",
       "destination": "https://noddfa-j3nkslkrxc.live-website.com/wp-includes/:path*"
+    },
+    {
+      "source": "/news",
+      "destination": "https://noddfa-j3nkslkrxc.live-website.com/news/"
+    },
+    {
+      "source": "/news/:path*",
+      "destination": "https://noddfa-j3nkslkrxc.live-website.com/news/:path*"
     }
   ]
 }
