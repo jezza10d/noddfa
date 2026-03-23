@@ -141,64 +141,73 @@
 </div>
 
 <script>
-    async function loadSharedComponents() {
-        try {
-            // Load Header from Remote WordPress
-            const headerResponse = await fetch('https://noddfa-j3nkslkrxc.live-website.com/wp-json/noddfa/v1/header');
-            if (headerResponse.ok) {
-                const data = await headerResponse.json();
-                document.getElementById('header-placeholder').innerHTML = data.html;
-                initMobileMenu();
-                highlightActiveLink();
+   async function loadSharedComponents() {
+    try {
+        // Load Header from Remote WordPress
+        const headerResponse = await fetch('https://noddfa-j3nkslkrxc.live-website.com/wp-json/noddfa/v1/header');
+        if (headerResponse.ok) {
+            const data = await headerResponse.json();
+            const headerContainer = document.getElementById('header-placeholder');
+            headerContainer.innerHTML = data.html;
+
+            // FIX: Ensure Logo and Title link to home
+            const logoLink = headerContainer.querySelector('a');
+            if (logoLink) {
+                logoLink.setAttribute('href', '/');
             }
 
-            // Load Footer from Remote WordPress
-            const footerResponse = await fetch('https://noddfa-j3nkslkrxc.live-website.com/wp-json/noddfa/v1/footer');
-            if (footerResponse.ok) {
-                const data = await footerResponse.json();
-                document.getElementById('footer-placeholder').innerHTML = data.html;
-            }
-        } catch (error) {
-            console.error("Error loading shared components:", error);
+            initMobileMenu();
+            highlightActiveLink();
         }
-    }
 
-    function initMobileMenu() {
-        const toggleBtn = document.getElementById('menu-toggle');
-        const navMenu = document.getElementById('nav-menu');
-        const menuIcon = document.getElementById('menu-icon');
-        const closeIcon = document.getElementById('close-icon');
-
-        if (toggleBtn && navMenu) {
-            toggleBtn.addEventListener('click', () => {
-                const isHidden = navMenu.classList.contains('hidden');
-                if (isHidden) {
-                    navMenu.classList.remove('hidden');
-                    navMenu.classList.add('flex', 'flex-col', 'absolute', 'top-[72px]', 'left-0', 'w-full', 'bg-white', 'p-8', 'shadow-xl', 'z-50');
-                    if(menuIcon) menuIcon.classList.add('hidden');
-                    if(closeIcon) closeIcon.classList.remove('hidden');
-                } else {
-                    navMenu.classList.add('hidden');
-                    navMenu.classList.remove('flex', 'flex-col', 'absolute', 'top-[72px]', 'left-0', 'w-full', 'bg-white', 'p-8', 'shadow-xl', 'z-50');
-                    if(menuIcon) menuIcon.classList.remove('hidden');
-                    if(closeIcon) closeIcon.classList.add('hidden');
-                }
-            });
+        // Load Footer from Remote WordPress
+        const footerResponse = await fetch('https://noddfa-j3nkslkrxc.live-website.com/wp-json/noddfa/v1/footer');
+        if (footerResponse.ok) {
+            const data = await footerResponse.json();
+            document.getElementById('footer-placeholder').innerHTML = data.html;
         }
+    } catch (error) {
+        console.error("Error loading shared components:", error);
     }
+}
 
-    function highlightActiveLink() {
-        const currentPath = window.location.pathname;
-        const navLinks = document.querySelectorAll('.nav-link');
-        navLinks.forEach(link => {
-            const href = link.getAttribute('href');
-            if (currentPath.endsWith(href) || (currentPath === '/' && href === '/')) {
-                link.classList.add('text-primary', 'font-semibold', 'border-b-2', 'border-primary');
+function initMobileMenu() {
+    const toggleBtn = document.getElementById('menu-toggle');
+    const navMenu = document.getElementById('nav-menu');
+    const menuIcon = document.getElementById('menu-icon');
+    const closeIcon = document.getElementById('close-icon');
+
+    if (toggleBtn && navMenu) {
+        toggleBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            const isHidden = navMenu.classList.contains('hidden');
+            if (isHidden) {
+                navMenu.classList.remove('hidden');
+                navMenu.classList.add('flex', 'flex-col', 'absolute', 'top-[72px]', 'left-0', 'w-full', 'bg-white', 'p-8', 'shadow-xl', 'z-50');
+                if(menuIcon) menuIcon.classList.add('hidden');
+                if(closeIcon) closeIcon.classList.remove('hidden');
+            } else {
+                navMenu.classList.add('hidden');
+                navMenu.classList.remove('flex', 'flex-col', 'absolute', 'top-[72px]', 'left-0', 'w-full', 'bg-white', 'p-8', 'shadow-xl', 'z-50');
+                if(menuIcon) menuIcon.classList.remove('hidden');
+                if(closeIcon) closeIcon.classList.add('hidden');
             }
         });
     }
+}
 
-    document.addEventListener('DOMContentLoaded', loadSharedComponents);
+function highlightActiveLink() {
+    const currentPath = window.location.pathname;
+    const navLinks = document.querySelectorAll('.nav-link');
+    navLinks.forEach(link => {
+        const href = link.getAttribute('href');
+        if (currentPath.endsWith(href) || (currentPath === '/' && href === '/')) {
+            link.classList.add('text-primary', 'font-semibold', 'border-b-2', 'border-primary');
+        }
+    });
+}
+
+document.addEventListener('DOMContentLoaded', loadSharedComponents);
 </script>
 
 </body>
