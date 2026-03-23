@@ -73,7 +73,7 @@
                             <h2 class="text-slate-900 dark:text-white text-3xl font-bold">What's On</h2>
                             <p class="text-slate-500 dark:text-slate-400 mt-2">Join us for activities and events this week</p>
                         </div>
-                        <a href="/availability">
+                        <a href="/events">
                             <button class="flex items-center gap-2 text-primary font-bold hover:underline">
                                 View Full Calendar <span class="material-symbols-outlined">arrow_forward</span>
                             </button>
@@ -170,10 +170,12 @@
                     const cleanExcerpt = event.excerpt.rendered ? event.excerpt.rendered.replace(/<[^>]*>?/gm, '') : "";
                     const shortDesc = cleanExcerpt.split(' ').slice(0, 20).join(' ') + '...';
 
-                    const eventLink = event.link || `/events/${event.slug}`;
+                    // FIX 1: Map the backend URL to your frontend domain
+                    const eventLink = event.link.replace('https://noddfa-j3nkslkrxc.live-website.com', 'https://glyncorrwg.wales');
 
+                    // FIX 2: Added cursor-pointer and onclick to the main wrapper div
                     return `
-                        <div class="bg-white dark:bg-slate-800 border border-primary/5 rounded-xl overflow-hidden hover:shadow-lg transition-shadow flex flex-col h-full">
+                        <div onclick="window.location.href='${eventLink}'" class="cursor-pointer bg-white dark:bg-slate-800 border border-primary/5 rounded-xl overflow-hidden hover:shadow-lg transition-shadow flex flex-col h-full">
                             <div class="h-48 bg-cover bg-center" style="background-image: url('${img}');"></div>
                             <div class="p-6 flex flex-col flex-1">
                                 <h3 class="text-xl font-bold mb-2 text-slate-900 dark:text-white">${event.title.rendered}</h3>
