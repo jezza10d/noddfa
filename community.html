@@ -151,12 +151,15 @@ async function loadSharedComponents() {
             headerContainer.innerHTML = data.html;
 
             // --- FORCE LOGO & BRAND NAME CLICKABLE ---
-            // Finds the first anchor tag (usually the logo/title wrapper)
-            const logoLink = headerContainer.querySelector('a');
-            if (logoLink) {
-                logoLink.setAttribute('href', '/');
-                logoLink.style.cursor = 'pointer';
-                logoLink.style.display = 'flex'; // Ensures the entire brand area is clickable
+            // This looks for any anchor tag within the injected header that acts as the logo/home link
+            const logoLinks = headerContainer.querySelectorAll('a');
+            if (logoLinks.length > 0) {
+                // Usually the first link in a header is the logo/home link
+                const mainLogo = logoLinks[0];
+                mainLogo.setAttribute('href', '/');
+                mainLogo.style.cursor = 'pointer';
+                mainLogo.style.display = 'flex'; 
+                mainLogo.style.alignItems = 'center';
             }
 
             // Initialize menu logic AFTER HTML is injected
@@ -213,8 +216,10 @@ function highlightActiveLink() {
     });
 }
 
-// Run the loader on page load
-document.addEventListener('DOMContentLoaded', loadSharedComponents);
+// CRITICAL: This was missing! This triggers the functions when the page loads.
+document.addEventListener('DOMContentLoaded', () => {
+    loadSharedComponents();
+});
 </script>
 
 </body>
