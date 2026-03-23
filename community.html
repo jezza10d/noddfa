@@ -141,26 +141,30 @@
 </div>
 
 <script>
-   async function loadSharedComponents() {
+async function loadSharedComponents() {
     try {
-        // Load Header from Remote WordPress
+        // 1. Load Header from Remote WordPress
         const headerResponse = await fetch('https://noddfa-j3nkslkrxc.live-website.com/wp-json/noddfa/v1/header');
         if (headerResponse.ok) {
             const data = await headerResponse.json();
             const headerContainer = document.getElementById('header-placeholder');
             headerContainer.innerHTML = data.html;
 
-            // FIX: Ensure Logo and Title link to home
+            // --- FORCE LOGO & BRAND NAME CLICKABLE ---
+            // Finds the first anchor tag (usually the logo/title wrapper)
             const logoLink = headerContainer.querySelector('a');
             if (logoLink) {
                 logoLink.setAttribute('href', '/');
+                logoLink.style.cursor = 'pointer';
+                logoLink.style.display = 'flex'; // Ensures the entire brand area is clickable
             }
 
+            // Initialize menu logic AFTER HTML is injected
             initMobileMenu();
             highlightActiveLink();
         }
 
-        // Load Footer from Remote WordPress
+        // 2. Load Footer from Remote WordPress
         const footerResponse = await fetch('https://noddfa-j3nkslkrxc.live-website.com/wp-json/noddfa/v1/footer');
         if (footerResponse.ok) {
             const data = await footerResponse.json();
@@ -171,6 +175,7 @@
     }
 }
 
+// Mobile Menu Toggle Logic
 function initMobileMenu() {
     const toggleBtn = document.getElementById('menu-toggle');
     const navMenu = document.getElementById('nav-menu');
@@ -196,6 +201,7 @@ function initMobileMenu() {
     }
 }
 
+// Visual feedback for the active page in the menu
 function highlightActiveLink() {
     const currentPath = window.location.pathname;
     const navLinks = document.querySelectorAll('.nav-link');
@@ -207,6 +213,7 @@ function highlightActiveLink() {
     });
 }
 
+// Run the loader on page load
 document.addEventListener('DOMContentLoaded', loadSharedComponents);
 </script>
 
