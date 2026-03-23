@@ -146,15 +146,12 @@
             } catch (e) { console.error("Component Loader error", e); }
         }
 
-        /**
-         * UPDATED: Uses your custom 'events-api' base from functions.php
-         */
         async function loadLiveEvents() {
             const container = document.getElementById('events-feed-container');
             
             try {
-                // We are using /wp/v2/events-api because that is what you defined in PHP
-                const response = await fetch(`${API_BASE}/wp/v2/events-api?per_page=3&_embed`);
+                // Fetch from your custom events-api endpoint with cache busting
+                const response = await fetch(`${API_BASE}/wp/v2/events-api?per_page=3&v=${Date.now()}`);
                 
                 if (!response.ok) {
                     throw new Error(`HTTP Error: ${response.status}`);
@@ -168,23 +165,30 @@
                 }
 
                 container.innerHTML = events.map(event => {
-                    const img = event._embedded?.['wp:featuredmedia']?.[0]?.source_url || 
+                    // Mapping specific Events Manager fields
+                    const img = event.event_image_url || 
                                 'https://images.unsplash.com/photo-1517457373958-b7bdd4587205?q=80&w=2069';
                     
+                    const eventDate = event.event_date || "Coming Soon";
+                    const eventTime = event.event_start_time ? ` @ ${event.event_start_time}` : "";
+
                     const cleanExcerpt = event.excerpt.rendered ? event.excerpt.rendered.replace(/<[^>]*>?/gm, '') : "";
-                    const shortDesc = cleanExcerpt.substring(0, 95) + '...';
+                    const shortDesc = cleanExcerpt.length > 95 ? cleanExcerpt.substring(0, 95) + '...' : cleanExcerpt;
+
+                    const eventLink = event.link || `/events/${event.slug}`;
 
                     return `
                         <div class="flex flex-col group bg-white dark:bg-slate-800/50 rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-all">
-                            <div class="w-full aspect-[16/10] overflow-hidden">
+                            <div class="w-full aspect-[16/10] overflow-hidden bg-slate-100">
                                 <img src="${img}" alt="${event.title.rendered}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
                             </div>
                             <div class="p-6 flex flex-col flex-1">
                                 <span class="text-primary text-[10px] font-black uppercase tracking-[0.2em] mb-2 inline-block">Upcoming Activity</span>
-                                <h3 class="text-slate-900 dark:text-white text-xl font-bold mb-3 leading-snug">${event.title.rendered}</h3>
+                                <h3 class="text-slate-900 dark:text-white text-xl font-bold mb-1 leading-snug">${event.title.rendered}</h3>
+                                <p class="text-primary font-bold text-xs mb-3">${eventDate}${eventTime}</p>
                                 <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed mb-6 line-clamp-2">${shortDesc}</p>
                                 <div class="mt-auto">
-                                    <a href="${event.link}" class="inline-flex items-center gap-2 text-primary font-bold text-sm group/btn">
+                                    <a href="${eventLink}" class="inline-flex items-center gap-2 text-primary font-bold text-sm group/btn">
                                         View Details 
                                         <span class="material-symbols-outlined text-sm group-hover/btn:translate-x-1 transition-transform">arrow_forward</span>
                                     </a>
