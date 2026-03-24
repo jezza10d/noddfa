@@ -178,8 +178,20 @@
 
                 container.innerHTML = events.map(event => {
                     const img = event.event_image_url || 'https://images.unsplash.com/photo-1517457373958-b7bdd4587205?q=80&w=2069';
-                    const eventDate = event.event_date || "Coming Soon";
-                    const cleanExcerpt = event.excerpt.rendered ? event.excerpt.rendered.replace(/<[^>]*>?/gm, '') : "";
+                    
+                    // Format date to: 24 March 26
+                    let eventDate = "Coming Soon";
+                    if (event.event_date) {
+                        const d = new Date(event.event_date);
+                        eventDate = d.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: '2-digit' });
+                    }
+
+                    // Clean excerpt and remove the "Date - Date @ Time" string often appended by event plugins
+                    let cleanExcerpt = event.excerpt.rendered ? event.excerpt.rendered.replace(/<[^>]*>?/gm, '') : "";
+                    
+                    // Specific regex to remove the "DD/MM/YYYY – DD/MM/YYYY @ Time – " prefix
+                    cleanExcerpt = cleanExcerpt.replace(/^\d{2}\/\d{2}\/\d{4}.*?–\s*/, '');
+
                     const shortDesc = cleanExcerpt.split(' ').slice(0, 20).join(' ') + '...';
                     const eventLink = event.link.replace('https://noddfa-j3nkslkrxc.live-website.com', 'https://glyncorrwg.wales');
 
@@ -221,7 +233,7 @@
 
                 container.innerHTML = posts.map(post => {
                     const img = post._embedded?.['wp:featuredmedia']?.[0]?.source_url || 'https://images.unsplash.com/photo-1504711434969-e33886168f5c?q=80&w=2070';
-                    const postDate = new Date(post.date).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
+                    const postDate = new Date(post.date).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: '2-digit' });
                     const cleanExcerpt = post.excerpt.rendered ? post.excerpt.rendered.replace(/<[^>]*>?/gm, '') : "";
                     const shortDesc = cleanExcerpt.split(' ').slice(0, 20).join(' ') + '...';
                     const newsLink = post.link.replace('https://noddfa-j3nkslkrxc.live-website.com', 'https://glyncorrwg.wales');
