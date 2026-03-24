@@ -68,12 +68,12 @@
                 </section>
 
                 <section class="px-6 md:px-20 py-16">
-                    <div class="flex items-center justify-between mb-10">
+                    <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-10">
                         <div>
                             <h2 class="text-slate-900 dark:text-white text-3xl font-bold">What's On</h2>
                             <p class="text-slate-500 dark:text-slate-400 mt-2">Join us for activities and events this week</p>
                         </div>
-                        <a href="/events">
+                        <a href="/events" class="self-start md:self-auto">
                             <button class="flex items-center gap-2 text-primary font-bold hover:underline">
                                 View Full Calendar <span class="material-symbols-outlined">arrow_forward</span>
                             </button>
@@ -122,12 +122,12 @@
                 </section>
 
                 <section class="px-6 md:px-20 py-16">
-                    <div class="flex items-center justify-between mb-10">
+                    <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-10">
                         <div>
                             <h2 class="text-slate-900 dark:text-white text-3xl font-bold">Latest News</h2>
                             <p class="text-slate-500 dark:text-slate-400 mt-2">Catch up with the latest updates from the centre</p>
                         </div>
-                        <a href="/news">
+                        <a href="/news" class="self-start md:self-auto">
                             <button class="flex items-center gap-2 text-primary font-bold hover:underline">
                                 View All News <span class="material-symbols-outlined">arrow_forward</span>
                             </button>
@@ -210,7 +210,6 @@
         async function loadLatestNews() {
             const container = document.getElementById('news-feed-container');
             try {
-                // Fetching standard posts (News)
                 const response = await fetch(`${API_BASE}/wp/v2/posts?per_page=3&_embed&v=${Date.now()}`);
                 if (!response.ok) throw new Error(`HTTP Error: ${response.status}`);
                 const posts = await response.json();
@@ -221,7 +220,6 @@
                 }
 
                 container.innerHTML = posts.map(post => {
-                    // Get featured image from embedded data or fallback
                     const img = post._embedded?.['wp:featuredmedia']?.[0]?.source_url || 'https://images.unsplash.com/photo-1504711434969-e33886168f5c?q=80&w=2070';
                     const postDate = new Date(post.date).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
                     const cleanExcerpt = post.excerpt.rendered ? post.excerpt.rendered.replace(/<[^>]*>?/gm, '') : "";
