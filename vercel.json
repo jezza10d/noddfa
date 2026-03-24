@@ -14,10 +14,14 @@
       "source": "/availability",
       "destination": "https://noddfa-j3nkslkrxc.live-website.com/availability/"
     },
-    {
-      "source": "/portal", 
-      "destination": "https://noddfa-j3nkslkrxc.live-website.com/portal", 
-    },
+{
+  "source": "/portal",
+  "destination": "https://noddfa-j3nkslkrxc.live-website.com/portal/"
+},
+{
+  "source": "/portal/:path*",
+  "destination": "https://noddfa-j3nkslkrxc.live-website.com/portal/:path*/"
+}
     {
       "source": "/wp-content/:path*",
       "destination": "https://noddfa-j3nkslkrxc.live-website.com/wp-content/:path*"
