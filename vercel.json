@@ -21,7 +21,7 @@
     {
       "source": "/portal/:path*",
       "destination": "https://noddfa-j3nkslkrxc.live-website.com/portal/:path*/"
-    }
+    },
     {
       "source": "/wp-content/:path*",
       "destination": "https://noddfa-j3nkslkrxc.live-website.com/wp-content/:path*"
