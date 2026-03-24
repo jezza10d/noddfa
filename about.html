@@ -1,12 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&display=swap" rel="stylesheet">
-    <script id="tailwind-config">
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&display=swap" rel="stylesheet">
+<script id="tailwind-config">
         tailwind.config = {
             darkMode: "class",
             theme: {
@@ -26,158 +24,196 @@
             },
         }
     </script>
-    <style>
-        /* Mobile Menu Injection Styles */
-        @media (max-width: 768px) {
-            #nav-menu.active-menu {
-                display: flex !important;
-                flex-direction: column !important;
-                gap: 1.5rem !important;
-                padding: 2rem !important;
-                align-items: flex-start !important;
-                position: absolute !important;
-                top: 72px !important;
-                left: 0 !important;
-                width: 100% !important;
-                background: white !important;
-                z-index: 50 !important;
-                box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-            }
+<style>
+    /* Injection: Ensure the mobile menu displays correctly when toggled */
+    @media (max-width: 768px) {
+        #nav-menu.active-menu {
+            display: flex !important;
+            flex-direction: column !important;
+            gap: 1.5rem !important;
+            padding: 2rem !important;
+            align-items: flex-start !important;
+            position: absolute !important;
+            top: 72px !important;
+            left: 0 !important;
+            width: 100% !important;
+            background: white !important;
+            z-index: 50 !important;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
         }
-    </style>
-    <title>About Us | Noddfa Community Centre</title>
+    }
+</style>
+<title>About Us | Noddfa Community Centre</title>
 </head>
 <body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100">
 <div class="relative flex h-auto min-h-screen w-full flex-col group/design-root overflow-x-hidden">
-    <div class="layout-container flex h-full grow flex-col">
+<div class="layout-container flex h-full grow flex-col">
 
-        <header id="header-placeholder" class="min-h-[72px] relative z-50"></header>
+<div id="header-placeholder"></div>
         
-        <main class="flex flex-col items-center">
-            <div class="relative w-full h-[300px] md:h-[500px] flex items-center justify-center text-center px-6 overflow-hidden">
-                <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1517457373958-b7bdd458ad20?q=80&w=2070');"></div>
-                <div class="absolute inset-0 bg-black/50"></div>
-                <div class="relative z-10 max-w-3xl mx-auto">
-                    <span class="bg-primary text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider mb-6 inline-block">Glyncorrwg Heritage</span>
-                    <h1 id="hero-header" class="text-white text-4xl md:text-6xl font-extrabold leading-tight mb-4">Preserving Our Past,<br>Inspiring Our Future</h1>
-                    <p class="text-slate-200 text-lg md:text-xl font-medium">A sanctuary for our community since the industrial era.</p>
-                </div>
-            </div>
-
-            <div class="layout-content-container flex flex-col max-w-[1200px] w-full flex-1 px-4 md:px-10 py-16">
-                <section class="grid grid-cols-1 lg:grid-cols-12 gap-12 mb-20 items-center">
-                    <div class="lg:col-span-7">
-                        <h2 class="text-slate-900 dark:text-white text-3xl font-bold leading-tight tracking-tight mb-6 flex items-center gap-3">
-                            <span class="w-8 h-1 bg-primary rounded-full"></span>
+<main class="flex flex-col items-center">
+<div class="relative w-full h-[300px] md:h-[500px] flex items-center justify-center text-center px-6 overflow-hidden">
+<div class="absolute inset-0 bg-cover bg-center" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuD-Ptpz1Fl6WtwR1daVTZMbtirZ8qMdBwe9rl9iii5tGoaC9TkiKxir1N_DrL8r8oBCHAWaieh54yfdL712zf6dZH07G1uYTwRtlBcDJszFNy1DfWuYCz_uNATqJCSCfb7gydr8U0fWdGIKsmQLpIsryEq0h8klEql8y4XBwHmq_dE4wPHPisVzfdERkuFzxqg8raYL9R8K_VzGpqplbEEHp4BLni08ovcPgsT7iCnoDcByja1U4RZMoo_L81TnMggPU5jyYRfpd1tQ');"></div>
+<div class="absolute inset-0 bg-black/50"></div>
+<div class="relative z-10 max-w-3xl mx-auto">
+<span class="bg-primary text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider mb-6 inline-block">Glyncorrwg Heritage</span>
+<h1 id="hero-header" class="text-white text-4xl md:text-6xl font-extrabold leading-tight mb-4">Preserving Our Past,<br>Inspiring Our Future</h1>
+<p class="text-slate-200 text-lg md:text-xl font-medium">A sanctuary for our community since the industrial era.</p>
+</div>
+</div>
+<div class="layout-content-container flex flex-col max-w-[1200px] w-full flex-1 px-4 md:px-10 py-16">
+<section class="grid grid-cols-1 lg:grid-cols-12 gap-12 mb-20 items-center">
+<div class="lg:col-span-7">
+<h2 class="text-slate-900 dark:text-white text-3xl font-bold leading-tight tracking-tight mb-6 flex items-center gap-3">
+<span class="w-8 h-1 bg-primary rounded-full"></span>
                             Our History
                         </h2>
-                        <div class="space-y-4 text-slate-700 dark:text-slate-300 text-lg leading-relaxed">
-                            <p>Located in the heart of Glyncorrwg, Noddfa Community Centre has been a cornerstone of our village heritage for generations. Originally established to support the local mining community during the height of the industrial era, it served as a vital hub for miners and their families.</p>
-                            <p>The name 'Noddfa' translates to 'Sanctuary' in Welsh—a fitting title for a place that provided safety, learning, and cultural preservation when the community needed it most.</p>
-                        </div>
-                    </div>
-                    <div class="lg:col-span-5">
-                        <img alt="Community Centre" class="rounded-xl shadow-2xl w-full h-[400px] object-cover border-4 border-white dark:border-background-dark" src="https://images.unsplash.com/photo-1529070538774-1843cb3265df?q=80&w=2070">
-                    </div>
-                </section>
+<div class="space-y-4 text-slate-700 dark:text-slate-300 text-lg leading-relaxed">
+<p>
+                                Located in the heart of Glyncorrwg, Noddfa Community Centre has been a cornerstone of our village heritage for generations. Originally established to support the local mining community during the height of the industrial era, it served as a vital hub for miners and their families.
+                            </p>
+<p>
+                                The name 'Noddfa' translates to 'Sanctuary' in Welsh—a fitting title for a place that provided safety, learning, and cultural preservation when the community needed it most. It was here that the local choir practiced, where political discussions took place, and where the resilience of Glyncorrwg was forged.
+                            </p>
+<p>
+                                Today, we continue this legacy by fostering a vibrant environment for all residents. We honor our past through community archives and traditional events while building a sustainable future together through modern education, health programs, and social gatherings.
+                            </p>
+</div>
+</div>
+<div class="lg:col-span-5">
+<div class="relative">
+<div class="absolute -top-4 -left-4 w-24 h-24 bg-brand-forest/10 rounded-xl -z-10"></div>
+<div class="absolute -bottom-4 -right-4 w-24 h-24 bg-brand-forest/10 rounded-xl -z-10"></div>
+<img alt="Community gathering at the centre" class="rounded-xl shadow-2xl w-full h-[400px] object-cover border-4 border-white dark:border-background-dark" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC95EDF3-S5ZZfT379f2DugcDjBnDKa3N8_CaZ5vDpTUrdf493f35sKC7iFdA94VmbdNZ3v925egGooxEXZf6lU8AodHfzrRNs2qUY7U_iFgkt_pVS9jb9maOaBz8VL6965LhFS36imssc0l0XO1lRQbrFiK-LuZl1v5s6-9uk-tOTh_DeeM8NdqXyUdhlHdvoIOy3VGoSv6_OgpmVKrviEaDRsZiKNaSwswjrZDql3op-fQrDOspnUbe4Fbmb87-iINQGGs63qXdDA">
+</div>
+</div>
+</section>
+<section class="mb-20">
+<div class="text-center mb-12">
+<h2 class="text-slate-900 dark:text-white text-3xl font-bold leading-tight tracking-tight mb-4">Meet the Trustees</h2>
+<p class="text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">Our dedicated team of volunteers who work tirelessly to ensure Noddfa remains a vibrant hub for the Glyncorrwg community.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+<div class="bg-white dark:bg-background-dark/40 p-6 rounded-xl border border-brand-forest/10 shadow-sm hover:shadow-md transition-shadow">
+<div class="flex flex-col items-center text-center">
+<div class="size-32 rounded-full overflow-hidden mb-4 border-4 border-brand-forest/20">
+<img alt="Maxine" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAOu9NFhvQLaNbjk6J9LcCXjji9xjSkawDhUghq8QF5Ip-jZOWene6zo8OK5n6VIqmbNQwn-zEzRtN1nQbczACjJWuNCMBmHMdLjGUUmMBOV1UcxjBOTs23V1wKIEKGr5wsuGKpL9bgzr6QfEuUlBmbBHd0qhQtMIihZwckQhJHGrS094oJUbXW-gErGmonKuwl3vOy9rXFHlviokaGjpDu0Gck-VCutqctgNpQmqD1vnpyNXqvbxq4bRaYB8VUqYm1qVxCXD4Xxe2n">
+</div>
+<h3 class="text-xl font-bold text-slate-900 dark:text-white">Maxine</h3>
+<p class="text-primary font-medium text-sm mb-4">Chairman</p>
+<p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">
+                                    A lifelong Glyncorrwg resident, Gareth has been involved with the centre for 20 years, specializing in heritage preservation and local grants.
+                                </p>
+</div>
+</div>
+<div class="bg-white dark:bg-background-dark/40 p-6 rounded-xl border border-brand-forest/10 shadow-sm hover:shadow-md transition-shadow">
+<div class="flex flex-col items-center text-center">
+<div class="size-32 rounded-full overflow-hidden mb-4 border-4 border-brand-forest/20">
+<img alt="Jayne" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDWaLKDyNssUfWNrcqOpunDVfNBXtlrn3_XXMctONV6siSWny5WyzhayJ1q113B_oDoR_xkWcgI0mpNygb5jkfU9SSlZNl6BcgAY1sjO6g9eyzTsBiFGkzQ8GqvFJI2qISIrlcHzTe2a157u2qQ9YugUkDnrjlKnSdVZhKQBMvJa-1w3HHMXI8PI0u_DjdgNFr48hOO0nJeTakDMFj29U1c_jBOcr7S9laYg-GvzkX0x8drapEbp_hFpfxcMaiOgjcizcS7PbOgHW55">
+</div>
+<h3 class="text-xl font-bold text-slate-900 dark:text-white">Jayne</h3>
+<p class="text-primary font-medium text-sm mb-4">Tresurer</p>
+<p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">
+                                    With a background in education, Sian leads our youth outreach programs and manages community workshop scheduling.
+                                </p>
+</div>
+</div>
+<div class="bg-white dark:bg-background-dark/40 p-6 rounded-xl border border-brand-forest/10 shadow-sm hover:shadow-md transition-shadow">
+<div class="flex flex-col items-center text-center">
+<div class="size-32 rounded-full overflow-hidden mb-4 border-4 border-brand-forest/20">
+<img alt="Dave" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBAg2WI96FTLcExzQCMnR5jksROR4kJmVLNkETYRIssbdeNwK5X2gyRmH2v1RndAdnWa-FX5noLcw8aDgAKF18bZsJwRWLQzXO4jxoT9YRphZD6Ff89DCAt62_zZLLwwb4PABYxu-I6l8aoVOep7BQ1AZprZVle06VRCH_cYKxcR38vKKAYlQXdZfhciKFhE9f6SuyOS4aGT5V17xStSYA_8lKs3QDILj0SYIGID6hCEhDmZLYiFvRW3nB-Kz1sDmNOkIt0TJoW270o">
+</div>
+<h3 class="text-xl font-bold text-slate-900 dark:text-white">Dave</h3>
+<p class="text-primary font-medium text-sm mb-4">Treasurer</p>
+<p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">
+                                    David brings 30 years of financial expertise to the board, ensuring the centre's long-term sustainability and facility upgrades.
+                                </p>
+</div>
+</div>
+</div>
+</section>
+<section class="bg-brand-forest/5 rounded-2xl p-8 md:p-12 text-center border border-brand-forest/10 mb-10">
+<h2 class="text-2xl font-bold text-slate-900 dark:text-white mb-4">Want to get involved?</h2>
+<p class="text-slate-700 dark:text-slate-300 mb-8 max-w-xl mx-auto">We are always looking for volunteers, new trustees, or even just ideas for new community events.</p>
+<div class="flex flex-wrap justify-center gap-4">
+<a class="bg-primary hover:bg-primary/90 text-white px-8 py-3 rounded-lg font-bold transition-all shadow-lg shadow-primary/20" href="#">Contact Us</a>
+<a class="bg-white dark:bg-background-dark text-slate-900 dark:text-white border border-slate-200 dark:border-slate-700 px-8 py-3 rounded-lg font-bold hover:bg-slate-50 dark:hover:bg-brand-forest/20 transition-all" href="#">Download Annual Report</a>
+</div>
+</section>
+</div>
+</main>
 
-                <section class="mb-20">
-                    <div class="text-center mb-12">
-                        <h2 class="text-slate-900 dark:text-white text-3xl font-bold leading-tight tracking-tight mb-4">Meet the Trustees</h2>
-                    </div>
-                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                        <div class="bg-white dark:bg-background-dark/40 p-6 rounded-xl border border-brand-forest/10 shadow-sm">
-                            <h3 class="text-xl font-bold text-slate-900 dark:text-white">Maxine</h3>
-                            <p class="text-primary font-medium text-sm mb-4">Chairman</p>
-                        </div>
-                        <div class="bg-white dark:bg-background-dark/40 p-6 rounded-xl border border-brand-forest/10 shadow-sm">
-                            <h3 class="text-xl font-bold text-slate-900 dark:text-white">Jayne</h3>
-                            <p class="text-primary font-medium text-sm mb-4">Treasurer</p>
-                        </div>
-                        <div class="bg-white dark:bg-background-dark/40 p-6 rounded-xl border border-brand-forest/10 shadow-sm">
-                            <h3 class="text-xl font-bold text-slate-900 dark:text-white">Dave</h3>
-                            <p class="text-primary font-medium text-sm mb-4">Treasurer</p>
-                        </div>
-                    </div>
-                </section>
-            </div>
-        </main>
+<div id="footer-placeholder"></div>
 
-        <footer id="footer-placeholder"></footer>
-
-    </div>
+</div>
 </div>
 
 <script>
-    const API_BASE = 'https://noddfa-j3nkslkrxc.live-website.com/wp-json';
+  const API_BASE = 'https://noddfa-j3nkslkrxc.live-website.com/wp-json';
 
-    async function loadSharedComponents() {
-        try {
-            const hRes = await fetch(`${API_BASE}/noddfa/v1/header?v=${Date.now()}`);
-            if (hRes.ok) {
-                const data = await hRes.json();
-                document.getElementById('header-placeholder').innerHTML = data.html;
-                initMobileMenu();
-                highlightActiveLink();
-            }
-            const fRes = await fetch(`${API_BASE}/noddfa/v1/footer?v=${Date.now()}`);
-            if (fRes.ok) {
-                const data = await fRes.json();
-                document.getElementById('footer-placeholder').innerHTML = data.html;
-            }
-        } catch (e) { console.error("Component Loader error", e); }
+  async function loadSharedComponents() {
+    try {
+      const headerResponse = await fetch(`${API_BASE}/noddfa/v1/header`);
+      if (headerResponse.ok) {
+        const data = await headerResponse.json();
+        document.getElementById('header-placeholder').innerHTML = data.html;
+        initMobileMenu();
+        highlightActiveLink();
+      }
+
+      const footerResponse = await fetch(`${API_BASE}/noddfa/v1/footer`);
+      if (footerResponse.ok) {
+        const data = await footerResponse.json();
+        document.getElementById('footer-placeholder').innerHTML = data.html;
+      }
+    } catch (error) {
+      console.error("Error loading shared components:", error);
     }
+  }
 
-    function initMobileMenu() {
-        const btn = document.getElementById('menu-toggle');
-        const nav = document.getElementById('nav-menu');
-        if (btn && nav) {
-            btn.onclick = (e) => {
-                e.preventDefault();
-                nav.classList.toggle('active-menu');
-                nav.classList.toggle('hidden');
-            };
-        }
+  function initMobileMenu() {
+    const toggleBtn = document.getElementById('menu-toggle');
+    const navMenu = document.getElementById('nav-menu');
+
+    if (toggleBtn && navMenu) {
+      toggleBtn.onclick = (e) => {
+        e.preventDefault();
+        navMenu.classList.toggle('active-menu');
+        navMenu.classList.toggle('hidden');
+      };
     }
+  }
 
-    function highlightActiveLink() {
-        const path = window.location.pathname;
-        const navLinks = document.querySelectorAll('.nav-link');
-        navLinks.forEach(link => {
-            const href = link.getAttribute('href');
-            if (path.includes('about') && href.includes('about')) {
-                link.classList.add('text-primary', 'font-semibold', 'border-b-2', 'border-primary');
-            }
-        });
-
-        // URL backend cleanup
-        const backend = 'noddfa-j3nkslkrxc.live-website.com';
-        const publicUrl = 'glyncorrwg.wales';
-        document.querySelectorAll('a').forEach(link => {
-            if (link.href.includes(backend)) {
-                link.href = link.href.replace(backend, publicUrl);
-            }
-        });
-    }
-
-    async function syncPageBanner() {
-        const path = window.location.pathname;
-        const slug = path.split("/").pop().replace(".html", "") || "about";
-        try {
-            const response = await fetch(`${API_BASE}/wp/v2/pages?slug=${slug}`);
-            const data = await response.json();
-            if (data?.length > 0 && data[0].acf?.hero_benner_header) {
-                const headerElement = document.getElementById('hero-header');
-                if (headerElement) headerElement.innerHTML = data[0].acf.hero_benner_header;
-            }
-        } catch (e) { console.error("Banner sync failed", e); }
-    }
-
-    document.addEventListener('DOMContentLoaded', () => {
-        loadSharedComponents();
-        syncPageBanner();
+  function highlightActiveLink() {
+    const currentPath = window.location.pathname;
+    const navLinks = document.querySelectorAll('.nav-link');
+    navLinks.forEach(link => {
+      const href = link.getAttribute('href');
+      if (currentPath.includes('about') && href.includes('about')) {
+        link.classList.add('text-primary', 'font-semibold', 'border-b-2', 'border-primary');
+      }
     });
+  }
+
+  async function syncPageBanner() {
+    const path = window.location.pathname;
+    const slug = path.split("/").pop().replace(".html", "") || "about";
+    try {
+      const response = await fetch(`${API_BASE}/wp/v2/pages?slug=${slug}`);
+      const data = await response.json();
+      if (data && data.length > 0 && data[0].acf?.hero_benner_header) {
+        const headerElement = document.getElementById('hero-header');
+        if (headerElement) headerElement.innerHTML = data[0].acf.hero_benner_header;
+      }
+    } catch (error) {
+      console.error("Banner sync failed:", error);
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    loadSharedComponents();
+    syncPageBanner();
+  });
 </script>
 
-</body>
-</html>
+</body></html>
