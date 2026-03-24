@@ -18,7 +18,8 @@
                         primary: "#ae0000",
                         secondary: "#1a301a",
                         "background-light": "#f8f5f5",
-                        "background-dark": "#1a301a"
+                        "background-dark": "#1a301a",
+                        "brand-forest": "#2d3e1d"
                     },
                     fontFamily: { display: "Lexend" }
                 }
@@ -27,7 +28,7 @@
     </script>
 
     <style>
-        /* Shared Mobile Menu Fix from Homepage */
+        /* INJECTED: Homepage Mobile Menu Logic */
         @media (max-width: 768px) {
             #nav-menu.active-menu {
                 display: flex !important;
@@ -75,7 +76,7 @@
                         </h2>
                     </div>
                     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                        <div class="group bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 p-8 rounded-xl shadow-sm hover:shadow-md transition-all cursor-pointer">
+                        <div class="group bg-white dark:bg-background-dark/40 border border-brand-forest/10 p-8 rounded-xl shadow-sm hover:shadow-md transition-all cursor-pointer">
                             <div class="w-14 h-14 bg-primary/10 rounded-full flex items-center justify-center text-primary mb-6 group-hover:scale-110 transition-transform">
                                 <span class="material-symbols-outlined text-3xl" style="font-variation-settings: 'FILL' 1;">medical_services</span>
                             </div>
@@ -83,30 +84,54 @@
                             <p class="text-slate-600 dark:text-slate-400 text-sm mb-4">Glyncorrwg Health Centre opening times and appointments.</p>
                             <span class="text-primary font-semibold flex items-center gap-2">View Details <span class="material-symbols-outlined text-sm">arrow_forward</span></span>
                         </div>
+                        <div class="group bg-white dark:bg-background-dark/40 border border-brand-forest/10 p-8 rounded-xl shadow-sm hover:shadow-md transition-all cursor-pointer">
+                            <div class="w-14 h-14 bg-primary/10 rounded-full flex items-center justify-center text-primary mb-6 group-hover:scale-110 transition-transform">
+                                <span class="material-symbols-outlined text-3xl" style="font-variation-settings: 'FILL' 1;">church</span>
+                            </div>
+                            <h3 class="text-xl font-bold mb-2">Church</h3>
+                            <p class="text-slate-600 dark:text-slate-400 text-sm mb-4">St John the Baptist services and community gatherings.</p>
+                            <span class="text-primary font-semibold flex items-center gap-2">View Details <span class="material-symbols-outlined text-sm">arrow_forward</span></span>
                         </div>
+                        <div class="group bg-white dark:bg-background-dark/40 border border-brand-forest/10 p-8 rounded-xl shadow-sm hover:shadow-md transition-all cursor-pointer">
+                            <div class="w-14 h-14 bg-primary/10 rounded-full flex items-center justify-center text-primary mb-6 group-hover:scale-110 transition-transform">
+                                <span class="material-symbols-outlined text-3xl" style="font-variation-settings: 'FILL' 1;">directions_bus</span>
+                            </div>
+                            <h3 class="text-xl font-bold mb-2">Buses</h3>
+                            <p class="text-slate-600 dark:text-slate-400 text-sm mb-4">X3 and local route timetables for Neath & Port Talbot.</p>
+                            <span class="text-primary font-semibold flex items-center gap-2">Live Times <span class="material-symbols-outlined text-sm">arrow_forward</span></span>
+                        </div>
+                        <div class="group bg-white dark:bg-background-dark/40 border border-brand-forest/10 p-8 rounded-xl shadow-sm hover:shadow-md transition-all cursor-pointer">
+                            <div class="w-14 h-14 bg-primary/10 rounded-full flex items-center justify-center text-primary mb-6 group-hover:scale-110 transition-transform">
+                                <span class="material-symbols-outlined text-3xl" style="font-variation-settings: 'FILL' 1;">school</span>
+                            </div>
+                            <h3 class="text-xl font-bold mb-2">Schools</h3>
+                            <p class="text-slate-600 dark:text-slate-400 text-sm mb-4">Term dates and contact info for Glyncorrwg Primary.</p>
+                            <span class="text-primary font-semibold flex items-center gap-2">Learn More <span class="material-symbols-outlined text-sm">arrow_forward</span></span>
+                        </div>
+                    </div>
                 </section>
 
                 <section class="mb-20">
-                    <div class="bg-slate-100 dark:bg-slate-800/50 rounded-2xl p-8 md:p-12 border border-slate-200 dark:border-slate-700 relative overflow-hidden">
+                    <div class="bg-brand-forest/5 dark:bg-brand-forest/20 rounded-2xl p-8 md:p-12 border border-brand-forest/10 relative overflow-hidden">
                         <div class="relative z-10 grid md:grid-cols-2 gap-12 items-center">
                             <div>
                                 <h2 class="text-3xl font-bold mb-4">Report It Dashboard</h2>
                                 <p class="text-slate-600 dark:text-slate-400 mb-8">Directly report issues to Neath Port Talbot Council.</p>
                                 <div class="flex flex-wrap gap-3">
-                                    <a href="#" class="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 px-5 py-3 rounded-full flex items-center gap-3 font-medium hover:border-primary transition-all">
+                                    <a href="#" class="bg-white dark:bg-background-dark border border-slate-200 dark:border-slate-700 px-5 py-3 rounded-full flex items-center gap-3 font-medium hover:border-primary transition-all">
                                         <span class="material-symbols-outlined text-primary">warning</span> Potholes
                                     </a>
-                                    <a href="#" class="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 px-5 py-3 rounded-full flex items-center gap-3 font-medium hover:border-primary transition-all">
+                                    <a href="#" class="bg-white dark:bg-background-dark border border-slate-200 dark:border-slate-700 px-5 py-3 rounded-full flex items-center gap-3 font-medium hover:border-primary transition-all">
                                         <span class="material-symbols-outlined text-primary">delete_outline</span> Fly-tipping
                                     </a>
                                 </div>
                             </div>
                             <div class="grid grid-cols-2 gap-4 text-center">
-                                <div class="bg-white dark:bg-slate-800 p-6 rounded-2xl border border-slate-100 dark:border-slate-700 shadow-sm">
+                                <div class="bg-white dark:bg-background-dark p-6 rounded-2xl border border-brand-forest/10 shadow-sm">
                                     <div class="text-4xl font-black text-primary mb-1">24h</div>
                                     <div class="text-xs uppercase font-bold text-slate-500">Response Goal</div>
                                 </div>
-                                <div class="bg-white dark:bg-slate-800 p-6 rounded-2xl border border-slate-100 dark:border-slate-700 shadow-sm">
+                                <div class="bg-white dark:bg-background-dark p-6 rounded-2xl border border-brand-forest/10 shadow-sm">
                                     <div class="text-4xl font-black text-secondary mb-1">NPT</div>
                                     <div class="text-xs uppercase font-bold text-slate-500">Council Direct</div>
                                 </div>
@@ -117,67 +142,64 @@
 
                 <section class="mb-10">
                     <h2 class="text-3xl font-bold mb-6">Village Map</h2>
-                    <div class="bg-white dark:bg-slate-800 rounded-3xl p-2 border border-slate-200 dark:border-slate-700 shadow-xl overflow-hidden aspect-video relative">
-                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d19853.483981504993!2d-3.61905475!3d51.6631835!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x486e5c9497e6573b%3A0x7d2872f2e5a6a66a!2sGlyncorrwg%2C%20Port%20Talbot!5e0!3m2!1sen!2suk!4v1710000000000!5m2!1sen!2suk" width="100%" height="100%" style="border:0; border-radius: 1.5rem;" allowfullscreen="" loading="lazy"></iframe>
+                    <div class="bg-white dark:bg-background-dark rounded-3xl p-2 border border-brand-forest/10 shadow-xl overflow-hidden aspect-video relative">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d19853.4735237279!2d-3.6190886!3d51.6582522!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x486e4242681534b3%3A0x673c683b5d259ca3!2sGlyncorrwg!5e0!3m2!1sen!2suk!4v1708450000000!5m2!1sen!2suk" width="100%" height="100%" style="border:0; border-radius: 1.5rem;" allowfullscreen="" loading="lazy"></iframe>
                     </div>
                 </section>
 
             </div>
         </main>
 
-        <footer id="footer-placeholder"></footer>
+        <div id="footer-placeholder"></div>
 
     </div>
 </div>
 
 <script>
-const API_BASE = 'https://noddfa-j3nkslkrxc.live-website.com/wp-json';
+    /* INJECTED: Consistent Component Loader (Matching Homepage) */
+    const API_BASE = 'https://noddfa-j3nkslkrxc.live-website.com/wp-json';
 
-async function loadSharedComponents() {
-    try {
-        // Load Header
-        const hRes = await fetch(`${API_BASE}/noddfa/v1/header?v=${Date.now()}`);
-        if (hRes.ok) {
-            const data = await hRes.json();
-            document.getElementById('header-placeholder').innerHTML = data.html;
-            initMobileMenu();
-            highlightActiveLink();
-        }
-        // Load Footer
-        const fRes = await fetch(`${API_BASE}/noddfa/v1/footer?v=${Date.now()}`);
-        if (fRes.ok) {
-            const data = await fRes.json();
-            document.getElementById('footer-placeholder').innerHTML = data.html;
-        }
-    } catch (e) { console.error("Component Loader error", e); }
-}
-
-function initMobileMenu() {
-    const btn = document.getElementById('menu-toggle');
-    const nav = document.getElementById('nav-menu');
-    if (btn && nav) {
-        btn.onclick = (e) => {
-            e.preventDefault();
-            nav.classList.toggle('active-menu');
-            nav.classList.toggle('hidden');
-        };
+    async function loadSharedComponents() {
+        try {
+            const hRes = await fetch(`${API_BASE}/noddfa/v1/header?v=${Date.now()}`);
+            if (hRes.ok) {
+                const data = await hRes.json();
+                document.getElementById('header-placeholder').innerHTML = data.html;
+                initMobileMenu();
+                highlightActiveLink();
+            }
+            const fRes = await fetch(`${API_BASE}/noddfa/v1/footer?v=${Date.now()}`);
+            if (fRes.ok) {
+                const data = await fRes.json();
+                document.getElementById('footer-placeholder').innerHTML = data.html;
+            }
+        } catch (e) { console.error("Component Loader error", e); }
     }
-}
 
-function highlightActiveLink() {
-    const path = window.location.pathname;
-    const navLinks = document.querySelectorAll('.nav-link');
-    navLinks.forEach(link => {
-        const href = link.getAttribute('href');
-        // Simple logic for highlighting active page
-        if (path.includes(href) && href !== '/' && href !== 'index.html') {
-            link.classList.add('text-primary', 'font-semibold', 'border-b-2', 'border-primary');
+    function initMobileMenu() {
+        const btn = document.getElementById('menu-toggle');
+        const nav = document.getElementById('nav-menu');
+        if (btn && nav) {
+            btn.onclick = (e) => {
+                e.preventDefault();
+                nav.classList.toggle('active-menu');
+                nav.classList.toggle('hidden');
+            };
         }
-    });
-}
+    }
 
-document.addEventListener('DOMContentLoaded', loadSharedComponents);
+    function highlightActiveLink() {
+        const path = window.location.pathname;
+        const navLinks = document.querySelectorAll('.nav-link');
+        navLinks.forEach(link => {
+            const href = link.getAttribute('href');
+            if (path.includes(href) && href !== '/' && href !== 'index.html') {
+                link.classList.add('text-primary', 'font-semibold', 'border-b-2', 'border-primary');
+            }
+        });
+    }
+
+    document.addEventListener('DOMContentLoaded', loadSharedComponents);
 </script>
-
 </body>
 </html>
