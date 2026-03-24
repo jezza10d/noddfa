@@ -15,6 +15,12 @@
       "destination": "https://noddfa-j3nkslkrxc.live-website.com/availability/"
     },
     {
+
+      "source": "/portal", 
+      "destination": "https://your-wordpress-domain.com/portal", 
+      "permanent": true 
+    },
+    {
       "source": "/wp-content/:path*",
       "destination": "https://noddfa-j3nkslkrxc.live-website.com/wp-content/:path*"
     },
