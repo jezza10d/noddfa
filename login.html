@@ -44,57 +44,59 @@
         }
     </style>
 </head>
-<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100">
+<body class="bg-[#f8f5f5] font-display text-slate-900">
 
 <div class="relative flex h-auto min-h-screen w-full flex-col overflow-x-hidden">
     <div class="layout-container flex h-full grow flex-col">
 
-        <header id="header-placeholder" class="min-h-[72px] relative z-50"></header>
+        <header id="header-placeholder" class="min-h-[72px] relative z-50 bg-white border-b border-slate-200"></header>
         
         <main class="flex flex-1 items-center justify-center px-6 py-12 md:py-24">
-            <div class="w-full max-w-[440px] bg-white dark:bg-slate-800 p-8 md:p-10 rounded-2xl shadow-xl border border-slate-200 dark:border-slate-700">
+            <div class="w-full max-w-[440px] bg-white p-8 md:p-10 rounded-[2rem] shadow-xl border border-slate-100">
                 
                 <div class="text-center mb-10">
-                    <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center text-primary mx-auto mb-4">
-                        <span class="material-symbols-outlined text-3xl">lock_open</span>
+                    <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center text-primary mx-auto mb-4 border border-primary/5">
+                        <span class="material-symbols-outlined text-3xl" style="font-variation-settings: 'FILL' 1;">lock</span>
                     </div>
-                    <h1 class="text-3xl font-bold text-slate-900 dark:text-white">Welcome Back</h1>
-                    <p class="text-slate-500 dark:text-slate-400 mt-2">Access your Noddfa account</p>
+                    <h1 class="text-3xl font-black text-secondary tracking-tight">Portal Sign In</h1>
+                    <p class="text-slate-500 mt-2 font-medium">Access your community dashboard</p>
                 </div>
 
-                <form action="#" method="POST" class="space-y-6">
+                <form id="loginForm" class="space-y-6">
                     <div>
-                        <label for="email" class="block text-sm font-semibold mb-2">Email Address</label>
+                        <label for="email" class="block text-[11px] font-black text-slate-400 uppercase tracking-widest mb-2">Email Address</label>
                         <input type="email" id="email" name="email" required 
-                            class="w-full px-4 py-3 rounded-lg border border-slate-300 dark:border-slate-600 dark:bg-slate-700 focus:ring-2 focus:ring-primary focus:border-primary transition-all outline-none"
+                            class="w-full px-5 py-4 rounded-xl border border-slate-200 bg-[#f8f9fa] focus:ring-2 focus:ring-primary focus:border-primary transition-all outline-none font-medium"
                             placeholder="name@example.com">
                     </div>
 
                     <div>
                         <div class="flex justify-between mb-2">
-                            <label for="password" class="text-sm font-semibold">Password</label>
-                            <a href="#" class="text-xs text-primary font-bold hover:underline">Forgot password?</a>
+                            <label for="password" class="block text-[11px] font-black text-slate-400 uppercase tracking-widest">Password</label>
+                            <a href="#" class="text-xs text-primary font-bold hover:underline uppercase tracking-tighter">Forgot password?</a>
                         </div>
                         <input type="password" id="password" name="password" required 
-                            class="w-full px-4 py-3 rounded-lg border border-slate-300 dark:border-slate-600 dark:bg-slate-700 focus:ring-2 focus:ring-primary focus:border-primary transition-all outline-none"
+                            class="w-full px-5 py-4 rounded-xl border border-slate-200 bg-[#f8f9fa] focus:ring-2 focus:ring-primary focus:border-primary transition-all outline-none font-medium"
                             placeholder="••••••••">
                     </div>
 
                     <div class="flex items-center gap-3">
                         <input type="checkbox" id="remember" class="w-4 h-4 rounded border-slate-300 text-primary focus:ring-primary">
-                        <label for="remember" class="text-sm text-slate-600 dark:text-slate-400">Remember me for 30 days</label>
+                        <label for="remember" class="text-sm text-slate-500 font-medium">Keep me signed in</label>
                     </div>
 
-                    <button type="submit" class="w-full bg-primary text-white font-bold py-4 rounded-lg hover:bg-primary/90 transition-all shadow-md flex items-center justify-center gap-2">
-                        Sign In <span class="material-symbols-outlined text-lg">login</span>
+                    <button type="submit" class="w-full bg-primary text-white font-black py-5 rounded-xl hover:scale-[1.02] active:scale-95 transition-all shadow-lg flex items-center justify-center gap-2 text-lg">
+                        Sign In <span class="material-symbols-outlined text-xl">arrow_forward</span>
                     </button>
                 </form>
 
-                <div class="mt-8 pt-8 border-t border-slate-100 dark:border-slate-700 text-center">
-                    <p class="text-sm text-slate-500 dark:text-slate-400">
-                        Don't have an account? 
-                        <a href="#" class="text-primary font-bold hover:underline">Register interest</a>
+                <div class="mt-10 pt-8 border-t border-slate-100 text-center">
+                    <p class="text-slate-500 font-medium">
+                        Need an account?
                     </p>
+                    <a href="#" class="inline-block mt-2 text-secondary font-black border-b-2 border-primary pb-0.5 hover:text-primary transition-colors">
+                        Register Interest for Membership
+                    </a>
                 </div>
             </div>
         </main>
@@ -106,6 +108,13 @@
 
 <script>
     const API_BASE = 'https://noddfa-j3nkslkrxc.live-website.com/wp-json';
+
+    // Handle Login Redirect
+    document.getElementById('loginForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        // Temporary redirect to portal while backend is being built
+        window.location.href = '/portal';
+    });
 
     async function loadSharedComponents() {
         try {
