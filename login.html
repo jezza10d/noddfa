@@ -44,6 +44,7 @@
             }
         }
         .material-symbols-outlined {
+            /* Ensuring outline style: FILL 0 */
             font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
         }
     </style>
@@ -60,7 +61,7 @@
                 
                 <div class="flex flex-col items-center mb-8 text-center">
                     <div class="w-20 h-20 rounded-full bg-primary/5 flex items-center justify-center mb-4 border border-primary/10">
-                        <span class="material-symbols-outlined text-primary text-4xl">account_circle</span>
+                        <span class="material-symbols-outlined text-primary text-4xl">lock</span>
                     </div>
                     <h2 class="text-2xl font-bold text-secondary">Portal Sign In</h2>
                     <p class="text-on-surface-variant text-sm mt-1">Access your member dashboard</p>
@@ -101,7 +102,7 @@
                     <div class="relative flex justify-center text-xs uppercase"><span class="bg-white px-2 text-on-surface-variant">New to Noddfa?</span></div>
                 </div>
 
-                <button class="w-full bg-[#f1eeee] text-secondary py-3 rounded-lg font-bold border border-outline-variant hover:bg-[#e2dede] transition-all">
+                <button onclick="window.location.href='/portal'" class="w-full bg-[#f1eeee] text-secondary py-3 rounded-lg font-bold border border-outline-variant hover:bg-[#e2dede] transition-all active:scale-[0.98]">
                     Create Account
                 </button>
             </div>
