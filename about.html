@@ -25,6 +25,12 @@
         }
     </script>
 <style>
+    /* FIX: Force browser to recognize icons in injected HTML */
+    .material-symbols-outlined {
+        font-family: 'Material Symbols Outlined' !important;
+        font-display: block;
+    }
+
     /* Injection: Ensure the mobile menu displays correctly when toggled */
     @media (max-width: 768px) {
         #nav-menu.active-menu {
@@ -153,48 +159,44 @@
 
   async function loadSharedComponents() {
     try {
-      const headerResponse = await fetch(`${API_BASE}/noddfa/v1/header?v=${Date.now()}`);
-      if (headerResponse.ok) {
-        const data = await headerResponse.json();
+      const hRes = await fetch(`${API_BASE}/noddfa/v1/header?v=${Date.now()}`);
+      if (hRes.ok) {
+        const data = await hRes.json();
         document.getElementById('header-placeholder').innerHTML = data.html;
         initMobileMenu();
         highlightActiveLink();
       }
 
-      const footerResponse = await fetch(`${API_BASE}/noddfa/v1/footer?v=${Date.now()}`);
-      if (footerResponse.ok) {
-        const data = await footerResponse.json();
+      const fRes = await fetch(`${API_BASE}/noddfa/v1/footer?v=${Date.now()}`);
+      if (fRes.ok) {
+        const data = await fRes.json();
         document.getElementById('footer-placeholder').innerHTML = data.html;
       }
-    } catch (error) {
-      console.error("Error loading shared components:", error);
-    }
+    } catch (e) { console.error("Injection error:", e); }
   }
 
   function initMobileMenu() {
-    const toggleBtn = document.getElementById('menu-toggle');
-    const navMenu = document.getElementById('nav-menu');
-
-    if (toggleBtn && navMenu) {
-      toggleBtn.onclick = (e) => {
+    const btn = document.getElementById('menu-toggle');
+    const nav = document.getElementById('nav-menu');
+    if (btn && nav) {
+      btn.onclick = (e) => {
         e.preventDefault();
-        navMenu.classList.toggle('active-menu');
-        navMenu.classList.toggle('hidden');
+        nav.classList.toggle('active-menu');
+        nav.classList.toggle('hidden');
       };
     }
   }
 
   function highlightActiveLink() {
-    const currentPath = window.location.pathname;
+    const path = window.location.pathname;
     const navLinks = document.querySelectorAll('.nav-link');
     navLinks.forEach(link => {
       const href = link.getAttribute('href');
-      if (currentPath.includes('about') && href.includes('about')) {
+      if (path.includes('about') && href.includes('about')) {
         link.classList.add('text-primary', 'font-semibold', 'border-b-2', 'border-primary');
       }
     });
 
-    // Clean up backend URLs to use public domain
     const backend = 'noddfa-j3nkslkrxc.live-website.com';
     const publicUrl = 'glyncorrwg.wales';
     document.querySelectorAll('a').forEach(link => {
@@ -204,9 +206,7 @@
     });
   }
 
-  document.addEventListener('DOMContentLoaded', () => {
-    loadSharedComponents();
-  });
+  document.addEventListener('DOMContentLoaded', loadSharedComponents);
 </script>
 
 </body></html>
