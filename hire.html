@@ -234,20 +234,46 @@
                             </div>
                             <div class="mt-10 pt-10 border-t border-white/10 grayscale-map">
                                 <div class="h-48 w-full rounded-lg overflow-hidden border border-white/10">
-                                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2480.245844855011!2d-3.6111388!3d51.6553889!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x486e417855f8674d%3A0x6b8f17a94f6f4d2a!2sNoddfa%20Community%20Centre!5e0!3m2!1sen!2suk!4v1700000000000!5m2!1sen!2suk" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2475.292671380385!2d-3.6133878!3d51.6544835!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x486e42b2f8a4175b%3A0xc3f8e58f038f98a8!2sNoddfa%20Community%20Centre!5e0!3m2!1sen!2suk!4v1711555000000!5m2!1sen!2suk" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+
+            <section class="w-full px-6 md:px-20 mb-20">
+                <div class="relative w-full bg-[#f1f5f9] dark:bg-slate-800/50 rounded-3xl p-8 md:p-16 overflow-hidden flex flex-col lg:flex-row items-center gap-12">
+                    <div class="flex gap-4 w-full lg:w-1/2 justify-center lg:justify-start">
+                        <div class="w-40 h-56 md:w-56 md:h-72 rounded-2xl overflow-hidden shadow-xl rotate-[-2deg]">
+                            <img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?q=80&w=1000" class="w-full h-full object-cover" alt="Community">
+                        </div>
+                        <div class="w-40 h-56 md:w-56 md:h-72 rounded-2xl overflow-hidden shadow-xl rotate-[2deg] mt-8">
+                            <img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?q=80&w=1000" class="w-full h-full object-cover" alt="Group Support">
+                        </div>
+                    </div>
+                    <div class="relative z-10 w-full lg:w-1/2 text-center lg:text-left">
+                        <h2 class="text-slate-900 dark:text-white text-3xl md:text-5xl font-extrabold mb-6 leading-tight">Bring Your Group to Life</h2>
+                        <p class="text-slate-600 dark:text-slate-300 text-lg md:text-xl font-medium mb-8">We don't just provide the space—we help you build a community.</p>
+                        <ul class="space-y-4 mb-10 text-left inline-block lg:block">
+                            <li class="flex items-center gap-3 text-slate-700 dark:text-slate-200 font-semibold"><span class="material-symbols-outlined text-primary">campaign</span> Full Marketing Support & Promotion</li>
+                            <li class="flex items-center gap-3 text-slate-700 dark:text-slate-200 font-semibold"><span class="material-symbols-outlined text-primary">event_available</span> Integrated Online Calendar & Scheduling</li>
+                            <li class="flex items-center gap-3 text-slate-700 dark:text-slate-200 font-semibold"><span class="material-symbols-outlined text-primary">volunteer_activism</span> Staff Support to ensure your group thrives</li>
+                        </ul>
+                        <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+                            <a href="/contact" class="px-8 py-4 bg-primary text-white font-bold rounded-xl text-center hover:scale-105 transition-transform shadow-lg">Start Your Group</a>
+                            <a href="#hero-header" class="px-8 py-4 bg-white border border-slate-200 text-slate-900 font-bold rounded-xl text-center hover:bg-slate-50 transition-colors">See Our Facilities</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
         </main>
+
         <div id="footer-placeholder"></div>
     </div>
 </div>
 
 <script>
-    // Component Loading
     async function loadSharedComponents() {
         const base = 'https://noddfa-j3nkslkrxc.live-website.com/wp-json/noddfa/v1';
         try {
@@ -288,7 +314,6 @@
         });
     }
 
-    // Time Toggle logic
     const allDayCheck = document.getElementById('all_day');
     const startInput = document.getElementById('start_time');
     const endInput = document.getElementById('end_time');
@@ -299,7 +324,6 @@
         if(allDayCheck.checked) { startInput.value = ''; endInput.value = ''; }
     });
 
-    // Form Handling
     const form = document.getElementById('hire-form');
     const status = document.getElementById('form-status');
 
