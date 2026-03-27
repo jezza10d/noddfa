@@ -27,12 +27,7 @@
         };
     </script>
     <style>
-        /* Grey Map Filter */
-        .grayscale-map iframe {
-            filter: grayscale(100%) contrast(1.2) brightness(0.9);
-        }
-
-        /* Fixed Mobile Menu Spacing */
+        .grayscale-map iframe { filter: grayscale(100%) contrast(1.2) brightness(0.9); }
         @media (max-width: 768px) {
             #nav-menu.active-menu {
                 display: flex !important;
@@ -78,9 +73,9 @@
                         <p class="text-slate-600 dark:text-slate-400 text-lg leading-relaxed">Right in the heart of Glyncorrwg, Noddfa has two versitile spaces to choose from. Whether you need a large hall for a big familty gathering or a smaller room for a quiet meeting, we have everything you need to host a great event.</p>
                     </div>
                     <div class="flex flex-col gap-4 justify-center">
-                        <div class="flex items-center gap-3"><span class="material-symbols-outlined text-primary bg-primary/10 p-2 rounded-full">check_circle</span><span class="font-medium">Fully Accessible Entrance</span></div>
-                        <div class="flex items-center gap-3"><span class="material-symbols-outlined text-primary bg-primary/10 p-2 rounded-full">check_circle</span><span class="font-medium">Raised Stage</span></div>
-                        <div class="flex items-center gap-3"><span class="material-symbols-outlined text-primary bg-primary/10 p-2 rounded-full">check_circle</span><span class="font-medium">Free Wi-Fi</span></div>
+                        <div class="flex items-center gap-3"><span class="material-symbols-outlined text-primary bg-primary/10 p-2 rounded-full font-bold">check_circle</span><span class="font-medium">Fully Accessible Entrance</span></div>
+                        <div class="flex items-center gap-3"><span class="material-symbols-outlined text-primary bg-primary/10 p-2 rounded-full font-bold">check_circle</span><span class="font-medium">Raised Stage</span></div>
+                        <div class="flex items-center gap-3"><span class="material-symbols-outlined text-primary bg-primary/10 p-2 rounded-full font-bold">check_circle</span><span class="font-medium">Free Wi-Fi</span></div>
                     </div>
                 </div>
 
@@ -123,18 +118,42 @@
                         <div class="flex flex-col items-center text-center gap-3">
                             <span class="material-symbols-outlined text-4xl text-primary">theater_comedy</span>
                             <h4 class="font-bold">Raised Stage</h4>
+                            <p class="text-xs text-slate-500">Perfect for bands and presentations</p>
                         </div>
                         <div class="flex flex-col items-center text-center gap-3">
                             <span class="material-symbols-outlined text-4xl text-primary">volume_up</span>
                             <h4 class="font-bold">PA System</h4>
+                            <p class="text-xs text-slate-500">Built-in speakers and microphones</p>
                         </div>
                         <div class="flex flex-col items-center text-center gap-3">
                             <span class="material-symbols-outlined text-4xl text-primary">table_restaurant</span>
                             <h4 class="font-bold">Tables & Chairs</h4>
+                            <p class="text-xs text-slate-500">Multiple configurations available</p>
                         </div>
                         <div class="flex flex-col items-center text-center gap-3">
                             <span class="material-symbols-outlined text-4xl text-primary">videocam</span>
                             <h4 class="font-bold">Large Projector</h4>
+                            <p class="text-xs text-slate-500">Available in Main Hall</p>
+                        </div>
+                        <div class="flex flex-col items-center text-center gap-3">
+                            <span class="material-symbols-outlined text-4xl text-primary">accessible</span>
+                            <h4 class="font-bold">Accessibility</h4>
+                            <p class="text-xs text-slate-500">Step-free access & disabled toilets</p>
+                        </div>
+                        <div class="flex flex-col items-center text-center gap-3">
+                            <span class="material-symbols-outlined text-4xl text-primary">wifi</span>
+                            <h4 class="font-bold">Guest Wi-Fi</h4>
+                            <p class="text-xs text-slate-500">High speed fiber connection</p>
+                        </div>
+                        <div class="flex flex-col items-center text-center gap-3">
+                            <span class="material-symbols-outlined text-4xl text-primary">kitchen</span>
+                            <h4 class="font-bold">Catering Prep</h4>
+                            <p class="text-xs text-slate-500">Professional prep area available</p>
+                        </div>
+                        <div class="flex flex-col items-center text-center gap-3">
+                            <span class="material-symbols-outlined text-4xl text-primary">ac_unit</span>
+                            <h4 class="font-bold">Climate Control</h4>
+                            <p class="text-xs text-slate-500">Efficient heating for winter events</p>
                         </div>
                     </div>
                 </div>
@@ -142,7 +161,7 @@
                 <div class="flex flex-col lg:flex-row gap-16 mb-20">
                     <div class="flex-1">
                         <h2 id="enquiry" class="text-3xl font-bold mb-6">Make an Enquiry</h2>
-                        <p class="text-slate-600 dark:text-slate-400 mb-8">Please fill out the form below to check availability.</p>
+                        <p class="text-slate-600 dark:text-slate-400 mb-8">Please fill out the form below to check availability. Our team will get back to you within 24 hours.</p>
                         
                         <form id="hire-form" class="space-y-6">
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -171,14 +190,14 @@
                                 </div>
                             </div>
 
-                            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 items-end p-4 bg-slate-50 dark:bg-forest-deep/30 rounded-xl border border-slate-100 dark:border-forest-dark/20">
+                            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 items-end">
                                 <div class="flex flex-col gap-2">
                                     <label class="text-sm font-semibold">From Time</label>
-                                    <input name="start_time" id="start_time" class="rounded-lg border-slate-200 dark:border-forest-dark/30 bg-white dark:bg-forest-deep focus:ring-primary disabled:opacity-50" type="time">
+                                    <input name="start_time" id="start_time" class="rounded-lg border-slate-200 dark:border-forest-dark/30 bg-white dark:bg-forest-deep focus:ring-primary disabled:bg-slate-100 disabled:opacity-50" type="time">
                                 </div>
                                 <div class="flex flex-col gap-2">
                                     <label class="text-sm font-semibold">To Time</label>
-                                    <input name="end_time" id="end_time" class="rounded-lg border-slate-200 dark:border-forest-dark/30 bg-white dark:bg-forest-deep focus:ring-primary disabled:opacity-50" type="time">
+                                    <input name="end_time" id="end_time" class="rounded-lg border-slate-200 dark:border-forest-dark/30 bg-white dark:bg-forest-deep focus:ring-primary disabled:bg-slate-100 disabled:opacity-50" type="time">
                                 </div>
                                 <div class="flex items-center gap-3 py-2">
                                     <input type="checkbox" name="all_day" id="all_day" class="w-5 h-5 rounded border-slate-300 text-primary focus:ring-primary">
@@ -208,18 +227,27 @@
                                     <span class="material-symbols-outlined text-primary">call</span>
                                     <div><p class="font-semibold text-white">Call Us</p><p class="text-sm text-slate-300">01639 850314</p></div>
                                 </div>
+                                <div class="flex items-start gap-4">
+                                    <span class="material-symbols-outlined text-primary">mail</span>
+                                    <div><p class="font-semibold text-white">Email Us</p><p class="text-sm text-slate-300">bookings@nccg.org.uk</p></div>
+                                </div>
+                            </div>
+                            <div class="mt-10 pt-10 border-t border-white/10 grayscale-map">
+                                <div class="h-48 w-full rounded-lg overflow-hidden border border-white/10">
+                                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2480.245844855011!2d-3.6111388!3d51.6553889!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x486e417855f8674d%3A0x6b8f17a94f6f4d2a!2sNoddfa%20Community%20Centre!5e0!3m2!1sen!2suk!4v1700000000000!5m2!1sen!2suk" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </main>
-
         <div id="footer-placeholder"></div>
     </div>
 </div>
 
 <script>
+    // Component Loading
     async function loadSharedComponents() {
         const base = 'https://noddfa-j3nkslkrxc.live-website.com/wp-json/noddfa/v1';
         try {
@@ -235,7 +263,7 @@
                 const data = await f.json();
                 document.getElementById('footer-placeholder').innerHTML = data.html;
             }
-        } catch (e) { console.error("Error loading components:", e); }
+        } catch (e) { console.error(e); }
     }
 
     function initMobileMenu() {
@@ -260,38 +288,29 @@
         });
     }
 
-    // ALL DAY TOGGLE LOGIC
+    // Time Toggle logic
     const allDayCheck = document.getElementById('all_day');
     const startInput = document.getElementById('start_time');
     const endInput = document.getElementById('end_time');
 
     allDayCheck.addEventListener('change', () => {
-        const isChecked = allDayCheck.checked;
-        startInput.disabled = isChecked;
-        endInput.disabled = isChecked;
-        if(isChecked) {
-            startInput.value = '';
-            endInput.value = '';
-        }
+        startInput.disabled = allDayCheck.checked;
+        endInput.disabled = allDayCheck.checked;
+        if(allDayCheck.checked) { startInput.value = ''; endInput.value = ''; }
     });
 
-    // FORM HANDLING
+    // Form Handling
     const form = document.getElementById('hire-form');
     const status = document.getElementById('form-status');
 
     form.addEventListener('submit', async (e) => {
         e.preventDefault();
         const btn = document.getElementById('submit-btn');
-        const originalText = btn.innerText;
-        
         btn.innerText = "Processing...";
         btn.disabled = true;
-        status.classList.add('hidden');
 
         const formData = new FormData(form);
         const data = Object.fromEntries(formData);
-        
-        // Ensure checkbox is handled as string for PHP
         data.all_day = allDayCheck.checked ? 'Yes' : 'No';
 
         try {
@@ -301,23 +320,16 @@
                 body: JSON.stringify(data)
             });
 
-            const result = await response.json();
-
             if (response.ok) {
-                status.innerText = "Success! Your enquiry has been sent and saved to your account.";
+                status.innerText = "Success! Your enquiry has been sent.";
                 status.className = "text-center p-4 rounded-lg font-bold mt-4 bg-green-100 text-green-800 block";
                 form.reset();
-                startInput.disabled = false;
-                endInput.disabled = false;
-            } else { 
-                throw new Error(result.message || "Submission Error"); 
-            }
+            } else { throw new Error("Submission Error"); }
         } catch (err) {
-            status.innerText = err.message || "Error. Please email bookings@nccg.org.uk directly.";
+            status.innerText = "Error. Please try again or email us directly.";
             status.className = "text-center p-4 rounded-lg font-bold mt-4 bg-red-100 text-red-800 block";
-            status.classList.remove('hidden');
         } finally {
-            btn.innerText = originalText;
+            btn.innerText = "Send Enquiry";
             btn.disabled = false;
         }
     });
