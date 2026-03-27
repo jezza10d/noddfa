@@ -29,7 +29,6 @@
         }
     </script>
     <style>
-        /* Specific rule to ensure injected icons adopt the correct font-family */
         .material-symbols-outlined {
             font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
             display: inline-block;
@@ -129,7 +128,7 @@
                         <div class="lg:sticky lg:top-32 h-fit">
                             <div class="rounded-2xl overflow-hidden border-4 border-white dark:border-slate-800 shadow-2xl h-[400px] lg:h-[600px] relative">
                                 <iframe 
-                                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2480.207851211756!2d-3.6611593!3d51.656041!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x486e41712a300001%3A0xc3f7a3f5a2f8b5f5!2sNoddfa%20Community%20Centre!5e0!3m2!1sen!2suk!4v1700000000000" 
+                                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2478.4124978805725!2d-3.6121430233760234!3d51.643126700465245!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x486e5c942976707f%3A0x6737568010897a80!2sDunraven%20St%2C%20Glyncorrwg%2C%20Port%20Talbot%20SA13%203AD!5e0!3m2!1sen!2suk!4v1715800000000!5m2!1sen!2suk" 
                                     width="100%" 
                                     height="100%" 
                                     style="border:0;" 
@@ -182,7 +181,6 @@
     }
   }
 
-  // CONTACT FORM SUBMISSION LOGIC
   const contactForm = document.getElementById('contact-form');
   if (contactForm) {
       contactForm.addEventListener('submit', async function(e) {
@@ -206,7 +204,7 @@
 
           btn.disabled = true;
           btn.innerText = "Sending...";
-          status.classList.add('hidden'); // Reset visibility
+          status.classList.add('hidden');
 
           try {
               const response = await fetch(`${API_BASE}/noddfa/v1/submit-enquiry`, {
