@@ -121,7 +121,7 @@
                                     </div>
 
                                     <button id="submit-btn" class="w-full bg-primary text-white font-bold py-3 rounded-lg hover:bg-primary/90 transition-all shadow-lg shadow-primary/20">Send Message</button>
-                                    <p id="form-status" class="text-center text-sm mt-2 hidden"></p>
+                                    <div id="form-status" class="text-center text-sm mt-4 hidden rounded-lg p-4 font-bold text-white"></div>
                                 </form>
                             </div>
                         </div>
@@ -129,7 +129,7 @@
                         <div class="lg:sticky lg:top-32 h-fit">
                             <div class="rounded-2xl overflow-hidden border-4 border-white dark:border-slate-800 shadow-2xl h-[400px] lg:h-[600px] relative">
                                 <iframe 
-                                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2478.4124978805725!2d-3.6121430233760234!3d51.643126700465245!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x486e5c942976707f%3A0x6737568010897a80!2sDunraven%20St%2C%20Glyncorrwg%2C%20Port%20Talbot%20SA13%203AD!5e0!3m2!1sen!2suk!4v1715800000000!5m2!1sen!2suk" 
+                                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2480.207851211756!2d-3.6611593!3d51.656041!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x486e41712a300001%3A0xc3f7a3f5a2f8b5f5!2sNoddfa%20Community%20Centre!5e0!3m2!1sen!2suk!4v1700000000000" 
                                     width="100%" 
                                     height="100%" 
                                     style="border:0;" 
@@ -196,7 +196,7 @@
             email: formData.get('email'),
             message: formData.get('message'),
             newsletter_signup: formData.get('newsletter_signup') === 'on',
-            category: 'Contact', // Added category
+            category: 'Contact',
             event_date: 'N/A',
             hall: 'N/A',
             start_time: 'N/A',
@@ -206,6 +206,7 @@
 
           btn.disabled = true;
           btn.innerText = "Sending...";
+          status.classList.add('hidden'); // Reset visibility
 
           try {
               const response = await fetch(`${API_BASE}/noddfa/v1/submit-enquiry`, {
@@ -216,14 +217,14 @@
 
               if (response.ok) {
                   status.innerText = "Message sent successfully! We will get back to you soon.";
-                  status.className = "text-center text-sm mt-4 text-green-600 block";
+                  status.className = "text-center text-sm mt-4 bg-green-600 text-white p-4 rounded-lg block font-bold";
                   contactForm.reset();
               } else {
                   throw new Error();
               }
           } catch (err) {
               status.innerText = "Sorry, there was an error. Please try again later.";
-              status.className = "text-center text-sm mt-4 text-red-600 block";
+              status.className = "text-center text-sm mt-4 bg-red-600 text-white p-4 rounded-lg block font-bold";
           } finally {
               btn.disabled = false;
               btn.innerText = "Send Message";
