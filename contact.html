@@ -190,14 +190,18 @@
           const btn = document.getElementById('submit-btn');
           const status = document.getElementById('form-status');
           const formData = new FormData(this);
-          
+
           const payload = {
-              full_name: formData.get('full_name'),
-              email: formData.get('email'),
-              message: formData.get('message'),
-              newsletter_signup: formData.get('newsletter_signup') === 'on',
-              event_date: 'General Inquiry',
-              hall: 'N/A'
+            full_name: formData.get('full_name'),
+            email: formData.get('email'),
+            message: formData.get('message'),
+            newsletter_signup: formData.get('newsletter_signup') === 'on',
+            category: 'Contact', // Added category
+            event_date: 'N/A',
+            hall: 'N/A',
+            start_time: 'N/A',
+            end_time: 'N/A',
+            all_day: 'N/A'
           };
 
           btn.disabled = true;
