@@ -283,15 +283,18 @@
         });
     }
 
-    // FORM HANDLING
+    // UPDATED FORM HANDLING
     const form = document.getElementById('hire-form');
     const status = document.getElementById('form-status');
 
     form.addEventListener('submit', async (e) => {
         e.preventDefault();
         const btn = document.getElementById('submit-btn');
-        btn.innerText = "Sending...";
+        const originalText = btn.innerText;
+        
+        btn.innerText = "Processing...";
         btn.disabled = true;
+        status.classList.add('hidden');
 
         const formData = Object.fromEntries(new FormData(form));
 
@@ -302,16 +305,21 @@
                 body: JSON.stringify(formData)
             });
 
+            const result = await response.json();
+
             if (response.ok) {
-                status.innerText = "Success! Your enquiry has been sent.";
+                status.innerText = "Success! Your enquiry has been sent and saved to your account.";
                 status.className = "text-center p-4 rounded-lg font-bold mt-4 bg-green-100 text-green-800 block";
                 form.reset();
-            } else { throw new Error(); }
+            } else { 
+                throw new Error(result.message || "Submission Error"); 
+            }
         } catch (err) {
-            status.innerText = "Submission Error. Please email bookings@nccg.org.uk directly.";
+            status.innerText = err.message || "Error. Please email bookings@nccg.org.uk directly.";
             status.className = "text-center p-4 rounded-lg font-bold mt-4 bg-red-100 text-red-800 block";
+            status.classList.remove('hidden');
         } finally {
-            btn.innerText = "Send Enquiry";
+            btn.innerText = originalText;
             btn.disabled = false;
         }
     });
