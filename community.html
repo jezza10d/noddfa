@@ -1,42 +1,29 @@
 <!DOCTYPE html>
-<html class="light" lang="en">
+<html lang="en">
 <head>
-    <meta charset="utf-8"/>
-    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-    <title>Community Hub | Noddfa Community Centre</title>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Noddfa Community Centre | Glyncorrwg</title>
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap" rel="stylesheet"/>
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
     <script id="tailwind-config">
-      tailwind.config = {
-        darkMode: "class",
-        theme: {
-          extend: {
-            colors: {
-              "background": "#f8f5f5",
-              "primary": "#ae0000",
-              "secondary": "#1a301a",
-              "on-background": "#0f172a",
-              "outline": "#ae00001a",
-              "on-surface-variant": "#475569",
-              "surface": "#ffffff",
-              "surface-container": "#f1eeee"
-            },
-            fontFamily: {
-              "headline": ["Lexend"],
-              "body": ["Lexend"],
-              "display": ["Lexend"]
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#ae0000",
+                        secondary: "#1a301a",
+                        "background-light": "#f8f5f5",
+                        "background-dark": "#1a301a"
+                    },
+                    fontFamily: { display: "Lexend" }
+                }
             }
-          },
-        },
-      }
+        };
     </script>
     <style>
-        .material-symbols-outlined {
-            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
-            display: inline-block;
-        }
-
         @media (max-width: 768px) {
             #nav-menu.active-menu {
                 display: flex !important;
@@ -53,376 +40,273 @@
                 box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
             }
         }
+        .line-clamp-2 {
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;  
+            overflow: hidden;
+        }
     </style>
 </head>
-<body class="bg-background font-body text-on-background">
-
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100">
     <div class="relative flex h-auto min-h-screen w-full flex-col group/design-root overflow-x-hidden">
         <div class="layout-container flex h-full grow flex-col">
 
-            <header id="header-placeholder" class="min-h-[72px] relative z-50 bg-white"></header>
+            <header id="header-placeholder" class="min-h-[72px] relative z-50"></header>
 
-            <main class="flex flex-col items-center w-full">
-                <header class="relative w-full h-[350px] flex items-center justify-center overflow-hidden">
-                    <img alt="Glyncorrwg scenery" class="absolute inset-0 w-full h-full object-cover" src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=2070"/>
-                    <div class="absolute inset-0 bg-secondary/60 mix-blend-multiply"></div>
+            <main class="flex flex-col flex-1">
+                <section class="relative w-full">
+                    <div class="relative w-full h-[300px] md:h-[500px] flex items-center justify-center text-center px-6 overflow-hidden">
+                        <div class="absolute inset-0 bg-cover bg-center bg-no-repeat" style="background-image: url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=2070');"></div>
+                        <div class="absolute inset-0 bg-black/40"></div>
+                        <div class="relative z-10 max-w-3xl mx-auto">
+                            <span class="bg-primary text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider mb-6 inline-block">Valley Community</span>
+                            <h1 id="hero-header" class="text-white text-4xl md:text-6xl font-extrabold leading-tight mb-4">Heart of the Glyncorrwg Community</h1>
+                            <p class="text-slate-200 text-lg md:text-xl font-medium">A welcoming space for everyone to connect, learn, and grow together.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="px-6 md:px-20 py-16">
+                    <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-10">
+                        <div>
+                            <h2 class="text-slate-900 dark:text-white text-3xl font-bold">What's On</h2>
+                            <p class="text-slate-500 dark:text-slate-400 mt-2">Join us for activities and events this week</p>
+                        </div>
+                        <a href="/events" class="self-start md:self-auto">
+                            <button class="flex items-center gap-2 text-primary font-bold hover:underline">
+                                View All Events <span class="material-symbols-outlined">arrow_forward</span>
+                            </button>
+                        </a>
+                    </div>
                     
-                    <div class="relative z-10 text-center px-4">
-                        <span class="bg-primary text-white text-[10px] font-black px-4 py-1.5 rounded-full mb-4 inline-block shadow-lg">What's on</span>
-                        <h1 class="text-5xl md:text-6xl font-headline font-black text-white mb-4 tracking-tight">Community Hub</h1>
-                        <p class="text-xl text-white/90 font-medium max-w-2xl mx-auto">Connecting Glyncorrwg through local services and live updates</p>
+                    <div id="events-feed-container" class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                        <div class="col-span-3 py-20 text-center text-slate-500 italic">Checking for upcoming activities...</div>
                     </div>
-                </header>
+                </section>
 
-                <div class="max-w-7xl w-full mx-auto px-6 py-16">
-                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
-                        
-                        <div class="lg:col-span-8 space-y-16">
-                            
-                            <section>
-                                <div class="flex items-center justify-between mb-8">
-                                    <h2 class="text-3xl font-headline font-bold text-secondary">Noticeboard</h2>
-                                    <a href="#" class="flex items-center gap-2 text-primary font-bold text-sm hover:underline">
-                                        View all <span class="material-symbols-outlined text-sm">arrow_forward</span>
-                                    </a>
-                                </div>
-
-                                <div class="bg-white border border-outline rounded-2xl shadow-sm overflow-hidden flex flex-col md:flex-row mb-6">
-                                    <div class="md:w-1/3 h-48 md:h-auto">
-                                        <img src="https://images.unsplash.com/photo-1543165365-072ca2031cba?q=80&w=1000" alt="Village Ponds" class="w-full h-full object-cover">
-                                    </div>
-                                    <div class="p-8 md:w-2/3">
-                                        <div class="flex justify-between items-start mb-4">
-                                            <span class="bg-primary/10 text-primary text-[10px] font-black px-3 py-1 rounded-full">Featured spotlight</span>
-                                            <span class="text-xs text-slate-400 font-medium">2 days ago</span>
-                                        </div>
-                                        <h4 class="font-bold text-xl mb-3">Village Ponds Clean Up</h4>
-                                        <p class="text-on-surface-variant text-sm leading-relaxed mb-6">Join the local volunteer group this Saturday at 10:00 AM. We'll be meeting at the main ponds entrance for a general tidy-up.</p>
-                                        <a href="#" class="text-primary font-bold text-xs flex items-center gap-2">Read full details <span class="material-symbols-outlined text-sm">arrow_forward</span></a>
-                                    </div>
-                                </div>
-
-                                <div class="space-y-4">
-                                    <div class="bg-surface border border-outline p-8 rounded-xl shadow-sm">
-                                        <div class="flex justify-between items-start mb-2">
-                                            <h4 class="font-bold text-lg">Noddfa Coffee Morning</h4>
-                                            <span class="text-xs text-slate-400 font-medium">1 day ago</span>
-                                        </div>
-                                        <p class="text-on-surface-variant text-sm">Every Wednesday from 10:30 AM. Come along for a chat and a hot drink with neighbors.</p>
-                                    </div>
-                                    <div class="bg-surface border border-outline p-8 rounded-xl shadow-sm">
-                                        <div class="flex justify-between items-start mb-2">
-                                            <h4 class="font-bold text-lg">Local Election Polling Info</h4>
-                                            <span class="text-xs text-slate-400 font-medium">4 days ago</span>
-                                        </div>
-                                        <p class="text-on-surface-variant text-sm">The community hall will be used as a polling station this Thursday. Normal classes are suspended for the day.</p>
-                                    </div>
-                                </div>
-                            </section>
-
-                            <section>
-                                <div class="flex items-center justify-between mb-8">
-                                    <h2 class="text-3xl font-headline font-bold text-secondary">Local services</h2>
-                                    <a href="#" class="flex items-center gap-2 text-primary font-bold text-sm hover:underline">
-                                        View all <span class="material-symbols-outlined text-sm">arrow_forward</span>
-                                    </a>
-                                </div>
-                                <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6">
-                                    <div class="bg-surface border border-outline p-6 rounded-xl shadow-sm hover:border-primary transition-all">
-                                        <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center text-primary mb-4">
-                                            <span class="material-symbols-outlined text-2xl">medical_services</span>
-                                        </div>
-                                        <h3 class="text-lg font-bold mb-2">Doctors</h3>
-                                        <p class="text-on-surface-variant text-xs mb-4">Health Centre hours and booking info.</p>
-                                        <span class="text-primary text-[10px] font-black flex items-center gap-2">View info <span class="material-symbols-outlined text-xs">arrow_forward</span></span>
-                                    </div>
-                                    <div class="bg-surface border border-outline p-6 rounded-xl shadow-sm hover:border-primary transition-all">
-                                        <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center text-primary mb-4">
-                                            <span class="material-symbols-outlined text-2xl">school</span>
-                                        </div>
-                                        <h3 class="text-lg font-bold mb-2">Primary School</h3>
-                                        <p class="text-on-surface-variant text-xs mb-4">Term dates and local school news.</p>
-                                        <span class="text-primary text-[10px] font-black flex items-center gap-2">Learn more <span class="material-symbols-outlined text-xs">arrow_forward</span></span>
-                                    </div>
-                                    <div class="bg-surface border border-outline p-6 rounded-xl shadow-sm hover:border-primary transition-all">
-                                        <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center text-primary mb-4">
-                                            <span class="material-symbols-outlined text-2xl">church</span>
-                                        </div>
-                                        <h3 class="text-lg font-bold mb-2">Church</h3>
-                                        <p class="text-on-surface-variant text-xs mb-4">St John the Baptist service times.</p>
-                                        <span class="text-primary text-[10px] font-black flex items-center gap-2">View details <span class="material-symbols-outlined text-xs">arrow_forward</span></span>
-                                    </div>
-                                </div>
-                            </section>
+                <section class="px-6 md:px-20 py-20 bg-[#f0f4f0] dark:bg-opacity-10">
+                    <div class="grid md:grid-cols-2 gap-12 items-center">
+                        <div class="order-2 md:order-1">
+                            <div class="grid grid-cols-2 gap-4">
+                                <div class="aspect-square rounded-xl bg-cover bg-center shadow-lg" style="background-image: url('https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=2070');"></div>
+                                <div class="aspect-square rounded-xl bg-cover bg-center mt-8 shadow-lg" style="background-image: url('https://images.unsplash.com/photo-1511795409834-ef04bbd61622?q=80&w=2069');"></div>
+                            </div>
                         </div>
-
-                        <aside class="lg:col-span-4 space-y-8">
-                            <div class="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm">
-                                <h4 class="text-sm font-bold text-slate-400 mb-4">Local weather</h4>
-                                <div class="flex items-center gap-4 mb-4">
-                                    <span class="material-symbols-outlined text-4xl text-primary">cloudy_snowing</span>
-                                    <div>
-                                        <div class="text-2xl font-black text-secondary">8°C</div>
-                                        <div class="text-xs text-slate-500 font-medium">Glyncorrwg, Wales</div>
-                                    </div>
-                                </div>
-                                <div class="border-t border-slate-100 pt-4">
-                                    <p class="text-[11px] text-slate-400 font-medium italic">Scattered showers expected throughout the afternoon with light winds.</p>
-                                </div>
-                            </div>
-
-                            <div class="bg-white border border-outline rounded-2xl p-6 shadow-sm">
-                                <div class="flex items-center gap-3 mb-6">
-                                    <div class="w-8 h-8 bg-primary/10 rounded-lg flex items-center justify-center text-primary">
-                                        <span class="material-symbols-outlined text-lg">directions_bus</span>
-                                    </div>
-                                    <h4 class="text-sm font-black text-secondary tracking-widest">Transport hub</h4>
-                                </div>
-                                
-                                <div class="space-y-6">
-                                    <div class="space-y-3">
-                                        <div class="flex items-center justify-between text-[10px] font-black tracking-widest text-slate-400">
-                                            <span>Rail departures</span>
-                                            <span class="material-symbols-outlined text-xs">train</span>
-                                        </div>
-                                        <div class="bg-background rounded-xl p-4 space-y-3">
-                                            <div class="border-b border-slate-200/50 pb-2">
-                                                <div class="text-[10px] font-bold text-slate-400 mb-1">Port Talbot Parkway</div>
-                                                <div class="flex justify-between items-center text-sm font-medium">
-                                                    <span class="text-black">London Paddington</span>
-                                                    <span class="font-black text-primary">14:12</span>
-                                                </div>
-                                            </div>
-                                            <div>
-                                                <div class="text-[10px] font-bold text-slate-400 mb-1">Maesteg Station</div>
-                                                <div class="flex justify-between items-center text-sm font-medium">
-                                                    <span class="text-black">Cardiff Central</span>
-                                                    <span class="font-black text-primary">15:05</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="space-y-3">
-                                        <div class="flex items-center justify-between text-[10px] font-black tracking-widest text-slate-400">
-                                            <span>Village buses</span>
-                                            <span class="material-symbols-outlined text-xs">sensors</span>
-                                        </div>
-                                        <div class="space-y-2">
-                                            <div class="flex justify-between items-center p-3 border border-outline rounded-xl hover:border-primary transition-colors group">
-                                                <div class="flex items-center gap-3">
-                                                    <span class="bg-primary text-white text-[10px] font-black px-2 py-0.5 rounded">X3</span>
-                                                    <span class="text-xs font-bold text-secondary">Port Talbot</span>
-                                                </div>
-                                                <span class="text-xs font-black text-primary">12m</span>
-                                            </div>
-                                            <div class="flex justify-between items-center p-3 border border-outline rounded-xl opacity-60">
-                                                <div class="flex items-center gap-3">
-                                                    <span class="bg-slate-400 text-white text-[10px] font-black px-2 py-0.5 rounded">83</span>
-                                                    <span class="text-xs font-bold text-secondary">Bridgend</span>
-                                                </div>
-                                                <span class="text-xs font-black text-black">24m</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    
-                                    <button class="w-full py-3 text-[10px] font-black text-primary border border-primary/20 rounded-xl hover:bg-primary/5 transition-all tracking-widest">
-                                        Full timetable
-                                    </button>
-                                </div>
-                            </div>
-
-                            <div class="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm">
-                                <h4 class="text-sm font-bold text-slate-400 mb-4">Bin collection days</h4>
-                                <div class="flex items-center gap-4">
-                                    <div class="w-10 h-10 bg-slate-100 rounded-lg flex items-center justify-center text-secondary">
-                                        <span class="material-symbols-outlined">delete</span>
-                                    </div>
-                                    <div>
-                                        <div class="font-bold text-sm">Next: Tuesday</div>
-                                        <div class="text-[10px] text-primary font-black">Recycling & food waste</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </aside>
-                    </div>
-
-                    <section class="mt-20">
-                        <div class="flex items-center justify-between mb-8">
-                            <div>
-                                <h2 class="text-3xl font-headline font-bold text-secondary">What's on</h2>
-                                <p class="text-on-surface-variant text-sm mt-1">Join us for activities and events this week</p>
-                            </div>
-                            <a href="#" class="flex items-center gap-2 text-primary font-bold text-sm hover:underline">
-                                View all events <span class="material-symbols-outlined text-sm">arrow_forward</span>
+                        <div class="order-1 md:order-2">
+                            <h2 class="text-slate-900 dark:text-white text-3xl font-bold mb-6">Hire Our Space</h2>
+                            <p class="text-slate-600 dark:text-slate-300 text-lg mb-8 leading-relaxed">
+                                From birthday parties and family gatherings, to meetings, our doors are open. With flexible spaces for every occassion.
+                            </p>
+                            <ul class="space-y-4 mb-8 text-slate-700 dark:text-slate-200">
+                                <li class="flex items-center gap-3">
+                                    <span class="material-symbols-outlined text-primary">check_circle</span>
+                                    Fully Accessible Entrance
+                                </li>
+                                <li class="flex items-center gap-3">
+                                    <span class="material-symbols-outlined text-primary">check_circle</span>
+                                    Large Main Hall (up to 50 people)
+                                </li>
+                                <li class="flex items-center gap-3">
+                                    <span class="material-symbols-outlined text-primary">check_circle</span>
+                                    The Lounge (up to 20 people)
+                                </li>
+                            </ul>
+                            <a href="/hire">
+                                <button class="bg-primary text-white px-8 py-3 rounded-lg font-bold hover:bg-primary/90 transition-all shadow-md">
+                                    Check Availability
+                                </button>
                             </a>
                         </div>
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                            <div class="bg-white border border-outline p-6 rounded-2xl shadow-sm hover:shadow-md transition-shadow">
-                                <div class="flex gap-4">
-                                    <div class="bg-primary text-white flex flex-col items-center justify-center rounded-xl p-3 min-w-[70px] h-[70px]">
-                                        <span class="text-lg font-black leading-none">24</span>
-                                        <span class="text-[10px] font-bold">Mar</span>
-                                    </div>
-                                    <div>
-                                        <h4 class="font-bold text-lg text-secondary">Yoga in the Hall</h4>
-                                        <div class="flex items-center gap-2 text-xs text-on-surface-variant mt-1">
-                                            <span class="material-symbols-outlined text-sm">schedule</span> 18:00 - 19:30
-                                        </div>
-                                        <div class="flex items-center gap-2 text-xs text-on-surface-variant mt-1">
-                                            <span class="material-symbols-outlined text-sm">location_on</span> Main Hall
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="bg-white border border-outline p-6 rounded-2xl shadow-sm hover:shadow-md transition-shadow">
-                                <div class="flex gap-4">
-                                    <div class="bg-secondary text-white flex flex-col items-center justify-center rounded-xl p-3 min-w-[70px] h-[70px]">
-                                        <span class="text-lg font-black leading-none">26</span>
-                                        <span class="text-[10px] font-bold">Mar</span>
-                                    </div>
-                                    <div>
-                                        <h4 class="font-bold text-lg text-secondary">Local History Talk</h4>
-                                        <div class="flex items-center gap-2 text-xs text-on-surface-variant mt-1">
-                                            <span class="material-symbols-outlined text-sm">schedule</span> 14:00 - 16:00
-                                        </div>
-                                        <div class="flex items-center gap-2 text-xs text-on-surface-variant mt-1">
-                                            <span class="material-symbols-outlined text-sm">location_on</span> Meeting Room 1
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </section>
+                    </div>
+                </section>
 
-                    <section class="mt-24">
-                        <div class="flex items-center justify-between mb-10">
-                            <h2 class="text-3xl font-headline font-bold text-secondary">Business directory</h2>
-                            <a href="#" class="flex items-center gap-2 text-primary font-bold text-sm hover:underline">
-                                View all <span class="material-symbols-outlined text-sm">arrow_forward</span>
-                            </a>
+                <section class="px-6 md:px-20 py-16">
+                    <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-10">
+                        <div>
+                            <h2 class="text-slate-900 dark:text-white text-3xl font-bold">Latest News</h2>
+                            <p class="text-slate-500 dark:text-slate-400 mt-2">Catch up with the latest updates from the centre</p>
                         </div>
-                        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                            <div class="bg-surface border border-outline p-6 rounded-xl shadow-sm relative hover:border-primary transition-all">
-                                <span class="absolute top-4 right-4 bg-primary text-white text-[8px] font-black px-2 py-0.5 rounded">Sponsored</span>
-                                <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center text-primary mb-4">
-                                    <span class="material-symbols-outlined text-2xl">restaurant</span>
-                                </div>
-                                <h3 class="font-bold mb-2">The Glyncorrwg Inn</h3>
-                                <p class="text-on-surface-variant text-xs mb-4">Traditional pub serving local food and events.</p>
-                                <span class="text-primary text-[10px] font-black flex items-center gap-2">Book table <span class="material-symbols-outlined text-xs">arrow_forward</span></span>
-                            </div>
-                            <div class="bg-surface border border-outline p-6 rounded-xl shadow-sm hover:border-primary transition-all">
-                                <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center text-primary mb-4">
-                                    <span class="material-symbols-outlined text-2xl">local_cafe</span>
-                                </div>
-                                <h3 class="font-bold mb-2">The Ponds Cafe</h3>
-                                <p class="text-on-surface-variant text-xs mb-4">Homemade cakes and hot drinks at the ponds.</p>
-                                <span class="text-primary text-[10px] font-black flex items-center gap-2">View menu <span class="material-symbols-outlined text-xs">arrow_forward</span></span>
-                            </div>
-                            <div class="bg-surface border border-outline p-6 rounded-xl shadow-sm hover:border-primary transition-all">
-                                <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center text-primary mb-4">
-                                    <span class="material-symbols-outlined text-2xl">store</span>
-                                </div>
-                                <h3 class="font-bold mb-2">Glyncorrwg Shop</h3>
-                                <p class="text-on-surface-variant text-xs mb-4">Convenience store and post office services.</p>
-                                <span class="text-primary text-[10px] font-black flex items-center gap-2">Opening times <span class="material-symbols-outlined text-xs">arrow_forward</span></span>
-                            </div>
-                            <div class="bg-slate-50 border border-dashed border-slate-300 p-6 rounded-xl flex flex-col items-center justify-center text-center">
-                                <div class="w-10 h-10 bg-white rounded-full flex items-center justify-center text-slate-300 mb-3 shadow-sm">
-                                    <span class="material-symbols-outlined text-xl">add_business</span>
-                                </div>
-                                <h3 class="text-sm font-bold text-slate-500 mb-1">Your business</h3>
-                                <p class="text-[10px] text-slate-400 mb-4 px-2">Advertise here to reach local residents.</p>
-                                <button class="bg-white border border-slate-200 text-slate-600 px-4 py-1.5 rounded-full text-[10px] font-bold hover:bg-slate-100 transition-colors">Enquire</button>
-                            </div>
-                        </div>
-                    </section>
+                        <a href="/news" class="self-start md:self-auto">
+                            <button class="flex items-center gap-2 text-primary font-bold hover:underline">
+                                View All News <span class="material-symbols-outlined">arrow_forward</span>
+                            </button>
+                        </a>
+                    </div>
+                    
+                    <div id="news-feed-container" class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                        <div class="col-span-3 py-20 text-center text-slate-500 italic">Checking for latest news...</div>
+                    </div>
+                </section>
 
-                    <section class="mt-20">
-                        <div class="bg-surface-container rounded-3xl p-8 md:p-16 overflow-hidden relative">
-                            <div class="relative z-10 grid md:grid-cols-2 gap-12 items-center">
-                                <div>
-                                    <h2 class="text-4xl font-headline font-bold text-secondary mb-4">Report it dashboard</h2>
-                                    <p class="text-on-surface-variant mb-10 max-w-md">Report issues directly to NPT Council via the links below.</p>
-                                    <div class="flex flex-wrap gap-3">
-                                        <a class="bg-white border border-outline hover:border-primary px-6 py-4 rounded-full flex items-center gap-3 font-bold text-xs text-secondary shadow-sm" href="#">
-                                            <span class="material-symbols-outlined text-primary">warning</span> Potholes
-                                        </a>
-                                        <a class="bg-white border border-outline hover:border-primary px-6 py-4 rounded-full flex items-center gap-3 font-bold text-xs text-secondary shadow-sm" href="#">
-                                            <span class="material-symbols-outlined text-primary">delete_outline</span> Fly-tipping
-                                        </a>
-                                        <a class="bg-white border border-outline hover:border-primary px-6 py-4 rounded-full flex items-center gap-3 font-bold text-xs text-secondary shadow-sm" href="#">
-                                            <span class="material-symbols-outlined text-primary">light_off</span> Street lighting
-                                        </a>
-                                        <a class="bg-white border border-outline hover:border-primary px-6 py-4 rounded-full flex items-center gap-3 font-bold text-xs text-secondary shadow-sm" href="#">
-                                            <span class="material-symbols-outlined text-primary">pets</span> Dog fouling
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="grid grid-cols-2 gap-4">
-                                    <div class="bg-white p-8 rounded-2xl shadow-sm text-center">
-                                        <div class="text-5xl font-black text-primary mb-2">24h</div>
-                                        <div class="text-xs tracking-wider text-on-surface-variant font-bold">NPT goal</div>
-                                    </div>
-                                    <div class="bg-white p-8 rounded-2xl shadow-sm text-center">
-                                        <div class="text-5xl font-black text-secondary mb-2">Direct</div>
-                                        <div class="text-xs tracking-wider text-on-surface-variant font-bold">To council</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </section>
-                </div>
+                <div id="footer-placeholder"></div>
             </main>
-
-            <footer id="footer-placeholder"></footer>
         </div>
     </div>
 
-    <script>
-        const API_BASE = 'https://noddfa-j3nkslkrxc.live-website.com/wp-json';
+<script>
+    const API_BASE = 'https://noddfa-j3nkslkrxc.live-website.com/wp-json';
 
-        async function loadSharedComponents() {
-            try {
-                const hRes = await fetch(`${API_BASE}/noddfa/v1/header?v=${Date.now()}`);
-                if (hRes.ok) {
-                    const data = await hRes.json();
-                    document.getElementById('header-placeholder').innerHTML = data.html;
-                    initMobileMenu();
-                    highlightActiveLink();
-                }
-                const fRes = await fetch(`${API_BASE}/noddfa/v1/footer?v=${Date.now()}`);
-                if (fRes.ok) {
-                    const data = await fRes.json();
-                    document.getElementById('footer-placeholder').innerHTML = data.html;
-                }
-            } catch (e) { console.error("Loader error", e); }
-        }
-
-        function initMobileMenu() {
-            const btn = document.getElementById('menu-toggle');
-            const nav = document.getElementById('nav-menu');
-            if (btn && nav) {
-                btn.onclick = (e) => {
-                    e.preventDefault();
-                    nav.classList.toggle('active-menu');
-                    nav.classList.toggle('hidden');
-                };
+    async function loadSharedComponents() {
+        try {
+            const hRes = await fetch(`${API_BASE}/noddfa/v1/header?v=${Date.now()}`);
+            if (hRes.ok) {
+                const data = await hRes.json();
+                document.getElementById('header-placeholder').innerHTML = data.html;
+                initMobileMenu();
+                highlightActiveLink();
             }
-        }
+            const fRes = await fetch(`${API_BASE}/noddfa/v1/footer?v=${Date.now()}`);
+            if (fRes.ok) {
+                const data = await fRes.json();
+                document.getElementById('footer-placeholder').innerHTML = data.html;
+            }
+        } catch (e) { console.error("Component Loader error", e); }
+    }
 
-        function highlightActiveLink() {
-            const path = window.location.pathname;
-            document.querySelectorAll('.nav-link').forEach(link => {
-                const href = link.getAttribute('href');
-                if (path.includes('community') && href.includes('community')) {
-                    link.classList.add('text-primary', 'font-semibold', 'border-b-2', 'border-primary');
+    async function loadLiveEvents() {
+        const container = document.getElementById('events-feed-container');
+        try {
+            const response = await fetch(`${API_BASE}/wp/v2/events-api?per_page=10&scope=future&v=${Date.now()}`);
+            if (!response.ok) throw new Error(`HTTP Error: ${response.status}`);
+            const events = await response.json();
+            
+            if (!events || events.length === 0) {
+                container.innerHTML = `<div class="col-span-3 py-10 text-center text-slate-500 italic">No upcoming activities scheduled right now.</div>`;
+                return;
+            }
+
+            const today = new Date();
+            today.setHours(0, 0, 0, 0);
+
+            const upcomingOnly = events.filter(ev => {
+                if (!ev.event_date) return false;
+                return new Date(ev.event_date) >= today;
+            }).slice(0, 3);
+
+            if (upcomingOnly.length === 0) {
+                container.innerHTML = `<div class="col-span-3 py-10 text-center text-slate-500 italic">No upcoming activities scheduled right now.</div>`;
+                return;
+            }
+
+            container.innerHTML = upcomingOnly.map(event => {
+                const img = event.event_image_url || 'https://images.unsplash.com/photo-1517457373958-b7bdd4587205?q=80&w=2069';
+                let eventDateStr = "Coming Soon";
+                let rawDate = "";
+                if (event.event_date) {
+                    rawDate = event.event_date;
+                    const d = new Date(event.event_date);
+                    eventDateStr = d.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: '2-digit' });
                 }
-            });
-        }
 
-        document.addEventListener('DOMContentLoaded', loadSharedComponents);
-    </script>
+                let rawText = event.content?.rendered || event.excerpt?.rendered || "";
+                let cleanText = rawText.replace(/<[^>]*>?/gm, '');
+                cleanText = cleanText.replace(/^.*?\d{2}\/\d{2}\/\d{4}.*?[–-]\s*/g, '');
+                const shortDesc = cleanText.split(/\s+/).slice(0, 20).join(' ') + '...';
+
+                let eventLink = event.link.replace('https://noddfa-j3nkslkrxc.live-website.com', 'https://glyncorrwg.wales');
+                if (rawDate) {
+                    const separator = eventLink.includes('?') ? '&' : '?';
+                    eventLink = `${eventLink}${separator}event_date=${rawDate}`;
+                }
+
+                return `
+                    <div onclick="window.location.href='${eventLink}'" class="cursor-pointer bg-white dark:bg-slate-800 border border-primary/5 rounded-xl overflow-hidden hover:shadow-lg transition-shadow flex flex-col h-full">
+                        <div class="h-48 bg-cover bg-center" style="background-image: url('${img}');"></div>
+                        <div class="p-6 flex flex-col flex-1">
+                            <h3 class="text-xl font-bold mb-2 text-slate-900 dark:text-white">${event.title.rendered}</h3>
+                            <div class="flex items-center gap-2 text-primary text-sm font-bold mb-4">
+                                <span class="material-symbols-outlined text-base">calendar_today</span>
+                                <span>${eventDateStr}</span>
+                            </div>
+                            <p class="text-slate-600 dark:text-slate-400 text-sm mb-6 line-clamp-2">${shortDesc}</p>
+                            <div class="mt-auto">
+                                <div class="w-full bg-primary text-white font-bold py-3 rounded-lg flex items-center justify-center gap-2 hover:bg-primary/90 transition-colors">
+                                    More Info <span class="material-symbols-outlined text-sm">arrow_forward</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>`;
+            }).join('');
+        } catch (err) { 
+            console.error("Event Feed Error:", err); 
+            container.innerHTML = `<div class="col-span-3 py-10 text-center text-slate-500 italic">Unable to load live activities.</div>`;
+        }
+    }
+
+    async function loadLatestNews() {
+        const container = document.getElementById('news-feed-container');
+        try {
+            const response = await fetch(`${API_BASE}/wp/v2/posts?per_page=3&_embed&v=${Date.now()}`);
+            if (!response.ok) throw new Error(`HTTP Error: ${response.status}`);
+            const posts = await response.json();
+            
+            if (!posts || posts.length === 0) {
+                container.innerHTML = `<div class="col-span-3 py-10 text-center text-slate-500 italic">No news stories found.</div>`;
+                return;
+            }
+
+            container.innerHTML = posts.map(post => {
+                const img = post._embedded?.['wp:featuredmedia']?.[0]?.source_url || 'https://images.unsplash.com/photo-1504711434969-e33886168f5c?q=80&w=2070';
+                const postDate = new Date(post.date).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
+                const cleanExcerpt = post.excerpt.rendered ? post.excerpt.rendered.replace(/<[^>]*>?/gm, '') : "";
+                const shortDesc = cleanExcerpt.split(/\s+/).slice(0, 20).join(' ') + '...';
+                const newsLink = post.link.replace('https://noddfa-j3nkslkrxc.live-website.com', 'https://glyncorrwg.wales');
+
+                return `
+                    <div onclick="window.location.href='${newsLink}'" class="cursor-pointer bg-white dark:bg-slate-800 border border-primary/5 rounded-xl overflow-hidden hover:shadow-lg transition-shadow flex flex-col h-full">
+                        <div class="h-48 bg-cover bg-center" style="background-image: url('${img}');"></div>
+                        <div class="p-6 flex flex-col flex-1">
+                            <h3 class="text-xl font-bold mb-2 text-slate-900 dark:text-white">${post.title.rendered}</h3>
+                            <div class="flex items-center gap-2 text-primary text-sm font-bold mb-4">
+                                <span class="material-symbols-outlined text-base">newspaper</span>
+                                <span>${postDate}</span>
+                            </div>
+                            <p class="text-slate-600 dark:text-slate-400 text-sm mb-6 line-clamp-2">${shortDesc}</p>
+                            <div class="mt-auto">
+                                <div class="w-full bg-primary text-white font-bold py-3 rounded-lg flex items-center justify-center gap-2 hover:bg-primary/90 transition-colors text-center">
+                                    Read Story <span class="material-symbols-outlined text-sm">arrow_forward</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>`;
+            }).join('');
+        } catch (err) { 
+            console.error("News Feed Error:", err); 
+            container.innerHTML = `<div class="col-span-3 py-10 text-center text-slate-500 italic">Unable to load latest news.</div>`;
+        }
+    }
+
+    function initMobileMenu() {
+        const btn = document.getElementById('menu-toggle');
+        const nav = document.getElementById('nav-menu');
+        if (btn && nav) {
+            btn.onclick = (e) => {
+                e.preventDefault();
+                nav.classList.toggle('active-menu');
+                nav.classList.toggle('hidden');
+            };
+        }
+    }
+
+    function highlightActiveLink() {
+        const path = window.location.pathname;
+        const navLinks = document.querySelectorAll('.nav-link');
+        navLinks.forEach(link => {
+            const href = link.getAttribute('href');
+            if ((path === '/' || path === '/index.html') && (href === '/' || href === 'index.html')) {
+                link.classList.add('text-primary', 'font-semibold', 'border-b-2', 'border-primary');
+            } else if (path.includes(href) && href !== '/' && href !== 'index.html') {
+                link.classList.add('text-primary', 'font-semibold', 'border-b-2', 'border-primary');
+            }
+        });
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        loadSharedComponents();
+        loadLiveEvents();
+        loadLatestNews();
+    });
+</script>
 </body>
 </html>
