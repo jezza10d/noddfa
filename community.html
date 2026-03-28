@@ -21,14 +21,13 @@
                         "background-dark": "#1a301a",
                         "brand-forest": "#2d3e1d"
                     },
-                    fontFamily: { display: "Lexend" }
+                    fontFamily: { display: "Lexend", body: "Lexend" }
                 }
             }
         };
     </script>
 
     <style>
-        /* INJECTED: Homepage Mobile Menu Logic */
         @media (max-width: 768px) {
             #nav-menu.active-menu {
                 display: flex !important;
@@ -46,6 +45,7 @@
             }
         }
         .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .service-card:hover .service-icon { background-color: #ae0000; color: white; }
     </style>
 </head>
 <body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100">
@@ -56,107 +56,168 @@
         <header id="header-placeholder" class="min-h-[72px] relative z-50"></header>
         
         <main class="flex flex-col items-center flex-1">
-            <div class="relative w-full h-[300px] md:h-[500px] flex items-center justify-center text-center px-6 overflow-hidden">
-                <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&q=80');"></div>
-                <div class="absolute inset-0 bg-black/50"></div>
-                <div class="relative z-10 max-w-3xl mx-auto">
-                    <span class="bg-primary text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider mb-6 inline-block">Glyncorrwg Heritage</span>
-                    <h1 id="hero-header" class="text-white text-4xl md:text-6xl font-extrabold leading-tight mb-4 uppercase">Community Hub</h1>
-                    <p class="text-slate-200 text-lg md:text-xl font-medium">Your daily guide to local services in Glyncorrwg</p>
+            <div class="relative w-full h-[300px] md:h-[450px] flex items-center justify-center text-center px-6 overflow-hidden">
+                <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1506869640319-fe1a24fd76dc?q=80&w=2070');"></div>
+                <div class="absolute inset-0 bg-secondary/60"></div>
+                <div class="relative z-10 max-w-4xl mx-auto">
+                    <h1 class="text-white text-4xl md:text-6xl font-extrabold leading-tight mb-4 uppercase tracking-tighter">Glyncorrwg Hub</h1>
+                    <p class="text-slate-200 text-lg md:text-xl font-medium max-w-2xl mx-auto">Connecting our village: From local trades and bus times to emergency contacts and community news.</p>
                 </div>
             </div>
 
-            <div class="layout-content-container flex flex-col max-w-[1200px] w-full flex-1 px-4 md:px-10 py-16">
+            <div class="layout-content-container flex flex-col max-w-[1200px] w-full flex-1 px-4 md:px-10 py-12">
                 
-                <section class="mb-20">
-                    <div class="flex items-center justify-between mb-10">
-                        <h2 class="text-3xl font-bold flex items-center gap-3">
-                            <span class="w-8 h-1 bg-primary rounded-full"></span>
-                            Local Services
-                        </h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 -mt-20 relative z-20 mb-16">
+                    <div class="bg-white dark:bg-slate-800 p-6 rounded-2xl shadow-xl border border-slate-100 flex items-center gap-4">
+                        <span class="material-symbols-outlined text-primary text-4xl">delete_sweep</span>
+                        <div>
+                            <p class="text-xs font-bold text-slate-500 uppercase">Next Collection</p>
+                            <p class="font-bold text-lg">Recycling & Food Waste</p>
+                            <p class="text-xs text-primary font-bold">This Wednesday, 20th</p>
+                        </div>
                     </div>
+                    <div class="bg-white dark:bg-slate-800 p-6 rounded-2xl shadow-xl border border-slate-100 flex items-center gap-4">
+                        <span class="material-symbols-outlined text-primary text-4xl">partly_cloudy_day</span>
+                        <div>
+                            <p class="text-xs font-bold text-slate-500 uppercase">Local Weather</p>
+                            <p class="font-bold text-lg">12°C - Clear Trails</p>
+                            <p class="text-xs text-emerald-600 font-bold">Perfect for MTB / Hiking</p>
+                        </div>
+                    </div>
+                    <div class="bg-white dark:bg-slate-800 p-6 rounded-2xl shadow-xl border border-slate-100 flex items-center gap-4">
+                        <span class="material-symbols-outlined text-primary text-4xl">notifications_active</span>
+                        <div>
+                            <p class="text-xs font-bold text-slate-500 uppercase">Village Notice</p>
+                            <p class="font-bold text-lg">Lifts Needed for Bowls</p>
+                            <p class="text-xs text-blue-600 font-bold">Check Noticeboard →</p>
+                        </div>
+                    </div>
+                </div>
+
+                <section class="mb-20">
+                    <div class="flex items-center justify-between mb-10 border-b border-slate-200 pb-4">
+                        <div>
+                            <h2 class="text-3xl font-black text-secondary uppercase tracking-tight">Trusted Local Services</h2>
+                            <p class="text-slate-500 text-sm">Supporting businesses within the Afan Valley</p>
+                        </div>
+                        <a href="#advertise" class="hidden md:block bg-secondary text-white px-5 py-2 rounded-lg text-sm font-bold">Add Your Business</a>
+                    </div>
+                    
                     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                        <div class="group bg-white dark:bg-background-dark/40 border border-brand-forest/10 p-8 rounded-xl shadow-sm hover:shadow-md transition-all cursor-pointer">
-                            <div class="w-14 h-14 bg-primary/10 rounded-full flex items-center justify-center text-primary mb-6 group-hover:scale-110 transition-transform">
-                                <span class="material-symbols-outlined text-3xl" style="font-variation-settings: 'FILL' 1;">medical_services</span>
+                        <div class="service-card group bg-white dark:bg-slate-900 border border-slate-200 p-6 rounded-2xl hover:border-primary transition-all shadow-sm">
+                            <div class="service-icon w-12 h-12 bg-slate-100 rounded-xl flex items-center justify-center text-secondary mb-4 transition-colors">
+                                <span class="material-symbols-outlined">home_repair_service</span>
                             </div>
-                            <h3 class="text-xl font-bold mb-2">Doctors</h3>
-                            <p class="text-slate-600 dark:text-slate-400 text-sm mb-4">Glyncorrwg Health Centre opening times and appointments.</p>
-                            <span class="text-primary font-semibold flex items-center gap-2">View Details <span class="material-symbols-outlined text-sm">arrow_forward</span></span>
+                            <h3 class="font-extrabold text-lg mb-1">Trades & Repairs</h3>
+                            <p class="text-slate-500 text-xs mb-4">Plumbers, Electricians, and Handymen available in Glyncorrwg.</p>
+                            <a href="#" class="text-primary text-xs font-black uppercase tracking-widest flex items-center gap-1 group-hover:gap-2 transition-all">Browse List <span class="material-symbols-outlined text-xs">arrow_forward</span></a>
                         </div>
-                        <div class="group bg-white dark:bg-background-dark/40 border border-brand-forest/10 p-8 rounded-xl shadow-sm hover:shadow-md transition-all cursor-pointer">
-                            <div class="w-14 h-14 bg-primary/10 rounded-full flex items-center justify-center text-primary mb-6 group-hover:scale-110 transition-transform">
-                                <span class="material-symbols-outlined text-3xl" style="font-variation-settings: 'FILL' 1;">church</span>
+
+                        <div class="service-card group bg-white dark:bg-slate-900 border border-slate-200 p-6 rounded-2xl hover:border-primary transition-all shadow-sm">
+                            <div class="service-icon w-12 h-12 bg-slate-100 rounded-xl flex items-center justify-center text-secondary mb-4 transition-colors">
+                                <span class="material-symbols-outlined">restaurant</span>
                             </div>
-                            <h3 class="text-xl font-bold mb-2">Church</h3>
-                            <p class="text-slate-600 dark:text-slate-400 text-sm mb-4">St John the Baptist services and community gatherings.</p>
-                            <span class="text-primary font-semibold flex items-center gap-2">View Details <span class="material-symbols-outlined text-sm">arrow_forward</span></span>
+                            <h3 class="font-extrabold text-lg mb-1">Food & Drink</h3>
+                            <p class="text-slate-500 text-xs mb-4">Local cafes, pubs, and takeaways including weekend specials.</p>
+                            <a href="#" class="text-primary text-xs font-black uppercase tracking-widest flex items-center gap-1 group-hover:gap-2 transition-all">Browse List <span class="material-symbols-outlined text-xs">arrow_forward</span></a>
                         </div>
-                        <div class="group bg-white dark:bg-background-dark/40 border border-brand-forest/10 p-8 rounded-xl shadow-sm hover:shadow-md transition-all cursor-pointer">
-                            <div class="w-14 h-14 bg-primary/10 rounded-full flex items-center justify-center text-primary mb-6 group-hover:scale-110 transition-transform">
-                                <span class="material-symbols-outlined text-3xl" style="font-variation-settings: 'FILL' 1;">directions_bus</span>
+
+                        <div class="service-card group bg-white dark:bg-slate-900 border border-slate-200 p-6 rounded-2xl hover:border-primary transition-all shadow-sm">
+                            <div class="service-icon w-12 h-12 bg-slate-100 rounded-xl flex items-center justify-center text-secondary mb-4 transition-colors">
+                                <span class="material-symbols-outlined">directions_car</span>
                             </div>
-                            <h3 class="text-xl font-bold mb-2">Buses</h3>
-                            <p class="text-slate-600 dark:text-slate-400 text-sm mb-4">X3 and local route timetables for Neath & Port Talbot.</p>
-                            <span class="text-primary font-semibold flex items-center gap-2">Live Times <span class="material-symbols-outlined text-sm">arrow_forward</span></span>
+                            <h3 class="font-extrabold text-lg mb-1">Transport</h3>
+                            <p class="text-slate-500 text-xs mb-4">Bus timetables, local taxi numbers, and community car schemes.</p>
+                            <a href="#" class="text-primary text-xs font-black uppercase tracking-widest flex items-center gap-1 group-hover:gap-2 transition-all">Browse List <span class="material-symbols-outlined text-xs">arrow_forward</span></a>
                         </div>
-                        <div class="group bg-white dark:bg-background-dark/40 border border-brand-forest/10 p-8 rounded-xl shadow-sm hover:shadow-md transition-all cursor-pointer">
-                            <div class="w-14 h-14 bg-primary/10 rounded-full flex items-center justify-center text-primary mb-6 group-hover:scale-110 transition-transform">
-                                <span class="material-symbols-outlined text-3xl" style="font-variation-settings: 'FILL' 1;">school</span>
+
+                        <div class="service-card group bg-white dark:bg-slate-900 border border-slate-200 p-6 rounded-2xl hover:border-primary transition-all shadow-sm">
+                            <div class="service-icon w-12 h-12 bg-slate-100 rounded-xl flex items-center justify-center text-secondary mb-4 transition-colors">
+                                <span class="material-symbols-outlined">local_hospital</span>
                             </div>
-                            <h3 class="text-xl font-bold mb-2">Schools</h3>
-                            <p class="text-slate-600 dark:text-slate-400 text-sm mb-4">Term dates and contact info for Glyncorrwg Primary.</p>
-                            <span class="text-primary font-semibold flex items-center gap-2">Learn More <span class="material-symbols-outlined text-sm">arrow_forward</span></span>
+                            <h3 class="font-extrabold text-lg mb-1">Health & Care</h3>
+                            <p class="text-slate-500 text-xs mb-4">Surgery hours, pharmacy info, and home-care services.</p>
+                            <a href="#" class="text-primary text-xs font-black uppercase tracking-widest flex items-center gap-1 group-hover:gap-2 transition-all">Browse List <span class="material-symbols-outlined text-xs">arrow_forward</span></a>
                         </div>
+                    </div>
+                </section>
+
+                <section class="mb-20 grid md:grid-cols-2 gap-8">
+                    <div class="bg-secondary p-10 rounded-3xl text-white relative overflow-hidden">
+                        <span class="material-symbols-outlined absolute -right-8 -bottom-8 text-9xl opacity-10">campaign</span>
+                        <h2 class="text-3xl font-black mb-4">Report an Issue</h2>
+                        <p class="text-slate-300 mb-8 max-w-sm text-sm">See a pothole? Fly-tipping? Broken street light? Report it directly to NPT Council here.</p>
+                        <div class="flex flex-col gap-3">
+                            <a href="#" class="bg-white text-secondary px-6 py-3 rounded-xl font-bold flex items-center justify-between hover:bg-primary hover:text-white transition-all">
+                                Report Pothole <span class="material-symbols-outlined">report_problem</span>
+                            </a>
+                            <a href="#" class="bg-white/10 text-white border border-white/20 px-6 py-3 rounded-xl font-bold flex items-center justify-between hover:bg-white/20 transition-all">
+                                Other Council Services <span class="material-symbols-outlined">open_in_new</span>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-primary/5 border border-primary/10 p-10 rounded-3xl">
+                        <h2 class="text-3xl font-black text-secondary mb-4">What's On?</h2>
+                        <ul class="space-y-4">
+                            <li class="flex items-center gap-4 bg-white p-4 rounded-xl shadow-sm border border-slate-100">
+                                <div class="bg-primary text-white p-2 rounded-lg text-center min-w-[50px]">
+                                    <span class="text-xs block font-bold">MAR</span>
+                                    <span class="text-xl block font-black leading-none">22</span>
+                                </div>
+                                <div>
+                                    <p class="font-bold text-secondary">Community Coffee Morning</p>
+                                    <p class="text-xs text-slate-500">Noddfa Centre • 10:00 AM</p>
+                                </div>
+                            </li>
+                            <li class="flex items-center gap-4 bg-white p-4 rounded-xl shadow-sm border border-slate-100">
+                                <div class="bg-slate-200 text-slate-500 p-2 rounded-lg text-center min-w-[50px]">
+                                    <span class="text-xs block font-bold">MAR</span>
+                                    <span class="text-xl block font-black leading-none">25</span>
+                                </div>
+                                <div>
+                                    <p class="font-bold text-secondary">Glyncorrwg Bowls Practice</p>
+                                    <p class="text-xs text-slate-500">The Park • 6:00 PM</p>
+                                </div>
+                            </li>
+                        </ul>
+                        <a href="/events" class="inline-block mt-6 text-primary font-bold text-sm">See Full Calendar →</a>
                     </div>
                 </section>
 
                 <section class="mb-20">
-                    <div class="bg-brand-forest/5 dark:bg-brand-forest/20 rounded-2xl p-8 md:p-12 border border-brand-forest/10 relative overflow-hidden">
-                        <div class="relative z-10 grid md:grid-cols-2 gap-12 items-center">
-                            <div>
-                                <h2 class="text-3xl font-bold mb-4">Report It Dashboard</h2>
-                                <p class="text-slate-600 dark:text-slate-400 mb-8">Directly report issues to Neath Port Talbot Council.</p>
-                                <div class="flex flex-wrap gap-3">
-                                    <a href="#" class="bg-white dark:bg-background-dark border border-slate-200 dark:border-slate-700 px-5 py-3 rounded-full flex items-center gap-3 font-medium hover:border-primary transition-all">
-                                        <span class="material-symbols-outlined text-primary">warning</span> Potholes
-                                    </a>
-                                    <a href="#" class="bg-white dark:bg-background-dark border border-slate-200 dark:border-slate-700 px-5 py-3 rounded-full flex items-center gap-3 font-medium hover:border-primary transition-all">
-                                        <span class="material-symbols-outlined text-primary">delete_outline</span> Fly-tipping
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="grid grid-cols-2 gap-4 text-center">
-                                <div class="bg-white dark:bg-background-dark p-6 rounded-2xl border border-brand-forest/10 shadow-sm">
-                                    <div class="text-4xl font-black text-primary mb-1">24h</div>
-                                    <div class="text-xs uppercase font-bold text-slate-500">Response Goal</div>
-                                </div>
-                                <div class="bg-white dark:bg-background-dark p-6 rounded-2xl border border-brand-forest/10 shadow-sm">
-                                    <div class="text-4xl font-black text-secondary mb-1">NPT</div>
-                                    <div class="text-xs uppercase font-bold text-slate-500">Council Direct</div>
-                                </div>
-                            </div>
-                        </div>
+                    <h2 class="text-3xl font-black text-secondary mb-6 uppercase tracking-tight">Community Map</h2>
+                    <div class="bg-white dark:bg-background-dark rounded-3xl p-2 border border-slate-200 shadow-xl overflow-hidden aspect-video relative">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d9904.975413155725!2d-3.618605!3d51.659995!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x486e5c8e8c8c8c8c%3A0x1234567890abcdef!2sGlyncorrwg!5e0!3m2!1sen!2suk!4v1600000000000" width="100%" height="100%" style="border:0; border-radius: 1.5rem;" allowfullscreen="" loading="lazy"></iframe>
                     </div>
                 </section>
 
-                <section class="mb-10">
-                    <h2 class="text-3xl font-bold mb-6">Village Map</h2>
-                    <div class="bg-white dark:bg-background-dark rounded-3xl p-2 border border-brand-forest/10 shadow-xl overflow-hidden aspect-video relative">
-                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d19853.4735237279!2d-3.6190886!3d51.6582522!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x486e4242681534b3%3A0x673c683b5d259ca3!2sGlyncorrwg!5e0!3m2!1sen!2suk!4v1708450000000!5m2!1sen!2suk" width="100%" height="100%" style="border:0; border-radius: 1.5rem;" allowfullscreen="" loading="lazy"></iframe>
+                <section id="advertise" class="mb-10">
+                    <div class="bg-gradient-to-r from-primary to-secondary p-8 md:p-12 rounded-[2.5rem] shadow-2xl relative overflow-hidden group">
+                        <div class="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full -mr-20 -mt-20 group-hover:scale-110 transition-transform duration-700"></div>
+                        <div class="relative z-10 flex flex-col md:flex-row items-center justify-between gap-8">
+                            <div class="max-w-xl text-center md:text-left">
+                                <span class="bg-white text-primary text-[10px] font-black uppercase px-3 py-1 rounded-full mb-4 inline-block tracking-widest">Business Opportunity</span>
+                                <h2 class="text-3xl md:text-4xl font-black text-white leading-tight mb-4">Grow your business with Glyncorrwg Wales.</h2>
+                                <p class="text-white/80 text-lg">Reach over 1,000 local residents and valley visitors monthly. Advertise your trade, shop, or service on our community hub.</p>
+                            </div>
+                            <div class="flex flex-col sm:flex-row gap-4 w-full md:w-auto">
+                                <a href="mailto:ads@glyncorrwg.wales" class="bg-white text-secondary px-8 py-4 rounded-xl font-bold text-center hover:shadow-lg transition-all active:scale-95">Inquire Now</a>
+                                <a href="#" class="bg-secondary border border-white/20 text-white px-8 py-4 rounded-xl font-bold text-center hover:bg-white/10 transition-all">Download Rates</a>
+                            </div>
+                        </div>
                     </div>
                 </section>
 
             </div>
         </main>
 
-        <div id="footer-placeholder"></div>
+        <footer id="footer-placeholder"></footer>
 
     </div>
 </div>
 
 <script>
-    /* INJECTED: Consistent Component Loader (Matching Homepage) */
     const API_BASE = 'https://noddfa-j3nkslkrxc.live-website.com/wp-json';
 
     async function loadSharedComponents() {
