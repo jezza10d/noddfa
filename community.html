@@ -228,18 +228,45 @@
                         </div>
                     </section>
 
-                    <div class="w-full bg-secondary rounded-2xl p-6 mt-24 mb-12 flex flex-col md:flex-row items-center justify-between gap-6 border-l-8 border-primary shadow-lg">
-                        <div class="flex items-center gap-5 text-white">
-                            <div class="w-14 h-14 bg-white/10 rounded-xl flex items-center justify-center">
-                                <span class="material-symbols-outlined text-3xl text-primary">campaign</span>
-                            </div>
-                            <div>
-                                <h3 class="text-xl font-bold">Report It to NPT Council</h3>
-                                <p class="text-white/70 text-sm">See a pothole, fly-tipping, or street light issue? Report it directly to Neath Port Talbot Council.</p>
+                    <section class="mt-24 mb-20">
+                        <div class="bg-surface-container rounded-3xl p-8 md:p-12 overflow-hidden relative">
+                            <div class="absolute top-0 right-0 w-64 h-64 bg-primary opacity-5 rounded-full -translate-y-1/2 translate-x-1/2"></div>
+                            <div class="relative z-10 grid md:grid-cols-2 gap-12 items-center">
+                                <div>
+                                    <h2 class="text-3xl font-headline font-bold text-secondary mb-4">Report It Dashboard</h2>
+                                    <p class="text-on-surface-variant mb-8 max-w-md">Help us keep our village safe and clean. Directly report issues to Neath Port Talbot Council via the links below.</p>
+                                    <div class="flex flex-wrap gap-3">
+                                        <a class="bg-white border border-outline hover:border-primary transition-colors px-5 py-3 rounded-full flex items-center gap-3 font-medium text-secondary shadow-sm" href="#">
+                                            <span class="material-symbols-outlined text-error" data-icon="warning">warning</span>
+                                            Potholes
+                                        </a>
+                                        <a class="bg-white border border-outline hover:border-primary transition-colors px-5 py-3 rounded-full flex items-center gap-3 font-medium text-secondary shadow-sm" href="#">
+                                            <span class="material-symbols-outlined text-error" data-icon="delete_outline">delete_outline</span>
+                                            Fly-tipping
+                                        </a>
+                                        <a class="bg-white border border-outline hover:border-primary transition-colors px-5 py-3 rounded-full flex items-center gap-3 font-medium text-secondary shadow-sm" href="#">
+                                            <span class="material-symbols-outlined text-error" data-icon="light_off">light_off</span>
+                                            Street Lighting
+                                        </a>
+                                        <a class="bg-white border border-outline hover:border-primary transition-colors px-5 py-3 rounded-full flex items-center gap-3 font-medium text-secondary shadow-sm" href="#">
+                                            <span class="material-symbols-outlined text-error" data-icon="pets">pets</span>
+                                            Dog Fouling
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="grid grid-cols-2 gap-4">
+                                    <div class="bg-white p-6 rounded-2xl shadow-sm flex flex-col items-center text-center">
+                                        <div class="text-4xl font-black text-primary mb-1">24h</div>
+                                        <div class="text-xs uppercase tracking-wider text-on-surface-variant font-bold">Response Goal</div>
+                                    </div>
+                                    <div class="bg-white p-6 rounded-2xl shadow-sm flex flex-col items-center text-center">
+                                        <div class="text-4xl font-black text-secondary mb-1">NPT</div>
+                                        <div class="text-xs uppercase tracking-wider text-on-surface-variant font-bold">Council Direct</div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                        <button class="bg-primary text-white px-8 py-3 rounded-xl font-black text-xs uppercase tracking-widest hover:bg-white hover:text-primary transition-all whitespace-nowrap">Report to NPT</button>
-                    </div>
+                    </section>
 
                 </div>
             </main>
