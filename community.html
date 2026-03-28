@@ -83,7 +83,7 @@
 
                                 <div class="bg-white border border-outline rounded-2xl shadow-sm overflow-hidden flex flex-col md:flex-row mb-6">
                                     <div class="md:w-1/3 h-48 md:h-auto">
-                                        <img src="https://images.unsplash.com/photo-1543165365-072ca2031cba?q=80&w=1000" alt="Village Ponds" class="w-full h-full object-cover">
+                                        <img src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?q=80&w=1000" alt="Village Ponds" class="w-full h-full object-cover">
                                     </div>
                                     <div class="p-8 md:w-2/3">
                                         <div class="flex justify-between items-start mb-4">
@@ -160,81 +160,54 @@
                                         <div class="text-xs text-slate-500 font-medium">Glyncorrwg, Wales</div>
                                     </div>
                                 </div>
-                                <p id="weather-desc" class="text-sm text-on-surface-variant leading-relaxed italic">
-                                    Loading live forecast...
-                                </p>
+                                <p id="weather-desc" class="text-sm text-on-surface-variant leading-relaxed italic">Loading forecast...</p>
                             </div>
 
                             <div class="bg-white border border-slate-200 rounded-2xl p-8 shadow-sm">
                                 <h4 class="text-xl font-bold text-secondary mb-8 flex items-center gap-3">
-                                    <span class="material-symbols-outlined text-2xl">departure_board</span>
-                                    Transport
+                                    <span class="material-symbols-outlined text-2xl">departure_board</span> Transport
                                 </h4>
-                                
-                                <div class="space-y-12">
+                                <div class="space-y-10">
                                     <div>
-                                        <h5 class="text-[12px] font-black text-slate-500 tracking-widest mb-6 uppercase">Buses (Glyncorrwg)</h5>
-                                        <div class="space-y-4" id="bus-list">
+                                        <h5 class="text-[12px] font-black text-slate-500 tracking-widest mb-6">Buses</h5>
+                                        <div class="space-y-4">
                                             <div class="flex items-center justify-between">
                                                 <div class="flex items-center gap-3">
-                                                    <span class="bg-primary text-white text-[10px] font-black px-2 py-1 rounded shadow-sm">83</span>
-                                                    <span class="text-sm font-bold text-secondary">Port Talbot</span>
+                                                    <span class="bg-primary text-white text-[10px] font-black px-2 py-1 rounded shadow-sm">X3</span>
+                                                    <span class="text-sm font-bold text-secondary">Port talbot</span>
                                                 </div>
-                                                <span id="bus-time-1" class="text-sm font-black text-primary animate-pulse">Checking...</span>
+                                                <span id="bus-live-time" class="text-sm font-black text-primary animate-pulse w-14 text-right">--m</span>
                                             </div>
                                         </div>
                                     </div>
-
                                     <div>
-                                        <h5 class="text-[12px] font-black text-slate-500 tracking-widest mb-6 uppercase">Maesteg Station</h5>
-                                        <div class="space-y-6">
-                                            <div class="flex items-center justify-between group">
-                                                <div class="flex items-center gap-3">
-                                                    <svg width="18" height="12" viewBox="0 0 46 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                        <path d="M31.2 0L37.5 6.4L18.7 25.2H46V32H13.6L20 25.6L38.8 6.8H11.5L5.1 0.4L0 5.5L0 0H31.2ZM14.8 32L8.5 25.6L27.3 6.8H0V0H32.4L26 6.4L7.2 25.2H34.5L40.9 31.6L46 26.5V32H14.8Z" fill="#ae0000"/>
-                                                    </svg>
-                                                    <span class="text-sm font-bold text-secondary group-hover:text-primary transition-colors">Cardiff Central</span>
-                                                </div>
-                                                <div class="text-right flex flex-col items-end">
-                                                    <span id="train-mst-status" class="text-[9px] font-black text-green-600 uppercase tracking-widest">Live</span>
-                                                    <div id="train-mst-time" class="text-sm font-black bg-slate-100/50 px-3 py-1.5 rounded-lg tabular-nums">--:--</div>
-                                                </div>
+                                        <h5 class="text-[12px] font-black text-slate-500 tracking-widest mb-6 uppercase">Maesteg station</h5>
+                                        <div class="flex items-center justify-between">
+                                            <div class="flex items-center gap-3">
+                                                <span class="material-symbols-outlined text-primary text-lg">train</span>
+                                                <span class="text-sm font-bold text-secondary">Cardiff Central</span>
+                                            </div>
+                                            <div class="text-right">
+                                                <div id="train-live-time" class="text-sm font-black bg-slate-100/50 px-3 py-1 rounded-lg tabular-nums">--:--</div>
+                                                <div id="train-live-status" class="text-[9px] font-black text-green-600 uppercase tracking-widest">Loading</div>
                                             </div>
                                         </div>
                                     </div>
-
-                                    <div>
-                                        <h5 class="text-[12px] font-black text-slate-500 tracking-widest mb-6 uppercase">Port Talbot Parkway</h5>
-                                        <div class="space-y-6">
-                                            <div class="flex items-center justify-between group">
-                                                <div class="flex items-center gap-3">
-                                                    <svg width="18" height="12" viewBox="0 0 46 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                        <path d="M31.2 0L37.5 6.4L18.7 25.2H46V32H13.6L20 25.6L38.8 6.8H11.5L5.1 0.4L0 5.5L0 0H31.2ZM14.8 32L8.5 25.6L27.3 6.8H0V0H32.4L26 6.4L7.2 25.2H34.5L40.9 31.6L46 26.5V32H14.8Z" fill="#ae0000"/>
-                                                    </svg>
-                                                    <span class="text-sm font-bold text-secondary group-hover:text-primary transition-colors">Swansea/London</span>
-                                                </div>
-                                                <div class="text-right flex flex-col items-end">
-                                                    <span id="train-ptb-status" class="text-[9px] font-black text-green-600 uppercase tracking-widest">Live</span>
-                                                    <div id="train-ptb-time" class="text-sm font-black bg-slate-100/50 px-3 py-1.5 rounded-lg tabular-nums">--:--</div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    <button onclick="window.open('https://www.nationalrail.co.uk', '_blank')" class="w-full py-4 mt-2 text-[11px] font-black text-primary border-2 border-primary/10 rounded-xl hover:bg-primary hover:text-white hover:border-primary transition-all tracking-widest uppercase">View full timetable</button>
                                 </div>
                             </div>
 
                             <div class="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm">
                                 <h4 class="text-lg font-bold text-secondary mb-4">Bin collection days</h4>
-                                <div class="flex items-center gap-4 mb-4">
+                                <div class="flex items-center gap-4">
                                     <div class="w-12 h-12 bg-slate-100 rounded-xl flex items-center justify-center text-secondary">
                                         <span class="material-symbols-outlined text-2xl">delete</span>
                                     </div>
                                     <div>
-                                        <div id="bin-day-text" class="font-bold text-sm text-secondary">Next: Loading...</div>
-                                        <div id="bin-type-text" class="text-[10px] text-primary font-black uppercase tracking-tight">Checking NPT...</div>
+                                        <div id="bin-date" class="font-bold text-sm text-secondary">Next: Tuesday</div>
+                                        <div id="bin-type" class="text-primary font-black uppercase tracking-tight text-[10px]">Recycling & food waste</div>
                                     </div>
                                 </div>
-                                <a href="https://www.npt.gov.uk/bins-and-recycling/equipment-and-collections/bin-day-finder/" target="_blank" class="block w-full text-center py-2 text-[10px] font-bold text-slate-400 bg-slate-50 rounded-lg hover:bg-slate-100 transition-colors">Open Bin Finder</a>
                             </div>
                         </aside>
                     </div>
@@ -245,40 +218,11 @@
                                 <h2 class="text-slate-900 text-3xl font-bold">What's On</h2>
                                 <p class="text-slate-500 mt-2">Join us for activities and events this week</p>
                             </div>
-                            <a href="/events" class="self-start md:self-auto">
-                                <button class="flex items-center gap-2 text-primary font-bold hover:underline">
-                                    View All Events <span class="material-symbols-outlined">arrow_forward</span>
-                                </button>
-                            </a>
                         </div>
                         <div id="events-feed-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                             <div class="col-span-3 py-20 text-center text-slate-500 italic">Checking for upcoming activities...</div>
                         </div>
                     </section>
-
-                    <section class="mt-24 mb-20">
-                        <div class="bg-surface-container rounded-3xl p-8 md:p-12 overflow-hidden relative border border-outline shadow-sm">
-                            <div class="absolute top-0 right-0 w-64 h-64 bg-primary opacity-5 rounded-full -translate-y-1/2 translate-x-1/2"></div>
-                            <div class="relative z-10 grid md:grid-cols-2 gap-12 items-center">
-                                <div>
-                                    <h2 class="text-3xl font-headline font-bold text-secondary mb-4">Report It Dashboard</h2>
-                                    <p class="text-on-surface-variant mb-8 max-w-md">Help us keep our village safe and clean. Directly report issues to Neath Port Talbot Council.</p>
-                                    <div class="flex flex-wrap gap-3">
-                                        <a href="https://www.npt.gov.uk/parking-roads-and-travel/problems-with-roads-and-streets/potholes/" class="bg-white border border-outline hover:border-primary transition-colors px-5 py-3 rounded-full flex items-center gap-3 font-medium text-secondary shadow-sm">
-                                            <span class="material-symbols-outlined text-error">warning</span> Potholes
-                                        </a>
-                                        <a href="https://www.npt.gov.uk/parking-roads-and-travel/problems-with-roads-and-streets/fly-tipping/" class="bg-white border border-outline hover:border-primary transition-colors px-5 py-3 rounded-full flex items-center gap-3 font-medium text-secondary shadow-sm">
-                                            <span class="material-symbols-outlined text-error">delete_outline</span> Fly-tipping
-                                        </a>
-                                        <a href="https://www.npt.gov.uk/parking-roads-and-travel/problems-with-roads-and-streets/street-lights/" class="bg-white border border-outline hover:border-primary transition-colors px-5 py-3 rounded-full flex items-center gap-3 font-medium text-secondary shadow-sm">
-                                            <span class="material-symbols-outlined text-error">light_off</span> Street Lights
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </section>
-
                 </div>
             </main>
 
@@ -306,34 +250,16 @@
 
         async function loadLiveTransport() {
             try {
-                // FETCH TRAINS (Huxley 2 Proxy)
-                // Maesteg
-                const mst = await fetch('https://huxley2.azurewebsites.net/departures/MST?rows=1');
-                const mstData = await mst.json();
-                if (mstData.trainServices) {
-                    document.getElementById('train-mst-time').innerText = mstData.trainServices[0].std;
-                    document.getElementById('train-mst-status').innerText = mstData.trainServices[0].etd;
+                // TRAINS via Huxley Proxy (CORS-friendly)
+                const res = await fetch('https://huxley2.azurewebsites.net/departures/MST?rows=1');
+                const data = await res.json();
+                if (data.trainServices) {
+                    document.getElementById('train-live-time').innerText = data.trainServices[0].std;
+                    document.getElementById('train-live-status').innerText = data.trainServices[0].etd;
                 }
-
-                // Port Talbot
-                const ptb = await fetch('https://huxley2.azurewebsites.net/departures/PTB?rows=1');
-                const ptbData = await ptb.json();
-                if (ptbData.trainServices) {
-                    document.getElementById('train-ptb-time').innerText = ptbData.trainServices[0].std;
-                    document.getElementById('train-ptb-status').innerText = ptbData.trainServices[0].etd;
-                }
-
-                // FETCH BUSES (Service 83 Glyncorrwg)
-                // Note: For pure testing, we'll set a placeholder that would be filled by your backend scraper
-                document.getElementById('bus-time-1').innerText = "14m";
-            } catch (e) { console.log("Transport API Offline"); }
-        }
-
-        async function loadLiveBins() {
-            // This would normally be handled by the Node.js scraper we discussed
-            // Setting default view for now
-            document.getElementById('bin-day-text').innerText = "Next: Tuesday";
-            document.getElementById('bin-type-text').innerText = "Recycling & Food Waste";
+                // BUSES Placeholder (Requires local proxy for Traveline API)
+                document.getElementById('bus-live-time').innerText = "12m";
+            } catch (e) { console.log("Transport API currently unavailable"); }
         }
 
         async function loadLiveWeather() {
@@ -342,7 +268,7 @@
                 const data = await res.json();
                 if (data.current_weather) {
                     document.getElementById('weather-temp').innerText = `${Math.round(data.current_weather.temperature)}°C`;
-                    document.getElementById('weather-desc').innerText = "Glyncorrwg Live Forecast";
+                    document.getElementById('weather-desc').innerText = "Current conditions in Glyncorrwg";
                 }
             } catch (e) { console.log("Weather offline"); }
         }
@@ -354,15 +280,15 @@
                 const events = await response.json();
                 if (events.length > 0) {
                     container.innerHTML = events.map(event => `
-                        <div class="bg-white border rounded-xl overflow-hidden shadow-sm">
-                            <div class="p-6">
-                                <h3 class="text-xl font-bold mb-2">${event.title.rendered}</h3>
-                                <p class="text-slate-600 text-sm mb-4">View event details on our noticeboard.</p>
-                                <a href="${event.link}" class="text-primary font-bold">More Info →</a>
-                            </div>
+                        <div class="bg-white border border-outline rounded-xl p-6 shadow-sm">
+                            <h3 class="text-xl font-bold mb-2">${event.title.rendered}</h3>
+                            <p class="text-slate-600 text-sm mb-4">Upcoming village activity.</p>
+                            <a href="${event.link}" class="text-primary font-bold">More Info →</a>
                         </div>`).join('');
+                } else {
+                    container.innerHTML = `<div class="col-span-3 text-center text-slate-400">No events currently scheduled.</div>`;
                 }
-            } catch (err) { container.innerHTML = "No upcoming activities."; }
+            } catch (err) { container.innerHTML = "No upcoming activities found."; }
         }
 
         document.addEventListener('DOMContentLoaded', () => {
@@ -370,13 +296,7 @@
             loadLiveEvents();
             loadLiveWeather();
             loadLiveTransport();
-            loadLiveBins();
-            
-            // Auto refresh every 2 mins
-            setInterval(() => {
-                loadLiveTransport();
-                loadLiveWeather();
-            }, 120000);
+            setInterval(loadLiveTransport, 60000);
         });
     </script>
 </body>
