@@ -87,7 +87,7 @@
                                     </div>
                                     <div class="p-8 md:w-2/3">
                                         <div class="flex justify-between items-start mb-4">
-                                            <span class="bg-primary/10 text-primary text-[10px] font-black px-3 py-1 rounded-full">Featured spotlight</span>
+                                            <span class="bg-primary text-white text-[10px] font-black px-3 py-1 rounded-full uppercase">Featured spotlight</span>
                                             <span class="text-xs text-slate-400 font-medium">2 days ago</span>
                                         </div>
                                         <h4 class="font-bold text-xl mb-3">Village Ponds Clean Up</h4>
@@ -160,7 +160,7 @@
                                         <div class="text-xs text-slate-500 font-medium">Glyncorrwg, Wales</div>
                                     </div>
                                 </div>
-                                <p id="weather-desc" class="text-sm text-on-surface-variant leading-relaxed italic">
+                                <p id="weather-desc" class="text-sm text-on-surface-variant leading-relaxed">
                                     Loading live forecast...
                                 </p>
                             </div>
@@ -193,20 +193,20 @@
                                     </div>
 
                                     <div>
-                                        <h5 class="text-[12px] font-black text-slate-500 tracking-widest mb-6 uppercase">Maesteg station</h5>
+                                        <h5 class="text-[12px] font-black text-slate-500 tracking-widest mb-6">Maesteg station</h5>
                                         <div id="maesteg-trains-list" class="space-y-4">
                                             <div class="text-xs text-slate-400 italic">Checking trains...</div>
                                         </div>
                                     </div>
 
                                     <div>
-                                        <h5 class="text-[12px] font-black text-slate-500 tracking-widest mb-6 uppercase">Port talbot parkway</h5>
+                                        <h5 class="text-[12px] font-black text-slate-500 tracking-widest mb-6">Port talbot parkway</h5>
                                         <div id="ptb-trains-list" class="space-y-4">
                                             <div class="text-xs text-slate-400 italic">Checking trains...</div>
                                         </div>
                                     </div>
 
-                                    <button class="w-full py-4 mt-2 text-[11px] font-black text-primary border-2 border-primary/10 rounded-xl hover:bg-primary hover:text-white hover:border-primary transition-all tracking-widest uppercase shadow-sm">View full timetable</button>
+                                    <button onclick="window.open('https://www.nationalrail.co.uk', '_blank')" class="w-full py-4 mt-2 text-[11px] font-black text-primary border-2 border-primary/10 rounded-xl hover:bg-primary hover:text-white hover:border-primary transition-all tracking-widest uppercase shadow-sm">View full timetable</button>
                                 </div>
                             </div>
 
@@ -377,6 +377,7 @@
         async function fetchTrainStation(code, containerId) {
             const container = document.getElementById(containerId);
             try {
+                // Using a more reliable train proxy
                 const res = await fetch(`https://huxley2.azurewebsites.net/departures/${code}?rows=2`);
                 const data = await res.json();
                 if (data.trainServices && data.trainServices.length > 0) {
