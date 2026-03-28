@@ -1,159 +1,182 @@
 <?php
 /**
- * Template Name: Community Hub - Glyncorrwg Wales Style
+ * Template Name: Community Hub - Noddfa Professional Style
  */
 if ( ! defined( 'ABSPATH' ) ) exit; 
 ?>
 <!DOCTYPE html>
-<html <?php language_attributes(); ?>>
+<html <?php language_attributes(); ?> class="light">
 <head>
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <script id="tailwind-config">
         tailwind.config = {
             theme: {
                 extend: {
                     colors: {
-                        primary: "#ae0000",
-                        secondary: "#1a301a",
-                        "background-light": "#f8f5f5"
+                        "primary": "#ae0000",
+                        "secondary": "#1a301a",
+                        "background": "#f8f5f5",
+                        "on-surface-variant": "#475569",
+                        "outline": "#ae00001a"
                     },
-                    fontFamily: { display: "Lexend", body: "Lexend" }
+                    fontFamily: { headline: "Lexend", body: "Lexend" }
                 }
             }
         };
     </script>
     <style>
-        body { font-family: 'Lexend', sans-serif; background-color: #f8f5f5; color: #0f172a; }
-        /* MATCHING YOUR EXACT HEADERS */
-        h1, h2, h3 { font-weight: 800; text-transform: uppercase; letter-spacing: -0.02em; line-height: 1; }
-        
-        /* THE "GLYNCORRWG BORDER" STYLE */
-        .content-box { background: white; border: 1px solid #e2e8f0; border-radius: 24px; padding: 2rem; }
-        .red-pill { background: #ae0000; color: white; font-size: 0.7rem; font-weight: 800; padding: 4px 12px; rounded-radius: 999px; text-transform: uppercase; }
-        
-        /* NEWS STYLE NAVIGATION UNDERLINE */
-        .nav-active::after { content: ''; position: absolute; bottom: -8px; left: 0; width: 100%; height: 3px; background: #ae0000; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .hero-gradient { background: linear-gradient(rgba(26, 48, 26, 0.6), rgba(26, 48, 26, 0.6)); }
     </style>
     <?php wp_head(); ?>
 </head>
-<body>
+<body class="bg-background font-body text-slate-900">
 
-<header id="header-placeholder" class="min-h-[72px] relative z-50">
-    <?php $header_path = get_template_directory() . '/header.html'; if (file_exists($header_path)) echo file_get_contents($header_path); ?>
+<header class="relative w-full h-[350px] flex items-center justify-center overflow-hidden">
+    <img src="https://images.unsplash.com/photo-1508833118833-8a3036c0757d?q=80&w=2070" class="absolute inset-0 w-full h-full object-cover" alt="Village View">
+    <div class="absolute inset-0 hero-gradient mix-blend-multiply"></div>
+    <div class="relative z-10 text-center px-4">
+        <h1 class="text-5xl md:text-7xl font-headline font-black text-white mb-4 tracking-tight uppercase">Community Hub</h1>
+        <p class="text-xl md:text-2xl text-white/90 font-medium max-w-2xl mx-auto italic">Your daily connection to Glyncorrwg life.</p>
+    </div>
 </header>
 
-<main>
-    <section class="relative w-full h-[350px] flex items-center justify-center text-center px-6 overflow-hidden">
-        <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=2070');"></div>
-        <div class="absolute inset-0 bg-black/50"></div>
-        <div class="relative z-10 max-w-4xl mx-auto">
-            <span class="bg-primary text-white text-xs font-bold px-4 py-1 rounded-full uppercase mb-6 inline-block tracking-widest">Village Dashboard</span>
-            <h1 class="text-white text-5xl md:text-7xl font-extrabold mb-4">COMMUNITY HUB</h1>
-            <p class="text-slate-200 text-lg md:text-xl font-medium italic">Essential information for residents and visitors.</p>
+<main class="max-w-7xl mx-auto px-6 py-16">
+
+    <section class="mb-20">
+        <div class="flex items-center justify-between mb-10">
+            <h2 class="text-3xl font-headline font-bold text-secondary italic">Village Pulse</h2>
+            <div class="h-1 flex-grow mx-8 bg-slate-200 rounded-full"></div>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="bg-white border border-outline p-8 rounded-2xl shadow-sm hover:shadow-md transition-all">
+                <div class="flex items-center gap-4 mb-4">
+                    <span class="material-symbols-outlined text-primary text-3xl">delete_sweep</span>
+                    <div>
+                        <p class="text-[10px] font-black uppercase tracking-widest text-slate-400">Waste & Recycling</p>
+                        <h3 class="text-xl font-bold">NEXT COLLECTION</h3>
+                    </div>
+                </div>
+                <div class="bg-slate-50 p-4 rounded-xl border border-slate-100">
+                    <p class="text-primary font-black text-2xl uppercase">Wednesday</p>
+                    <p class="text-sm font-medium text-on-surface-variant">General Waste & Food Bin</p>
+                </div>
+            </div>
+
+            <div class="bg-white border border-outline p-8 rounded-2xl shadow-sm hover:shadow-md transition-all">
+                <div class="flex items-center gap-4 mb-4">
+                    <span class="material-symbols-outlined text-primary text-3xl">directions_bus</span>
+                    <div>
+                        <p class="text-[10px] font-black uppercase tracking-widest text-slate-400">Transport</p>
+                        <h3 class="text-xl font-bold">X3 TO MAESTEG</h3>
+                    </div>
+                </div>
+                <div class="space-y-2">
+                    <div class="flex justify-between items-center text-sm border-b border-slate-50 pb-2">
+                        <span class="font-bold">Scheduled</span>
+                        <span class="bg-secondary text-white px-2 py-1 rounded text-xs font-bold uppercase">14:45</span>
+                    </div>
+                    <div class="flex justify-between items-center text-sm">
+                        <span class="font-bold">Next</span>
+                        <span class="bg-slate-200 text-slate-700 px-2 py-1 rounded text-xs font-bold uppercase">15:45</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-white border border-outline p-8 rounded-2xl shadow-sm hover:shadow-md transition-all">
+                <div class="flex items-center gap-4 mb-4">
+                    <span class="material-symbols-outlined text-primary text-3xl">local_pharmacy</span>
+                    <div>
+                        <p class="text-[10px] font-black uppercase tracking-widest text-slate-400">Health</p>
+                        <h3 class="text-xl font-bold">CYMMER PHARMACY</h3>
+                    </div>
+                </div>
+                <div class="flex items-center gap-2">
+                    <span class="w-3 h-3 bg-emerald-500 rounded-full animate-pulse"></span>
+                    <p class="text-lg font-bold text-emerald-700 uppercase">Open until 18:00</p>
+                </div>
+                <p class="text-xs text-on-surface-variant mt-2 italic">Sat: 09:00 - 13:00 | Sun: Closed</p>
+            </div>
         </div>
     </section>
 
-    <div class="w-full px-6 md:px-20 py-12">
-        <div class="grid lg:grid-cols-12 gap-10">
-            
-            <div class="lg:col-span-8 space-y-10">
-                
-                <div class="content-box">
-                    <h2 class="text-3xl mb-8 border-b-2 border-primary/10 pb-4 italic">VILLAGE LIVE</h2>
-                    <div class="grid md:grid-cols-3 gap-6">
-                        <div class="p-6 bg-slate-50 border border-slate-200 rounded-2xl text-center">
-                            <span class="material-symbols-outlined text-primary mb-2">water_drop</span>
-                            <p class="text-[10px] font-black text-slate-400 uppercase">Ponds Access</p>
-                            <p class="text-xl font-black uppercase text-emerald-600">OPEN</p>
-                            <p class="text-[9px] text-slate-400 mt-2">Manual check: Sat 28 Mar</p>
-                        </div>
-                        <div class="p-6 bg-slate-50 border border-slate-200 rounded-2xl text-center">
-                            <span class="material-symbols-outlined text-primary mb-2">delete</span>
-                            <p class="text-[10px] font-black text-slate-400 uppercase">Bin Collection</p>
-                            <p class="text-xl font-black uppercase">RECYCLING</p>
-                            <p class="text-[9px] text-slate-400 mt-2">This Wednesday</p>
-                        </div>
-                        <div class="p-6 bg-slate-50 border border-slate-200 rounded-2xl text-center">
-                            <span class="material-symbols-outlined text-primary mb-2">local_pharmacy</span>
-                            <p class="text-[10px] font-black text-slate-400 uppercase">Pharmacy</p>
-                            <p class="text-xl font-black uppercase">CYMMER: OPEN</p>
-                            <p class="text-[9px] text-slate-400 mt-2">Closes 6:00 PM</p>
-                        </div>
+    <section class="mb-20 grid lg:grid-cols-12 gap-10">
+        <div class="lg:col-span-8">
+            <h2 class="text-3xl font-headline font-bold text-secondary mb-10 italic underline decoration-primary decoration-4 underline-offset-8">COMMUNITY NOTICE BOARD</h2>
+            <div class="space-y-4">
+                <div class="bg-white p-6 border-l-8 border-primary rounded-xl shadow-sm flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+                    <div>
+                        <span class="text-[10px] font-black bg-primary/10 text-primary px-3 py-1 rounded-full uppercase">Job Opportunity</span>
+                        <h4 class="text-xl font-bold mt-2 uppercase">Part-Time Bar Staff - Glyncorrwg Social Club</h4>
+                        <p class="text-on-surface-variant text-sm mt-1 font-medium">Evening and weekend shifts available. Local residents preferred.</p>
                     </div>
+                    <button class="bg-secondary text-white px-6 py-2 rounded-lg font-bold text-xs uppercase hover:bg-primary transition-all shrink-0">Apply Now</button>
                 </div>
 
-                <div class="grid md:grid-cols-2 gap-6">
-                    <div class="content-box hover:border-primary transition-colors cursor-pointer" onclick="window.location.href='/trades'">
-                        <span class="red-pill">Directory</span>
-                        <h3 class="text-2xl mt-4 mb-2 italic">LOCAL SERVICES</h3>
-                        <p class="text-slate-500 text-sm mb-6">Find trusted plumbers, electricians, and tradesmen within Glyncorrwg.</p>
-                        <div class="bg-primary text-white font-bold py-3 rounded-xl text-center text-xs uppercase">Enter Directory</div>
+                <div class="bg-white p-6 border-l-8 border-slate-300 rounded-xl shadow-sm flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+                    <div>
+                        <span class="text-[10px] font-black bg-slate-100 text-slate-500 px-3 py-1 rounded-full uppercase">Lost Item</span>
+                        <h4 class="text-xl font-bold mt-2 uppercase">Missing: Ginger Cat (Bridge St Area)</h4>
+                        <p class="text-on-surface-variant text-sm mt-1 font-medium">Goes by the name 'Milo'. Please contact the Post Office if seen.</p>
                     </div>
+                    <button class="border-2 border-secondary text-secondary px-6 py-2 rounded-lg font-bold text-xs uppercase hover:bg-secondary hover:text-white transition-all shrink-0">Details</button>
+                </div>
 
-                    <div class="content-box hover:border-primary transition-colors cursor-pointer" onclick="window.location.href='/tourism'">
-                        <span class="red-pill">Tourism</span>
-                        <h3 class="text-2xl mt-4 mb-2 italic">VISITOR GUIDE</h3>
-                        <p class="text-slate-500 text-sm mb-6">Mountain bike trails, parking, and information for valley visitors.</p>
-                        <div class="bg-primary text-white font-bold py-3 rounded-xl text-center text-xs uppercase">View Trails</div>
+                <div class="bg-white p-6 border-l-8 border-amber-400 rounded-xl shadow-sm flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+                    <div>
+                        <span class="text-[10px] font-black bg-amber-100 text-amber-700 px-3 py-1 rounded-full uppercase">Volunteering</span>
+                        <h4 class="text-xl font-bold mt-2 uppercase">Litter Pick - Saturday 10am</h4>
+                        <p class="text-on-surface-variant text-sm mt-1 font-medium">Meeting at the car park. Bags and pickers provided. Tea/Coffee after!</p>
                     </div>
-                    
-                    <div class="content-box bg-secondary text-white md:col-span-2 relative overflow-hidden group">
-                        <span class="material-symbols-outlined absolute -right-4 -bottom-4 text-9xl opacity-10">campaign</span>
-                        <div class="relative z-10">
-                            <h3 class="text-3xl mb-2 italic">ADVERTISE HERE</h3>
-                            <p class="text-slate-300 font-medium mb-6">Reach 1,000+ local visitors every month. Just £10 per month.</p>
-                            <a href="mailto:ads@glyncorrwg.wales" class="inline-block bg-primary text-white px-8 py-3 rounded-xl font-bold uppercase text-xs">Book Your Space</a>
-                        </div>
-                    </div>
+                    <button class="bg-amber-400 text-amber-900 px-6 py-2 rounded-lg font-bold text-xs uppercase hover:scale-105 transition-all shrink-0">Join In</button>
                 </div>
             </div>
-
-            <div class="lg:col-span-4 space-y-10">
-                <div class="content-box bg-[#fffdf0] border-[#fbc02d]/30">
-                    <div class="flex items-center gap-2 mb-6 border-b border-black/5 pb-4">
-                        <span class="material-symbols-outlined text-amber-500">push_pin</span>
-                        <h2 class="text-2xl italic">NOTICE BOARD</h2>
-                    </div>
-                    
-                    <div class="space-y-6">
-                        <div class="border-b border-black/5 pb-4">
-                            <p class="text-[10px] font-black text-amber-600 uppercase">Lost & Found</p>
-                            <h4 class="font-bold text-lg leading-tight uppercase">Black Wallet Found</h4>
-                            <p class="text-xs text-slate-600 mt-2 italic">Found near the Ponds gate. Contact the Post Office to identify.</p>
-                        </div>
-
-                        <div class="border-b border-black/5 pb-4">
-                            <p class="text-[10px] font-black text-primary uppercase">Community Alert</p>
-                            <h4 class="font-bold text-lg leading-tight uppercase">Noddfa Coffee Morning</h4>
-                            <p class="text-xs text-slate-600 mt-2 italic">This Friday at 10am. Everyone welcome for cakes and chat.</p>
-                        </div>
-
-                        <button class="w-full py-4 border-2 border-dashed border-amber-300 text-amber-700 font-black uppercase text-xs rounded-xl hover:bg-amber-100 transition-colors">
-                            + Add a Notice
-                        </button>
-                    </div>
-                </div>
-
-                <div class="content-box bg-slate-900 text-white">
-                    <h2 class="text-xl italic mb-6">REPORT AN ISSUE</h2>
-                    <ul class="space-y-3">
-                        <li><a href="#" class="flex justify-between items-center bg-white/5 p-4 rounded-xl hover:bg-primary transition-all text-sm font-bold uppercase">Potholes <span class="material-symbols-outlined">chevron_right</span></a></li>
-                        <li><a href="#" class="flex justify-between items-center bg-white/5 p-4 rounded-xl hover:bg-primary transition-all text-sm font-bold uppercase">Fly-Tipping <span class="material-symbols-outlined">chevron_right</span></a></li>
-                        <li><a href="#" class="flex justify-between items-center bg-white/5 p-4 rounded-xl hover:bg-primary transition-all text-sm font-bold uppercase">Street Lights <span class="material-symbols-outlined">chevron_right</span></a></li>
-                    </ul>
-                </div>
-            </div>
-
         </div>
-    </div>
+
+        <div class="lg:col-span-4">
+            <div class="bg-secondary rounded-3xl p-8 text-white">
+                <h3 class="text-2xl font-black mb-6 uppercase italic">Quick Directory</h3>
+                <nav class="space-y-4">
+                    <a href="#" class="flex items-center gap-4 p-4 bg-white/5 rounded-xl hover:bg-white/10 transition-all border border-white/10 group">
+                        <span class="material-symbols-outlined text-primary group-hover:scale-110 transition-all">local_hospital</span>
+                        <span class="font-bold uppercase text-sm">Health Centre</span>
+                    </a>
+                    <a href="#" class="flex items-center gap-4 p-4 bg-white/5 rounded-xl hover:bg-white/10 transition-all border border-white/10 group">
+                        <span class="material-symbols-outlined text-primary group-hover:scale-110 transition-all">mail</span>
+                        <span class="font-bold uppercase text-sm">Post Office</span>
+                    </a>
+                    <a href="#" class="flex items-center gap-4 p-4 bg-white/5 rounded-xl hover:bg-white/10 transition-all border border-white/10 group">
+                        <span class="material-symbols-outlined text-primary group-hover:scale-110 transition-all">school</span>
+                        <span class="font-bold uppercase text-sm">Primary School</span>
+                    </a>
+                </nav>
+
+                <div class="mt-8 pt-8 border-t border-white/10">
+                    <p class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-4">Report an Issue</p>
+                    <div class="grid grid-cols-2 gap-2">
+                        <a href="#" class="bg-primary text-white p-3 rounded-xl text-[10px] font-black uppercase text-center hover:opacity-90">Potholes</a>
+                        <a href="#" class="bg-primary text-white p-3 rounded-xl text-[10px] font-black uppercase text-center hover:opacity-90">Fly-Tipping</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
 </main>
 
-<footer id="footer-placeholder">
-    <?php $footer_path = get_template_directory() . '/footer.html'; if (file_exists($footer_path)) echo file_get_contents($footer_path); ?>
+<footer class="w-full py-12 px-8 bg-secondary text-white font-body text-sm border-t border-white/10">
+    <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
+        <p class="text-slate-400 text-xs">© 2026 Noddfa Community Centre. Registered Charity.</p>
+        <div class="flex gap-6">
+            <a href="#" class="hover:text-primary transition-colors uppercase font-black text-[10px] tracking-widest">Privacy</a>
+            <a href="#" class="hover:text-primary transition-colors uppercase font-black text-[10px] tracking-widest">Accessibility</a>
+            <a href="#" class="hover:text-primary transition-colors uppercase font-black text-[10px] tracking-widest">Contact</a>
+        </div>
+    </div>
 </footer>
 
 <?php wp_footer(); ?>
