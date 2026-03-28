@@ -79,8 +79,21 @@
                 </header>
 
                 <div class="max-w-7xl w-full mx-auto px-6 py-16">
+                    
+                    <div class="w-full bg-secondary rounded-2xl p-6 mb-12 flex flex-col md:flex-row items-center justify-between gap-6 border-l-8 border-primary shadow-lg">
+                        <div class="flex items-center gap-5 text-white">
+                            <div class="w-14 h-14 bg-white/10 rounded-xl flex items-center justify-center">
+                                <span class="material-symbols-outlined text-3xl text-primary">campaign</span>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold">See something that needs fixing?</h3>
+                                <p class="text-white/70 text-sm">Report fly-tipping, potholes, or street lighting issues directly to the council.</p>
+                            </div>
+                        </div>
+                        <button class="bg-primary text-white px-8 py-3 rounded-xl font-black text-xs uppercase tracking-widest hover:bg-white hover:text-primary transition-all whitespace-nowrap">Report an Issue</button>
+                    </div>
+
                     <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 mb-16">
-                        
                         <div class="lg:col-span-8 space-y-16">
                             <section>
                                 <div class="flex items-center justify-between mb-8">
@@ -130,7 +143,7 @@
                                         View all <span class="material-symbols-outlined text-sm">arrow_forward</span>
                                     </a>
                                 </div>
-                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                                     <div class="bg-surface border border-outline p-6 rounded-xl shadow-sm hover:border-primary transition-all">
                                         <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center text-primary mb-4">
                                             <span class="material-symbols-outlined text-2xl">medical_services</span>
@@ -147,13 +160,21 @@
                                         <p class="text-on-surface-variant text-xs mb-4">Term dates and local school news.</p>
                                         <span class="text-primary text-[10px] font-black flex items-center gap-2 uppercase">Learn more <span class="material-symbols-outlined text-xs">arrow_forward</span></span>
                                     </div>
+                                    <div class="bg-surface border border-outline p-6 rounded-xl shadow-sm hover:border-primary transition-all">
+                                        <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center text-primary mb-4">
+                                            <span class="material-symbols-outlined text-2xl">local_post_office</span>
+                                        </div>
+                                        <h3 class="text-lg font-bold mb-2">Post Office</h3>
+                                        <p class="text-on-surface-variant text-xs mb-4">Located in the village shop. Collection times.</p>
+                                        <span class="text-primary text-[10px] font-black flex items-center gap-2 uppercase">Details <span class="material-symbols-outlined text-xs">arrow_forward</span></span>
+                                    </div>
                                 </div>
                             </section>
                         </div>
 
                         <aside class="lg:col-span-4 space-y-8">
                             <div class="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm">
-                                <h4 class="text-sm font-bold text-slate-400 mb-4">Local weather</h4>
+                                <h4 class="text-sm font-bold text-slate-400 mb-4 uppercase tracking-widest">Village Weather</h4>
                                 <div class="flex items-center gap-4 mb-4">
                                     <span class="material-symbols-outlined text-4xl text-primary">cloudy_snowing</span>
                                     <div>
@@ -161,6 +182,9 @@
                                         <div class="text-xs text-slate-500 font-medium">Glyncorrwg, Wales</div>
                                     </div>
                                 </div>
+                                <p class="text-xs text-on-surface-variant bg-background p-3 rounded-lg border border-outline">
+                                    Cloudy with light rain showers expected through the afternoon. Winds approx 12mph.
+                                </p>
                             </div>
 
                             <div class="bg-white border border-outline rounded-2xl p-6 shadow-sm">
