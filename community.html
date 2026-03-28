@@ -69,14 +69,14 @@
 
     <div class="relative z-10 text-center px-4">
         <h1 class="text-5xl md:text-6xl font-headline font-black text-white mb-4 tracking-tight">Community Hub</h1>
-        <p class="text-xl text-white/90 font-medium max-w-2xl mx-auto">Your village guide for services, transport, and local updates</p>
+        <p class="text-xl text-white/90 font-medium max-w-2xl mx-auto">Connecting Glyncorrwg through local services and live updates</p>
     </div>
 </header>
 
 <main class="max-w-7xl mx-auto px-6 py-16">
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
         
-        <div class="lg:col-span-8 space-y-20">
+        <div class="lg:col-span-8 space-y-16">
             
             <section>
                 <div class="flex items-center justify-between mb-8">
@@ -85,7 +85,8 @@
                         View All <span class="material-symbols-outlined text-sm">arrow_forward</span>
                     </a>
                 </div>
-                <div class="bg-white border border-outline rounded-2xl shadow-sm overflow-hidden flex flex-col md:flex-row">
+
+                <div class="bg-white border border-outline rounded-2xl shadow-sm overflow-hidden flex flex-col md:flex-row mb-6">
                     <div class="md:w-1/3 h-48 md:h-auto">
                         <img src="https://images.unsplash.com/photo-1543165365-072ca2031cba?q=80&w=1000" alt="Village Ponds" class="w-full h-full object-cover">
                     </div>
@@ -95,8 +96,25 @@
                             <span class="text-xs text-slate-400 font-medium">2 days ago</span>
                         </div>
                         <h4 class="font-bold text-xl mb-3">Village Ponds Clean Up</h4>
-                        <p class="text-on-surface-variant text-sm leading-relaxed mb-6">Join the local volunteer group this Saturday at 10:00 AM. We'll be meeting at the main ponds entrance for a general tidy-up. All tools and refreshments provided!</p>
+                        <p class="text-on-surface-variant text-sm leading-relaxed mb-6">Join the local volunteer group this Saturday at 10:00 AM. We'll be meeting at the main ponds entrance for a general tidy-up.</p>
                         <a href="#" class="text-primary font-bold text-xs flex items-center gap-2">Read full details <span class="material-symbols-outlined text-sm">arrow_forward</span></a>
+                    </div>
+                </div>
+
+                <div class="space-y-4">
+                    <div class="bg-surface border border-outline p-8 rounded-xl shadow-sm">
+                        <div class="flex justify-between items-start mb-2">
+                            <h4 class="font-bold text-lg">Noddfa Coffee Morning</h4>
+                            <span class="text-xs text-slate-400 font-medium">1 day ago</span>
+                        </div>
+                        <p class="text-on-surface-variant text-sm">Every Wednesday from 10:30 AM. Come along for a chat and a hot drink.</p>
+                    </div>
+                    <div class="bg-surface border border-outline p-8 rounded-xl shadow-sm">
+                        <div class="flex justify-between items-start mb-2">
+                            <h4 class="font-bold text-lg">Local Election Polling Info</h4>
+                            <span class="text-xs text-slate-400 font-medium">4 days ago</span>
+                        </div>
+                        <p class="text-on-surface-variant text-sm">The community hall will be used as a polling station this Thursday. Normal classes are suspended.</p>
                     </div>
                 </div>
             </section>
@@ -114,7 +132,7 @@
                             <span class="material-symbols-outlined text-2xl">medical_services</span>
                         </div>
                         <h3 class="text-lg font-bold mb-2">Doctors</h3>
-                        <p class="text-on-surface-variant text-xs mb-4">Glyncorrwg Health Centre hours and booking.</p>
+                        <p class="text-on-surface-variant text-xs mb-4">Health Centre hours and booking info.</p>
                         <span class="text-primary text-[10px] font-black uppercase flex items-center gap-2">View Info <span class="material-symbols-outlined text-xs">arrow_forward</span></span>
                     </div>
                     <div class="bg-surface border border-outline p-6 rounded-xl shadow-sm hover:border-primary transition-all">
@@ -155,28 +173,48 @@
             <div class="bg-secondary text-white rounded-2xl p-6 shadow-sm">
                 <h4 class="text-xs font-bold opacity-60 mb-6">Transport hub</h4>
                 <div class="space-y-6">
-                    <div>
-                        <div class="flex items-center justify-between text-[10px] uppercase font-black tracking-widest opacity-40 mb-2">
-                            <span>Bus Arrivals</span>
-                            <span class="material-symbols-outlined text-xs">directions_bus</span>
-                        </div>
-                        <div class="flex justify-between items-center border-b border-white/10 pb-2">
-                            <div class="text-sm font-bold">X3 - Port Talbot</div>
-                            <div class="text-primary-fixed font-black text-lg">12m</div>
-                        </div>
-                    </div>
                     <div class="space-y-4">
-                        <div class="flex items-center justify-between text-[10px] uppercase font-black tracking-widest opacity-40 mb-2">
+                        <div class="flex items-center justify-between text-[10px] uppercase font-black tracking-widest opacity-40">
                             <span>Rail Departures</span>
                             <span class="material-symbols-outlined text-xs">train</span>
                         </div>
-                        <div class="flex justify-between items-center border-b border-white/10 pb-2">
-                            <div class="text-xs font-bold">Port Talbot Parkway</div>
-                            <div class="text-xs font-black text-primary-fixed uppercase">On Time</div>
+                        <div class="border-b border-white/10 pb-3">
+                            <div class="text-xs font-bold mb-1 opacity-70">Port Talbot Parkway</div>
+                            <div class="flex justify-between items-center text-sm mb-1">
+                                <span>London Paddington</span>
+                                <span class="font-black text-primary-fixed">14:12</span>
+                            </div>
+                            <div class="flex justify-between items-center text-sm">
+                                <span>Swansea</span>
+                                <span class="font-black text-primary-fixed">14:28</span>
+                            </div>
                         </div>
-                        <div class="flex justify-between items-center">
-                            <div class="text-xs font-bold">Maesteg Station</div>
-                            <div class="text-xs font-black text-green-400 uppercase">On Time</div>
+                        <div class="pb-2">
+                            <div class="text-xs font-bold mb-1 opacity-70">Maesteg Station</div>
+                            <div class="flex justify-between items-center text-sm mb-1">
+                                <span>Cardiff Central</span>
+                                <span class="font-black text-green-400">14:05</span>
+                            </div>
+                            <div class="flex justify-between items-center text-sm">
+                                <span>Cardiff Central</span>
+                                <span class="font-black text-green-400">15:05</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="flex items-center justify-between text-[10px] uppercase font-black tracking-widest opacity-40 mb-3">
+                            <span>Village Buses</span>
+                            <span class="material-symbols-outlined text-xs">directions_bus</span>
+                        </div>
+                        <div class="space-y-2">
+                            <div class="flex justify-between items-center text-sm">
+                                <span>X3 - Port Talbot</span>
+                                <span class="font-black text-primary-fixed">12m</span>
+                            </div>
+                            <div class="flex justify-between items-center text-sm">
+                                <span>83 - Bridgend</span>
+                                <span class="font-black opacity-50">24m</span>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -197,7 +235,7 @@
         </aside>
     </div>
 
-    <section class="mt-20 pt-20 border-t border-slate-200">
+    <section class="mt-24">
         <div class="flex items-center justify-between mb-10">
             <h2 class="text-3xl font-headline font-bold text-secondary">Business Directory</h2>
             <a href="#" class="flex items-center gap-2 text-[#ae0000] font-bold text-sm hover:underline">
@@ -211,7 +249,7 @@
                     <span class="material-symbols-outlined text-2xl">restaurant</span>
                 </div>
                 <h3 class="font-bold mb-2">The Glyncorrwg Inn</h3>
-                <p class="text-on-surface-variant text-xs mb-4">Traditional pub serving local food and hosting events.</p>
+                <p class="text-on-surface-variant text-xs mb-4">Traditional pub serving local food and events.</p>
                 <span class="text-primary text-[10px] font-black flex items-center gap-2">Book Table <span class="material-symbols-outlined text-xs">arrow_forward</span></span>
             </div>
             <div class="bg-surface border border-outline p-6 rounded-xl shadow-sm hover:border-primary transition-all">
@@ -227,7 +265,7 @@
                     <span class="material-symbols-outlined text-2xl">store</span>
                 </div>
                 <h3 class="font-bold mb-2">Glyncorrwg Shop</h3>
-                <p class="text-on-surface-variant text-xs mb-4">Local convenience store and post office services.</p>
+                <p class="text-on-surface-variant text-xs mb-4">Convenience store and post office services.</p>
                 <span class="text-primary text-[10px] font-black flex items-center gap-2">Opening Times <span class="material-symbols-outlined text-xs">arrow_forward</span></span>
             </div>
             <div class="bg-slate-50 border border-dashed border-slate-300 p-6 rounded-xl flex flex-col items-center justify-center text-center">
