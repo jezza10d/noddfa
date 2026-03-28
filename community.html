@@ -68,6 +68,7 @@
                     <div class="absolute inset-0 bg-secondary/60 mix-blend-multiply"></div>
                     
                     <div class="relative z-10 text-center px-4">
+                        <span class="bg-primary text-white text-[10px] font-black px-4 py-1.5 rounded-full uppercase tracking-[0.2em] mb-4 inline-block shadow-lg">What's On</span>
                         <h1 class="text-5xl md:text-6xl font-headline font-black text-white mb-4 tracking-tight">Community Hub</h1>
                         <p class="text-xl text-white/90 font-medium max-w-2xl mx-auto">Connecting Glyncorrwg through local services and live updates</p>
                     </div>
@@ -280,6 +281,54 @@
                     </section>
 
                     <section class="mt-20">
+                        <div class="flex items-center justify-between mb-8">
+                            <div>
+                                <h2 class="text-3xl font-headline font-bold text-secondary">What's On</h2>
+                                <p class="text-on-surface-variant text-sm mt-1">Join us for activities and events this week</p>
+                            </div>
+                            <a href="#" class="flex items-center gap-2 text-primary font-bold text-sm hover:underline">
+                                View All Events <span class="material-symbols-outlined text-sm">arrow_forward</span>
+                            </a>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div class="bg-white border border-outline p-6 rounded-2xl shadow-sm hover:shadow-md transition-shadow">
+                                <div class="flex gap-4">
+                                    <div class="bg-primary text-white flex flex-col items-center justify-center rounded-xl p-3 min-w-[70px] h-[70px]">
+                                        <span class="text-lg font-black leading-none">24</span>
+                                        <span class="text-[10px] uppercase font-bold">Mar</span>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-bold text-lg text-secondary">Yoga in the Hall</h4>
+                                        <div class="flex items-center gap-2 text-xs text-on-surface-variant mt-1">
+                                            <span class="material-symbols-outlined text-sm">schedule</span> 18:00 - 19:30
+                                        </div>
+                                        <div class="flex items-center gap-2 text-xs text-on-surface-variant mt-1">
+                                            <span class="material-symbols-outlined text-sm">location_on</span> Main Hall
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="bg-white border border-outline p-6 rounded-2xl shadow-sm hover:shadow-md transition-shadow">
+                                <div class="flex gap-4">
+                                    <div class="bg-secondary text-white flex flex-col items-center justify-center rounded-xl p-3 min-w-[70px] h-[70px]">
+                                        <span class="text-lg font-black leading-none">26</span>
+                                        <span class="text-[10px] uppercase font-bold">Mar</span>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-bold text-lg text-secondary">Local History Talk</h4>
+                                        <div class="flex items-center gap-2 text-xs text-on-surface-variant mt-1">
+                                            <span class="material-symbols-outlined text-sm">schedule</span> 14:00 - 16:00
+                                        </div>
+                                        <div class="flex items-center gap-2 text-xs text-on-surface-variant mt-1">
+                                            <span class="material-symbols-outlined text-sm">location_on</span> Meeting Room 1
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="mt-20">
                         <div class="bg-surface-container rounded-3xl p-8 md:p-16 overflow-hidden relative">
                             <div class="relative z-10 grid md:grid-cols-2 gap-12 items-center">
                                 <div>
@@ -325,7 +374,6 @@
 
         async function loadSharedComponents() {
             try {
-                // Load Header
                 const hRes = await fetch(`${API_BASE}/noddfa/v1/header?v=${Date.now()}`);
                 if (hRes.ok) {
                     const data = await hRes.json();
@@ -333,7 +381,6 @@
                     initMobileMenu();
                     highlightActiveLink();
                 }
-                // Load Footer
                 const fRes = await fetch(`${API_BASE}/noddfa/v1/footer?v=${Date.now()}`);
                 if (fRes.ok) {
                     const data = await fRes.json();
@@ -358,7 +405,6 @@
             const path = window.location.pathname;
             document.querySelectorAll('.nav-link').forEach(link => {
                 const href = link.getAttribute('href');
-                // Check if current page is the Community/Hub page
                 if (path.includes('community') && href.includes('community')) {
                     link.classList.add('text-primary', 'font-semibold', 'border-b-2', 'border-primary');
                 }
