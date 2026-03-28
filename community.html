@@ -42,22 +42,6 @@
             -webkit-box-orient: vertical;  
             overflow: hidden;
         }
-        @media (max-width: 768px) {
-            #nav-menu.active-menu {
-                display: flex !important;
-                flex-direction: column !important;
-                gap: 1.5rem !important;
-                padding: 2rem !important;
-                align-items: flex-start !important;
-                position: absolute !important;
-                top: 72px !important;
-                left: 0 !important;
-                width: 100% !important;
-                background: white !important;
-                z-index: 50 !important;
-                box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-            }
-        }
     </style>
 </head>
 <body class="bg-background font-body text-on-background">
@@ -79,21 +63,8 @@
                 </header>
 
                 <div class="max-w-7xl w-full mx-auto px-6 py-16">
-                    
-                    <div class="w-full bg-secondary rounded-2xl p-6 mb-12 flex flex-col md:flex-row items-center justify-between gap-6 border-l-8 border-primary shadow-lg">
-                        <div class="flex items-center gap-5 text-white">
-                            <div class="w-14 h-14 bg-white/10 rounded-xl flex items-center justify-center">
-                                <span class="material-symbols-outlined text-3xl text-primary">campaign</span>
-                            </div>
-                            <div>
-                                <h3 class="text-xl font-bold">See something that needs fixing?</h3>
-                                <p class="text-white/70 text-sm">Report fly-tipping, potholes, or street lighting issues directly to the council.</p>
-                            </div>
-                        </div>
-                        <button class="bg-primary text-white px-8 py-3 rounded-xl font-black text-xs uppercase tracking-widest hover:bg-white hover:text-primary transition-all whitespace-nowrap">Report an Issue</button>
-                    </div>
-
                     <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 mb-16">
+                        
                         <div class="lg:col-span-8 space-y-16">
                             <section>
                                 <div class="flex items-center justify-between mb-8">
@@ -232,29 +203,9 @@
                                                 </div>
                                                 <span class="text-xs font-black text-primary">12m</span>
                                             </div>
-                                            <div class="flex justify-between items-center p-3 border border-outline rounded-xl opacity-60">
-                                                <div class="flex items-center gap-3">
-                                                    <span class="bg-slate-400 text-white text-[10px] font-black px-2 py-0.5 rounded">83</span>
-                                                    <span class="text-xs font-bold text-secondary">Bridgend</span>
-                                                </div>
-                                                <span class="text-xs font-black text-secondary">24m</span>
-                                            </div>
                                         </div>
                                     </div>
                                     <button class="w-full py-3 text-[10px] font-black text-primary border border-primary/20 rounded-xl hover:bg-primary/5 transition-all tracking-widest uppercase">Full timetable</button>
-                                </div>
-                            </div>
-
-                            <div class="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm">
-                                <h4 class="text-sm font-bold text-slate-400 mb-4 uppercase tracking-widest">Bin collection days</h4>
-                                <div class="flex items-center gap-4">
-                                    <div class="w-10 h-10 bg-slate-100 rounded-lg flex items-center justify-center text-secondary">
-                                        <span class="material-symbols-outlined">delete</span>
-                                    </div>
-                                    <div>
-                                        <div class="font-bold text-sm text-secondary">Next: Tuesday</div>
-                                        <div class="text-[10px] text-primary font-black uppercase">Recycling & food waste</div>
-                                    </div>
                                 </div>
                             </div>
                         </aside>
@@ -272,55 +223,24 @@
                                 </button>
                             </a>
                         </div>
-                        
                         <div id="events-feed-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                             <div class="col-span-3 py-20 text-center text-slate-500 italic">Checking for upcoming activities...</div>
                         </div>
                     </section>
 
-                    <section class="mt-24">
-                        <div class="flex items-center justify-between mb-10">
-                            <h2 class="text-3xl font-headline font-bold text-secondary">Business directory</h2>
-                            <a href="#" class="flex items-center gap-2 text-primary font-bold text-sm hover:underline">
-                                View all <span class="material-symbols-outlined text-sm">arrow_forward</span>
-                            </a>
-                        </div>
-                        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                            <div class="bg-surface border border-outline p-6 rounded-xl shadow-sm relative hover:border-primary transition-all">
-                                <span class="absolute top-4 right-4 bg-primary text-white text-[8px] font-black px-2 py-0.5 rounded uppercase">Sponsored</span>
-                                <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center text-primary mb-4">
-                                    <span class="material-symbols-outlined text-2xl">restaurant</span>
-                                </div>
-                                <h3 class="font-bold mb-2 text-secondary">The Glyncorrwg Inn</h3>
-                                <p class="text-on-surface-variant text-xs mb-4">Traditional pub serving local food and events.</p>
-                                <span class="text-primary text-[10px] font-black flex items-center gap-2 uppercase">Book table <span class="material-symbols-outlined text-xs">arrow_forward</span></span>
+                    <div class="w-full bg-secondary rounded-2xl p-6 mt-24 mb-12 flex flex-col md:flex-row items-center justify-between gap-6 border-l-8 border-primary shadow-lg">
+                        <div class="flex items-center gap-5 text-white">
+                            <div class="w-14 h-14 bg-white/10 rounded-xl flex items-center justify-center">
+                                <span class="material-symbols-outlined text-3xl text-primary">campaign</span>
                             </div>
-                            <div class="bg-surface border border-outline p-6 rounded-xl shadow-sm hover:border-primary transition-all">
-                                <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center text-primary mb-4">
-                                    <span class="material-symbols-outlined text-2xl">local_cafe</span>
-                                </div>
-                                <h3 class="font-bold mb-2 text-secondary">The Ponds Cafe</h3>
-                                <p class="text-on-surface-variant text-xs mb-4">Homemade cakes and hot drinks at the ponds.</p>
-                                <span class="text-primary text-[10px] font-black flex items-center gap-2 uppercase">View menu <span class="material-symbols-outlined text-xs">arrow_forward</span></span>
-                            </div>
-                            <div class="bg-surface border border-outline p-6 rounded-xl shadow-sm hover:border-primary transition-all">
-                                <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center text-primary mb-4">
-                                    <span class="material-symbols-outlined text-2xl">store</span>
-                                </div>
-                                <h3 class="font-bold mb-2 text-secondary">Glyncorrwg Shop</h3>
-                                <p class="text-on-surface-variant text-xs mb-4">Convenience store and post office services.</p>
-                                <span class="text-primary text-[10px] font-black flex items-center gap-2 uppercase">Opening times <span class="material-symbols-outlined text-xs">arrow_forward</span></span>
-                            </div>
-                            <div class="bg-slate-50 border border-dashed border-slate-300 p-6 rounded-xl flex flex-col items-center justify-center text-center">
-                                <div class="w-10 h-10 bg-white rounded-full flex items-center justify-center text-slate-300 mb-3 shadow-sm">
-                                    <span class="material-symbols-outlined text-xl">add_business</span>
-                                </div>
-                                <h3 class="text-sm font-bold text-slate-500 mb-1">Your business</h3>
-                                <p class="text-[10px] text-slate-400 mb-4 px-2">Advertise here to reach local residents.</p>
-                                <button class="bg-white border border-slate-200 text-slate-600 px-4 py-1.5 rounded-full text-[10px] font-bold hover:bg-slate-100 transition-colors uppercase">Enquire</button>
+                            <div>
+                                <h3 class="text-xl font-bold">Report It to NPT Council</h3>
+                                <p class="text-white/70 text-sm">See a pothole, fly-tipping, or street light issue? Report it directly to Neath Port Talbot Council.</p>
                             </div>
                         </div>
-                    </section>
+                        <button class="bg-primary text-white px-8 py-3 rounded-xl font-black text-xs uppercase tracking-widest hover:bg-white hover:text-primary transition-all whitespace-nowrap">Report to NPT</button>
+                    </div>
+
                 </div>
             </main>
 
@@ -337,7 +257,6 @@
                 if (hRes.ok) {
                     const data = await hRes.json();
                     document.getElementById('header-placeholder').innerHTML = data.html;
-                    initMobileMenu();
                 }
                 const fRes = await fetch(`${API_BASE}/noddfa/v1/footer?v=${Date.now()}`);
                 if (fRes.ok) {
@@ -392,18 +311,6 @@
                 }).join('');
             } catch (err) { 
                 container.innerHTML = `<div class="col-span-3 py-10 text-center text-slate-500 italic">Unable to load live activities.</div>`;
-            }
-        }
-
-        function initMobileMenu() {
-            const btn = document.getElementById('menu-toggle');
-            const nav = document.getElementById('nav-menu');
-            if (btn && nav) {
-                btn.onclick = (e) => {
-                    e.preventDefault();
-                    nav.classList.toggle('active-menu');
-                    nav.classList.toggle('hidden');
-                };
             }
         }
 
