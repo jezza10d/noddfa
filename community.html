@@ -63,11 +63,12 @@
             <header id="header-placeholder" class="min-h-[72px] relative z-50 bg-white"></header>
 
             <main class="flex flex-col items-center w-full">
-                <header class="relative w-full h-[350px] flex items-center justify-center overflow-hidden">
+                <header class="relative w-full h-[350px] flex items-center justify-center overflow-hidden text-center">
                     <img alt="Glyncorrwg scenery" class="absolute inset-0 w-full h-full object-cover" src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=2070"/>
                     <div class="absolute inset-0 bg-secondary/60 mix-blend-multiply"></div>
                     
-                    <div class="relative z-10 text-center px-4">
+                    <div class="relative z-10 px-4">
+                        <span class="bg-primary text-white text-[10px] md:text-xs font-black px-4 py-1.5 rounded-full uppercase tracking-[0.2em] mb-6 inline-block shadow-lg">What's On</span>
                         <h1 class="text-5xl md:text-6xl font-headline font-black text-white mb-4 tracking-tight">Community Hub</h1>
                         <p class="text-xl text-white/90 font-medium max-w-2xl mx-auto">Connecting Glyncorrwg through local services and live updates</p>
                     </div>
@@ -109,12 +110,54 @@
                                         </div>
                                         <p class="text-on-surface-variant text-sm">Every Wednesday from 10:30 AM. Come along for a chat and a hot drink with neighbors.</p>
                                     </div>
-                                    <div class="bg-surface border border-outline p-8 rounded-xl shadow-sm">
-                                        <div class="flex justify-between items-start mb-2">
-                                            <h4 class="font-bold text-lg">Local Election Polling Info</h4>
-                                            <span class="text-xs text-slate-400 font-medium">4 days ago</span>
+                                </div>
+                            </section>
+
+                            <section>
+                                <div class="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4">
+                                    <div>
+                                        <h2 class="text-3xl font-headline font-bold text-secondary">What's On</h2>
+                                        <p class="text-on-surface-variant text-sm mt-1">Join us for activities and events this week</p>
+                                    </div>
+                                    <a href="#" class="flex items-center gap-2 text-primary font-bold text-sm hover:underline">
+                                        View All Events <span class="material-symbols-outlined text-sm">arrow_forward</span>
+                                    </a>
+                                </div>
+
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                    <div class="bg-white border border-outline p-6 rounded-2xl shadow-sm hover:shadow-md transition-shadow">
+                                        <div class="flex gap-4">
+                                            <div class="bg-primary text-white flex flex-col items-center justify-center rounded-xl p-3 min-w-[70px] h-[70px]">
+                                                <span class="text-lg font-black leading-none">24</span>
+                                                <span class="text-[10px] uppercase font-bold">Mar</span>
+                                            </div>
+                                            <div>
+                                                <h4 class="font-bold text-lg text-secondary">Yoga in the Hall</h4>
+                                                <div class="flex items-center gap-2 text-xs text-on-surface-variant mt-1">
+                                                    <span class="material-symbols-outlined text-sm">schedule</span> 18:00 - 19:30
+                                                </div>
+                                                <div class="flex items-center gap-2 text-xs text-on-surface-variant mt-1">
+                                                    <span class="material-symbols-outlined text-sm">location_on</span> Main Hall
+                                                </div>
+                                            </div>
                                         </div>
-                                        <p class="text-on-surface-variant text-sm">The community hall will be used as a polling station this Thursday. Normal classes are suspended for the day.</p>
+                                    </div>
+                                    <div class="bg-white border border-outline p-6 rounded-2xl shadow-sm hover:shadow-md transition-shadow">
+                                        <div class="flex gap-4">
+                                            <div class="bg-secondary text-white flex flex-col items-center justify-center rounded-xl p-3 min-w-[70px] h-[70px]">
+                                                <span class="text-lg font-black leading-none">26</span>
+                                                <span class="text-[10px] uppercase font-bold">Mar</span>
+                                            </div>
+                                            <div>
+                                                <h4 class="font-bold text-lg text-secondary">Local History Talk</h4>
+                                                <div class="flex items-center gap-2 text-xs text-on-surface-variant mt-1">
+                                                    <span class="material-symbols-outlined text-sm">schedule</span> 14:00 - 16:00
+                                                </div>
+                                                <div class="flex items-center gap-2 text-xs text-on-surface-variant mt-1">
+                                                    <span class="material-symbols-outlined text-sm">location_on</span> Meeting Room 1
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </section>
@@ -133,7 +176,7 @@
                                         </div>
                                         <h3 class="text-lg font-bold mb-2">Doctors</h3>
                                         <p class="text-on-surface-variant text-xs mb-4">Health Centre hours and booking info.</p>
-                                        <span class="text-primary text-[10px] font-black uppercase flex items-center gap-2">View Info <span class="material-symbols-outlined text-xs">arrow_forward</span></span>
+                                        <span class="text-primary text-[10px] font-black uppercase flex items-center gap-2 cursor-pointer">View Info <span class="material-symbols-outlined text-xs">arrow_forward</span></span>
                                     </div>
                                     <div class="bg-surface border border-outline p-6 rounded-xl shadow-sm hover:border-primary transition-all">
                                         <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center text-primary mb-4">
@@ -141,7 +184,7 @@
                                         </div>
                                         <h3 class="text-lg font-bold mb-2">Primary School</h3>
                                         <p class="text-on-surface-variant text-xs mb-4">Term dates and local school news.</p>
-                                        <span class="text-primary text-[10px] font-black uppercase flex items-center gap-2">Learn More <span class="material-symbols-outlined text-xs">arrow_forward</span></span>
+                                        <span class="text-primary text-[10px] font-black uppercase flex items-center gap-2 cursor-pointer">Learn More <span class="material-symbols-outlined text-xs">arrow_forward</span></span>
                                     </div>
                                     <div class="bg-surface border border-outline p-6 rounded-xl shadow-sm hover:border-primary transition-all">
                                         <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center text-primary mb-4">
@@ -149,7 +192,7 @@
                                         </div>
                                         <h3 class="text-lg font-bold mb-2">Church</h3>
                                         <p class="text-on-surface-variant text-xs mb-4">St John the Baptist service times.</p>
-                                        <span class="text-primary text-[10px] font-black uppercase flex items-center gap-2">View Details <span class="material-symbols-outlined text-xs">arrow_forward</span></span>
+                                        <span class="text-primary text-[10px] font-black uppercase flex items-center gap-2 cursor-pointer">View Details <span class="material-symbols-outlined text-xs">arrow_forward</span></span>
                                     </div>
                                 </div>
                             </section>
@@ -165,70 +208,27 @@
                                         <div class="text-xs text-slate-500 font-medium">Glyncorrwg, Wales</div>
                                     </div>
                                 </div>
-                                <div class="border-t border-slate-100 pt-4">
-                                    <p class="text-[11px] text-slate-400 font-medium italic">Scattered showers expected throughout the afternoon with light winds.</p>
-                                </div>
                             </div>
 
                             <div class="bg-secondary text-white rounded-2xl p-6 shadow-sm">
                                 <h4 class="text-xs font-bold opacity-60 mb-6 uppercase tracking-widest">Transport hub</h4>
-                                <div class="space-y-6">
-                                    <div class="space-y-4">
-                                        <div class="flex items-center justify-between text-[10px] uppercase font-black tracking-widest opacity-40">
-                                            <span>Rail Departures</span>
-                                            <span class="material-symbols-outlined text-xs">train</span>
+                                <div class="space-y-6 text-sm">
+                                    <div class="border-b border-white/10 pb-3">
+                                        <div class="text-[11px] font-bold mb-1 opacity-70">Maesteg Station</div>
+                                        <div class="flex justify-between items-center mb-1">
+                                            <span>Cardiff Central</span>
+                                            <span class="font-black text-primary-fixed">14:05</span>
                                         </div>
-                                        <div class="border-b border-white/10 pb-3">
-                                            <div class="text-[11px] font-bold mb-1 opacity-70">Port Talbot Parkway</div>
-                                            <div class="flex justify-between items-center text-sm mb-1">
-                                                <span>London Paddington</span>
-                                                <span class="font-black text-primary-fixed">14:12</span>
-                                            </div>
-                                            <div class="flex justify-between items-center text-sm">
-                                                <span>Swansea</span>
-                                                <span class="font-black text-primary-fixed">14:28</span>
-                                            </div>
-                                        </div>
-                                        <div class="border-b border-white/10 pb-3">
-                                            <div class="text-[11px] font-bold mb-1 opacity-70">Maesteg Station</div>
-                                            <div class="flex justify-between items-center text-sm mb-1">
-                                                <span>Cardiff Central</span>
-                                                <span class="font-black text-green-400">14:05</span>
-                                            </div>
-                                            <div class="flex justify-between items-center text-sm">
-                                                <span>Cardiff Central</span>
-                                                <span class="font-black text-green-400">15:05</span>
-                                            </div>
+                                        <div class="flex justify-between items-center">
+                                            <span>Cardiff Central</span>
+                                            <span class="font-black text-primary-fixed">15:05</span>
                                         </div>
                                     </div>
-                                    <div>
-                                        <div class="flex items-center justify-between text-[10px] uppercase font-black tracking-widest opacity-40 mb-3">
-                                            <span>Village Buses</span>
-                                            <span class="material-symbols-outlined text-xs">directions_bus</span>
+                                    <div class="space-y-2">
+                                        <div class="flex justify-between items-center">
+                                            <span>X3 - Port Talbot</span>
+                                            <span class="font-black text-primary-fixed">12m</span>
                                         </div>
-                                        <div class="space-y-2">
-                                            <div class="flex justify-between items-center text-sm">
-                                                <span>X3 - Port Talbot</span>
-                                                <span class="font-black text-primary-fixed">12m</span>
-                                            </div>
-                                            <div class="flex justify-between items-center text-sm">
-                                                <span>83 - Bridgend</span>
-                                                <span class="font-black opacity-50">24m</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm">
-                                <h4 class="text-sm font-bold text-slate-400 mb-4">Bin collection days</h4>
-                                <div class="flex items-center gap-4">
-                                    <div class="w-10 h-10 bg-slate-100 rounded-lg flex items-center justify-center text-secondary">
-                                        <span class="material-symbols-outlined">delete</span>
-                                    </div>
-                                    <div>
-                                        <div class="font-bold text-sm">Next: Tuesday</div>
-                                        <div class="text-[10px] text-primary font-black uppercase">Recycling & Food Waste</div>
                                     </div>
                                 </div>
                             </div>
@@ -243,73 +243,15 @@
                             </a>
                         </div>
                         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                            <div class="bg-surface border border-outline p-6 rounded-xl shadow-sm relative hover:border-primary transition-all">
-                                <span class="absolute top-4 right-4 bg-primary text-white text-[8px] font-black px-2 py-0.5 rounded uppercase">Sponsored</span>
-                                <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center text-primary mb-4">
-                                    <span class="material-symbols-outlined text-2xl">restaurant</span>
-                                </div>
+                            <div class="bg-surface border border-outline p-6 rounded-xl shadow-sm hover:border-primary transition-all">
                                 <h3 class="font-bold mb-2">The Glyncorrwg Inn</h3>
-                                <p class="text-on-surface-variant text-xs mb-4">Traditional pub serving local food and events.</p>
-                                <span class="text-primary text-[10px] font-black flex items-center gap-2 uppercase">Book Table <span class="material-symbols-outlined text-xs">arrow_forward</span></span>
+                                <p class="text-on-surface-variant text-xs mb-4">Traditional pub serving local food.</p>
+                                <span class="text-primary text-[10px] font-black uppercase flex items-center gap-2">Book Table <span class="material-symbols-outlined text-xs">arrow_forward</span></span>
                             </div>
                             <div class="bg-surface border border-outline p-6 rounded-xl shadow-sm hover:border-primary transition-all">
-                                <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center text-primary mb-4">
-                                    <span class="material-symbols-outlined text-2xl">local_cafe</span>
-                                </div>
                                 <h3 class="font-bold mb-2">The Ponds Cafe</h3>
-                                <p class="text-on-surface-variant text-xs mb-4">Homemade cakes and hot drinks at the ponds.</p>
-                                <span class="text-primary text-[10px] font-black flex items-center gap-2 uppercase">View Menu <span class="material-symbols-outlined text-xs">arrow_forward</span></span>
-                            </div>
-                            <div class="bg-surface border border-outline p-6 rounded-xl shadow-sm hover:border-primary transition-all">
-                                <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center text-primary mb-4">
-                                    <span class="material-symbols-outlined text-2xl">store</span>
-                                </div>
-                                <h3 class="font-bold mb-2">Glyncorrwg Shop</h3>
-                                <p class="text-on-surface-variant text-xs mb-4">Convenience store and post office services.</p>
-                                <span class="text-primary text-[10px] font-black flex items-center gap-2 uppercase">Opening Times <span class="material-symbols-outlined text-xs">arrow_forward</span></span>
-                            </div>
-                            <div class="bg-slate-50 border border-dashed border-slate-300 p-6 rounded-xl flex flex-col items-center justify-center text-center">
-                                <div class="w-10 h-10 bg-white rounded-full flex items-center justify-center text-slate-300 mb-3 shadow-sm">
-                                    <span class="material-symbols-outlined text-xl">add_business</span>
-                                </div>
-                                <h3 class="text-sm font-bold text-slate-500 mb-1">Your Business</h3>
-                                <p class="text-[10px] text-slate-400 mb-4 px-2">Advertise here to reach local residents.</p>
-                                <button class="bg-white border border-slate-200 text-slate-600 px-4 py-1.5 rounded-full text-[10px] font-bold hover:bg-slate-100 transition-colors">Enquire</button>
-                            </div>
-                        </div>
-                    </section>
-
-                    <section class="mt-20">
-                        <div class="bg-surface-container rounded-3xl p-8 md:p-16 overflow-hidden relative">
-                            <div class="relative z-10 grid md:grid-cols-2 gap-12 items-center">
-                                <div>
-                                    <h2 class="text-4xl font-headline font-bold text-secondary mb-4">Report It Dashboard</h2>
-                                    <p class="text-on-surface-variant mb-10 max-w-md">Report issues directly to NPT Council via the links below.</p>
-                                    <div class="flex flex-wrap gap-3">
-                                        <a class="bg-white border border-outline hover:border-primary px-6 py-4 rounded-full flex items-center gap-3 font-bold text-xs uppercase text-secondary shadow-sm" href="#">
-                                            <span class="material-symbols-outlined text-primary">warning</span> Potholes
-                                        </a>
-                                        <a class="bg-white border border-outline hover:border-primary px-6 py-4 rounded-full flex items-center gap-3 font-bold text-xs uppercase text-secondary shadow-sm" href="#">
-                                            <span class="material-symbols-outlined text-primary">delete_outline</span> Fly-tipping
-                                        </a>
-                                        <a class="bg-white border border-outline hover:border-primary px-6 py-4 rounded-full flex items-center gap-3 font-bold text-xs uppercase text-secondary shadow-sm" href="#">
-                                            <span class="material-symbols-outlined text-primary">light_off</span> Street Lighting
-                                        </a>
-                                        <a class="bg-white border border-outline hover:border-primary px-6 py-4 rounded-full flex items-center gap-3 font-bold text-xs uppercase text-secondary shadow-sm" href="#">
-                                            <span class="material-symbols-outlined text-primary">pets</span> Dog Fouling
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="grid grid-cols-2 gap-4">
-                                    <div class="bg-white p-8 rounded-2xl shadow-sm text-center">
-                                        <div class="text-5xl font-black text-primary mb-2">24h</div>
-                                        <div class="text-xs uppercase tracking-wider text-on-surface-variant font-bold">NPT Goal</div>
-                                    </div>
-                                    <div class="bg-white p-8 rounded-2xl shadow-sm text-center">
-                                        <div class="text-5xl font-black text-secondary mb-2">Direct</div>
-                                        <div class="text-xs uppercase tracking-wider text-on-surface-variant font-bold">To Council</div>
-                                    </div>
-                                </div>
+                                <p class="text-on-surface-variant text-xs mb-4">Homemade cakes and hot drinks.</p>
+                                <span class="text-primary text-[10px] font-black uppercase flex items-center gap-2">View Menu <span class="material-symbols-outlined text-xs">arrow_forward</span></span>
                             </div>
                         </div>
                     </section>
@@ -325,7 +267,6 @@
 
         async function loadSharedComponents() {
             try {
-                // Load Header
                 const hRes = await fetch(`${API_BASE}/noddfa/v1/header?v=${Date.now()}`);
                 if (hRes.ok) {
                     const data = await hRes.json();
@@ -333,7 +274,6 @@
                     initMobileMenu();
                     highlightActiveLink();
                 }
-                // Load Footer
                 const fRes = await fetch(`${API_BASE}/noddfa/v1/footer?v=${Date.now()}`);
                 if (fRes.ok) {
                     const data = await fRes.json();
@@ -358,7 +298,6 @@
             const path = window.location.pathname;
             document.querySelectorAll('.nav-link').forEach(link => {
                 const href = link.getAttribute('href');
-                // Check if current page is the Community/Hub page
                 if (path.includes('community') && href.includes('community')) {
                     link.classList.add('text-primary', 'font-semibold', 'border-b-2', 'border-primary');
                 }
