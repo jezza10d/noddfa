@@ -36,7 +36,12 @@
             font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
             display: inline-block;
         }
-
+        .line-clamp-2 {
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;  
+            overflow: hidden;
+        }
         @media (max-width: 768px) {
             #nav-menu.active-menu {
                 display: flex !important;
@@ -66,19 +71,17 @@
                 <header class="relative w-full h-[350px] flex items-center justify-center overflow-hidden">
                     <img alt="Glyncorrwg scenery" class="absolute inset-0 w-full h-full object-cover" src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=2070"/>
                     <div class="absolute inset-0 bg-secondary/60 mix-blend-multiply"></div>
-                    
                     <div class="relative z-10 text-center px-4">
-                        <span class="bg-primary text-white text-[10px] font-black px-4 py-1.5 rounded-full mb-4 inline-block shadow-lg">What's on</span>
+                        <span class="bg-primary text-white text-[10px] font-black px-4 py-1.5 rounded-full mb-4 inline-block shadow-lg uppercase tracking-widest">Community Hub</span>
                         <h1 class="text-5xl md:text-6xl font-headline font-black text-white mb-4 tracking-tight">Community Hub</h1>
                         <p class="text-xl text-white/90 font-medium max-w-2xl mx-auto">Connecting Glyncorrwg through local services and live updates</p>
                     </div>
                 </header>
 
                 <div class="max-w-7xl w-full mx-auto px-6 py-16">
-                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 mb-24">
                         
                         <div class="lg:col-span-8 space-y-16">
-                            
                             <section>
                                 <div class="flex items-center justify-between mb-8">
                                     <h2 class="text-3xl font-headline font-bold text-secondary">Noticeboard</h2>
@@ -101,73 +104,6 @@
                                         <a href="#" class="text-primary font-bold text-xs flex items-center gap-2">Read full details <span class="material-symbols-outlined text-sm">arrow_forward</span></a>
                                     </div>
                                 </div>
-
-                                <div class="space-y-4">
-                                    <div class="bg-surface border border-outline p-8 rounded-xl shadow-sm">
-                                        <div class="flex justify-between items-start mb-2">
-                                            <h4 class="font-bold text-lg">Noddfa Coffee Morning</h4>
-                                            <span class="text-xs text-slate-400 font-medium">1 day ago</span>
-                                        </div>
-                                        <p class="text-on-surface-variant text-sm">Every Wednesday from 10:30 AM. Come along for a chat and a hot drink with neighbors.</p>
-                                    </div>
-                                    <div class="bg-surface border border-outline p-8 rounded-xl shadow-sm">
-                                        <div class="flex justify-between items-start mb-2">
-                                            <h4 class="font-bold text-lg">Local Election Polling Info</h4>
-                                            <span class="text-xs text-slate-400 font-medium">4 days ago</span>
-                                        </div>
-                                        <p class="text-on-surface-variant text-sm">The community hall will be used as a polling station this Thursday. Normal classes are suspended for the day.</p>
-                                    </div>
-                                </div>
-                            </section>
-
-                            <section>
-                                <div class="flex items-center justify-between mb-8">
-                                    <h2 class="text-3xl font-headline font-bold text-secondary">What's on</h2>
-                                    <a href="#" class="flex items-center gap-2 text-primary font-bold text-sm hover:underline">
-                                        View all <span class="material-symbols-outlined text-sm">arrow_forward</span>
-                                    </a>
-                                </div>
-                                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                                    <div class="bg-surface border border-outline p-6 rounded-xl shadow-sm hover:border-primary transition-all">
-                                        <div class="flex items-center gap-4 mb-4">
-                                            <div class="bg-primary/10 text-primary font-bold px-3 py-1 rounded-lg text-center">
-                                                <div class="text-xs uppercase">Mon</div>
-                                                <div class="text-xl">30</div>
-                                            </div>
-                                            <h3 class="text-lg font-bold">Post Office</h3>
-                                        </div>
-                                        <p class="text-on-surface-variant text-xs mb-4">Essential postal services available in the center foyer.</p>
-                                        <div class="flex items-center gap-2 text-primary text-[10px] font-black uppercase">
-                                            <span class="material-symbols-outlined text-xs">schedule</span> 1:30 PM - 3:30 PM
-                                        </div>
-                                    </div>
-                                    <div class="bg-surface border border-outline p-6 rounded-xl shadow-sm hover:border-primary transition-all">
-                                        <div class="flex items-center gap-4 mb-4">
-                                            <div class="bg-primary/10 text-primary font-bold px-3 py-1 rounded-lg text-center">
-                                                <div class="text-xs uppercase">Tue</div>
-                                                <div class="text-xl">31</div>
-                                            </div>
-                                            <h3 class="text-lg font-bold">Library & PCSO</h3>
-                                        </div>
-                                        <p class="text-on-surface-variant text-xs mb-4">Community library open + PCSO surgery for local advice.</p>
-                                        <div class="flex items-center gap-2 text-primary text-[10px] font-black uppercase">
-                                            <span class="material-symbols-outlined text-xs">schedule</span> 10:00 AM - 12:00 PM
-                                        </div>
-                                    </div>
-                                    <div class="bg-surface border border-outline p-6 rounded-xl shadow-sm hover:border-primary transition-all">
-                                        <div class="flex items-center gap-4 mb-4">
-                                            <div class="bg-primary/10 text-primary font-bold px-3 py-1 rounded-lg text-center">
-                                                <div class="text-xs uppercase">Apr</div>
-                                                <div class="text-xl">02</div>
-                                            </div>
-                                            <h3 class="text-lg font-bold">Knit & Natter</h3>
-                                        </div>
-                                        <p class="text-on-surface-variant text-xs mb-4">Bring your projects for a social crafting afternoon.</p>
-                                        <div class="flex items-center gap-2 text-primary text-[10px] font-black uppercase">
-                                            <span class="material-symbols-outlined text-xs">schedule</span> 1:00 PM - 3:00 PM
-                                        </div>
-                                    </div>
-                                </div>
                             </section>
 
                             <section>
@@ -177,14 +113,14 @@
                                         View all <span class="material-symbols-outlined text-sm">arrow_forward</span>
                                     </a>
                                 </div>
-                                <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6">
+                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
                                     <div class="bg-surface border border-outline p-6 rounded-xl shadow-sm hover:border-primary transition-all">
                                         <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center text-primary mb-4">
                                             <span class="material-symbols-outlined text-2xl">medical_services</span>
                                         </div>
                                         <h3 class="text-lg font-bold mb-2">Doctors</h3>
                                         <p class="text-on-surface-variant text-xs mb-4">Health Centre hours and booking info.</p>
-                                        <span class="text-primary text-[10px] font-black flex items-center gap-2">View info <span class="material-symbols-outlined text-xs">arrow_forward</span></span>
+                                        <span class="text-primary text-[10px] font-black flex items-center gap-2 uppercase">View info <span class="material-symbols-outlined text-xs">arrow_forward</span></span>
                                     </div>
                                     <div class="bg-surface border border-outline p-6 rounded-xl shadow-sm hover:border-primary transition-all">
                                         <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center text-primary mb-4">
@@ -192,15 +128,7 @@
                                         </div>
                                         <h3 class="text-lg font-bold mb-2">Primary School</h3>
                                         <p class="text-on-surface-variant text-xs mb-4">Term dates and local school news.</p>
-                                        <span class="text-primary text-[10px] font-black flex items-center gap-2">Learn more <span class="material-symbols-outlined text-xs">arrow_forward</span></span>
-                                    </div>
-                                    <div class="bg-surface border border-outline p-6 rounded-xl shadow-sm hover:border-primary transition-all">
-                                        <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center text-primary mb-4">
-                                            <span class="material-symbols-outlined text-2xl">church</span>
-                                        </div>
-                                        <h3 class="text-lg font-bold mb-2">Church</h3>
-                                        <p class="text-on-surface-variant text-xs mb-4">St John the Baptist service times.</p>
-                                        <span class="text-primary text-[10px] font-black flex items-center gap-2">View details <span class="material-symbols-outlined text-xs">arrow_forward</span></span>
+                                        <span class="text-primary text-[10px] font-black flex items-center gap-2 uppercase">Learn more <span class="material-symbols-outlined text-xs">arrow_forward</span></span>
                                     </div>
                                 </div>
                             </section>
@@ -216,9 +144,6 @@
                                         <div class="text-xs text-slate-500 font-medium">Glyncorrwg, Wales</div>
                                     </div>
                                 </div>
-                                <div class="border-t border-slate-100 pt-4">
-                                    <p class="text-[11px] text-slate-400 font-medium italic">Scattered showers expected throughout the afternoon with light winds.</p>
-                                </div>
                             </div>
 
                             <div class="bg-white border border-outline rounded-2xl p-6 shadow-sm">
@@ -226,27 +151,27 @@
                                     <div class="w-8 h-8 bg-primary/10 rounded-lg flex items-center justify-center text-primary">
                                         <span class="material-symbols-outlined text-lg">directions_bus</span>
                                     </div>
-                                    <h4 class="text-sm font-black text-secondary tracking-widest">Transport hub</h4>
+                                    <h4 class="text-sm font-black text-secondary tracking-widest uppercase">Transport hub</h4>
                                 </div>
                                 
                                 <div class="space-y-6">
                                     <div class="space-y-3">
                                         <div class="flex items-center justify-between text-[10px] font-black tracking-widest text-slate-400">
-                                            <span>Rail departures</span>
+                                            <span>RAIL DEPARTURES</span>
                                             <span class="material-symbols-outlined text-xs">train</span>
                                         </div>
                                         <div class="bg-background rounded-xl p-4 space-y-3">
                                             <div class="border-b border-slate-200/50 pb-2">
                                                 <div class="text-[10px] font-bold text-slate-400 mb-1">Port Talbot Parkway</div>
-                                                <div class="flex justify-between items-center text-sm font-medium">
-                                                    <span class="text-black">London Paddington</span>
+                                                <div class="flex justify-between items-center text-sm font-medium text-secondary">
+                                                    <span>London Paddington</span>
                                                     <span class="font-black text-primary">14:12</span>
                                                 </div>
                                             </div>
                                             <div>
                                                 <div class="text-[10px] font-bold text-slate-400 mb-1">Maesteg Station</div>
-                                                <div class="flex justify-between items-center text-sm font-medium">
-                                                    <span class="text-black">Cardiff Central</span>
+                                                <div class="flex justify-between items-center text-sm font-medium text-secondary">
+                                                    <span>Cardiff Central</span>
                                                     <span class="font-black text-primary">15:05</span>
                                                 </div>
                                             </div>
@@ -255,11 +180,11 @@
 
                                     <div class="space-y-3">
                                         <div class="flex items-center justify-between text-[10px] font-black tracking-widest text-slate-400">
-                                            <span>Village buses</span>
+                                            <span>VILLAGE BUSES</span>
                                             <span class="material-symbols-outlined text-xs">sensors</span>
                                         </div>
                                         <div class="space-y-2">
-                                            <div class="flex justify-between items-center p-3 border border-outline rounded-xl hover:border-primary transition-colors group">
+                                            <div class="flex justify-between items-center p-3 border border-outline rounded-xl hover:border-primary transition-colors">
                                                 <div class="flex items-center gap-3">
                                                     <span class="bg-primary text-white text-[10px] font-black px-2 py-0.5 rounded">X3</span>
                                                     <span class="text-xs font-bold text-secondary">Port Talbot</span>
@@ -271,31 +196,46 @@
                                                     <span class="bg-slate-400 text-white text-[10px] font-black px-2 py-0.5 rounded">83</span>
                                                     <span class="text-xs font-bold text-secondary">Bridgend</span>
                                                 </div>
-                                                <span class="text-xs font-black text-black">24m</span>
+                                                <span class="text-xs font-black text-secondary">24m</span>
                                             </div>
                                         </div>
                                     </div>
-                                    
-                                    <button class="w-full py-3 text-[10px] font-black text-primary border border-primary/20 rounded-xl hover:bg-primary/5 transition-all tracking-widest uppercase">
-                                        Full timetable
-                                    </button>
+                                    <button class="w-full py-3 text-[10px] font-black text-primary border border-primary/20 rounded-xl hover:bg-primary/5 transition-all tracking-widest uppercase">Full timetable</button>
                                 </div>
                             </div>
 
                             <div class="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm">
-                                <h4 class="text-sm font-bold text-slate-400 mb-4">Bin collection days</h4>
+                                <h4 class="text-sm font-bold text-slate-400 mb-4 uppercase tracking-widest">Bin collection days</h4>
                                 <div class="flex items-center gap-4">
                                     <div class="w-10 h-10 bg-slate-100 rounded-lg flex items-center justify-center text-secondary">
                                         <span class="material-symbols-outlined">delete</span>
                                     </div>
                                     <div>
-                                        <div class="font-bold text-sm">Next: Tuesday</div>
-                                        <div class="text-[10px] text-primary font-black">Recycling & food waste</div>
+                                        <div class="font-bold text-sm text-secondary">Next: Tuesday</div>
+                                        <div class="text-[10px] text-primary font-black uppercase">Recycling & food waste</div>
                                     </div>
                                 </div>
                             </div>
                         </aside>
                     </div>
+
+                    <section class="mt-24 w-full">
+                        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-10">
+                            <div>
+                                <h2 class="text-slate-900 text-3xl font-bold">What's On</h2>
+                                <p class="text-slate-500 mt-2">Join us for activities and events this week</p>
+                            </div>
+                            <a href="/events" class="self-start md:self-auto">
+                                <button class="flex items-center gap-2 text-primary font-bold hover:underline">
+                                    View All Events <span class="material-symbols-outlined">arrow_forward</span>
+                                </button>
+                            </a>
+                        </div>
+                        
+                        <div id="events-feed-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                            <div class="col-span-3 py-20 text-center text-slate-500 italic">Checking for upcoming activities...</div>
+                        </div>
+                    </section>
 
                     <section class="mt-24">
                         <div class="flex items-center justify-between mb-10">
@@ -306,29 +246,29 @@
                         </div>
                         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
                             <div class="bg-surface border border-outline p-6 rounded-xl shadow-sm relative hover:border-primary transition-all">
-                                <span class="absolute top-4 right-4 bg-primary text-white text-[8px] font-black px-2 py-0.5 rounded">Sponsored</span>
+                                <span class="absolute top-4 right-4 bg-primary text-white text-[8px] font-black px-2 py-0.5 rounded uppercase">Sponsored</span>
                                 <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center text-primary mb-4">
                                     <span class="material-symbols-outlined text-2xl">restaurant</span>
                                 </div>
-                                <h3 class="font-bold mb-2">The Glyncorrwg Inn</h3>
+                                <h3 class="font-bold mb-2 text-secondary">The Glyncorrwg Inn</h3>
                                 <p class="text-on-surface-variant text-xs mb-4">Traditional pub serving local food and events.</p>
-                                <span class="text-primary text-[10px] font-black flex items-center gap-2">Book table <span class="material-symbols-outlined text-xs">arrow_forward</span></span>
+                                <span class="text-primary text-[10px] font-black flex items-center gap-2 uppercase">Book table <span class="material-symbols-outlined text-xs">arrow_forward</span></span>
                             </div>
                             <div class="bg-surface border border-outline p-6 rounded-xl shadow-sm hover:border-primary transition-all">
                                 <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center text-primary mb-4">
                                     <span class="material-symbols-outlined text-2xl">local_cafe</span>
                                 </div>
-                                <h3 class="font-bold mb-2">The Ponds Cafe</h3>
+                                <h3 class="font-bold mb-2 text-secondary">The Ponds Cafe</h3>
                                 <p class="text-on-surface-variant text-xs mb-4">Homemade cakes and hot drinks at the ponds.</p>
-                                <span class="text-primary text-[10px] font-black flex items-center gap-2">View menu <span class="material-symbols-outlined text-xs">arrow_forward</span></span>
+                                <span class="text-primary text-[10px] font-black flex items-center gap-2 uppercase">View menu <span class="material-symbols-outlined text-xs">arrow_forward</span></span>
                             </div>
                             <div class="bg-surface border border-outline p-6 rounded-xl shadow-sm hover:border-primary transition-all">
                                 <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center text-primary mb-4">
                                     <span class="material-symbols-outlined text-2xl">store</span>
                                 </div>
-                                <h3 class="font-bold mb-2">Glyncorrwg Shop</h3>
+                                <h3 class="font-bold mb-2 text-secondary">Glyncorrwg Shop</h3>
                                 <p class="text-on-surface-variant text-xs mb-4">Convenience store and post office services.</p>
-                                <span class="text-primary text-[10px] font-black flex items-center gap-2">Opening times <span class="material-symbols-outlined text-xs">arrow_forward</span></span>
+                                <span class="text-primary text-[10px] font-black flex items-center gap-2 uppercase">Opening times <span class="material-symbols-outlined text-xs">arrow_forward</span></span>
                             </div>
                             <div class="bg-slate-50 border border-dashed border-slate-300 p-6 rounded-xl flex flex-col items-center justify-center text-center">
                                 <div class="w-10 h-10 bg-white rounded-full flex items-center justify-center text-slate-300 mb-3 shadow-sm">
@@ -336,42 +276,7 @@
                                 </div>
                                 <h3 class="text-sm font-bold text-slate-500 mb-1">Your business</h3>
                                 <p class="text-[10px] text-slate-400 mb-4 px-2">Advertise here to reach local residents.</p>
-                                <button class="bg-white border border-slate-200 text-slate-600 px-4 py-1.5 rounded-full text-[10px] font-bold hover:bg-slate-100 transition-colors">Enquire</button>
-                            </div>
-                        </div>
-                    </section>
-
-                    <section class="mt-20">
-                        <div class="bg-surface-container rounded-3xl p-8 md:p-16 overflow-hidden relative">
-                            <div class="relative z-10 grid md:grid-cols-2 gap-12 items-center">
-                                <div>
-                                    <h2 class="text-4xl font-headline font-bold text-secondary mb-4">Report it dashboard</h2>
-                                    <p class="text-on-surface-variant mb-10 max-w-md">Report issues directly to NPT Council via the links below.</p>
-                                    <div class="flex flex-wrap gap-3">
-                                        <a class="bg-white border border-outline hover:border-primary px-6 py-4 rounded-full flex items-center gap-3 font-bold text-xs text-secondary shadow-sm" href="#">
-                                            <span class="material-symbols-outlined text-primary">warning</span> Potholes
-                                        </a>
-                                        <a class="bg-white border border-outline hover:border-primary px-6 py-4 rounded-full flex items-center gap-3 font-bold text-xs text-secondary shadow-sm" href="#">
-                                            <span class="material-symbols-outlined text-primary">delete_outline</span> Fly-tipping
-                                        </a>
-                                        <a class="bg-white border border-outline hover:border-primary px-6 py-4 rounded-full flex items-center gap-3 font-bold text-xs text-secondary shadow-sm" href="#">
-                                            <span class="material-symbols-outlined text-primary">light_off</span> Street lighting
-                                        </a>
-                                        <a class="bg-white border border-outline hover:border-primary px-6 py-4 rounded-full flex items-center gap-3 font-bold text-xs text-secondary shadow-sm" href="#">
-                                            <span class="material-symbols-outlined text-primary">pets</span> Dog fouling
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="grid grid-cols-2 gap-4">
-                                    <div class="bg-white p-8 rounded-2xl shadow-sm text-center">
-                                        <div class="text-5xl font-black text-primary mb-2">24h</div>
-                                        <div class="text-xs tracking-wider text-on-surface-variant font-bold">NPT goal</div>
-                                    </div>
-                                    <div class="bg-white p-8 rounded-2xl shadow-sm text-center">
-                                        <div class="text-5xl font-black text-secondary mb-2">Direct</div>
-                                        <div class="text-xs tracking-wider text-on-surface-variant font-bold">To council</div>
-                                    </div>
-                                </div>
+                                <button class="bg-white border border-slate-200 text-slate-600 px-4 py-1.5 rounded-full text-[10px] font-bold hover:bg-slate-100 transition-colors uppercase">Enquire</button>
                             </div>
                         </div>
                     </section>
@@ -392,7 +297,6 @@
                     const data = await hRes.json();
                     document.getElementById('header-placeholder').innerHTML = data.html;
                     initMobileMenu();
-                    highlightActiveLink();
                 }
                 const fRes = await fetch(`${API_BASE}/noddfa/v1/footer?v=${Date.now()}`);
                 if (fRes.ok) {
@@ -400,6 +304,54 @@
                     document.getElementById('footer-placeholder').innerHTML = data.html;
                 }
             } catch (e) { console.error("Loader error", e); }
+        }
+
+        async function loadLiveEvents() {
+            const container = document.getElementById('events-feed-container');
+            try {
+                const response = await fetch(`${API_BASE}/wp/v2/events-api?per_page=3&scope=future&v=${Date.now()}`);
+                if (!response.ok) throw new Error(`HTTP Error: ${response.status}`);
+                const events = await response.json();
+                
+                if (!events || events.length === 0) {
+                    container.innerHTML = `<div class="col-span-3 py-10 text-center text-slate-500 italic">No upcoming activities scheduled right now.</div>`;
+                    return;
+                }
+
+                container.innerHTML = events.map(event => {
+                    const img = event.event_image_url || 'https://images.unsplash.com/photo-1517457373958-b7bdd4587205?q=80&w=2069';
+                    let eventDateStr = "Coming Soon";
+                    if (event.event_date) {
+                        const d = new Date(event.event_date);
+                        eventDateStr = d.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: '2-digit' });
+                    }
+
+                    let rawText = event.content?.rendered || event.excerpt?.rendered || "";
+                    let cleanText = rawText.replace(/<[^>]*>?/gm, '');
+                    const shortDesc = cleanText.split(/\s+/).slice(0, 20).join(' ') + '...';
+                    let eventLink = event.link.replace('https://noddfa-j3nkslkrxc.live-website.com', 'https://glyncorrwg.wales');
+                    
+                    return `
+                        <div onclick="window.location.href='${eventLink}'" class="cursor-pointer bg-white border border-primary/5 rounded-xl overflow-hidden hover:shadow-lg transition-shadow flex flex-col h-full">
+                            <div class="h-48 bg-cover bg-center" style="background-image: url('${img}');"></div>
+                            <div class="p-6 flex flex-col flex-1">
+                                <h3 class="text-xl font-bold mb-2 text-slate-900">${event.title.rendered}</h3>
+                                <div class="flex items-center gap-2 text-primary text-sm font-bold mb-4">
+                                    <span class="material-symbols-outlined text-base">calendar_today</span>
+                                    <span>${eventDateStr}</span>
+                                </div>
+                                <p class="text-slate-600 text-sm mb-6 line-clamp-2">${shortDesc}</p>
+                                <div class="mt-auto">
+                                    <div class="w-full bg-primary text-white font-bold py-3 rounded-lg flex items-center justify-center gap-2 hover:bg-primary/90 transition-colors">
+                                        More Info <span class="material-symbols-outlined text-sm">arrow_forward</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>`;
+                }).join('');
+            } catch (err) { 
+                container.innerHTML = `<div class="col-span-3 py-10 text-center text-slate-500 italic">Unable to load live activities.</div>`;
+            }
         }
 
         function initMobileMenu() {
@@ -414,17 +366,10 @@
             }
         }
 
-        function highlightActiveLink() {
-            const path = window.location.pathname;
-            document.querySelectorAll('.nav-link').forEach(link => {
-                const href = link.getAttribute('href');
-                if (path.includes('community') && href.includes('community')) {
-                    link.classList.add('text-primary', 'font-semibold', 'border-b-2', 'border-primary');
-                }
-            });
-        }
-
-        document.addEventListener('DOMContentLoaded', loadSharedComponents);
+        document.addEventListener('DOMContentLoaded', () => {
+            loadSharedComponents();
+            loadLiveEvents();
+        });
     </script>
 </body>
 </html>
