@@ -135,6 +135,11 @@
 </div>
 
 <script>
+    // CHECK LOGIN STATUS IMMEDIATELY
+    if (localStorage.getItem('noddfa_token')) {
+        window.location.href = '/portal';
+    }
+
     const API_BASE = 'https://noddfa-j3nkslkrxc.live-website.com/wp-json/';
 
     // 1. View Toggler
@@ -176,7 +181,6 @@
         const el = document.getElementById('status-msg');
         if(!el) return;
         el.innerText = msg;
-        // Removed 'border-l-4' for background-only look
         el.className = `mb-6 p-4 rounded-lg text-sm font-medium ${isError ? 'bg-red-50 text-red-700' : 'bg-green-50 text-green-700'}`;
         el.classList.remove('hidden');
     }
@@ -202,7 +206,6 @@
             const data = await res.json();
             
             if(res.ok) {
-                // Remember Me Logic
                 if(document.getElementById('remember-me').checked) {
                     localStorage.setItem('noddfa_remembered_user', username);
                 } else {
@@ -297,11 +300,12 @@
 
     // 4. Initial Load
     async function loadComponents() {
-        // Pre-fill remembered user
         const remembered = localStorage.getItem('noddfa_remembered_user');
         if(remembered) {
-            document.getElementById('login-user').value = remembered;
-            document.getElementById('remember-me').checked = true;
+            const userField = document.getElementById('login-user');
+            const rememberCheck = document.getElementById('remember-me');
+            if(userField) userField.value = remembered;
+            if(rememberCheck) rememberCheck.checked = true;
         }
 
         const params = new URLSearchParams(window.location.search);
