@@ -158,15 +158,18 @@
             const res = await fetch(`${API_BASE}/jwt-auth/v1/token`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ username: e.target[0].value, password: e.target[1].value })
+                body: JSON.stringify({ 
+                    username: document.getElementById('login-user').value, 
+                    password: document.getElementById('login-pass').value 
+                })
             });
             const data = await res.json();
             if(res.ok) {
                 localStorage.setItem('noddfa_token', data.token);
                 localStorage.setItem('noddfa_user_display_name', data.user_display_name);
                 window.location.href = '/portal';
-            } else { showStatus(data.message || "Invalid credentials"); }
-        } catch (err) { showStatus("Connection error. Try again later."); }
+            } else { showStatus(data.message || "Invalid credentials. Please try again."); }
+        } catch (err) { showStatus("Connection error to WordPress. Please check your internet."); }
         btn.disabled = false; btn.querySelector('.btn-loader').classList.add('hidden');
     };
 
@@ -177,7 +180,7 @@
         btn.disabled = true; btn.querySelector('.btn-loader').classList.remove('hidden');
 
         try {
-            const res = await fetch(`${API_BASE}/noddfa/v1/register`, { // Custom endpoint required in WP
+            const res = await fetch(`${API_BASE}/noddfa/v1/register`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
@@ -189,10 +192,10 @@
             });
             const data = await res.json();
             if(res.ok) {
-                showStatus("Account created! You can now sign in.", false);
+                showStatus("Account created successfully! You can now sign in.", false);
                 switchView('login');
-            } else { showStatus(data.message || "Registration failed"); }
-        } catch (err) { showStatus("Connection error."); }
+            } else { showStatus(data.message || "Registration failed. Email may already be in use."); }
+        } catch (err) { showStatus("Connection error. Could not reach server."); }
         btn.disabled = false; btn.querySelector('.btn-loader').classList.add('hidden');
     };
 
@@ -203,18 +206,22 @@
         btn.disabled = true; btn.querySelector('.btn-loader').classList.remove('hidden');
 
         try {
-            const res = await fetch(`${API_BASE}/bdpwr/v1/reset-password`, { // Requires 'BD Password Reset' plugin or similar
+            const res = await fetch(`${API_BASE}/noddfa/v1/reset-password`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ email: document.getElementById('forgot-email').value })
             });
-            if(res.ok) { showStatus("Reset link sent! Check your inbox.", false); }
-            else { showStatus("User not found."); }
-        } catch (err) { showStatus("Connection error."); }
+            const data = await res.json();
+            if(res.ok) { 
+                showStatus("Check your inbox! We've sent a reset link to that email address.", false); 
+            } else { 
+                showStatus(data.message || "We couldn't find an account with that email."); 
+            }
+        } catch (err) { showStatus("Connection error. Please try again later."); }
         btn.disabled = false; btn.querySelector('.btn-loader').classList.add('hidden');
     };
 
-    // 4. Shared Components
+    // 4. Load Site Header/Footer
     async function loadComponents() {
         const [h, f] = await Promise.all([
             fetch(`${API_BASE}/noddfa/v1/header?v=${Date.now()}`),
