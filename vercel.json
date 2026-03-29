@@ -11,6 +11,14 @@
       "destination": "https://noddfa-j3nkslkrxc.live-website.com/community/noticeboard/:path*/"
     },
     {
+      "source": "/community/directory",
+      "destination": "https://noddfa-j3nkslkrxc.live-website.com/community/directory/"
+    },
+    {
+      "source": "/community/directory/:path*",
+      "destination": "https://noddfa-j3nkslkrxc.live-website.com/community/directory/:path*/"
+    },
+    {
       "source": "/events/:path*",
       "destination": "https://noddfa-j3nkslkrxc.live-website.com/events/:path*/"
     },
