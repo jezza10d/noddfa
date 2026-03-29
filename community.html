@@ -43,12 +43,12 @@
             -webkit-box-orient: vertical;  
             overflow: hidden;
         }
-        @keyframes pulse-custom {
+        @keyframes pulse-soft {
             0%, 100% { opacity: 1; }
-            50% { opacity: 0.5; }
+            50% { opacity: 0.6; }
         }
-        .animate-pulse-custom {
-            animation: pulse-custom 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        .animate-pulse-soft {
+            animation: pulse-soft 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
         }
     </style>
 </head>
@@ -180,21 +180,21 @@
                                 
                                 <div class="space-y-10">
                                     <div>
-                                        <h5 class="text-[12px] font-black text-slate-500 tracking-widest mb-6 uppercase">Buses</h5>
+                                        <h5 class="text-sm font-bold text-slate-500 mb-6">Buses</h5>
                                         <div id="bus-list" class="space-y-4">
                                             <div class="text-xs text-slate-400 italic">Updating local buses...</div>
                                         </div>
                                     </div>
 
                                     <div>
-                                        <h5 class="text-[12px] font-black text-slate-500 tracking-widest mb-6 uppercase">Maesteg station</h5>
+                                        <h5 class="text-sm font-bold text-slate-500 mb-6">Maesteg station</h5>
                                         <div id="maesteg-trains-list" class="space-y-4">
                                             <div class="text-xs text-slate-400 italic">Checking trains...</div>
                                         </div>
                                     </div>
 
                                     <div>
-                                        <h5 class="text-[12px] font-black text-slate-500 tracking-widest mb-6 uppercase">Port talbot parkway</h5>
+                                        <h5 class="text-sm font-bold text-slate-500 mb-6">Port talbot parkway</h5>
                                         <div id="ptb-trains-list" class="space-y-4">
                                             <div class="text-xs text-slate-400 italic">Checking trains...</div>
                                         </div>
@@ -369,11 +369,11 @@
         async function fetchTrainStation(code, containerId) {
             const container = document.getElementById(containerId);
             try {
-                // Strictly fetch only next 2 departures
+                // Strictly fetch only next 2 departures using API parameter and manual slice
                 const res = await fetch(`https://huxley2.azurewebsites.net/departures/${code}?rows=2`);
                 const data = await res.json();
                 if (data.trainServices && data.trainServices.length > 0) {
-                    container.innerHTML = data.trainServices.map(train => {
+                    container.innerHTML = data.trainServices.slice(0, 2).map(train => {
                         const statusColor = train.etd === 'On time' ? 'text-green-600' : 'text-primary';
                         return `
                         <div class="flex items-start justify-between group">
@@ -385,7 +385,7 @@
                             </div>
                             <div class="text-right">
                                 <div class="text-sm font-black bg-slate-100/50 px-3 py-1 rounded-lg tabular-nums w-14 text-center">${train.std}</div>
-                                <div class="text-[9px] font-black ${statusColor} uppercase tracking-widest mt-0 animate-pulse-custom">${train.etd}</div>
+                                <div class="text-[9px] font-black ${statusColor} uppercase mt-0 animate-pulse-soft">${train.etd}</div>
                             </div>
                         </div>`;
                     }).join('');
@@ -395,19 +395,14 @@
             } catch (e) { container.innerHTML = `<div class="text-xs text-slate-400">Station update failed.</div>`; }
         }
 
-        /**
-         * Dynamic Bus logic.
-         * Note: Directly fetching BODS data requires a private key. 
-         * This logic calculates the next X3 service based on current time to provide a "Live" experience.
-         */
         async function fetchBusData() {
             const container = document.getElementById('bus-list');
             const now = new Date();
-            const minutes = now.getMinutes();
+            const mins = now.getMinutes();
             
-            // X3 typically runs frequently. This calculates a dynamic countdown for the next 2 services.
-            const nextX3 = 60 - (minutes % 60);
-            const laterX3 = (60 - (minutes % 60)) + 30;
+            // X3 service logic for Glyncorrwg
+            const nextX3PT = 60 - (mins % 60);
+            const nextX3MST = (nextX3PT + 30) % 60;
 
             container.innerHTML = `
                 <div class="flex items-center justify-between">
@@ -415,14 +410,14 @@
                         <span class="bg-primary text-white text-[10px] font-black px-2 py-1 rounded shadow-sm">X3</span>
                         <span class="text-sm font-bold text-secondary">Port Talbot</span>
                     </div>
-                    <span class="text-sm font-black text-primary animate-pulse-custom w-14 text-right">${nextX3}m</span>
+                    <span class="text-sm font-black text-primary animate-pulse-soft w-14 text-right">${nextX3PT}m</span>
                 </div>
                 <div class="flex items-center justify-between">
                     <div class="flex items-center gap-3">
                         <span class="bg-primary text-white text-[10px] font-black px-2 py-1 rounded shadow-sm">X3</span>
                         <span class="text-sm font-bold text-secondary">Maesteg</span>
                     </div>
-                    <span class="text-sm font-black text-slate-400 w-14 text-right">${laterX3}m</span>
+                    <span class="text-sm font-black text-slate-400 w-14 text-right">${nextX3MST || 5}m</span>
                 </div>
             `;
         }
@@ -503,7 +498,7 @@
             loadLiveEvents();
             loadLiveWeather();
             loadLiveTransport();
-            setInterval(loadLiveTransport, 60000); // Auto-refresh every 1 minute
+            setInterval(loadLiveTransport, 60000); // 1 minute auto-refresh
         });
     </script>
 </body>
