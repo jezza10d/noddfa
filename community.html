@@ -51,7 +51,6 @@
             animation: pulse-soft 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
         }
 
-        /* Mobile Menu Support from Contact Page */
         @media (max-width: 768px) {
             #nav-menu.active-menu {
                 display: flex !important;
@@ -92,11 +91,12 @@
                     <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 mb-16">
                         
                         <div class="lg:col-span-8 space-y-16">
+                            
                             <section>
                                 <div class="mb-8">
                                     <div class="flex items-center justify-between mb-6">
                                         <h2 class="text-3xl font-headline font-bold text-secondary">Noticeboard</h2>
-                                        <a href="#" class="flex items-center gap-2 text-primary font-bold text-sm hover:underline">
+                                        <a href="/noticeboard" class="flex items-center gap-2 text-primary font-bold text-sm hover:underline">
                                             View all <span class="material-symbols-outlined text-sm">arrow_forward</span>
                                         </a>
                                     </div>
@@ -129,22 +129,12 @@
                                         </div>
                                         <p class="text-on-surface-variant text-sm">Every Wednesday from 10:30 AM. Come along for a chat and a hot drink with neighbors.</p>
                                     </div>
-                                    <div class="bg-surface border border-outline p-8 rounded-xl shadow-sm hover:border-primary/50 transition-all">
-                                        <div class="flex justify-between items-start mb-2">
-                                            <h4 class="font-bold text-lg text-secondary">Local Election Polling Info</h4>
-                                            <span class="text-xs text-slate-400 font-medium">4 days ago</span>
-                                        </div>
-                                        <p class="text-on-surface-variant text-sm">The community hall will be used as a polling station this Thursday. Normal classes are suspended for the day.</p>
-                                    </div>
                                 </div>
                             </section>
 
                             <section>
                                 <div class="flex items-center justify-between mb-8">
-                                    <h2 class="text-3xl font-headline font-bold text-secondary">Local services</h2>
-                                    <a href="#" class="flex items-center gap-2 text-primary font-bold text-sm hover:underline">
-                                        View all <span class="material-symbols-outlined text-sm">arrow_forward</span>
-                                    </a>
+                                    <h2 class="text-3xl font-headline font-bold text-secondary">Local Services</h2>
                                 </div>
                                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                                     <div class="bg-surface border border-outline p-6 rounded-xl shadow-sm hover:border-primary transition-all">
@@ -168,8 +158,37 @@
                                             <span class="material-symbols-outlined text-2xl">local_post_office</span>
                                         </div>
                                         <h3 class="text-lg font-bold mb-2">Post Office</h3>
-                                        <p class="text-on-surface-variant text-xs mb-4">Located in the village shop. Collection times.</p>
+                                        <p class="text-on-surface-variant text-xs mb-4">Located in the village shop.</p>
                                         <span class="text-primary text-[10px] font-black flex items-center gap-2 uppercase">Details <span class="material-symbols-outlined text-xs">arrow_forward</span></span>
+                                    </div>
+                                </div>
+                            </section>
+
+                            <section>
+                                <div class="flex items-center justify-between mb-8">
+                                    <h2 class="text-3xl font-headline font-bold text-secondary">Business Directory</h2>
+                                    <a href="/directory" class="flex items-center gap-2 text-primary font-bold text-sm hover:underline">
+                                        View all <span class="material-symbols-outlined text-sm">arrow_forward</span>
+                                    </a>
+                                </div>
+                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                                    <div class="flex items-center gap-4 bg-white p-4 rounded-xl border border-outline hover:border-primary/30 transition-all">
+                                        <div class="w-16 h-16 bg-slate-100 rounded-lg overflow-hidden flex-shrink-0">
+                                            <img src="https://images.unsplash.com/photo-1556742044-3c52d6e88c62?q=80&w=150" alt="Shop" class="w-full h-full object-cover">
+                                        </div>
+                                        <div>
+                                            <h4 class="font-bold text-secondary">Village General Store</h4>
+                                            <p class="text-xs text-on-surface-variant">Daily essentials & local produce</p>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-center gap-4 bg-white p-4 rounded-xl border border-outline hover:border-primary/30 transition-all">
+                                        <div class="w-16 h-16 bg-slate-100 rounded-lg overflow-hidden flex-shrink-0">
+                                            <img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?q=80&w=150" alt="Cafe" class="w-full h-full object-cover">
+                                        </div>
+                                        <div>
+                                            <h4 class="font-bold text-secondary">The Valley Cafe</h4>
+                                            <p class="text-xs text-on-surface-variant">Hot meals, coffee & cakes</p>
+                                        </div>
                                     </div>
                                 </div>
                             </section>
@@ -185,9 +204,7 @@
                                         <div class="text-xs text-slate-500 font-medium">Glyncorrwg, Wales</div>
                                     </div>
                                 </div>
-                                <p id="weather-desc" class="text-sm text-on-surface-variant leading-relaxed">
-                                    Loading live forecast...
-                                </p>
+                                <p id="weather-desc" class="text-sm text-on-surface-variant leading-relaxed">Loading live forecast...</p>
                             </div>
 
                             <div class="bg-white border border-slate-200 rounded-2xl p-8 shadow-sm">
@@ -195,7 +212,6 @@
                                     <span class="material-symbols-outlined text-2xl">departure_board</span>
                                     Transport
                                 </h4>
-                                
                                 <div class="space-y-10">
                                     <div>
                                         <h5 class="text-sm font-bold text-slate-500 mb-6">Buses</h5>
@@ -203,17 +219,9 @@
                                             <div class="text-xs text-slate-400 italic">Updating local buses...</div>
                                         </div>
                                     </div>
-
                                     <div>
                                         <h5 class="text-sm font-bold text-slate-500 mb-6">Maesteg station</h5>
                                         <div id="maesteg-trains-list" class="space-y-4">
-                                            <div class="text-xs text-slate-400 italic">Checking trains...</div>
-                                        </div>
-                                    </div>
-
-                                    <div>
-                                        <h5 class="text-sm font-bold text-slate-500 mb-6">Port talbot parkway</h5>
-                                        <div id="ptb-trains-list" class="space-y-4">
                                             <div class="text-xs text-slate-400 italic">Checking trains...</div>
                                         </div>
                                     </div>
@@ -256,19 +264,13 @@
                         <div class="flex items-center justify-between mb-8">
                             <div>
                                 <h2 class="text-3xl font-headline font-bold text-secondary">Village Map</h2>
-                                <p class="text-on-surface-variant mt-2">Locate essential services and explore walking routes around Glyncorrwg.</p>
+                                <p class="text-on-surface-variant mt-2">Locate essential services around Glyncorrwg.</p>
                             </div>
                         </div>
                         <div class="bg-white rounded-3xl p-2 border border-outline shadow-xl overflow-hidden aspect-video relative">
                             <iframe 
-                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d9916.35759160566!2d-3.619047112817383!3d51.6617!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x486e5c946f04746f%3A0x8683e97022d4f29!2sGlyncorrwg!5e0!3m2!1sen!2suk!4v1709400000000!5m2!1sen!2suk" 
-                                width="100%" 
-                                height="100%" 
-                                style="border:0;" 
-                                allowfullscreen="" 
-                                loading="lazy" 
-                                referrerpolicy="no-referrer-when-downgrade"
-                                class="rounded-[2rem]">
+                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d19853.48866386341!2d-3.6122!3d51.6617!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x486e6807d722c363%3A0x892994d5d36e7888!2sGlyncorrwg!5e0!3m2!1sen!2suk!4v1710000000000!5m2!1sen!2suk" 
+                                width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" class="rounded-[2rem]">
                             </iframe>
                         </div>
                     </section>
@@ -299,7 +301,6 @@
             } catch (e) { console.error("Loader error", e); }
         }
 
-        // Mobile Menu Functions Integrated from Contact Page
         function initMobileMenu() {
             const toggleBtn = document.getElementById('menu-toggle');
             const navMenu = document.getElementById('nav-menu');
@@ -326,33 +327,26 @@
         async function fetchTrainStation(code, containerId) {
             const container = document.getElementById(containerId);
             try {
-                const res = await fetch(`https://huxley2.azurewebsites.net/departures/${code}?rows=10`);
+                const res = await fetch(`https://huxley2.azurewebsites.net/departures/${code}?rows=2`);
                 const data = await res.json();
                 if (data.trainServices && data.trainServices.length > 0) {
-                    const sortedServices = data.trainServices
-                        .sort((a, b) => a.std.localeCompare(b.std))
-                        .slice(0, 2);
-
-                    container.innerHTML = sortedServices.map(train => {
+                    container.innerHTML = data.trainServices.map(train => {
                         const statusColor = train.etd === 'On time' ? 'text-green-600' : 'text-primary';
                         return `
-                        <div class="flex items-start justify-between group">
+                        <div class="flex items-start justify-between">
                             <div class="flex items-center gap-3 mt-1">
-                                <svg width="18" height="12" viewBox="0 0 46 32" fill="none">
-                                    <path d="M31.2 0L37.5 6.4L18.7 25.2H46V32H13.6L20 25.6L38.8 6.8H11.5L5.1 0.4L0 5.5L0 0H31.2ZM14.8 32L8.5 25.6L27.3 6.8H0V0H32.4L26 6.4L7.2 25.2H34.5L40.9 31.6L46 26.5V32H14.8Z" fill="#ae0000"/>
-                                </svg>
                                 <span class="text-sm font-bold text-secondary truncate max-w-[120px]">${train.destination[0].locationName}</span>
                             </div>
                             <div class="text-right">
-                                <div class="text-sm font-black bg-slate-100/50 px-3 py-1 rounded-lg tabular-nums w-14 text-center">${train.std}</div>
-                                <div class="text-[9px] font-black ${statusColor} uppercase mt-0 animate-pulse-soft">${train.etd}</div>
+                                <div class="text-sm font-black bg-slate-100/50 px-3 py-1 rounded-lg tabular-nums">${train.std}</div>
+                                <div class="text-[9px] font-black ${statusColor} uppercase animate-pulse-soft">${train.etd}</div>
                             </div>
                         </div>`;
                     }).join('');
                 } else {
                     container.innerHTML = `<div class="text-xs text-slate-400">No services scheduled.</div>`;
                 }
-            } catch (e) { container.innerHTML = `<div class="text-xs text-slate-400">Station update failed.</div>`; }
+            } catch (e) { container.innerHTML = `<div class="text-xs text-slate-400">Update failed.</div>`; }
         }
 
         async function fetchBusData() {
@@ -360,95 +354,60 @@
             const now = new Date();
             const mins = now.getMinutes();
             const ptTime = 60 - (mins % 60);
-            const mstTime = (ptTime + 30) % 60;
-
-            const buses = [
-                { route: 'X3', dest: 'Port Talbot', time: ptTime },
-                { route: 'X3', dest: 'Maesteg', time: mstTime || 5 }
-            ].sort((a, b) => a.time - b.time);
-
-            container.innerHTML = buses.map(bus => `
+            container.innerHTML = `
                 <div class="flex items-center justify-between">
                     <div class="flex items-center gap-3">
-                        <span class="bg-primary text-white text-[10px] font-black px-2 py-1 rounded shadow-sm">${bus.route}</span>
-                        <span class="text-sm font-bold text-secondary">${bus.dest}</span>
+                        <span class="bg-primary text-white text-[10px] font-black px-2 py-1 rounded">X3</span>
+                        <span class="text-sm font-bold text-secondary">Port Talbot</span>
                     </div>
-                    <span class="text-sm font-black ${bus.time <= 15 ? 'text-primary animate-pulse-soft' : 'text-slate-400'} w-14 text-right">${bus.time}m</span>
-                </div>
-            `).join('');
-        }
-
-        async function loadLiveTransport() {
-            fetchTrainStation('MST', 'maesteg-trains-list');
-            fetchTrainStation('PTB', 'ptb-trains-list');
-            fetchBusData();
+                    <span class="text-sm font-black text-primary animate-pulse-soft w-14 text-right">${ptTime}m</span>
+                </div>`;
         }
 
         async function loadLiveWeather() {
             try {
-                const lat = 51.6617; const lon = -3.6122;
-                const res = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current_weather=true`);
+                const res = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=51.6617&longitude=-3.6122&current_weather=true`);
                 const data = await res.json();
                 if (data.current_weather) {
                     const temp = Math.round(data.current_weather.temperature);
-                    const code = data.current_weather.weathercode;
                     document.getElementById('weather-temp').innerText = `${temp}°C`;
-                    let desc = "fair conditions"; let icon = "sunny";
-                    if (code >= 1 && code <= 3) { desc = "partly cloudy skies"; icon = "cloud"; }
-                    else if (code >= 51) { desc = "light rain likely"; icon = "rainy"; }
-                    else if (code >= 71) { desc = "snow showers"; icon = "ac_unit"; }
-                    document.getElementById('weather-desc').innerText = `It is currently ${temp}°C with ${desc} in Glyncorrwg.`;
-                    document.getElementById('weather-icon').innerText = icon;
+                    document.getElementById('weather-desc').innerText = `It is currently ${temp}°C with fair conditions in Glyncorrwg.`;
                 }
-            } catch (e) { document.getElementById('weather-desc').innerText = "Forecast temporarily unavailable."; }
+            } catch (e) { document.getElementById('weather-desc').innerText = "Weather unavailable."; }
         }
 
         async function loadLiveEvents() {
             const container = document.getElementById('events-feed-container');
             try {
-                const response = await fetch(`${API_BASE}/wp/v2/events-api?per_page=3&scope=future&v=${Date.now()}`);
+                const response = await fetch(`${API_BASE}/wp/v2/events-api?per_page=3&scope=future`);
                 const events = await response.json();
                 if (!events || events.length === 0) {
-                    container.innerHTML = `<div class="col-span-3 py-10 text-center text-slate-500 italic">No upcoming activities scheduled right now.</div>`;
+                    container.innerHTML = `<div class="col-span-3 py-10 text-center text-slate-500 italic">No upcoming activities scheduled.</div>`;
                     return;
                 }
-                container.innerHTML = events.map(event => {
-                    const img = event.event_image_url || 'https://images.unsplash.com/photo-1517457373958-b7bdd4587205?q=80&w=2069';
-                    let eventDateStr = "Coming Soon";
-                    if (event.event_date) {
-                        const d = new Date(event.event_date);
-                        eventDateStr = d.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: '2-digit' });
-                    }
-                    let rawText = event.content?.rendered || event.excerpt?.rendered || "";
-                    let cleanText = rawText.replace(/<[^>]*>?/gm, '');
-                    const shortDesc = cleanText.split(/\s+/).slice(0, 20).join(' ') + '...';
-                    return `
-                        <div onclick="window.location.href='${event.link}'" class="cursor-pointer bg-white border border-primary/5 rounded-xl overflow-hidden hover:shadow-lg transition-shadow flex flex-col h-full">
-                            <div class="h-48 bg-cover bg-center" style="background-image: url('${img}');"></div>
-                            <div class="p-6 flex flex-col flex-1">
-                                <h3 class="text-xl font-bold mb-2 text-slate-900">${event.title.rendered}</h3>
-                                <div class="flex items-center gap-2 text-primary text-sm font-bold mb-4">
-                                    <span class="material-symbols-outlined text-base">calendar_today</span>
-                                    <span>${eventDateStr}</span>
-                                </div>
-                                <p class="text-slate-600 text-sm mb-6 line-clamp-2">${shortDesc}</p>
-                                <div class="mt-auto">
-                                    <div class="w-full bg-primary text-white font-bold py-3 rounded-lg flex items-center justify-center gap-2 hover:bg-primary/90 transition-colors">
-                                        More Info <span class="material-symbols-outlined text-sm">arrow_forward</span>
-                                    </div>
-                                </div>
+                container.innerHTML = events.map(event => `
+                    <div onclick="window.location.href='${event.link}'" class="cursor-pointer bg-white border border-primary/5 rounded-xl overflow-hidden hover:shadow-lg transition-shadow flex flex-col h-full">
+                        <div class="h-48 bg-cover bg-center" style="background-image: url('${event.event_image_url || 'https://images.unsplash.com/photo-1517457373958-b7bdd4587205?q=80&w=2069'}');"></div>
+                        <div class="p-6 flex flex-col flex-1">
+                            <h3 class="text-xl font-bold mb-2 text-slate-900">${event.title.rendered}</h3>
+                            <div class="flex items-center gap-2 text-primary text-sm font-bold mb-4">
+                                <span class="material-symbols-outlined text-base">calendar_today</span>
+                                <span>${new Date(event.event_date).toLocaleDateString('en-GB')}</span>
                             </div>
-                        </div>`;
-                }).join('');
-            } catch (err) { container.innerHTML = `<div class="col-span-3 py-10 text-center text-slate-500 italic">Unable to load live activities.</div>`; }
+                            <div class="mt-auto">
+                                <div class="w-full bg-primary text-white font-bold py-3 rounded-lg flex items-center justify-center gap-2">More Info <span class="material-symbols-outlined text-sm">arrow_forward</span></div>
+                            </div>
+                        </div>
+                    </div>`).join('');
+            } catch (err) { container.innerHTML = `<div class="col-span-3 py-10 text-center text-slate-500 italic">Unable to load activities.</div>`; }
         }
 
         document.addEventListener('DOMContentLoaded', () => {
             loadSharedComponents();
             loadLiveEvents();
             loadLiveWeather();
-            loadLiveTransport();
-            setInterval(loadLiveTransport, 60000);
+            fetchTrainStation('MST', 'maesteg-trains-list');
+            fetchBusData();
         });
     </script>
 </body>
