@@ -3,6 +3,14 @@
   "trailingSlash": false,
   "rewrites": [
     {
+      "source": "/community/noticeboard",
+      "destination": "https://noddfa-j3nkslkrxc.live-website.com/community/noticeboard/"
+    },
+    {
+      "source": "/community/noticeboard/:path*",
+      "destination": "https://noddfa-j3nkslkrxc.live-website.com/community/noticeboard/:path*/"
+    },
+    {
       "source": "/events/:path*",
       "destination": "https://noddfa-j3nkslkrxc.live-website.com/events/:path*/"
     },
