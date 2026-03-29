@@ -123,7 +123,8 @@
 </div>
 
 <script>
-    const API_BASE = 'https://noddfa-j3nkslkrxc.live-website.com/wp-json';
+    // INJECTED FIX: Added trailing slash to prevent redirect loops
+    const API_BASE = 'https://noddfa-j3nkslkrxc.live-website.com/wp-json/';
 
     // 1. View Toggler
     function switchView(view) {
@@ -155,7 +156,7 @@
         btn.disabled = true; btn.querySelector('.btn-loader').classList.remove('hidden');
 
         try {
-            const res = await fetch(`${API_BASE}/jwt-auth/v1/token`, {
+            const res = await fetch(`${API_BASE}jwt-auth/v1/token`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ 
@@ -169,7 +170,10 @@
                 localStorage.setItem('noddfa_user_display_name', data.user_display_name);
                 window.location.href = '/portal';
             } else { showStatus(data.message || "Invalid credentials. Please try again."); }
-        } catch (err) { showStatus("Connection error to WordPress. Please check your internet."); }
+        } catch (err) { 
+            console.error("Login Error:", err);
+            showStatus("Connection error to WordPress. Please check your internet or site settings."); 
+        }
         btn.disabled = false; btn.querySelector('.btn-loader').classList.add('hidden');
     };
 
@@ -180,7 +184,7 @@
         btn.disabled = true; btn.querySelector('.btn-loader').classList.remove('hidden');
 
         try {
-            const res = await fetch(`${API_BASE}/noddfa/v1/register`, {
+            const res = await fetch(`${API_BASE}noddfa/v1/register`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
@@ -206,7 +210,7 @@
         btn.disabled = true; btn.querySelector('.btn-loader').classList.remove('hidden');
 
         try {
-            const res = await fetch(`${API_BASE}/noddfa/v1/reset-password`, {
+            const res = await fetch(`${API_BASE}noddfa/v1/reset-password`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ email: document.getElementById('forgot-email').value })
@@ -224,8 +228,8 @@
     // 4. Load Site Header/Footer
     async function loadComponents() {
         const [h, f] = await Promise.all([
-            fetch(`${API_BASE}/noddfa/v1/header?v=${Date.now()}`),
-            fetch(`${API_BASE}/noddfa/v1/footer?v=${Date.now()}`)
+            fetch(`${API_BASE}noddfa/v1/header?v=${Date.now()}`),
+            fetch(`${API_BASE}noddfa/v1/footer?v=${Date.now()}`)
         ]);
         if (h.ok) document.getElementById('header-placeholder').innerHTML = (await h.json()).html;
         if (f.ok) document.getElementById('footer-placeholder').innerHTML = (await f.json()).html;
