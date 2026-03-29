@@ -339,12 +339,16 @@
                                 <p class="text-on-surface-variant mt-2">Locate essential services and explore walking routes around Glyncorrwg.</p>
                             </div>
                         </div>
-                        <div class="bg-white rounded-3xl p-2 border border-outline shadow-xl overflow-hidden aspect-video relative group">
-                            <img alt="Stylized village map" class="w-full h-full object-cover rounded-[2rem]" src="https://images.unsplash.com/photo-1524661135-423995f22d0b?auto=format&fit=crop&q=80&w=2074"/>
-                            <div class="absolute bottom-6 right-6 bg-white/90 backdrop-blur-md p-4 rounded-xl shadow-lg border border-outline">
-                                <h4 class="font-bold text-secondary mb-1">Glyncorrwg Interactive</h4>
-                                <p class="text-xs text-on-surface-variant">Tap markers for address & details</p>
-                            </div>
+                        <div class="bg-white rounded-3xl p-1 border border-outline shadow-xl overflow-hidden aspect-video relative">
+                            <iframe 
+                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d19833.051411228553!2d-3.6268846128318285!3d51.66258055615783!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x486e5e8e7a83d92b%3A0xc3f9a7d3a0e69818!2sGlyncorrwg%2C%20Port%20Talbot!5e0!3m2!1sen!2suk!4v1709400000000!5m2!1sen!2suk" 
+                                width="100%" 
+                                height="100%" 
+                                style="border:0; border-radius: 1.5rem;" 
+                                allowfullscreen="" 
+                                loading="lazy" 
+                                referrerpolicy="no-referrer-when-downgrade">
+                            </iframe>
                         </div>
                     </section>
 
@@ -407,7 +411,6 @@
                 const res = await fetch(`https://huxley2.azurewebsites.net/departures/${code}?rows=2`);
                 const data = await res.json();
                 if (data.trainServices && data.trainServices.length > 0) {
-                    // SLICE TO 2 ONLY
                     container.innerHTML = data.trainServices.slice(0, 2).map(train => `
                         <div class="flex items-start justify-between group">
                             <div class="flex items-center gap-3 mt-1">
@@ -443,7 +446,7 @@
                 if (allBuses.length > 0) {
                     container.innerHTML = allBuses
                         .sort((a, b) => (a.best_departure_estimate || a.aimed_departure_time).localeCompare(b.best_departure_estimate || b.aimed_departure_time))
-                        .slice(0, 2) // SLICE TO 2 ONLY
+                        .slice(0, 2)
                         .map(bus => `
                             <div class="flex items-start justify-between">
                                 <div class="flex items-center gap-3 mt-1">
