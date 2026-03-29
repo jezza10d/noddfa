@@ -50,22 +50,6 @@
         .animate-pulse-soft {
             animation: pulse-soft 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
         }
-        @media (max-width: 768px) {
-            #nav-menu.active-menu {
-                display: flex !important;
-                flex-direction: column !important;
-                gap: 1.5rem !important;
-                padding: 2rem !important;
-                align-items: flex-start !important;
-                position: absolute !important;
-                top: 72px !important;
-                left: 0 !important;
-                width: 100% !important;
-                background: white !important;
-                z-index: 50 !important;
-                box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-            }
-        }
     </style>
 </head>
 <body class="bg-background font-body text-on-background">
@@ -95,7 +79,7 @@
                                     <div class="flex items-center justify-between mb-6">
                                         <h2 class="text-3xl font-headline font-bold text-secondary">Noticeboard</h2>
                                         <a href="/noticeboard" class="flex items-center gap-2 text-primary font-bold text-sm hover:underline">
-                                            View all notices <span class="material-symbols-outlined text-sm">arrow_forward</span>
+                                            View all <span class="material-symbols-outlined text-sm">arrow_forward</span>
                                         </a>
                                     </div>
                                     <div class="flex items-center gap-3">
@@ -132,42 +116,6 @@
 
                             <section>
                                 <div class="flex items-center justify-between mb-8">
-                                    <h2 class="text-3xl font-headline font-bold text-secondary">Local Businesses</h2>
-                                    <a href="#" class="flex items-center gap-2 text-primary font-bold text-sm hover:underline">
-                                        Directory <span class="material-symbols-outlined text-sm">arrow_forward</span>
-                                    </a>
-                                </div>
-                                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                    <div class="p-6 bg-white border border-outline rounded-2xl shadow-sm flex flex-col justify-between">
-                                        <div>
-                                            <div class="flex justify-between items-start mb-4">
-                                                <span class="bg-secondary/10 text-secondary text-[10px] font-black px-2.5 py-1 rounded uppercase">Food & Drink</span>
-                                                <div class="flex text-amber-400"><span class="material-symbols-outlined text-sm">star</span><span class="material-symbols-outlined text-sm">star</span><span class="material-symbols-outlined text-sm">star</span><span class="material-symbols-outlined text-sm">star</span></div>
-                                            </div>
-                                            <h4 class="font-bold text-lg mb-1">Refreshment Rooms</h4>
-                                            <p class="text-on-surface-variant text-xs mb-4">Famous local hospitality serving hot meals and Sunday lunch.</p>
-                                        </div>
-                                        <div class="flex items-center gap-4 text-[10px] font-bold text-slate-400">
-                                            <span class="flex items-center gap-1"><span class="material-symbols-outlined text-xs">call</span> 01639 850742</span>
-                                        </div>
-                                    </div>
-                                    <div class="p-6 bg-white border border-outline rounded-2xl shadow-sm flex flex-col justify-between">
-                                        <div>
-                                            <div class="flex justify-between items-start mb-4">
-                                                <span class="bg-secondary/10 text-secondary text-[10px] font-black px-2.5 py-1 rounded uppercase">Retail</span>
-                                            </div>
-                                            <h4 class="font-bold text-lg mb-1">Glyncorrwg Post Office</h4>
-                                            <p class="text-on-surface-variant text-xs mb-4">Essential village shop for groceries, news, and postal services.</p>
-                                        </div>
-                                        <div class="flex items-center gap-4 text-[10px] font-bold text-slate-400">
-                                            <span class="flex items-center gap-1"><span class="material-symbols-outlined text-xs">schedule</span> Open until 5:30 PM</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </section>
-
-                            <section>
-                                <div class="flex items-center justify-between mb-8">
                                     <h2 class="text-3xl font-headline font-bold text-secondary">Local services</h2>
                                     <a href="#" class="flex items-center gap-2 text-primary font-bold text-sm hover:underline">
                                         View all <span class="material-symbols-outlined text-sm">arrow_forward</span>
@@ -182,7 +130,23 @@
                                         <p class="text-on-surface-variant text-xs mb-4">Health Centre hours and booking info.</p>
                                         <span class="text-primary text-[10px] font-black flex items-center gap-2 uppercase">View info <span class="material-symbols-outlined text-xs">arrow_forward</span></span>
                                     </div>
+                                    <div class="bg-surface border border-outline p-6 rounded-xl shadow-sm hover:border-primary transition-all">
+                                        <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center text-primary mb-4">
+                                            <span class="material-symbols-outlined text-2xl">school</span>
+                                        </div>
+                                        <h3 class="text-lg font-bold mb-2">Primary School</h3>
+                                        <p class="text-on-surface-variant text-xs mb-4">Term dates and local school news.</p>
+                                        <span class="text-primary text-[10px] font-black flex items-center gap-2 uppercase">Learn more <span class="material-symbols-outlined text-xs">arrow_forward</span></span>
                                     </div>
+                                    <div class="bg-surface border border-outline p-6 rounded-xl shadow-sm hover:border-primary transition-all">
+                                        <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center text-primary mb-4">
+                                            <span class="material-symbols-outlined text-2xl">local_post_office</span>
+                                        </div>
+                                        <h3 class="text-lg font-bold mb-2">Post Office</h3>
+                                        <p class="text-on-surface-variant text-xs mb-4">Located in the village shop. Collection times.</p>
+                                        <span class="text-primary text-[10px] font-black flex items-center gap-2 uppercase">Details <span class="material-symbols-outlined text-xs">arrow_forward</span></span>
+                                    </div>
+                                </div>
                             </section>
                         </div>
 
@@ -206,13 +170,19 @@
                                 </h4>
                                 <div class="space-y-10">
                                     <div>
-                                        <h5 class="text-sm font-bold text-slate-500 mb-6">Buses</h5>
+                                        <h5 class="text-[12px] font-black text-slate-500 tracking-widest mb-6 uppercase">Buses</h5>
                                         <div id="bus-list" class="space-y-4">
-                                            <div class="text-xs text-slate-400 italic">Updating local buses...</div>
+                                            <div class="flex items-center justify-between">
+                                                <div class="flex items-center gap-3">
+                                                    <span class="bg-primary text-white text-[10px] font-black px-2 py-1 rounded shadow-sm">X3</span>
+                                                    <span class="text-sm font-bold text-secondary">Port Talbot</span>
+                                                </div>
+                                                <span class="text-sm font-black text-primary animate-pulse-soft w-14 text-right">Calculating...</span>
+                                            </div>
                                         </div>
                                     </div>
                                     <div>
-                                        <h5 class="text-sm font-bold text-slate-500 mb-6">Maesteg station</h5>
+                                        <h5 class="text-[12px] font-black text-slate-500 tracking-widest mb-6 uppercase">Maesteg station</h5>
                                         <div id="maesteg-trains-list" class="space-y-4">
                                             <div class="text-xs text-slate-400 italic">Checking trains...</div>
                                         </div>
@@ -238,6 +208,76 @@
                             <div class="col-span-3 py-20 text-center text-slate-500 italic">Checking for upcoming activities...</div>
                         </div>
                     </section>
+
+                    <section class="mt-24">
+                        <div class="mb-10">
+                            <div class="flex items-center justify-between mb-6">
+                                <h2 class="text-3xl font-headline font-bold text-secondary">Business directory</h2>
+                                <a href="#" class="flex items-center gap-2 text-primary font-bold text-sm hover:underline">
+                                    View all <span class="material-symbols-outlined text-sm">arrow_forward</span>
+                                </a>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <button class="bg-primary text-white px-6 py-2 rounded-full text-sm font-bold shadow-md">All Business</button>
+                                <button class="bg-white border border-slate-200 text-slate-600 px-6 py-2 rounded-full text-sm font-bold hover:bg-slate-50 transition-colors">Retail</button>
+                                <button class="bg-white border border-slate-200 text-slate-600 px-6 py-2 rounded-full text-sm font-bold hover:bg-slate-50 transition-colors">Hospitality</button>
+                            </div>
+                        </div>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                            <div class="bg-surface border border-outline p-6 rounded-xl shadow-sm relative hover:border-primary transition-all">
+                                <span class="absolute top-4 right-4 bg-primary text-white text-[8px] font-black px-2 py-0.5 rounded uppercase">Sponsored</span>
+                                <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center text-primary mb-4">
+                                    <span class="material-symbols-outlined text-2xl">restaurant</span>
+                                </div>
+                                <h3 class="font-bold mb-2 text-secondary">The Glyncorrwg Inn</h3>
+                                <p class="text-on-surface-variant text-xs mb-4">Traditional pub serving local food and events.</p>
+                                <span class="text-primary text-[10px] font-black flex items-center gap-2 uppercase">Book table <span class="material-symbols-outlined text-xs">arrow_forward</span></span>
+                            </div>
+                            <div class="bg-surface border border-outline p-6 rounded-xl shadow-sm hover:border-primary transition-all">
+                                <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center text-primary mb-4">
+                                    <span class="material-symbols-outlined text-2xl">local_cafe</span>
+                                </div>
+                                <h3 class="font-bold mb-2 text-secondary">The Ponds Cafe</h3>
+                                <p class="text-on-surface-variant text-xs mb-4">Homemade cakes and hot drinks at the ponds.</p>
+                                <span class="text-primary text-[10px] font-black flex items-center gap-2 uppercase">View menu <span class="material-symbols-outlined text-xs">arrow_forward</span></span>
+                            </div>
+                            <div class="bg-surface border border-outline p-6 rounded-xl shadow-sm hover:border-primary transition-all">
+                                <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center text-primary mb-4">
+                                    <span class="material-symbols-outlined text-2xl">store</span>
+                                </div>
+                                <h3 class="font-bold mb-2 text-secondary">Glyncorrwg Shop</h3>
+                                <p class="text-on-surface-variant text-xs mb-4">Convenience store and post office services.</p>
+                                <span class="text-primary text-[10px] font-black flex items-center gap-2 uppercase">Opening times <span class="material-symbols-outlined text-xs">arrow_forward</span></span>
+                            </div>
+                            <div class="bg-slate-50 border border-dashed border-slate-300 p-6 rounded-xl flex flex-col items-center justify-center text-center">
+                                <div class="w-10 h-10 bg-white rounded-full flex items-center justify-center text-slate-300 mb-3 shadow-sm">
+                                    <span class="material-symbols-outlined text-xl">add_business</span>
+                                </div>
+                                <h3 class="text-sm font-bold text-slate-500 mb-1">Your business</h3>
+                                <p class="text-[10px] text-slate-400 mb-4 px-2">Advertise here to reach local residents.</p>
+                                <button class="bg-white border border-slate-200 text-slate-600 px-4 py-1.5 rounded-full text-[10px] font-bold hover:bg-slate-100 transition-colors uppercase">Enquire</button>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="mt-24 mb-20">
+                        <div class="bg-surface-container rounded-3xl p-8 md:p-12 overflow-hidden relative border border-outline shadow-sm">
+                            <div class="relative z-10 grid md:grid-cols-2 gap-12 items-center">
+                                <div>
+                                    <h2 class="text-3xl font-headline font-bold text-secondary mb-4">Report It Dashboard</h2>
+                                    <p class="text-on-surface-variant mb-8 max-w-md">Help us keep our village safe and clean. Directly report issues to Neath Port Talbot Council.</p>
+                                    <div class="flex flex-wrap gap-3">
+                                        <a class="bg-white border border-outline hover:border-primary transition-colors px-5 py-3 rounded-full flex items-center gap-3 font-medium text-secondary" href="https://www.npt.gov.uk/2253">
+                                            <span class="material-symbols-outlined text-error">warning</span> Potholes
+                                        </a>
+                                        <a class="bg-white border border-outline hover:border-primary transition-colors px-5 py-3 rounded-full flex items-center gap-3 font-medium text-secondary" href="https://www.npt.gov.uk/2261">
+                                            <span class="material-symbols-outlined text-error">delete_outline</span> Fly-tipping
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
                 </div>
             </main>
 
@@ -254,8 +294,6 @@
                 if (hRes.ok) {
                     const data = await hRes.json();
                     document.getElementById('header-placeholder').innerHTML = data.html;
-                    initMobileMenu();
-                    highlightActiveLink();
                 }
                 const fRes = await fetch(`${API_BASE}/noddfa/v1/footer?v=${Date.now()}`);
                 if (fRes.ok) {
@@ -265,59 +303,30 @@
             } catch (e) { console.error("Loader error", e); }
         }
 
-        function initMobileMenu() {
-            const toggleBtn = document.getElementById('menu-toggle');
-            const navMenu = document.getElementById('nav-menu');
-            if (toggleBtn && navMenu) {
-                toggleBtn.onclick = (e) => {
-                    e.preventDefault();
-                    navMenu.classList.toggle('active-menu');
-                    navMenu.classList.toggle('hidden');
-                };
-            }
-        }
-
-        function highlightActiveLink() {
-            const currentPath = window.location.pathname;
-            const navLinks = document.querySelectorAll('.nav-link');
-            navLinks.forEach(link => {
-                const href = link.getAttribute('href');
-                if (currentPath.includes('community') && href.includes('community')) {
-                    link.classList.add('text-primary', 'font-semibold', 'border-b-2', 'border-primary');
-                }
-            });
-        }
-
         async function fetchTrainStation(code, containerId) {
             const container = document.getElementById(containerId);
             try {
                 const res = await fetch(`https://huxley2.azurewebsites.net/departures/${code}?rows=2`);
                 const data = await res.json();
                 if (data.trainServices && data.trainServices.length > 0) {
-                    container.innerHTML = data.trainServices.map(train => {
-                        const statusColor = train.etd === 'On time' ? 'text-green-600' : 'text-primary';
-                        return `
+                    container.innerHTML = data.trainServices.map(train => `
                         <div class="flex items-start justify-between">
-                            <div class="flex items-center gap-3 mt-1">
-                                <span class="text-sm font-bold text-secondary truncate max-w-[120px]">${train.destination[0].locationName}</span>
-                            </div>
+                            <span class="text-sm font-bold text-secondary truncate max-w-[120px]">${train.destination[0].locationName}</span>
                             <div class="text-right">
                                 <div class="text-sm font-black bg-slate-100/50 px-3 py-1 rounded-lg tabular-nums">${train.std}</div>
-                                <div class="text-[9px] font-black ${statusColor} uppercase mt-0 animate-pulse-soft">${train.etd}</div>
+                                <div class="text-[9px] font-black ${train.etd === 'On time' ? 'text-green-600' : 'text-primary'} uppercase mt-0">${train.etd}</div>
                             </div>
-                        </div>`;
-                    }).join('');
+                        </div>`).join('');
                 } else {
                     container.innerHTML = `<div class="text-xs text-slate-400">No services scheduled.</div>`;
                 }
-            } catch (e) { container.innerHTML = `<div class="text-xs text-slate-400">Station update failed.</div>`; }
+            } catch (e) { container.innerHTML = `<div class="text-xs text-slate-400">Update failed.</div>`; }
         }
 
         async function fetchBusData() {
             const container = document.getElementById('bus-list');
             const now = new Date();
-            const mins = now.getMinutes();
-            const ptTime = 60 - (mins % 60);
+            const ptTime = 60 - (now.getMinutes() % 60);
             container.innerHTML = `
                 <div class="flex items-center justify-between">
                     <div class="flex items-center gap-3">
@@ -331,15 +340,14 @@
 
         async function loadLiveWeather() {
             try {
-                const lat = 51.6617; const lon = -3.6122;
-                const res = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current_weather=true`);
+                const res = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=51.6617&longitude=-3.6122&current_weather=true`);
                 const data = await res.json();
                 if (data.current_weather) {
                     const temp = Math.round(data.current_weather.temperature);
                     document.getElementById('weather-temp').innerText = `${temp}°C`;
-                    document.getElementById('weather-desc').innerText = `It is currently ${temp}°C with fair conditions in Glyncorrwg.`;
+                    document.getElementById('weather-desc').innerText = `It is currently ${temp}°C in Glyncorrwg.`;
                 }
-            } catch (e) { document.getElementById('weather-desc').innerText = "Forecast unavailable."; }
+            } catch (e) { document.getElementById('weather-desc').innerText = "Weather unavailable."; }
         }
 
         async function loadLiveEvents() {
@@ -348,7 +356,7 @@
                 const response = await fetch(`${API_BASE}/wp/v2/events-api?per_page=3&scope=future`);
                 const events = await response.json();
                 if (!events || events.length === 0) {
-                    container.innerHTML = `<div class="col-span-3 py-10 text-center text-slate-500 italic">No upcoming activities scheduled.</div>`;
+                    container.innerHTML = `<div class="col-span-3 py-10 text-center text-slate-500 italic">No upcoming activities.</div>`;
                     return;
                 }
                 container.innerHTML = events.map(event => `
@@ -356,16 +364,10 @@
                         <div class="h-48 bg-cover bg-center" style="background-image: url('${event.event_image_url || 'https://images.unsplash.com/photo-1517457373958-b7bdd4587205?q=80&w=2069'}');"></div>
                         <div class="p-6 flex flex-col flex-1">
                             <h3 class="text-xl font-bold mb-2 text-slate-900">${event.title.rendered}</h3>
-                            <div class="flex items-center gap-2 text-primary text-sm font-bold mb-4">
-                                <span class="material-symbols-outlined text-base">calendar_today</span>
-                                <span>${new Date(event.event_date).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: '2-digit' })}</span>
-                            </div>
-                            <div class="mt-auto">
-                                <div class="w-full bg-primary text-white font-bold py-3 rounded-lg flex items-center justify-center gap-2">More Info <span class="material-symbols-outlined text-sm">arrow_forward</span></div>
-                            </div>
+                            <div class="w-full bg-primary text-white font-bold py-3 rounded-lg text-center mt-auto">More Info</div>
                         </div>
                     </div>`).join('');
-            } catch (err) { container.innerHTML = `<div class="col-span-3 py-10 text-center text-slate-500 italic">Unable to load live activities.</div>`; }
+            } catch (err) { container.innerHTML = `<div class="col-span-3 py-10 text-center text-slate-500 italic">Error loading events.</div>`; }
         }
 
         document.addEventListener('DOMContentLoaded', () => {
