@@ -71,8 +71,8 @@
                                 <div class="mb-8">
                                     <div class="flex items-center justify-between mb-6">
                                         <h2 class="text-3xl font-headline font-bold text-secondary">Noticeboard</h2>
-                                        <a href="/noticeboard" class="flex items-center gap-2 text-primary font-bold text-sm hover:underline">
-                                            View all <span class="material-symbols-outlined text-sm">arrow_forward</span>
+                                        <a href="https://glyncorrwg.wales/community/noticeboard" class="flex items-center gap-2 text-primary font-bold text-sm hover:underline">
+                                            View all Posts <span class="material-symbols-outlined text-sm">arrow_forward</span>
                                         </a>
                                     </div>
                                     <div class="flex items-center gap-3">
@@ -160,7 +160,9 @@
                                         <div class="text-xs text-slate-500 font-medium">Glyncorrwg, Wales</div>
                                     </div>
                                 </div>
-                                <p id="weather-desc" class="text-sm text-on-surface-variant leading-relaxed">Loading live forecast...</p>
+                                <p id="weather-desc" class="text-sm text-on-surface-variant leading-relaxed">
+                                    Loading live forecast...
+                                </p>
                             </div>
 
                             <div class="bg-white border border-slate-200 rounded-2xl p-8 shadow-sm">
@@ -171,15 +173,9 @@
                                 
                                 <div class="space-y-10">
                                     <div>
-                                        <h5 class="text-[12px] font-black text-slate-500 tracking-widest mb-6 uppercase">Buses</h5>
-                                        <div class="space-y-4">
-                                            <div class="flex items-center justify-between">
-                                                <div class="flex items-center gap-3">
-                                                    <span class="bg-primary text-white text-[10px] font-black px-2 py-1 rounded shadow-sm">X3</span>
-                                                    <span class="text-sm font-bold text-secondary">Port talbot</span>
-                                                </div>
-                                                <span class="text-sm font-black text-primary animate-pulse w-14 text-right">12m</span>
-                                            </div>
+                                        <h5 class="text-[12px] font-black text-slate-500 tracking-widest mb-6 uppercase">Glyncorrwg Buses</h5>
+                                        <div id="bus-list" class="space-y-4">
+                                            <div class="text-xs text-slate-400 italic">Checking Bridge St & Turning Circle...</div>
                                         </div>
                                     </div>
 
@@ -291,16 +287,20 @@
                                     <p class="text-on-surface-variant mb-8 max-w-md">Help us keep our village safe and clean. Directly report issues to Neath Port Talbot Council via the links below.</p>
                                     <div class="flex flex-wrap gap-3">
                                         <a class="bg-white border border-outline hover:border-primary transition-colors px-5 py-3 rounded-full flex items-center gap-3 font-medium text-secondary shadow-sm" href="https://www.npt.gov.uk/2253">
-                                            <span class="material-symbols-outlined text-error">warning</span> Potholes
+                                            <span class="material-symbols-outlined text-error">warning</span>
+                                            Potholes
                                         </a>
                                         <a class="bg-white border border-outline hover:border-primary transition-colors px-5 py-3 rounded-full flex items-center gap-3 font-medium text-secondary shadow-sm" href="https://www.npt.gov.uk/2261">
-                                            <span class="material-symbols-outlined text-error">delete_outline</span> Fly-tipping
+                                            <span class="material-symbols-outlined text-error">delete_outline</span>
+                                            Fly-tipping
                                         </a>
                                         <a class="bg-white border border-outline hover:border-primary transition-colors px-5 py-3 rounded-full flex items-center gap-3 font-medium text-secondary shadow-sm" href="https://www.npt.gov.uk/2265">
-                                            <span class="material-symbols-outlined text-error">light_off</span> Street Lighting
+                                            <span class="material-symbols-outlined text-error">light_off</span>
+                                            Street Lighting
                                         </a>
                                         <a class="bg-white border border-outline hover:border-primary transition-colors px-5 py-3 rounded-full flex items-center gap-3 font-medium text-secondary shadow-sm" href="https://www.npt.gov.uk/2260">
-                                            <span class="material-symbols-outlined text-error">pets</span> Dog Fouling
+                                            <span class="material-symbols-outlined text-error">pets</span>
+                                            Dog Fouling
                                         </a>
                                     </div>
                                 </div>
@@ -322,12 +322,12 @@
                         <div class="flex items-center justify-between mb-8">
                             <div>
                                 <h2 class="text-3xl font-headline font-bold text-secondary">Village Map</h2>
-                                <p class="text-on-surface-variant mt-2">Locate essential services and explore Glyncorrwg interactively.</p>
+                                <p class="text-on-surface-variant mt-2">Locate essential services and explore walking routes around Glyncorrwg.</p>
                             </div>
                         </div>
-                        <div class="bg-white rounded-3xl p-2 border border-outline shadow-xl overflow-hidden aspect-video relative">
+                        <div class="bg-white rounded-3xl p-2 border border-outline shadow-xl overflow-hidden aspect-video relative group">
                             <iframe 
-                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d19856.78446210214!2d-3.6276135652343717!3d51.6617188!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x486e4099450a8677%3A0xc665191c9d4b069d!2sGlyncorrwg%2C%20Port%20Talbot!5e0!3m2!1sen!2suk!4v1711200000000!5m2!1sen!2suk" 
+                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d19830.803875323985!2d-3.626896!3d51.662588!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x486e5c54452145b5%3A0x89791475c4048e9c!2sGlyncorrwg%2C%20Port%20Talbot!5e0!3m2!1sen!2suk!4v1710000000000" 
                                 class="w-full h-full rounded-[2rem] border-0" 
                                 allowfullscreen="" 
                                 loading="lazy" 
@@ -335,6 +335,7 @@
                             </iframe>
                         </div>
                     </section>
+
                 </div>
             </main>
 
@@ -363,66 +364,157 @@
         async function fetchTrainStation(code, containerId) {
             const container = document.getElementById(containerId);
             try {
-                // Fetching up to 2 rows per station
                 const res = await fetch(`https://huxley2.azurewebsites.net/departures/${code}?rows=2`);
                 const data = await res.json();
                 if (data.trainServices && data.trainServices.length > 0) {
-                    container.innerHTML = data.trainServices.map(train => `
-                        <div class="flex items-start justify-between">
+                    container.innerHTML = data.trainServices.slice(0, 2).map(train => `
+                        <div class="flex items-start justify-between group">
                             <div class="flex items-center gap-3 mt-1">
                                 <svg width="18" height="12" viewBox="0 0 46 32" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M31.2 0L37.5 6.4L18.7 25.2H46V32H13.6L20 25.6L38.8 6.8H11.5L5.1 0.4L0 5.5L0 0H31.2ZM14.8 32L8.5 25.6L27.3 6.8H0V0H32.4L26 6.4L7.2 25.2H34.5L40.9 31.6L46 26.5V32H14.8Z" fill="#ae0000"/>
                                 </svg>
                                 <span class="text-sm font-bold text-secondary truncate max-w-[120px]">${train.destination[0].locationName}</span>
                             </div>
-                            <div class="text-right">
-                                <div class="text-sm font-black bg-slate-100/50 px-3 py-1 rounded-lg tabular-nums">${train.std}</div>
-                                <div class="text-[9px] font-black ${train.etd === 'On time' ? 'text-green-600' : 'text-primary'} uppercase mt-0">${train.etd}</div>
+                            <div class="flex flex-col items-end min-w-[60px]">
+                                <div class="text-sm font-black bg-slate-100/50 px-3 py-1 rounded-lg tabular-nums text-center w-full">
+                                    ${train.std}
+                                </div>
+                                <div class="text-[9px] font-black ${train.etd === 'On time' ? 'text-green-600' : 'text-primary'} uppercase tracking-widest mt-1">
+                                    ${train.etd}
+                                </div>
                             </div>
-                        </div>`).join('');
+                        </div>
+                    `).join('');
                 } else {
                     container.innerHTML = `<div class="text-xs text-slate-400">No services scheduled.</div>`;
                 }
             } catch (e) { container.innerHTML = `<div class="text-xs text-slate-400">Station update failed.</div>`; }
         }
 
+        async function fetchLiveBuses() {
+            const container = document.getElementById('bus-list');
+            const stops = ['2580BMT0015', '2580BMT0012']; // Turning Circle & Bridge Street
+            let allBuses = [];
+
+            try {
+                for (const stop of stops) {
+                    // This uses a public proxy or TransportAPI. Replace YOUR_APP_ID/KEY with valid credentials if required.
+                    const res = await fetch(`https://transportapi.com/v3/uk/bus/stop/${stop}/live.json?app_id=45788da6&app_key=c684157835154b6840618063065e940a&group=no`);
+                    const data = await res.json();
+                    if (data.departures) {
+                        Object.values(data.departures).forEach(routeBuses => {
+                            allBuses = allBuses.concat(routeBuses);
+                        });
+                    }
+                }
+
+                if (allBuses.length > 0) {
+                    container.innerHTML = allBuses
+                        .sort((a, b) => (a.best_departure_estimate || a.aimed_departure_time).localeCompare(b.best_departure_estimate || b.aimed_departure_time))
+                        .slice(0, 2)
+                        .map(bus => `
+                            <div class="flex items-start justify-between">
+                                <div class="flex items-center gap-3 mt-1">
+                                    <span class="bg-primary text-white text-[10px] font-black px-2 py-1 rounded shadow-sm">${bus.line}</span>
+                                    <span class="text-sm font-bold text-secondary truncate max-w-[120px]">${bus.direction}</span>
+                                </div>
+                                <div class="flex flex-col items-end min-w-[60px]">
+                                    <div class="text-sm font-black bg-slate-100/50 px-3 py-1 rounded-lg tabular-nums text-center w-full">
+                                        ${bus.best_departure_estimate || bus.aimed_departure_time}
+                                    </div>
+                                    <div class="text-[9px] font-black ${bus.status === 'live' ? 'text-green-600' : 'text-primary'} uppercase tracking-widest mt-1">
+                                        ${bus.status === 'live' ? 'Live' : 'Scheduled'}
+                                    </div>
+                                </div>
+                            </div>
+                        `).join('');
+                } else {
+                    container.innerHTML = `<div class="text-xs text-slate-400">No buses scheduled.</div>`;
+                }
+            } catch (e) {
+                container.innerHTML = `<div class="text-xs text-slate-400">Bus data currently unavailable.</div>`;
+            }
+        }
+
         async function loadLiveTransport() {
             fetchTrainStation('MST', 'maesteg-trains-list');
             fetchTrainStation('PTB', 'ptb-trains-list');
+            fetchLiveBuses();
         }
 
         async function loadLiveWeather() {
             try {
-                const res = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=51.6617&longitude=-3.6122&current_weather=true`);
+                const lat = 51.6617;
+                const lon = -3.6122;
+                const res = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current_weather=true`);
                 const data = await res.json();
                 if (data.current_weather) {
                     const temp = Math.round(data.current_weather.temperature);
+                    const code = data.current_weather.weathercode;
                     document.getElementById('weather-temp').innerText = `${temp}°C`;
-                    document.getElementById('weather-desc').innerText = `It is currently ${temp}°C in Glyncorrwg.`;
+                    
+                    const weatherMap = {
+                        0: { desc: "clear skies", icon: "sunny" },
+                        1: { desc: "mostly clear", icon: "sunny_snowing" },
+                        2: { desc: "partly cloudy", icon: "partly_cloudy_day" },
+                        3: { desc: "overcast", icon: "cloud" },
+                        45: { desc: "foggy", icon: "foggy" },
+                        51: { desc: "light drizzle", icon: "rainy_light" },
+                        61: { desc: "slight rain", icon: "rainy" },
+                        65: { desc: "heavy rain", icon: "rainy_heavy" },
+                        71: { desc: "slight snow", icon: "ac_unit" },
+                        95: { desc: "thunderstorms", icon: "thunderstorm" }
+                    };
+
+                    const condition = weatherMap[code] || { desc: "fair conditions", icon: "cloud" };
+                    document.getElementById('weather-desc').innerText = `It is currently ${temp}°C with ${condition.desc} in Glyncorrwg.`;
+                    document.getElementById('weather-icon').innerText = condition.icon;
                 }
-            } catch (e) { document.getElementById('weather-desc').innerText = "Forecast unavailable."; }
+            } catch (e) {
+                document.getElementById('weather-desc').innerText = "Forecast temporarily unavailable.";
+            }
         }
 
         async function loadLiveEvents() {
             const container = document.getElementById('events-feed-container');
             try {
-                const response = await fetch(`${API_BASE}/wp/v2/events-api?per_page=3&scope=future`);
+                const response = await fetch(`${API_BASE}/wp/v2/events-api?per_page=3&scope=future&v=${Date.now()}`);
                 const events = await response.json();
                 if (!events || events.length === 0) {
-                    container.innerHTML = `<div class="col-span-3 py-10 text-center text-slate-500 italic">No upcoming activities.</div>`;
+                    container.innerHTML = `<div class="col-span-3 py-10 text-center text-slate-500 italic">No upcoming activities scheduled right now.</div>`;
                     return;
                 }
-                container.innerHTML = events.map(event => `
-                    <div onclick="window.location.href='${event.link}'" class="cursor-pointer bg-white border border-primary/5 rounded-xl overflow-hidden hover:shadow-lg transition-shadow flex flex-col h-full">
-                        <div class="h-48 bg-cover bg-center" style="background-image: url('${event.event_image_url || 'https://images.unsplash.com/photo-1517457373958-b7bdd4587205?q=80&w=2069'}');"></div>
-                        <div class="p-6 flex flex-col flex-1">
-                            <h3 class="text-xl font-bold mb-2 text-slate-900">${event.title.rendered}</h3>
-                            <div class="mt-auto">
-                                <div class="w-full bg-primary text-white font-bold py-3 rounded-lg flex items-center justify-center gap-2">More Info <span class="material-symbols-outlined text-sm">arrow_forward</span></div>
+                container.innerHTML = events.map(event => {
+                    const img = event.event_image_url || 'https://images.unsplash.com/photo-1517457373958-b7bdd4587205?q=80&w=2069';
+                    let eventDateStr = "Coming Soon";
+                    if (event.event_date) {
+                        const d = new Date(event.event_date);
+                        eventDateStr = d.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: '2-digit' });
+                    }
+                    let rawText = event.content?.rendered || event.excerpt?.rendered || "";
+                    let cleanText = rawText.replace(/<[^>]*>?/gm, '');
+                    const shortDesc = cleanText.split(/\s+/).slice(0, 20).join(' ') + '...';
+                    return `
+                        <div onclick="window.location.href='${event.link}'" class="cursor-pointer bg-white border border-primary/5 rounded-xl overflow-hidden hover:shadow-lg transition-shadow flex flex-col h-full">
+                            <div class="h-48 bg-cover bg-center" style="background-image: url('${img}');"></div>
+                            <div class="p-6 flex flex-col flex-1">
+                                <h3 class="text-xl font-bold mb-2 text-slate-900">${event.title.rendered}</h3>
+                                <div class="flex items-center gap-2 text-primary text-sm font-bold mb-4">
+                                    <span class="material-symbols-outlined text-base">calendar_today</span>
+                                    <span>${eventDateStr}</span>
+                                </div>
+                                <p class="text-slate-600 text-sm mb-6 line-clamp-2">${shortDesc}</p>
+                                <div class="mt-auto">
+                                    <div class="w-full bg-primary text-white font-bold py-3 rounded-lg flex items-center justify-center gap-2 hover:bg-primary/90 transition-colors">
+                                        More Info <span class="material-symbols-outlined text-sm">arrow_forward</span>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                    </div>`).join('');
-            } catch (err) { container.innerHTML = `<div class="col-span-3 py-10 text-center text-slate-500 italic">Unable to load live activities.</div>`; }
+                        </div>`;
+                }).join('');
+            } catch (err) { 
+                container.innerHTML = `<div class="col-span-3 py-10 text-center text-slate-500 italic">Unable to load live activities.</div>`;
+            }
         }
 
         document.addEventListener('DOMContentLoaded', () => {
