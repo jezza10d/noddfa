@@ -47,7 +47,7 @@
                 <p id="view-subtitle" class="text-slate-500 text-sm mt-1">Access your member dashboard</p>
             </div>
 
-            <div id="status-msg" class="hidden mb-6 p-4 rounded-lg text-sm border-l-4"></div>
+            <div id="status-msg" class="hidden mb-6 p-4 rounded-lg text-sm font-medium"></div>
 
             <div id="login-view">
                 <form id="loginForm" class="space-y-4">
@@ -61,7 +61,7 @@
                     </div>
                     <div class="flex items-center justify-between text-xs">
                         <label class="flex items-center gap-2 cursor-pointer">
-                            <input type="checkbox" class="rounded border-outline-variant text-primary focus:ring-primary">
+                            <input type="checkbox" id="remember-me" class="rounded border-outline-variant text-primary focus:ring-primary">
                             <span>Remember me</span>
                         </label>
                         <button type="button" onclick="switchView('forgot')" class="text-primary font-bold hover:underline">Forgot password?</button>
@@ -119,8 +119,8 @@
             <div id="reset-confirm-view" class="hidden-view">
                 <p class="text-sm text-slate-500 mb-6 text-center">Please enter and confirm your new password.</p>
                 <form id="resetConfirmForm" class="space-y-4">
-                    <input type="password" id="new-pass" placeholder="New Password" required class="w-full px-4 py-3 rounded-xl border border-outline-variant outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all">
-                    <input type="password" id="confirm-pass" placeholder="Confirm New Password" required class="w-full px-4 py-3 rounded-xl border border-outline-variant outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all">
+                    <input type="password" id="new-pass" placeholder="New Password" required class="w-full px-4 py-3 rounded-xl border border-outline-variant outline-none">
+                    <input type="password" id="confirm-pass" placeholder="Confirm New Password" required class="w-full px-4 py-3 rounded-xl border border-outline-variant outline-none">
                     <button type="submit" class="w-full bg-primary text-white py-3.5 rounded-xl font-bold shadow-md hover:bg-red-700 transition-all flex justify-center items-center gap-2">
                         <span>Update Password</span>
                         <span class="btn-loader hidden material-symbols-outlined spinner">progress_activity</span>
@@ -137,7 +137,6 @@
 <script>
     const API_BASE = 'https://noddfa-j3nkslkrxc.live-website.com/wp-json/';
 
-    // 1. View Toggler
     function switchView(view) {
         const views = ['login', 'register', 'forgot', 'reset-confirm'];
         views.forEach(v => {
@@ -155,58 +154,68 @@
             title.innerText = 'Portal Sign In'; 
             icon.innerText = 'lock'; 
             subtitle.innerText = 'Access your member dashboard';
-        }
-        if(view === 'register') { 
+        } else if(view === 'register') { 
             title.innerText = 'Create Account'; 
             icon.innerText = 'person_add'; 
             subtitle.innerText = 'Join our community hub';
-        }
-        if(view === 'forgot') { 
+        } else if(view === 'forgot') { 
             title.innerText = 'Reset Password'; 
             icon.innerText = 'lock_reset'; 
             subtitle.innerText = 'Retrieve your account access';
-        }
-        if(view === 'reset-confirm') { 
+        } else if(view === 'reset-confirm') { 
             title.innerText = 'Set New Password'; 
             icon.innerText = 'security'; 
             subtitle.innerText = 'Create a secure new password';
         }
     }
 
-    // 2. Notification Helper
     function showStatus(msg, isError = true) {
         const el = document.getElementById('status-msg');
         el.innerText = msg;
-        el.className = `mb-6 p-4 rounded-lg text-sm border-l-4 ${isError ? 'bg-red-50 border-red-600 text-red-700' : 'bg-green-50 border-green-600 text-green-700'}`;
+        // FIX: Removed border-l-4 for cleaner design
+        el.className = `mb-6 p-4 rounded-lg text-sm font-medium ${isError ? 'bg-red-50 text-red-700' : 'bg-green-50 text-green-700'}`;
         el.classList.remove('hidden');
     }
 
-    // 3. Form Submissions
-    // LOGIN
+    // LOGIN LOGIC
     document.getElementById('loginForm').onsubmit = async (e) => {
         e.preventDefault();
         const btn = e.target.querySelector('button');
-        btn.disabled = true; btn.querySelector('.btn-loader').classList.remove('hidden');
+        const loader = btn.querySelector('.btn-loader');
+        
+        btn.disabled = true; 
+        loader.classList.remove('hidden');
+
         try {
+            const username = document.getElementById('login-user').value;
             const res = await fetch(`${API_BASE}jwt-auth/v1/token`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ 
-                    username: document.getElementById('login-user').value, 
+                    username: username, 
                     password: document.getElementById('login-pass').value 
                 })
             });
             const data = await res.json();
             if(res.ok) {
+                // REMEMBER ME Logic
+                if(document.getElementById('remember-me').checked) {
+                    localStorage.setItem('noddfa_remembered_user', username);
+                } else {
+                    localStorage.removeItem('noddfa_remembered_user');
+                }
+
                 localStorage.setItem('noddfa_token', data.token);
                 localStorage.setItem('noddfa_user_display_name', data.user_display_name);
                 window.location.href = '/portal';
-            } else { showStatus(data.message || "Invalid credentials. Please try again."); }
+            } else { showStatus(data.message || "Invalid credentials."); }
         } catch (err) { showStatus("Connection error to WordPress."); }
-        btn.disabled = false; btn.querySelector('.btn-loader').classList.add('hidden');
+        
+        btn.disabled = false; 
+        loader.classList.add('hidden');
     };
 
-    // REGISTER
+    // REGISTER LOGIC
     document.getElementById('registerForm').onsubmit = async (e) => {
         e.preventDefault();
         const btn = e.target.querySelector('button');
@@ -222,16 +231,18 @@
                     last_name: document.getElementById('reg-lname').value
                 })
             });
-            const data = await res.json();
             if(res.ok) {
-                showStatus("Account created successfully! You can now sign in.", false);
+                showStatus("Account created! Please sign in.", false);
                 switchView('login');
-            } else { showStatus(data.message || "Registration failed."); }
+            } else { 
+                const data = await res.json();
+                showStatus(data.message || "Registration failed."); 
+            }
         } catch (err) { showStatus("Connection error."); }
         btn.disabled = false; btn.querySelector('.btn-loader').classList.add('hidden');
     };
 
-    // FORGOT PASSWORD
+    // FORGOT LOGIC
     document.getElementById('forgotForm').onsubmit = async (e) => {
         e.preventDefault();
         const btn = e.target.querySelector('button');
@@ -242,25 +253,20 @@
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ email: document.getElementById('forgot-email').value })
             });
-            const data = await res.json();
-            if(res.ok) { 
-                showStatus("Check your inbox! We've sent a reset link.", false); 
-            } else { showStatus(data.message || "Email not found."); }
+            if(res.ok) { showStatus("Reset link sent! Please check your email.", false); } 
+            else { showStatus("Email not found."); }
         } catch (err) { showStatus("Connection error."); }
         btn.disabled = false; btn.querySelector('.btn-loader').classList.add('hidden');
     };
 
-    // CONFIRM NEW PASSWORD
+    // RESET CONFIRM LOGIC
     document.getElementById('resetConfirmForm').onsubmit = async (e) => {
         e.preventDefault();
         const pass = document.getElementById('new-pass').value;
         const confirm = document.getElementById('confirm-pass').value;
         const params = new URLSearchParams(window.location.search);
 
-        if (pass !== confirm) {
-            showStatus("Passwords do not match.");
-            return;
-        }
+        if (pass !== confirm) { showStatus("Passwords do not match."); return; }
 
         const btn = e.target.querySelector('button');
         btn.disabled = true; btn.querySelector('.btn-loader').classList.remove('hidden');
@@ -276,20 +282,22 @@
                 })
             });
             if (res.ok) {
-                showStatus("Password updated! You can now sign in.", false);
-                // Remove keys from URL so the view stays clean
+                showStatus("Password updated! Sign in below.", false);
                 window.history.replaceState({}, document.title, window.location.pathname);
                 switchView('login');
-            } else {
-                showStatus("The reset link has expired or is invalid. Please request a new one.");
-            }
+            } else { showStatus("Link expired. Request a new one."); }
         } catch (err) { showStatus("Connection error."); }
         btn.disabled = false; btn.querySelector('.btn-loader').classList.add('hidden');
     };
 
-    // 4. Initial Load Logic
     async function loadComponents() {
-        // Detect if we are in Reset Mode
+        // Pre-fill remembered user
+        const remembered = localStorage.getItem('noddfa_remembered_user');
+        if(remembered) {
+            document.getElementById('login-user').value = remembered;
+            document.getElementById('remember-me').checked = true;
+        }
+
         const params = new URLSearchParams(window.location.search);
         if (params.has('key') && params.has('login')) {
             switchView('reset-confirm');
