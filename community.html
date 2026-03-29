@@ -173,9 +173,9 @@
                                 
                                 <div class="space-y-10">
                                     <div>
-                                        <h5 class="text-[12px] font-black text-slate-500 tracking-widest mb-6 uppercase">Glyncorrwg Buses</h5>
+                                        <h5 class="text-[12px] font-black text-slate-500 tracking-widest mb-6 uppercase">Glyncorrwg buses</h5>
                                         <div id="bus-list" class="space-y-4">
-                                            <div class="text-xs text-slate-400 italic">Checking Bridge St & Turning Circle...</div>
+                                            <div class="text-xs text-slate-400 italic">Checking buses...</div>
                                         </div>
                                     </div>
 
@@ -192,6 +192,8 @@
                                             <div class="text-xs text-slate-400 italic">Checking trains...</div>
                                         </div>
                                     </div>
+
+                                    <button onclick="window.open('https://www.nationalrail.co.uk', '_blank')" class="w-full py-4 mt-2 text-[11px] font-black text-primary border-2 border-primary/10 rounded-xl hover:bg-primary hover:text-white hover:border-primary transition-all tracking-widest uppercase shadow-sm">View full timetable</button>
                                 </div>
                             </div>
 
@@ -209,6 +211,23 @@
                             </div>
                         </aside>
                     </div>
+
+                    <section class="mt-24 w-full">
+                        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-10">
+                            <div>
+                                <h2 class="text-slate-900 text-3xl font-bold">What's On</h2>
+                                <p class="text-slate-500 mt-2">Join us for activities and events this week</p>
+                            </div>
+                            <a href="/events" class="self-start md:self-auto">
+                                <button class="flex items-center gap-2 text-primary font-bold hover:underline">
+                                    View All Events <span class="material-symbols-outlined">arrow_forward</span>
+                                </button>
+                            </a>
+                        </div>
+                        <div id="events-feed-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                            <div class="col-span-3 py-20 text-center text-slate-500 italic">Checking for upcoming activities...</div>
+                        </div>
+                    </section>
 
                     <section class="mt-24">
                         <div class="mb-10">
@@ -261,23 +280,6 @@
                         </div>
                     </section>
 
-                    <section class="mt-24 w-full">
-                        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-10">
-                            <div>
-                                <h2 class="text-slate-900 text-3xl font-bold">What's On</h2>
-                                <p class="text-slate-500 mt-2">Join us for activities and events this week</p>
-                            </div>
-                            <a href="/events" class="self-start md:self-auto">
-                                <button class="flex items-center gap-2 text-primary font-bold hover:underline">
-                                    View All Events <span class="material-symbols-outlined">arrow_forward</span>
-                                </button>
-                            </a>
-                        </div>
-                        <div id="events-feed-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                            <div class="col-span-3 py-20 text-center text-slate-500 italic">Checking for upcoming activities...</div>
-                        </div>
-                    </section>
-
                     <section class="mt-24 mb-20">
                         <div class="bg-surface-container rounded-3xl p-8 md:p-12 overflow-hidden relative border border-outline shadow-sm">
                             <div class="absolute top-0 right-0 w-64 h-64 bg-primary opacity-5 rounded-full -translate-y-1/2 translate-x-1/2"></div>
@@ -327,7 +329,7 @@
                         </div>
                         <div class="bg-white rounded-3xl p-2 border border-outline shadow-xl overflow-hidden aspect-video relative group">
                             <iframe 
-                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d19830.803875323985!2d-3.626896!3d51.662588!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x486e5c54452145b5%3A0x89791475c4048e9c!2sGlyncorrwg%2C%20Port%20Talbot!5e0!3m2!1sen!2suk!4v1710000000000" 
+                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d19835.31976092524!2d-3.626868515783358!3d51.661719973216894!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x486e6884860434b9%3A0xe510c497334752c0!2sGlyncorrwg%2C%20Port%20Talbot!5e0!3m2!1sen!2suk!4v1711200000000!5m2!1sen!2suk" 
                                 class="w-full h-full rounded-[2rem] border-0" 
                                 allowfullscreen="" 
                                 loading="lazy" 
@@ -345,6 +347,21 @@
 
     <script>
         const API_BASE = 'https://noddfa-j3nkslkrxc.live-website.com/wp-json';
+
+        // MOBILE MENU LOGIC
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            const icon = document.getElementById('menu-icon');
+            if (menu && icon) {
+                if (menu.classList.contains('hidden')) {
+                    menu.classList.remove('hidden');
+                    icon.innerText = 'close';
+                } else {
+                    menu.classList.add('hidden');
+                    icon.innerText = 'menu';
+                }
+            }
+        }
 
         async function loadSharedComponents() {
             try {
@@ -373,13 +390,13 @@
                                 <svg width="18" height="12" viewBox="0 0 46 32" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M31.2 0L37.5 6.4L18.7 25.2H46V32H13.6L20 25.6L38.8 6.8H11.5L5.1 0.4L0 5.5L0 0H31.2ZM14.8 32L8.5 25.6L27.3 6.8H0V0H32.4L26 6.4L7.2 25.2H34.5L40.9 31.6L46 26.5V32H14.8Z" fill="#ae0000"/>
                                 </svg>
-                                <span class="text-sm font-bold text-secondary truncate max-w-[120px]">${train.destination[0].locationName}</span>
+                                <span class="text-sm font-bold text-secondary truncate max-w-[120px] capitalize">${train.destination[0].locationName.toLowerCase()}</span>
                             </div>
                             <div class="flex flex-col items-end min-w-[60px]">
                                 <div class="text-sm font-black bg-slate-100/50 px-3 py-1 rounded-lg tabular-nums text-center w-full">
                                     ${train.std}
                                 </div>
-                                <div class="text-[9px] font-black ${train.etd === 'On time' ? 'text-green-600' : 'text-primary'} uppercase tracking-widest mt-1">
+                                <div class="text-[9px] font-black ${train.etd === 'On time' ? 'text-green-600' : 'text-primary'} uppercase tracking-widest mt-0">
                                     ${train.etd}
                                 </div>
                             </div>
@@ -393,12 +410,11 @@
 
         async function fetchLiveBuses() {
             const container = document.getElementById('bus-list');
-            const stops = ['2580BMT0015', '2580BMT0012']; // Turning Circle & Bridge Street
+            const stops = ['2580BMT0015', '2580BMT0012'];
             let allBuses = [];
 
             try {
                 for (const stop of stops) {
-                    // This uses a public proxy or TransportAPI. Replace YOUR_APP_ID/KEY with valid credentials if required.
                     const res = await fetch(`https://transportapi.com/v3/uk/bus/stop/${stop}/live.json?app_id=45788da6&app_key=c684157835154b6840618063065e940a&group=no`);
                     const data = await res.json();
                     if (data.departures) {
@@ -416,13 +432,13 @@
                             <div class="flex items-start justify-between">
                                 <div class="flex items-center gap-3 mt-1">
                                     <span class="bg-primary text-white text-[10px] font-black px-2 py-1 rounded shadow-sm">${bus.line}</span>
-                                    <span class="text-sm font-bold text-secondary truncate max-w-[120px]">${bus.direction}</span>
+                                    <span class="text-sm font-bold text-secondary truncate max-w-[120px] capitalize">${bus.direction.toLowerCase()}</span>
                                 </div>
                                 <div class="flex flex-col items-end min-w-[60px]">
                                     <div class="text-sm font-black bg-slate-100/50 px-3 py-1 rounded-lg tabular-nums text-center w-full">
                                         ${bus.best_departure_estimate || bus.aimed_departure_time}
                                     </div>
-                                    <div class="text-[9px] font-black ${bus.status === 'live' ? 'text-green-600' : 'text-primary'} uppercase tracking-widest mt-1">
+                                    <div class="text-[9px] font-black ${bus.status === 'live' ? 'text-green-600' : 'text-primary'} uppercase tracking-widest mt-0">
                                         ${bus.status === 'live' ? 'Live' : 'Scheduled'}
                                     </div>
                                 </div>
