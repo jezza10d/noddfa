@@ -167,8 +167,7 @@
     async function loadLiveEvents() {
         const container = document.getElementById('events-feed-container');
         try {
-            // 1. Request scope=future from the server
-            const response = await fetch(`${API_BASE}/wp/v2/events-api?per_page=10&scope=future&v=${Date.now()}`);
+            const response = await fetch(`${API_BASE}/wp/v2/events-api?per_page=10&scope=future&_embed&v=${Date.now()}`);
             if (!response.ok) throw new Error(`HTTP Error: ${response.status}`);
             const events = await response.json();
             
@@ -177,14 +176,13 @@
                 return;
             }
 
-            // 2. Safety Filter: Force-hide anything older than today's date
             const today = new Date();
             today.setHours(0, 0, 0, 0);
 
             const upcomingOnly = events.filter(ev => {
                 if (!ev.event_date) return false;
                 return new Date(ev.event_date) >= today;
-            }).slice(0, 3); // Grab only the top 3 closest future events
+            }).slice(0, 3);
 
             if (upcomingOnly.length === 0) {
                 container.innerHTML = `<div class="col-span-3 py-10 text-center text-slate-500 italic">No upcoming activities scheduled right now.</div>`;
@@ -192,7 +190,11 @@
             }
 
             container.innerHTML = upcomingOnly.map(event => {
-                const img = event.event_image_url || 'https://images.unsplash.com/photo-1517457373958-b7bdd4587205?q=80&w=2069';
+                // FIX: Support multiple potential image sources from WordPress
+                const img = event.event_image_url || 
+                            event.featured_media_url || 
+                            event._embedded?.['wp:featuredmedia']?.[0]?.source_url || 
+                            'https://images.unsplash.com/photo-1517457373958-b7bdd4587205?q=80&w=2069';
                 
                 let eventDateStr = "Coming Soon";
                 let rawDate = "";
@@ -207,7 +209,6 @@
                 cleanText = cleanText.replace(/^.*?\d{2}\/\d{2}\/\d{4}.*?[–-]\s*/g, '');
                 const shortDesc = cleanText.split(/\s+/).slice(0, 20).join(' ') + '...';
 
-                // Fix Link for recurring events
                 let eventLink = event.link.replace('https://noddfa-j3nkslkrxc.live-website.com', 'https://glyncorrwg.wales');
                 if (rawDate) {
                     const separator = eventLink.includes('?') ? '&' : '?';
