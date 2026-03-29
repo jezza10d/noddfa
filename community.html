@@ -50,6 +50,24 @@
         .animate-pulse-soft {
             animation: pulse-soft 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
         }
+
+        /* Mobile Menu Support from Contact Page */
+        @media (max-width: 768px) {
+            #nav-menu.active-menu {
+                display: flex !important;
+                flex-direction: column !important;
+                gap: 1.5rem !important;
+                padding: 2rem !important;
+                align-items: flex-start !important;
+                position: absolute !important;
+                top: 72px !important;
+                left: 0 !important;
+                width: 100% !important;
+                background: white !important;
+                z-index: 50 !important;
+                box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            }
+        }
     </style>
 </head>
 <body class="bg-background font-body text-on-background">
@@ -243,7 +261,7 @@
                         </div>
                         <div class="bg-white rounded-3xl p-2 border border-outline shadow-xl overflow-hidden aspect-video relative">
                             <iframe 
-                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d19854.78877543204!2d-3.628886477810332!3d51.6617066898717!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x486e42b12330f6a1%3A0x6334f52e5051a02!2sGlyncorrwg%2C%20Port%20Talbot!5e0!3m2!1sen!2suk!4v1710000000000!5m2!1sen!2suk" 
+                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d9916.35759160566!2d-3.619047112817383!3d51.6617!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x486e5c946f04746f%3A0x8683e97022d4f29!2sGlyncorrwg!5e0!3m2!1sen!2suk!4v1709400000000!5m2!1sen!2suk" 
                                 width="100%" 
                                 height="100%" 
                                 style="border:0;" 
@@ -254,7 +272,6 @@
                             </iframe>
                         </div>
                     </section>
-
                 </div>
             </main>
 
@@ -271,6 +288,8 @@
                 if (hRes.ok) {
                     const data = await hRes.json();
                     document.getElementById('header-placeholder').innerHTML = data.html;
+                    initMobileMenu();
+                    highlightActiveLink();
                 }
                 const fRes = await fetch(`${API_BASE}/noddfa/v1/footer?v=${Date.now()}`);
                 if (fRes.ok) {
@@ -280,13 +299,36 @@
             } catch (e) { console.error("Loader error", e); }
         }
 
+        // Mobile Menu Functions Integrated from Contact Page
+        function initMobileMenu() {
+            const toggleBtn = document.getElementById('menu-toggle');
+            const navMenu = document.getElementById('nav-menu');
+            if (toggleBtn && navMenu) {
+                toggleBtn.onclick = (e) => {
+                    e.preventDefault();
+                    navMenu.classList.toggle('active-menu');
+                    navMenu.classList.toggle('hidden');
+                };
+            }
+        }
+
+        function highlightActiveLink() {
+            const currentPath = window.location.pathname;
+            const navLinks = document.querySelectorAll('.nav-link');
+            navLinks.forEach(link => {
+                const href = link.getAttribute('href');
+                if (currentPath.includes('community') && href.includes('community')) {
+                    link.classList.add('text-primary', 'font-semibold', 'border-b-2', 'border-primary');
+                }
+            });
+        }
+
         async function fetchTrainStation(code, containerId) {
             const container = document.getElementById(containerId);
             try {
                 const res = await fetch(`https://huxley2.azurewebsites.net/departures/${code}?rows=10`);
                 const data = await res.json();
                 if (data.trainServices && data.trainServices.length > 0) {
-                    // Sorting by least time (std) and taking top 2
                     const sortedServices = data.trainServices
                         .sort((a, b) => a.std.localeCompare(b.std))
                         .slice(0, 2);
@@ -317,15 +359,13 @@
             const container = document.getElementById('bus-list');
             const now = new Date();
             const mins = now.getMinutes();
-            
-            // Simulating X3 arrivals
             const ptTime = 60 - (mins % 60);
             const mstTime = (ptTime + 30) % 60;
 
             const buses = [
                 { route: 'X3', dest: 'Port Talbot', time: ptTime },
                 { route: 'X3', dest: 'Maesteg', time: mstTime || 5 }
-            ].sort((a, b) => a.time - b.time); // Sort by least time first
+            ].sort((a, b) => a.time - b.time);
 
             container.innerHTML = buses.map(bus => `
                 <div class="flex items-center justify-between">
@@ -346,25 +386,21 @@
 
         async function loadLiveWeather() {
             try {
-                const lat = 51.6617;
-                const lon = -3.6122;
+                const lat = 51.6617; const lon = -3.6122;
                 const res = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current_weather=true`);
                 const data = await res.json();
                 if (data.current_weather) {
                     const temp = Math.round(data.current_weather.temperature);
                     const code = data.current_weather.weathercode;
                     document.getElementById('weather-temp').innerText = `${temp}°C`;
-                    let desc = "fair conditions";
-                    let icon = "sunny";
+                    let desc = "fair conditions"; let icon = "sunny";
                     if (code >= 1 && code <= 3) { desc = "partly cloudy skies"; icon = "cloud"; }
                     else if (code >= 51) { desc = "light rain likely"; icon = "rainy"; }
                     else if (code >= 71) { desc = "snow showers"; icon = "ac_unit"; }
                     document.getElementById('weather-desc').innerText = `It is currently ${temp}°C with ${desc} in Glyncorrwg.`;
                     document.getElementById('weather-icon').innerText = icon;
                 }
-            } catch (e) {
-                document.getElementById('weather-desc').innerText = "Forecast temporarily unavailable.";
-            }
+            } catch (e) { document.getElementById('weather-desc').innerText = "Forecast temporarily unavailable."; }
         }
 
         async function loadLiveEvents() {
@@ -404,9 +440,7 @@
                             </div>
                         </div>`;
                 }).join('');
-            } catch (err) { 
-                container.innerHTML = `<div class="col-span-3 py-10 text-center text-slate-500 italic">Unable to load live activities.</div>`;
-            }
+            } catch (err) { container.innerHTML = `<div class="col-span-3 py-10 text-center text-slate-500 italic">Unable to load live activities.</div>`; }
         }
 
         document.addEventListener('DOMContentLoaded', () => {
