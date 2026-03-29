@@ -50,7 +50,6 @@
         .animate-pulse-soft {
             animation: pulse-soft 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
         }
-
         @media (max-width: 768px) {
             #nav-menu.active-menu {
                 display: flex !important;
@@ -91,13 +90,12 @@
                     <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 mb-16">
                         
                         <div class="lg:col-span-8 space-y-16">
-                            
                             <section>
                                 <div class="mb-8">
                                     <div class="flex items-center justify-between mb-6">
                                         <h2 class="text-3xl font-headline font-bold text-secondary">Noticeboard</h2>
                                         <a href="/noticeboard" class="flex items-center gap-2 text-primary font-bold text-sm hover:underline">
-                                            View all <span class="material-symbols-outlined text-sm">arrow_forward</span>
+                                            View all notices <span class="material-symbols-outlined text-sm">arrow_forward</span>
                                         </a>
                                     </div>
                                     <div class="flex items-center gap-3">
@@ -134,7 +132,46 @@
 
                             <section>
                                 <div class="flex items-center justify-between mb-8">
-                                    <h2 class="text-3xl font-headline font-bold text-secondary">Local Services</h2>
+                                    <h2 class="text-3xl font-headline font-bold text-secondary">Local Businesses</h2>
+                                    <a href="#" class="flex items-center gap-2 text-primary font-bold text-sm hover:underline">
+                                        Directory <span class="material-symbols-outlined text-sm">arrow_forward</span>
+                                    </a>
+                                </div>
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                    <div class="p-6 bg-white border border-outline rounded-2xl shadow-sm flex flex-col justify-between">
+                                        <div>
+                                            <div class="flex justify-between items-start mb-4">
+                                                <span class="bg-secondary/10 text-secondary text-[10px] font-black px-2.5 py-1 rounded uppercase">Food & Drink</span>
+                                                <div class="flex text-amber-400"><span class="material-symbols-outlined text-sm">star</span><span class="material-symbols-outlined text-sm">star</span><span class="material-symbols-outlined text-sm">star</span><span class="material-symbols-outlined text-sm">star</span></div>
+                                            </div>
+                                            <h4 class="font-bold text-lg mb-1">Refreshment Rooms</h4>
+                                            <p class="text-on-surface-variant text-xs mb-4">Famous local hospitality serving hot meals and Sunday lunch.</p>
+                                        </div>
+                                        <div class="flex items-center gap-4 text-[10px] font-bold text-slate-400">
+                                            <span class="flex items-center gap-1"><span class="material-symbols-outlined text-xs">call</span> 01639 850742</span>
+                                        </div>
+                                    </div>
+                                    <div class="p-6 bg-white border border-outline rounded-2xl shadow-sm flex flex-col justify-between">
+                                        <div>
+                                            <div class="flex justify-between items-start mb-4">
+                                                <span class="bg-secondary/10 text-secondary text-[10px] font-black px-2.5 py-1 rounded uppercase">Retail</span>
+                                            </div>
+                                            <h4 class="font-bold text-lg mb-1">Glyncorrwg Post Office</h4>
+                                            <p class="text-on-surface-variant text-xs mb-4">Essential village shop for groceries, news, and postal services.</p>
+                                        </div>
+                                        <div class="flex items-center gap-4 text-[10px] font-bold text-slate-400">
+                                            <span class="flex items-center gap-1"><span class="material-symbols-outlined text-xs">schedule</span> Open until 5:30 PM</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+
+                            <section>
+                                <div class="flex items-center justify-between mb-8">
+                                    <h2 class="text-3xl font-headline font-bold text-secondary">Local services</h2>
+                                    <a href="#" class="flex items-center gap-2 text-primary font-bold text-sm hover:underline">
+                                        View all <span class="material-symbols-outlined text-sm">arrow_forward</span>
+                                    </a>
                                 </div>
                                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                                     <div class="bg-surface border border-outline p-6 rounded-xl shadow-sm hover:border-primary transition-all">
@@ -145,52 +182,7 @@
                                         <p class="text-on-surface-variant text-xs mb-4">Health Centre hours and booking info.</p>
                                         <span class="text-primary text-[10px] font-black flex items-center gap-2 uppercase">View info <span class="material-symbols-outlined text-xs">arrow_forward</span></span>
                                     </div>
-                                    <div class="bg-surface border border-outline p-6 rounded-xl shadow-sm hover:border-primary transition-all">
-                                        <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center text-primary mb-4">
-                                            <span class="material-symbols-outlined text-2xl">school</span>
-                                        </div>
-                                        <h3 class="text-lg font-bold mb-2">Primary School</h3>
-                                        <p class="text-on-surface-variant text-xs mb-4">Term dates and local school news.</p>
-                                        <span class="text-primary text-[10px] font-black flex items-center gap-2 uppercase">Learn more <span class="material-symbols-outlined text-xs">arrow_forward</span></span>
                                     </div>
-                                    <div class="bg-surface border border-outline p-6 rounded-xl shadow-sm hover:border-primary transition-all">
-                                        <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center text-primary mb-4">
-                                            <span class="material-symbols-outlined text-2xl">local_post_office</span>
-                                        </div>
-                                        <h3 class="text-lg font-bold mb-2">Post Office</h3>
-                                        <p class="text-on-surface-variant text-xs mb-4">Located in the village shop.</p>
-                                        <span class="text-primary text-[10px] font-black flex items-center gap-2 uppercase">Details <span class="material-symbols-outlined text-xs">arrow_forward</span></span>
-                                    </div>
-                                </div>
-                            </section>
-
-                            <section>
-                                <div class="flex items-center justify-between mb-8">
-                                    <h2 class="text-3xl font-headline font-bold text-secondary">Business Directory</h2>
-                                    <a href="/directory" class="flex items-center gap-2 text-primary font-bold text-sm hover:underline">
-                                        View all <span class="material-symbols-outlined text-sm">arrow_forward</span>
-                                    </a>
-                                </div>
-                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                                    <div class="flex items-center gap-4 bg-white p-4 rounded-xl border border-outline hover:border-primary/30 transition-all">
-                                        <div class="w-16 h-16 bg-slate-100 rounded-lg overflow-hidden flex-shrink-0">
-                                            <img src="https://images.unsplash.com/photo-1556742044-3c52d6e88c62?q=80&w=150" alt="Shop" class="w-full h-full object-cover">
-                                        </div>
-                                        <div>
-                                            <h4 class="font-bold text-secondary">Village General Store</h4>
-                                            <p class="text-xs text-on-surface-variant">Daily essentials & local produce</p>
-                                        </div>
-                                    </div>
-                                    <div class="flex items-center gap-4 bg-white p-4 rounded-xl border border-outline hover:border-primary/30 transition-all">
-                                        <div class="w-16 h-16 bg-slate-100 rounded-lg overflow-hidden flex-shrink-0">
-                                            <img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?q=80&w=150" alt="Cafe" class="w-full h-full object-cover">
-                                        </div>
-                                        <div>
-                                            <h4 class="font-bold text-secondary">The Valley Cafe</h4>
-                                            <p class="text-xs text-on-surface-variant">Hot meals, coffee & cakes</p>
-                                        </div>
-                                    </div>
-                                </div>
                             </section>
                         </div>
 
@@ -227,19 +219,6 @@
                                     </div>
                                 </div>
                             </div>
-
-                            <div class="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm">
-                                <h4 class="text-lg font-bold text-secondary mb-4">Bin collection days</h4>
-                                <div class="flex items-center gap-4">
-                                    <div class="w-12 h-12 bg-slate-100 rounded-xl flex items-center justify-center text-secondary">
-                                        <span class="material-symbols-outlined text-2xl">delete</span>
-                                    </div>
-                                    <div>
-                                        <div class="font-bold text-sm text-secondary">Next: Monday</div>
-                                        <div class="text-[10px] text-primary font-black uppercase tracking-tight">Recycling & food waste</div>
-                                    </div>
-                                </div>
-                            </div>
                         </aside>
                     </div>
 
@@ -257,21 +236,6 @@
                         </div>
                         <div id="events-feed-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                             <div class="col-span-3 py-20 text-center text-slate-500 italic">Checking for upcoming activities...</div>
-                        </div>
-                    </section>
-
-                    <section class="mt-24 mb-20">
-                        <div class="flex items-center justify-between mb-8">
-                            <div>
-                                <h2 class="text-3xl font-headline font-bold text-secondary">Village Map</h2>
-                                <p class="text-on-surface-variant mt-2">Locate essential services around Glyncorrwg.</p>
-                            </div>
-                        </div>
-                        <div class="bg-white rounded-3xl p-2 border border-outline shadow-xl overflow-hidden aspect-video relative">
-                            <iframe 
-                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d19853.48866386341!2d-3.6122!3d51.6617!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x486e6807d722c363%3A0x892994d5d36e7888!2sGlyncorrwg!5e0!3m2!1sen!2suk!4v1710000000000!5m2!1sen!2suk" 
-                                width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" class="rounded-[2rem]">
-                            </iframe>
                         </div>
                     </section>
                 </div>
@@ -339,14 +303,14 @@
                             </div>
                             <div class="text-right">
                                 <div class="text-sm font-black bg-slate-100/50 px-3 py-1 rounded-lg tabular-nums">${train.std}</div>
-                                <div class="text-[9px] font-black ${statusColor} uppercase animate-pulse-soft">${train.etd}</div>
+                                <div class="text-[9px] font-black ${statusColor} uppercase mt-0 animate-pulse-soft">${train.etd}</div>
                             </div>
                         </div>`;
                     }).join('');
                 } else {
                     container.innerHTML = `<div class="text-xs text-slate-400">No services scheduled.</div>`;
                 }
-            } catch (e) { container.innerHTML = `<div class="text-xs text-slate-400">Update failed.</div>`; }
+            } catch (e) { container.innerHTML = `<div class="text-xs text-slate-400">Station update failed.</div>`; }
         }
 
         async function fetchBusData() {
@@ -357,23 +321,25 @@
             container.innerHTML = `
                 <div class="flex items-center justify-between">
                     <div class="flex items-center gap-3">
-                        <span class="bg-primary text-white text-[10px] font-black px-2 py-1 rounded">X3</span>
+                        <span class="bg-primary text-white text-[10px] font-black px-2 py-1 rounded shadow-sm">X3</span>
                         <span class="text-sm font-bold text-secondary">Port Talbot</span>
                     </div>
                     <span class="text-sm font-black text-primary animate-pulse-soft w-14 text-right">${ptTime}m</span>
-                </div>`;
+                </div>
+            `;
         }
 
         async function loadLiveWeather() {
             try {
-                const res = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=51.6617&longitude=-3.6122&current_weather=true`);
+                const lat = 51.6617; const lon = -3.6122;
+                const res = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current_weather=true`);
                 const data = await res.json();
                 if (data.current_weather) {
                     const temp = Math.round(data.current_weather.temperature);
                     document.getElementById('weather-temp').innerText = `${temp}°C`;
                     document.getElementById('weather-desc').innerText = `It is currently ${temp}°C with fair conditions in Glyncorrwg.`;
                 }
-            } catch (e) { document.getElementById('weather-desc').innerText = "Weather unavailable."; }
+            } catch (e) { document.getElementById('weather-desc').innerText = "Forecast unavailable."; }
         }
 
         async function loadLiveEvents() {
@@ -392,14 +358,14 @@
                             <h3 class="text-xl font-bold mb-2 text-slate-900">${event.title.rendered}</h3>
                             <div class="flex items-center gap-2 text-primary text-sm font-bold mb-4">
                                 <span class="material-symbols-outlined text-base">calendar_today</span>
-                                <span>${new Date(event.event_date).toLocaleDateString('en-GB')}</span>
+                                <span>${new Date(event.event_date).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: '2-digit' })}</span>
                             </div>
                             <div class="mt-auto">
                                 <div class="w-full bg-primary text-white font-bold py-3 rounded-lg flex items-center justify-center gap-2">More Info <span class="material-symbols-outlined text-sm">arrow_forward</span></div>
                             </div>
                         </div>
                     </div>`).join('');
-            } catch (err) { container.innerHTML = `<div class="col-span-3 py-10 text-center text-slate-500 italic">Unable to load activities.</div>`; }
+            } catch (err) { container.innerHTML = `<div class="col-span-3 py-10 text-center text-slate-500 italic">Unable to load live activities.</div>`; }
         }
 
         document.addEventListener('DOMContentLoaded', () => {
@@ -408,6 +374,7 @@
             loadLiveWeather();
             fetchTrainStation('MST', 'maesteg-trains-list');
             fetchBusData();
+            setInterval(fetchBusData, 60000);
         });
     </script>
 </body>
