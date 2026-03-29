@@ -71,12 +71,12 @@
                                 <div class="mb-8">
                                     <div class="flex items-center justify-between mb-6">
                                         <h2 class="text-3xl font-headline font-bold text-secondary">Noticeboard</h2>
-                                        <a href="#" class="flex items-center gap-2 text-primary font-bold text-sm hover:underline">
-                                            View all <span class="material-symbols-outlined text-sm">arrow_forward</span>
+                                        <a href="https://glyncorrwg.wales/community/noticeboard" class="flex items-center gap-2 text-primary font-bold text-sm hover:underline">
+                                            View all posts <span class="material-symbols-outlined text-sm">arrow_forward</span>
                                         </a>
                                     </div>
                                     <div class="flex items-center gap-3">
-                                        <button class="bg-primary text-white px-6 py-2 rounded-full text-sm font-bold shadow-md">All Stories</button>
+                                        <button class="bg-primary text-white px-6 py-2 rounded-full text-sm font-bold shadow-md">All stories</button>
                                         <button class="bg-white border border-slate-200 text-slate-600 px-6 py-2 rounded-full text-sm font-bold hover:bg-slate-50 transition-colors">Uncategorized</button>
                                     </div>
                                 </div>
@@ -192,8 +192,6 @@
                                             <div class="text-xs text-slate-400 italic">Checking trains...</div>
                                         </div>
                                     </div>
-
-                                    <button onclick="window.open('https://www.nationalrail.co.uk', '_blank')" class="w-full py-4 mt-2 text-[11px] font-black text-primary border-2 border-primary/10 rounded-xl hover:bg-primary hover:text-white hover:border-primary transition-all tracking-widest uppercase shadow-sm">View full timetable</button>
                                 </div>
                             </div>
 
@@ -204,30 +202,13 @@
                                         <span class="material-symbols-outlined text-2xl">delete</span>
                                     </div>
                                     <div>
-                                        <div class="font-bold text-sm text-secondary">Next: Tuesday</div>
+                                        <div class="font-bold text-sm text-secondary">Next: Monday</div>
                                         <div class="text-[10px] text-primary font-black uppercase tracking-tight">Recycling & food waste</div>
                                     </div>
                                 </div>
                             </div>
                         </aside>
                     </div>
-
-                    <section class="mt-24 w-full">
-                        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-10">
-                            <div>
-                                <h2 class="text-slate-900 text-3xl font-bold">What's on</h2>
-                                <p class="text-slate-500 mt-2">Join us for activities and events this week</p>
-                            </div>
-                            <a href="/events" class="self-start md:self-auto">
-                                <button class="flex items-center gap-2 text-primary font-bold hover:underline">
-                                    View all events <span class="material-symbols-outlined">arrow_forward</span>
-                                </button>
-                            </a>
-                        </div>
-                        <div id="events-feed-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                            <div class="col-span-3 py-20 text-center text-slate-500 italic">Checking for upcoming activities...</div>
-                        </div>
-                    </section>
 
                     <section class="mt-24">
                         <div class="mb-10">
@@ -280,6 +261,23 @@
                         </div>
                     </section>
 
+                    <section class="mt-24 w-full">
+                        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-10">
+                            <div>
+                                <h2 class="text-slate-900 text-3xl font-bold">What's on</h2>
+                                <p class="text-slate-500 mt-2">Join us for activities and events this week</p>
+                            </div>
+                            <a href="/events" class="self-start md:self-auto">
+                                <button class="flex items-center gap-2 text-primary font-bold hover:underline">
+                                    View all events <span class="material-symbols-outlined">arrow_forward</span>
+                                </button>
+                            </a>
+                        </div>
+                        <div id="events-feed-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                            <div class="col-span-3 py-20 text-center text-slate-500 italic">Checking for upcoming activities...</div>
+                        </div>
+                    </section>
+
                     <section class="mt-24 mb-20">
                         <div class="bg-surface-container rounded-3xl p-8 md:p-12 overflow-hidden relative border border-outline shadow-sm">
                             <div class="absolute top-0 right-0 w-64 h-64 bg-primary opacity-5 rounded-full -translate-y-1/2 translate-x-1/2"></div>
@@ -309,11 +307,11 @@
                                 <div class="grid grid-cols-2 gap-4">
                                     <div class="bg-white p-6 rounded-2xl shadow-sm flex flex-col items-center text-center">
                                         <div class="text-4xl font-black text-primary mb-1">24h</div>
-                                        <div class="text-xs uppercase tracking-wider text-on-surface-variant font-bold">Response Goal</div>
+                                        <div class="text-xs uppercase tracking-wider text-on-surface-variant font-bold">Response goal</div>
                                     </div>
                                     <div class="bg-white p-6 rounded-2xl shadow-sm flex flex-col items-center text-center">
                                         <div class="text-4xl font-black text-secondary mb-1">NPT</div>
-                                        <div class="text-xs uppercase tracking-wider text-on-surface-variant font-bold">Council Direct</div>
+                                        <div class="text-xs uppercase tracking-wider text-on-surface-variant font-bold">Council direct</div>
                                     </div>
                                 </div>
                             </div>
@@ -328,11 +326,13 @@
                             </div>
                         </div>
                         <div class="bg-white rounded-3xl p-2 border border-outline shadow-xl overflow-hidden aspect-video relative group">
-                            <img alt="Stylized village map" class="w-full h-full object-cover rounded-[2rem]" src="https://images.unsplash.com/photo-1524661135-423995f22d0b?auto=format&fit=crop&q=80&w=2074"/>
-                            <div class="absolute bottom-6 right-6 bg-white/90 backdrop-blur-md p-4 rounded-xl shadow-lg border border-outline">
-                                <h4 class="font-bold text-secondary mb-1">Glyncorrwg interactive</h4>
-                                <p class="text-xs text-on-surface-variant">Tap markers for address & details</p>
-                            </div>
+                            <iframe 
+                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d19835.31976092524!2d-3.626868515783358!3d51.661719973216894!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x486e6884860434b9%3A0xe510c497334752c0!2sGlyncorrwg%2C%20Port%20Talbot!5e0!3m2!1sen!2suk!4v1711200000000!5m2!1sen!2suk" 
+                                class="w-full h-full rounded-[2rem] border-0" 
+                                allowfullscreen="" 
+                                loading="lazy" 
+                                referrerpolicy="no-referrer-when-downgrade">
+                            </iframe>
                         </div>
                     </section>
 
