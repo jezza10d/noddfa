@@ -44,8 +44,15 @@
             }
         }
         .material-symbols-outlined {
-            /* Ensuring outline style: FILL 0 */
             font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        /* Loading spinner animation */
+        .spinner {
+            animation: rotate 2s linear infinite;
+            width: 20px; height: 20px;
+        }
+        @keyframes rotate {
+            100% { transform: rotate(360deg); }
         }
     </style>
 </head>
@@ -67,12 +74,17 @@
                     <p class="text-on-surface-variant text-sm mt-1">Access your member dashboard</p>
                 </div>
 
+                <div id="login-error" class="hidden mb-6 p-4 bg-red-50 border-l-4 border-red-600 text-red-700 text-sm">
+                    <p class="font-bold">Login Failed</p>
+                    <p id="error-text">Please check your credentials and try again.</p>
+                </div>
+
                 <form id="loginForm" class="space-y-4">
                     <div>
-                        <label for="email" class="block text-sm font-semibold text-secondary mb-1">Email Address</label>
-                        <input type="email" id="email" name="email" required 
+                        <label for="email" class="block text-sm font-semibold text-secondary mb-1">Username or Email</label>
+                        <input type="text" id="username" name="username" required 
                             class="w-full px-4 py-3 rounded-lg border border-outline-variant focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all placeholder:text-slate-400"
-                            placeholder="name@example.com">
+                            placeholder="Your username">
                     </div>
 
                     <div>
@@ -92,8 +104,9 @@
                         <a href="#" class="text-primary font-bold hover:underline">Forgot password?</a>
                     </div>
 
-                    <button type="submit" class="w-full bg-primary text-white py-3 rounded-lg font-bold shadow-md hover:bg-opacity-95 transition-all active:scale-[0.98]">
-                        Sign In
+                    <button type="submit" id="submitBtn" class="w-full bg-primary text-white py-3 rounded-lg font-bold shadow-md hover:bg-opacity-95 transition-all active:scale-[0.98] flex items-center justify-center gap-2">
+                        <span id="btnText">Sign In</span>
+                        <span id="btnSpinner" class="hidden material-symbols-outlined spinner">progress_activity</span>
                     </button>
                 </form>
 
@@ -116,21 +129,72 @@
 <script>
     const API_BASE = 'https://noddfa-j3nkslkrxc.live-website.com/wp-json';
 
-    // Handle Login Redirect
-    document.getElementById('loginForm').addEventListener('submit', function(e) {
+    // 1. Handle Login Functionality
+    document.getElementById('loginForm').addEventListener('submit', async function(e) {
         e.preventDefault();
-        window.location.href = '/portal';
+        
+        const username = document.getElementById('username').value;
+        const password = document.getElementById('password').value;
+        const errorContainer = document.getElementById('login-error');
+        const submitBtn = document.getElementById('submitBtn');
+        const btnText = document.getElementById('btnText');
+        const btnSpinner = document.getElementById('btnSpinner');
+
+        // Reset state
+        errorContainer.classList.add('hidden');
+        submitBtn.disabled = true;
+        btnText.innerText = 'Authenticating...';
+        btnSpinner.classList.remove('hidden');
+
+        try {
+            // Note: This assumes you have the 'JWT Authentication for WP REST API' plugin installed on WordPress
+            const response = await fetch(`${API_BASE}/jwt-auth/v1/token`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ username, password })
+            });
+
+            const data = await response.json();
+
+            if (response.ok) {
+                // Success: Store token and user info
+                localStorage.setItem('noddfa_token', data.token);
+                localStorage.setItem('noddfa_user_email', data.user_email);
+                localStorage.setItem('noddfa_user_nicename', data.user_nicename);
+                localStorage.setItem('noddfa_user_display_name', data.user_display_name);
+
+                // Redirect logic: check for "redirect" param in URL, otherwise go to /portal
+                const urlParams = new URLSearchParams(window.location.search);
+                const redirectTo = urlParams.get('redirect') || '/portal';
+                window.location.href = redirectTo;
+            } else {
+                // Handle WP error messages
+                throw new Error(data.message || 'Invalid username or password.');
+            }
+        } catch (error) {
+            console.error('Login Error:', error);
+            document.getElementById('error-text').innerText = error.message;
+            errorContainer.classList.remove('hidden');
+        } finally {
+            submitBtn.disabled = false;
+            btnText.innerText = 'Sign In';
+            btnSpinner.classList.add('hidden');
+        }
     });
 
+    // 2. Load Shared Header/Footer
     async function loadSharedComponents() {
         try {
-            const hRes = await fetch(`${API_BASE}/noddfa/v1/header?v=${Date.now()}`);
+            const [hRes, fRes] = await Promise.all([
+                fetch(`${API_BASE}/noddfa/v1/header?v=${Date.now()}`),
+                fetch(`${API_BASE}/noddfa/v1/footer?v=${Date.now()}`)
+            ]);
+
             if (hRes.ok) {
                 const data = await hRes.json();
                 document.getElementById('header-placeholder').innerHTML = data.html;
                 initMobileMenu();
             }
-            const fRes = await fetch(`${API_BASE}/noddfa/v1/footer?v=${Date.now()}`);
             if (fRes.ok) {
                 const data = await fRes.json();
                 document.getElementById('footer-placeholder').innerHTML = data.html;
