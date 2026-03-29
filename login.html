@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <title>Login | Noddfa Community Centre</title>
+    <title>Member Access | Noddfa Community Centre</title>
     
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -11,15 +11,13 @@
 
     <script id="tailwind-config">
         tailwind.config = {
-            darkMode: "class",
             theme: {
                 extend: {
                     colors: {
                         primary: "#ae0000",
                         secondary: "#1a301a",
                         "background-light": "#f8f5f5",
-                        "outline-variant": "#e2e8d1",
-                        "on-surface-variant": "#475569"
+                        "outline-variant": "#e2e8d1"
                     },
                     fontFamily: { display: "Lexend" }
                 }
@@ -28,193 +26,205 @@
     </script>
 
     <style>
-        @media (max-width: 768px) {
-            #nav-menu.active-menu {
-                display: flex !important;
-                flex-direction: column !important;
-                gap: 1.5rem !important;
-                padding: 2rem !important;
-                position: absolute !important;
-                top: 72px !important;
-                left: 0 !important;
-                width: 100% !important;
-                background: white !important;
-                z-index: 50 !important;
-                box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-            }
-        }
-        .material-symbols-outlined {
-            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
-        }
-        /* Loading spinner animation */
-        .spinner {
-            animation: rotate 2s linear infinite;
-            width: 20px; height: 20px;
-        }
-        @keyframes rotate {
-            100% { transform: rotate(360deg); }
-        }
+        .hidden-view { display: none; }
+        .spinner { animation: rotate 2s linear infinite; width: 18px; height: 18px; }
+        @keyframes rotate { 100% { transform: rotate(360deg); } }
     </style>
 </head>
 <body class="bg-background-light font-display text-slate-900">
 
-<div class="relative flex h-auto min-h-screen w-full flex-col overflow-x-hidden">
-    <div class="layout-container flex h-full grow flex-col">
-
-        <header id="header-placeholder" class="min-h-[72px] relative z-50"></header>
-        
-        <main class="flex flex-1 items-center justify-center px-6 py-12 md:py-24">
-            <div class="w-full max-w-[400px] bg-white p-8 rounded-xl shadow-sm border border-outline-variant">
-                
-                <div class="flex flex-col items-center mb-8 text-center">
-                    <div class="w-20 h-20 rounded-full bg-primary/5 flex items-center justify-center mb-4 border border-primary/10">
-                        <span class="material-symbols-outlined text-primary text-4xl">lock</span>
-                    </div>
-                    <h2 class="text-2xl font-bold text-secondary">Portal Sign In</h2>
-                    <p class="text-on-surface-variant text-sm mt-1">Access your member dashboard</p>
+<div class="relative flex min-h-screen flex-col">
+    <header id="header-placeholder" class="min-h-[72px] z-50"></header>
+    
+    <main class="flex flex-1 items-center justify-center px-6 py-12">
+        <div class="w-full max-w-[450px] bg-white p-8 rounded-2xl shadow-sm border border-outline-variant">
+            
+            <div class="flex flex-col items-center mb-8 text-center">
+                <div class="w-16 h-16 rounded-full bg-primary/5 flex items-center justify-center mb-4 border border-primary/10">
+                    <span id="header-icon" class="material-symbols-outlined text-primary text-3xl">lock</span>
                 </div>
+                <h2 id="view-title" class="text-2xl font-bold text-secondary">Portal Sign In</h2>
+                <p id="view-subtitle" class="text-slate-500 text-sm mt-1">Access your member dashboard</p>
+            </div>
 
-                <div id="login-error" class="hidden mb-6 p-4 bg-red-50 border-l-4 border-red-600 text-red-700 text-sm">
-                    <p class="font-bold">Login Failed</p>
-                    <p id="error-text">Please check your credentials and try again.</p>
-                </div>
+            <div id="status-msg" class="hidden mb-6 p-4 rounded-lg text-sm border-l-4"></div>
 
+            <div id="login-view">
                 <form id="loginForm" class="space-y-4">
                     <div>
-                        <label for="email" class="block text-sm font-semibold text-secondary mb-1">Username or Email</label>
-                        <input type="text" id="username" name="username" required 
-                            class="w-full px-4 py-3 rounded-lg border border-outline-variant focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all placeholder:text-slate-400"
-                            placeholder="Your username">
+                        <label class="block text-sm font-semibold text-secondary mb-1">Username or Email</label>
+                        <input type="text" id="login-user" required class="w-full px-4 py-3 rounded-xl border border-outline-variant outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all">
                     </div>
-
                     <div>
-                        <div class="flex justify-between mb-1">
-                            <label for="password" class="text-sm font-semibold text-secondary">Password</label>
-                        </div>
-                        <input type="password" id="password" name="password" required 
-                            class="w-full px-4 py-3 rounded-lg border border-outline-variant focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all placeholder:text-slate-400"
-                            placeholder="••••••••">
+                        <label class="block text-sm font-semibold text-secondary mb-1">Password</label>
+                        <input type="password" id="login-pass" required class="w-full px-4 py-3 rounded-xl border border-outline-variant outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all">
                     </div>
-
                     <div class="flex items-center justify-between text-xs">
                         <label class="flex items-center gap-2 cursor-pointer">
-                            <input type="checkbox" id="remember" class="rounded border-outline-variant text-primary focus:ring-primary w-4 h-4">
-                            <span class="text-on-surface-variant">Remember me</span>
+                            <input type="checkbox" class="rounded border-outline-variant text-primary focus:ring-primary">
+                            <span>Remember me</span>
                         </label>
-                        <a href="#" class="text-primary font-bold hover:underline">Forgot password?</a>
+                        <button type="button" onclick="switchView('forgot')" class="text-primary font-bold hover:underline">Forgot password?</button>
                     </div>
-
-                    <button type="submit" id="submitBtn" class="w-full bg-primary text-white py-3 rounded-lg font-bold shadow-md hover:bg-opacity-95 transition-all active:scale-[0.98] flex items-center justify-center gap-2">
-                        <span id="btnText">Sign In</span>
-                        <span id="btnSpinner" class="hidden material-symbols-outlined spinner">progress_activity</span>
+                    <button type="submit" class="w-full bg-primary text-white py-3.5 rounded-xl font-bold shadow-md hover:bg-red-700 transition-all flex justify-center items-center gap-2">
+                        <span>Sign In</span>
+                        <span class="btn-loader hidden material-symbols-outlined spinner">progress_activity</span>
                     </button>
                 </form>
-
-                <div class="relative my-8">
-                    <div class="absolute inset-0 flex items-center"><div class="w-full border-t border-outline-variant"></div></div>
-                    <div class="relative flex justify-center text-xs uppercase"><span class="bg-white px-2 text-on-surface-variant">New to Noddfa?</span></div>
+                <div class="mt-8 pt-6 border-t border-outline-variant text-center">
+                    <p class="text-sm text-slate-500">New to Noddfa? <button onclick="switchView('register')" class="text-primary font-bold hover:underline">Create an Account</button></p>
                 </div>
-
-                <button onclick="window.location.href='/portal'" class="w-full bg-[#f1eeee] text-secondary py-3 rounded-lg font-bold border border-outline-variant hover:bg-[#e2dede] transition-all active:scale-[0.98]">
-                    Create Account
-                </button>
             </div>
-        </main>
 
-        <div id="footer-placeholder"></div>
+            <div id="register-view" class="hidden-view">
+                <form id="registerForm" class="space-y-4">
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-sm font-semibold text-secondary mb-1">First Name</label>
+                            <input type="text" id="reg-fname" required class="w-full px-4 py-3 rounded-xl border border-outline-variant outline-none">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold text-secondary mb-1">Last Name</label>
+                            <input type="text" id="reg-lname" required class="w-full px-4 py-3 rounded-xl border border-outline-variant outline-none">
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-semibold text-secondary mb-1">Email Address</label>
+                        <input type="email" id="reg-email" required class="w-full px-4 py-3 rounded-xl border border-outline-variant outline-none">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-semibold text-secondary mb-1">Create Password</label>
+                        <input type="password" id="reg-pass" required class="w-full px-4 py-3 rounded-xl border border-outline-variant outline-none">
+                    </div>
+                    <button type="submit" class="w-full bg-secondary text-white py-3.5 rounded-xl font-bold shadow-md hover:bg-black transition-all flex justify-center items-center gap-2">
+                        <span>Create Account</span>
+                        <span class="btn-loader hidden material-symbols-outlined spinner">progress_activity</span>
+                    </button>
+                </form>
+                <button onclick="switchView('login')" class="w-full mt-4 text-sm font-bold text-slate-500 hover:text-secondary">Back to Login</button>
+            </div>
 
-    </div>
+            <div id="forgot-view" class="hidden-view text-center">
+                <p class="text-sm text-slate-500 mb-6">Enter your email and we'll send you a link to reset your password.</p>
+                <form id="forgotForm" class="space-y-4">
+                    <input type="email" id="forgot-email" placeholder="email@example.com" required class="w-full px-4 py-3 rounded-xl border border-outline-variant outline-none">
+                    <button type="submit" class="w-full bg-primary text-white py-3.5 rounded-xl font-bold transition-all flex justify-center items-center gap-2">
+                        <span>Send Reset Link</span>
+                        <span class="btn-loader hidden material-symbols-outlined spinner">progress_activity</span>
+                    </button>
+                </form>
+                <button onclick="switchView('login')" class="w-full mt-6 text-sm font-bold text-slate-500 hover:text-secondary">Back to Login</button>
+            </div>
+
+        </div>
+    </main>
+
+    <div id="footer-placeholder"></div>
 </div>
 
 <script>
     const API_BASE = 'https://noddfa-j3nkslkrxc.live-website.com/wp-json';
 
-    // 1. Handle Login Functionality
-    document.getElementById('loginForm').addEventListener('submit', async function(e) {
-        e.preventDefault();
+    // 1. View Toggler
+    function switchView(view) {
+        const views = ['login', 'register', 'forgot'];
+        views.forEach(v => document.getElementById(`${v}-view`).classList.add('hidden-view'));
+        document.getElementById(`${view}-view`).classList.remove('hidden-view');
         
-        const username = document.getElementById('username').value;
-        const password = document.getElementById('password').value;
-        const errorContainer = document.getElementById('login-error');
-        const submitBtn = document.getElementById('submitBtn');
-        const btnText = document.getElementById('btnText');
-        const btnSpinner = document.getElementById('btnSpinner');
+        const title = document.getElementById('view-title');
+        const icon = document.getElementById('header-icon');
+        
+        if(view === 'login') { title.innerText = 'Portal Sign In'; icon.innerText = 'lock'; }
+        if(view === 'register') { title.innerText = 'Create Account'; icon.innerText = 'person_add'; }
+        if(view === 'forgot') { title.innerText = 'Reset Password'; icon.innerText = 'lock_reset'; }
+    }
 
-        // Reset state
-        errorContainer.classList.add('hidden');
-        submitBtn.disabled = true;
-        btnText.innerText = 'Authenticating...';
-        btnSpinner.classList.remove('hidden');
+    // 2. Notification Helper
+    function showStatus(msg, isError = true) {
+        const el = document.getElementById('status-msg');
+        el.innerText = msg;
+        el.className = `mb-6 p-4 rounded-lg text-sm border-l-4 ${isError ? 'bg-red-50 border-red-600 text-red-700' : 'bg-green-50 border-green-600 text-green-700'}`;
+        el.classList.remove('hidden');
+    }
+
+    // 3. Form Submissions
+    // LOGIN
+    document.getElementById('loginForm').onsubmit = async (e) => {
+        e.preventDefault();
+        const btn = e.target.querySelector('button');
+        btn.disabled = true; btn.querySelector('.btn-loader').classList.remove('hidden');
 
         try {
-            // Note: This assumes you have the 'JWT Authentication for WP REST API' plugin installed on WordPress
-            const response = await fetch(`${API_BASE}/jwt-auth/v1/token`, {
+            const res = await fetch(`${API_BASE}/jwt-auth/v1/token`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ username, password })
+                body: JSON.stringify({ username: e.target[0].value, password: e.target[1].value })
             });
-
-            const data = await response.json();
-
-            if (response.ok) {
-                // Success: Store token and user info
+            const data = await res.json();
+            if(res.ok) {
                 localStorage.setItem('noddfa_token', data.token);
-                localStorage.setItem('noddfa_user_email', data.user_email);
-                localStorage.setItem('noddfa_user_nicename', data.user_nicename);
                 localStorage.setItem('noddfa_user_display_name', data.user_display_name);
+                window.location.href = '/portal';
+            } else { showStatus(data.message || "Invalid credentials"); }
+        } catch (err) { showStatus("Connection error. Try again later."); }
+        btn.disabled = false; btn.querySelector('.btn-loader').classList.add('hidden');
+    };
 
-                // Redirect logic: check for "redirect" param in URL, otherwise go to /portal
-                const urlParams = new URLSearchParams(window.location.search);
-                const redirectTo = urlParams.get('redirect') || '/portal';
-                window.location.href = redirectTo;
-            } else {
-                // Handle WP error messages
-                throw new Error(data.message || 'Invalid username or password.');
-            }
-        } catch (error) {
-            console.error('Login Error:', error);
-            document.getElementById('error-text').innerText = error.message;
-            errorContainer.classList.remove('hidden');
-        } finally {
-            submitBtn.disabled = false;
-            btnText.innerText = 'Sign In';
-            btnSpinner.classList.add('hidden');
-        }
-    });
+    // REGISTER
+    document.getElementById('registerForm').onsubmit = async (e) => {
+        e.preventDefault();
+        const btn = e.target.querySelector('button');
+        btn.disabled = true; btn.querySelector('.btn-loader').classList.remove('hidden');
 
-    // 2. Load Shared Header/Footer
-    async function loadSharedComponents() {
         try {
-            const [hRes, fRes] = await Promise.all([
-                fetch(`${API_BASE}/noddfa/v1/header?v=${Date.now()}`),
-                fetch(`${API_BASE}/noddfa/v1/footer?v=${Date.now()}`)
-            ]);
+            const res = await fetch(`${API_BASE}/noddfa/v1/register`, { // Custom endpoint required in WP
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    email: document.getElementById('reg-email').value,
+                    password: document.getElementById('reg-pass').value,
+                    first_name: document.getElementById('reg-fname').value,
+                    last_name: document.getElementById('reg-lname').value
+                })
+            });
+            const data = await res.json();
+            if(res.ok) {
+                showStatus("Account created! You can now sign in.", false);
+                switchView('login');
+            } else { showStatus(data.message || "Registration failed"); }
+        } catch (err) { showStatus("Connection error."); }
+        btn.disabled = false; btn.querySelector('.btn-loader').classList.add('hidden');
+    };
 
-            if (hRes.ok) {
-                const data = await hRes.json();
-                document.getElementById('header-placeholder').innerHTML = data.html;
-                initMobileMenu();
-            }
-            if (fRes.ok) {
-                const data = await fRes.json();
-                document.getElementById('footer-placeholder').innerHTML = data.html;
-            }
-        } catch (e) { console.error("Component Loader error", e); }
+    // FORGOT PASSWORD
+    document.getElementById('forgotForm').onsubmit = async (e) => {
+        e.preventDefault();
+        const btn = e.target.querySelector('button');
+        btn.disabled = true; btn.querySelector('.btn-loader').classList.remove('hidden');
+
+        try {
+            const res = await fetch(`${API_BASE}/bdpwr/v1/reset-password`, { // Requires 'BD Password Reset' plugin or similar
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ email: document.getElementById('forgot-email').value })
+            });
+            if(res.ok) { showStatus("Reset link sent! Check your inbox.", false); }
+            else { showStatus("User not found."); }
+        } catch (err) { showStatus("Connection error."); }
+        btn.disabled = false; btn.querySelector('.btn-loader').classList.add('hidden');
+    };
+
+    // 4. Shared Components
+    async function loadComponents() {
+        const [h, f] = await Promise.all([
+            fetch(`${API_BASE}/noddfa/v1/header?v=${Date.now()}`),
+            fetch(`${API_BASE}/noddfa/v1/footer?v=${Date.now()}`)
+        ]);
+        if (h.ok) document.getElementById('header-placeholder').innerHTML = (await h.json()).html;
+        if (f.ok) document.getElementById('footer-placeholder').innerHTML = (await f.json()).html;
     }
-
-    function initMobileMenu() {
-        const btn = document.getElementById('menu-toggle');
-        const nav = document.getElementById('nav-menu');
-        if (btn && nav) {
-            btn.onclick = (e) => {
-                e.preventDefault();
-                nav.classList.toggle('active-menu');
-                nav.classList.toggle('hidden');
-            };
-        }
-    }
-
-    document.addEventListener('DOMContentLoaded', loadSharedComponents);
+    document.addEventListener('DOMContentLoaded', loadComponents);
 </script>
+
 </body>
 </html>
