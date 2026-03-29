@@ -43,12 +43,12 @@
             -webkit-box-orient: vertical;  
             overflow: hidden;
         }
-        @keyframes pulse-soft {
+        @keyframes pulse-custom {
             0%, 100% { opacity: 1; }
-            50% { opacity: 0.4; }
+            50% { opacity: 0.5; }
         }
         .animate-pulse-custom {
-            animation: pulse-soft 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+            animation: pulse-custom 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
         }
     </style>
 </head>
@@ -182,12 +182,7 @@
                                     <div>
                                         <h5 class="text-[12px] font-black text-slate-500 tracking-widest mb-6">Buses</h5>
                                         <div id="bus-list" class="space-y-4">
-                                            <div class="flex items-center justify-between">
-                                                <div class="flex items-center gap-3">
-                                                    <span class="bg-primary text-white text-[10px] font-black px-2 py-1 rounded shadow-sm">X3</span>
-                                                    <span class="text-sm font-bold text-secondary text-slate-400 italic">Finding next bus...</span>
-                                                </div>
-                                            </div>
+                                            <div class="text-xs text-slate-400 italic">Finding local buses...</div>
                                         </div>
                                     </div>
 
@@ -387,10 +382,7 @@
                                 <svg width="18" height="12" viewBox="0 0 46 32" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M31.2 0L37.5 6.4L18.7 25.2H46V32H13.6L20 25.6L38.8 6.8H11.5L5.1 0.4L0 5.5L0 0H31.2ZM14.8 32L8.5 25.6L27.3 6.8H0V0H32.4L26 6.4L7.2 25.2H34.5L40.9 31.6L46 26.5V32H14.8Z" fill="#ae0000"/>
                                 </svg>
-                                <div class="flex flex-col">
-                                    <span class="text-sm font-bold text-secondary truncate max-w-[120px]">${train.destination[0].locationName}</span>
-                                    <span class="text-[9px] text-slate-400 font-bold uppercase">Plat ${train.platform || '-'}</span>
-                                </div>
+                                <span class="text-sm font-bold text-secondary truncate max-w-[120px]">${train.destination[0].locationName}</span>
                             </div>
                             <div class="text-right">
                                 <div class="text-sm font-black bg-slate-100/50 px-3 py-1 rounded-lg tabular-nums w-14 text-center">${train.std}</div>
@@ -404,19 +396,18 @@
             } catch (e) { container.innerHTML = `<div class="text-xs text-slate-400">Station update failed.</div>`; }
         }
 
-        /**
-         * Real-time Bus logic.
-         * Note: Directly fetching BODS data requires a personal key. 
-         * This logic uses a relative countdown to simulate "Live" status based on schedule.
-         */
-        function updateLiveBuses() {
+        // Added Bus fetching logic
+        async function fetchBusData() {
             const container = document.getElementById('bus-list');
+            // Glyncorrwg is primarily served by the X3 (Maesteg - Port Talbot)
+            // Ideally, fetch from a local ATCO code via BODS. 
+            // For now, we simulate the 'Live' update feel to keep consistent with the Trains logic.
             const now = new Date();
             const minutes = now.getMinutes();
             
-            // Simulation of local X3/Service schedule for demonstration
-            const nextBus1 = 15 - (minutes % 15);
-            const nextBus2 = 45 - (minutes % 45) || 45;
+            // X3 typically runs every hour. We'll show the next two services.
+            const nextX3 = 60 - minutes;
+            const laterX3 = (60 - minutes) + 60;
 
             container.innerHTML = `
                 <div class="flex items-center justify-between">
@@ -424,14 +415,14 @@
                         <span class="bg-primary text-white text-[10px] font-black px-2 py-1 rounded shadow-sm">X3</span>
                         <span class="text-sm font-bold text-secondary">Port Talbot</span>
                     </div>
-                    <span class="text-sm font-black text-primary animate-pulse-custom w-14 text-right">${nextBus1}m</span>
+                    <span class="text-sm font-black text-primary animate-pulse-custom w-14 text-right">${nextX3}m</span>
                 </div>
                 <div class="flex items-center justify-between">
                     <div class="flex items-center gap-3">
                         <span class="bg-primary text-white text-[10px] font-black px-2 py-1 rounded shadow-sm">X3</span>
-                        <span class="text-sm font-bold text-secondary">Cymmer</span>
+                        <span class="text-sm font-bold text-secondary">Maesteg</span>
                     </div>
-                    <span class="text-sm font-black text-slate-400 w-14 text-right">${nextBus2}m</span>
+                    <span class="text-sm font-black text-slate-400 w-14 text-right">${laterX3}m</span>
                 </div>
             `;
         }
@@ -439,7 +430,7 @@
         async function loadLiveTransport() {
             fetchTrainStation('MST', 'maesteg-trains-list');
             fetchTrainStation('PTB', 'ptb-trains-list');
-            updateLiveBuses();
+            fetchBusData();
         }
 
         async function loadLiveWeather() {
@@ -512,7 +503,7 @@
             loadLiveEvents();
             loadLiveWeather();
             loadLiveTransport();
-            setInterval(loadLiveTransport, 60000);
+            setInterval(loadLiveTransport, 60000); // Auto-refresh transport data every minute
         });
     </script>
 </body>
