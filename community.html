@@ -44,7 +44,7 @@
             overflow: hidden;
         }
 
-        /* EXACT MOBILE MENU STYLES */
+        /* EXACT MOBILE MENU STYLES FROM CONTACT PAGE */
         @media (max-width: 768px) {
             #nav-menu.active-menu {
                 display: flex !important;
@@ -210,8 +210,6 @@
                                             <div class="text-xs text-slate-400 italic">Checking trains...</div>
                                         </div>
                                     </div>
-
-                                    <button onclick="window.open('https://www.nationalrail.co.uk', '_blank')" class="w-full py-4 mt-2 text-[11px] font-black text-primary border-2 border-primary/10 rounded-xl hover:bg-primary hover:text-white hover:border-primary transition-all tracking-widest uppercase shadow-sm">View full timetable</button>
                                 </div>
                             </div>
 
@@ -222,30 +220,13 @@
                                         <span class="material-symbols-outlined text-2xl">delete</span>
                                     </div>
                                     <div>
-                                        <div class="font-bold text-sm text-secondary">Next: Tuesday</div>
+                                        <div class="font-bold text-sm text-secondary">Next: Monday</div>
                                         <div class="text-[10px] text-primary font-black uppercase tracking-tight">Recycling & food waste</div>
                                     </div>
                                 </div>
                             </div>
                         </aside>
                     </div>
-
-                    <section class="mt-24 w-full">
-                        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-10">
-                            <div>
-                                <h2 class="text-slate-900 text-3xl font-bold">What's On</h2>
-                                <p class="text-slate-500 mt-2">Join us for activities and events this week</p>
-                            </div>
-                            <a href="/events" class="self-start md:self-auto">
-                                <button class="flex items-center gap-2 text-primary font-bold hover:underline">
-                                    View All Events <span class="material-symbols-outlined">arrow_forward</span>
-                                </button>
-                            </a>
-                        </div>
-                        <div id="events-feed-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                            <div class="col-span-3 py-20 text-center text-slate-500 italic">Checking for upcoming activities...</div>
-                        </div>
-                    </section>
 
                     <section class="mt-24">
                         <div class="mb-10">
@@ -295,6 +276,23 @@
                                 <p class="text-[10px] text-slate-400 mb-4 px-2">Advertise here to reach local residents.</p>
                                 <button class="bg-white border border-slate-200 text-slate-600 px-4 py-1.5 rounded-full text-[10px] font-bold hover:bg-slate-100 transition-colors uppercase">Enquire</button>
                             </div>
+                        </div>
+                    </section>
+
+                    <section class="mt-24 w-full">
+                        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-10">
+                            <div>
+                                <h2 class="text-slate-900 text-3xl font-bold">What's On</h2>
+                                <p class="text-slate-500 mt-2">Join us for activities and events this week</p>
+                            </div>
+                            <a href="/events" class="self-start md:self-auto">
+                                <button class="flex items-center gap-2 text-primary font-bold hover:underline">
+                                    View All Events <span class="material-symbols-outlined">arrow_forward</span>
+                                </button>
+                            </a>
+                        </div>
+                        <div id="events-feed-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                            <div class="col-span-3 py-20 text-center text-slate-500 italic">Checking for upcoming activities...</div>
                         </div>
                     </section>
 
@@ -360,15 +358,12 @@
     <script>
         const API_BASE = 'https://noddfa-j3nkslkrxc.live-website.com/wp-json';
 
-        // SHARED COMPONENT LOADER (Exactly from Contact Page)
         async function loadSharedComponents() {
             try {
                 const headerResponse = await fetch(`${API_BASE}/noddfa/v1/header?v=${Date.now()}`);
                 if (headerResponse.ok) {
                     const data = await headerResponse.json();
                     document.getElementById('header-placeholder').innerHTML = data.html;
-                    
-                    // INITIALIZE LOGIC AFTER HEADER IS ADDED
                     initMobileMenu(); 
                     highlightActiveLink();
                 }
@@ -383,7 +378,6 @@
             }
         }
 
-        // EXACT MOBILE MENU FUNCTION FROM CONTACT PAGE
         function initMobileMenu() {
             const toggleBtn = document.getElementById('menu-toggle');
             const navMenu = document.getElementById('nav-menu');
@@ -396,7 +390,6 @@
             }
         }
 
-        // HIGHLIGHT LINK FUNCTION FROM CONTACT PAGE
         function highlightActiveLink() {
             const currentPath = window.location.pathname;
             const navLinks = document.querySelectorAll('.nav-link');
@@ -408,14 +401,14 @@
             });
         }
 
-        // LIVE TRANSPORT DATA
         async function fetchTrainStation(code, containerId) {
             const container = document.getElementById(containerId);
             try {
                 const res = await fetch(`https://huxley2.azurewebsites.net/departures/${code}?rows=2`);
                 const data = await res.json();
                 if (data.trainServices && data.trainServices.length > 0) {
-                    container.innerHTML = data.trainServices.map(train => `
+                    // SLICE TO 2 ONLY
+                    container.innerHTML = data.trainServices.slice(0, 2).map(train => `
                         <div class="flex items-start justify-between group">
                             <div class="flex items-center gap-3 mt-1">
                                 <svg width="18" height="12" viewBox="0 0 46 32" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -450,7 +443,7 @@
                 if (allBuses.length > 0) {
                     container.innerHTML = allBuses
                         .sort((a, b) => (a.best_departure_estimate || a.aimed_departure_time).localeCompare(b.best_departure_estimate || b.aimed_departure_time))
-                        .slice(0, 2)
+                        .slice(0, 2) // SLICE TO 2 ONLY
                         .map(bus => `
                             <div class="flex items-start justify-between">
                                 <div class="flex items-center gap-3 mt-1">
