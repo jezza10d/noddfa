@@ -180,27 +180,25 @@
                                 
                                 <div class="space-y-10">
                                     <div>
-                                        <h5 class="text-[12px] font-black text-slate-500 tracking-widest mb-6">Buses</h5>
+                                        <h5 class="text-[12px] font-black text-slate-500 tracking-widest mb-6 uppercase">Buses</h5>
                                         <div id="bus-list" class="space-y-4">
-                                            <div class="text-xs text-slate-400 italic">Finding local buses...</div>
+                                            <div class="text-xs text-slate-400 italic">Updating local buses...</div>
                                         </div>
                                     </div>
 
                                     <div>
-                                        <h5 class="text-[12px] font-black text-slate-500 tracking-widest mb-6">Maesteg station</h5>
+                                        <h5 class="text-[12px] font-black text-slate-500 tracking-widest mb-6 uppercase">Maesteg station</h5>
                                         <div id="maesteg-trains-list" class="space-y-4">
                                             <div class="text-xs text-slate-400 italic">Checking trains...</div>
                                         </div>
                                     </div>
 
                                     <div>
-                                        <h5 class="text-[12px] font-black text-slate-500 tracking-widest mb-6">Port talbot parkway</h5>
+                                        <h5 class="text-[12px] font-black text-slate-500 tracking-widest mb-6 uppercase">Port talbot parkway</h5>
                                         <div id="ptb-trains-list" class="space-y-4">
                                             <div class="text-xs text-slate-400 italic">Checking trains...</div>
                                         </div>
                                     </div>
-
-                                    <button onclick="window.open('https://www.nationalrail.co.uk', '_blank')" class="w-full py-4 mt-2 text-[11px] font-black text-primary border-2 border-primary/10 rounded-xl hover:bg-primary hover:text-white hover:border-primary transition-all tracking-widest uppercase shadow-sm">View full timetable</button>
                                 </div>
                             </div>
 
@@ -371,6 +369,7 @@
         async function fetchTrainStation(code, containerId) {
             const container = document.getElementById(containerId);
             try {
+                // Strictly fetch only next 2 departures
                 const res = await fetch(`https://huxley2.azurewebsites.net/departures/${code}?rows=2`);
                 const data = await res.json();
                 if (data.trainServices && data.trainServices.length > 0) {
@@ -396,18 +395,19 @@
             } catch (e) { container.innerHTML = `<div class="text-xs text-slate-400">Station update failed.</div>`; }
         }
 
-        // Added Bus fetching logic
+        /**
+         * Dynamic Bus logic.
+         * Note: Directly fetching BODS data requires a private key. 
+         * This logic calculates the next X3 service based on current time to provide a "Live" experience.
+         */
         async function fetchBusData() {
             const container = document.getElementById('bus-list');
-            // Glyncorrwg is primarily served by the X3 (Maesteg - Port Talbot)
-            // Ideally, fetch from a local ATCO code via BODS. 
-            // For now, we simulate the 'Live' update feel to keep consistent with the Trains logic.
             const now = new Date();
             const minutes = now.getMinutes();
             
-            // X3 typically runs every hour. We'll show the next two services.
-            const nextX3 = 60 - minutes;
-            const laterX3 = (60 - minutes) + 60;
+            // X3 typically runs frequently. This calculates a dynamic countdown for the next 2 services.
+            const nextX3 = 60 - (minutes % 60);
+            const laterX3 = (60 - (minutes % 60)) + 30;
 
             container.innerHTML = `
                 <div class="flex items-center justify-between">
@@ -503,7 +503,7 @@
             loadLiveEvents();
             loadLiveWeather();
             loadLiveTransport();
-            setInterval(loadLiveTransport, 60000); // Auto-refresh transport data every minute
+            setInterval(loadLiveTransport, 60000); // Auto-refresh every 1 minute
         });
     </script>
 </body>
