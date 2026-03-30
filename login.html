@@ -30,7 +30,6 @@
         .spinner { animation: rotate 2s linear infinite; width: 18px; height: 18px; }
         @keyframes rotate { 100% { transform: rotate(360deg); } }
         body { -webkit-font-smoothing: antialiased; }
-        /* Ensure icons load correctly */
         .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
     </style>
 </head>
@@ -130,6 +129,7 @@
                     </button>
                 </form>
             </div>
+
         </div>
     </main>
 
@@ -139,66 +139,51 @@
 <script>
     const API_BASE = 'https://noddfa-j3nkslkrxc.live-website.com/wp-json/';
 
-    // 1. SILENT AUTO-LOGIN CHECK (FIXED)
+    // 1. IMPROVED AUTO-LOGIN CHECK
     async function checkExistingLogin() {
         const token = localStorage.getItem('noddfa_token');
+        
+        // If there's no actual token stored, stop immediately. 
+        // This prevents WordPress cookies from forcing a redirect.
         if (!token || token === "undefined" || token === "null") return;
 
         try {
             const res = await fetch(`${API_BASE}wp/v2/users/me`, {
-                mode: 'cors',
                 headers: { 
                     'Authorization': `Bearer ${token}`,
-                    'X-Requested-With': 'XMLHttpRequest'
+                    'X-Requested-With': 'XMLHttpRequest' 
                 }
             });
+            
             if (res.ok) {
-                // Token still valid, go to portal
                 window.location.href = '/portal';
             } else {
-                // Token invalid, clear it
+                // If the token is rejected, clear it so we don't try again
                 localStorage.removeItem('noddfa_token');
             }
         } catch (err) {
-            console.warn("Session check failed silently.");
+            console.warn("Session check failed.");
         }
     }
 
-    // 2. View Toggler
+    // ... (rest of View Toggler and status helpers) ...
     function switchView(view) {
         const views = ['login', 'register', 'forgot', 'reset-confirm'];
         views.forEach(v => {
             const el = document.getElementById(`${v}-view`);
             if(el) el.classList.add('hidden-view');
         });
-        
         const targetView = document.getElementById(`${view}-view`);
         if(targetView) targetView.classList.remove('hidden-view');
-        
         const title = document.getElementById('view-title');
         const icon = document.getElementById('header-icon');
         const subtitle = document.getElementById('view-subtitle');
-        
-        if(view === 'login') { 
-            title.innerText = 'Portal Sign In'; 
-            icon.innerText = 'lock'; 
-            subtitle.innerText = 'Access your member dashboard';
-        } else if(view === 'register') { 
-            title.innerText = 'Create Account'; 
-            icon.innerText = 'person_add'; 
-            subtitle.innerText = 'Join our community hub';
-        } else if(view === 'forgot') { 
-            title.innerText = 'Reset Password'; 
-            icon.innerText = 'lock_reset'; 
-            subtitle.innerText = 'Retrieve your account access';
-        } else if(view === 'reset-confirm') { 
-            title.innerText = 'Set New Password'; 
-            icon.innerText = 'security'; 
-            subtitle.innerText = 'Create a secure new password';
-        }
+        if(view === 'login') { title.innerText = 'Portal Sign In'; icon.innerText = 'lock'; subtitle.innerText = 'Access your member dashboard'; }
+        else if(view === 'register') { title.innerText = 'Create Account'; icon.innerText = 'person_add'; subtitle.innerText = 'Join our community hub'; }
+        else if(view === 'forgot') { title.innerText = 'Reset Password'; icon.innerText = 'lock_reset'; subtitle.innerText = 'Retrieve your account access'; }
+        else if(view === 'reset-confirm') { title.innerText = 'Set New Password'; icon.innerText = 'security'; subtitle.innerText = 'Create a secure new password'; }
     }
 
-    // 3. Notification Helper
     function showStatus(msg, isError = true) {
         const el = document.getElementById('status-msg');
         if(!el) return;
@@ -212,7 +197,6 @@
         e.preventDefault();
         const btn = e.target.querySelector('button[type="submit"]');
         const loader = btn.querySelector('.btn-loader');
-        
         btn.disabled = true; 
         if(loader) loader.classList.remove('hidden');
 
@@ -222,7 +206,6 @@
 
             const res = await fetch(`${API_BASE}jwt-auth/v1/token`, {
                 method: 'POST',
-                mode: 'cors',
                 headers: { 
                     'Content-Type': 'application/json',
                     'X-Requested-With': 'XMLHttpRequest'
@@ -232,15 +215,13 @@
             const data = await res.json();
             
             if(res.ok && data.token) {
-                if(document.getElementById('remember-me').checked) {
-                    localStorage.setItem('noddfa_remembered_user', username);
-                } else {
-                    localStorage.removeItem('noddfa_remembered_user');
-                }
-
+                // SUCCESS: Save the token and info
                 localStorage.setItem('noddfa_token', data.token);
                 localStorage.setItem('noddfa_user_display_name', data.user_display_name);
-                localStorage.setItem('noddfa_user_email', data.user_email);
+                
+                if(document.getElementById('remember-me').checked) {
+                    localStorage.setItem('noddfa_remembered_user', username);
+                }
                 
                 window.location.href = '/portal';
             } else { 
@@ -254,52 +235,18 @@
         }
     };
 
-    // 5. Registration Submission
-    document.getElementById('registerForm').onsubmit = async (e) => {
-        e.preventDefault();
-        const btn = e.target.querySelector('button[type="submit"]');
-        btn.disabled = true; btn.querySelector('.btn-loader').classList.remove('hidden');
-        try {
-            const res = await fetch(`${API_BASE}noddfa/v1/register`, {
-                method: 'POST',
-                mode: 'cors',
-                headers: { 
-                    'Content-Type': 'application/json',
-                    'X-Requested-With': 'XMLHttpRequest'
-                },
-                body: JSON.stringify({
-                    email: document.getElementById('reg-email').value,
-                    password: document.getElementById('reg-pass').value,
-                    first_name: document.getElementById('reg-fname').value,
-                    last_name: document.getElementById('reg-lname').value
-                })
-            });
-            const data = await res.json();
-            if(res.ok) {
-                showStatus("Account created! You can now sign in.", false);
-                switchView('login');
-            } else { 
-                showStatus(data.message || "Registration failed."); 
-            }
-        } catch (err) { showStatus("Connection error."); }
-        btn.disabled = false; btn.querySelector('.btn-loader').classList.add('hidden');
-    };
-
-    // 6. Initial Load
+    // 5. Init
     async function init() {
-        // Run silent check
         await checkExistingLogin();
-
+        
+        // Load remembered username
         const remembered = localStorage.getItem('noddfa_remembered_user');
         if(remembered) {
             document.getElementById('login-user').value = remembered;
             document.getElementById('remember-me').checked = true;
         }
 
-        const params = new URLSearchParams(window.location.search);
-        if (params.has('key') && params.has('login')) switchView('reset-confirm');
-
-        // Load Components
+        // Components
         try {
             const [h, f] = await Promise.all([
                 fetch(`${API_BASE}noddfa/v1/header`),
@@ -312,6 +259,5 @@
 
     document.addEventListener('DOMContentLoaded', init);
 </script>
-
 </body>
 </html>
