@@ -138,24 +138,22 @@
 <script>
     const API_BASE = 'https://noddfa-j3nkslkrxc.live-website.com/wp-json/';
 
-    // 1. IMPROVED LOGIN CHECK (Prevents Loops)
+    // 1. SILENT AUTO-LOGIN CHECK
     async function checkExistingLogin() {
         const token = localStorage.getItem('noddfa_token');
-        if (!token) return;
+        if (!token || token === "undefined") return; // Safety check: No token, no API call
 
         try {
-            // Check if token is still valid with WordPress
             const res = await fetch(`${API_BASE}wp/v2/users/me`, {
                 headers: { 'Authorization': `Bearer ${token}` }
             });
             if (res.ok) {
                 window.location.href = '/portal';
             } else {
-                // Token is dead, clear it so we can sign in fresh
                 localStorage.removeItem('noddfa_token');
             }
         } catch (err) {
-            console.error("Auth check failed", err);
+            console.warn("Session check failed silently.");
         }
     }
 
@@ -235,10 +233,10 @@
                 
                 window.location.href = '/portal';
             } else { 
-                showStatus(data.message || "Invalid credentials. Please check your username and password."); 
+                showStatus(data.message || "Invalid credentials."); 
             }
         } catch (err) { 
-            showStatus("Cannot connect to Noddfa server. Please check your internet."); 
+            showStatus("Server connection failed."); 
         } finally {
             btn.disabled = false; 
             if(loader) loader.classList.add('hidden');
@@ -261,11 +259,11 @@
                     last_name: document.getElementById('reg-lname').value
                 })
             });
+            const data = await res.json();
             if(res.ok) {
                 showStatus("Account created! You can now sign in.", false);
                 switchView('login');
             } else { 
-                const data = await res.json();
                 showStatus(data.message || "Registration failed."); 
             }
         } catch (err) { showStatus("Connection error."); }
@@ -274,24 +272,18 @@
 
     // 6. Initial Load
     async function init() {
-        // Run loop check
+        // Break current loops first
         await checkExistingLogin();
 
-        // Load UI preferences
         const remembered = localStorage.getItem('noddfa_remembered_user');
         if(remembered) {
-            const userField = document.getElementById('login-user');
-            const rememberCheck = document.getElementById('remember-me');
-            if(userField) userField.value = remembered;
-            if(rememberCheck) rememberCheck.checked = true;
+            document.getElementById('login-user').value = remembered;
+            document.getElementById('remember-me').checked = true;
         }
 
         const params = new URLSearchParams(window.location.search);
-        if (params.has('key') && params.has('login')) {
-            switchView('reset-confirm');
-        }
+        if (params.has('key') && params.has('login')) switchView('reset-confirm');
 
-        // Load Header/Footer
         try {
             const [h, f] = await Promise.all([
                 fetch(`${API_BASE}noddfa/v1/header?v=${Date.now()}`),
@@ -299,7 +291,7 @@
             ]);
             if (h.ok) document.getElementById('header-placeholder').innerHTML = (await h.json()).html;
             if (f.ok) document.getElementById('footer-placeholder').innerHTML = (await f.json()).html;
-        } catch (e) { console.error("Component load failed"); }
+        } catch (e) { console.error("Components failed"); }
     }
 
     document.addEventListener('DOMContentLoaded', init);
