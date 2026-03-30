@@ -135,9 +135,10 @@
 </div>
 
 <script>
-    // CHECK LOGIN STATUS IMMEDIATELY
-    if (localStorage.getItem('noddfa_token')) {
-        window.location.href = '/portal?token=' + data.token;
+    // 0. CHECK LOGIN STATUS IMMEDIATELY
+    const savedToken = localStorage.getItem('noddfa_token');
+    if (savedToken) {
+        window.location.href = '/portal?token=' + savedToken;
     }
 
     const API_BASE = 'https://noddfa-j3nkslkrxc.live-website.com/wp-json/';
@@ -203,6 +204,8 @@
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ username, password })
             });
+            
+            // FIX: Define data here so it is available below
             const data = await res.json();
             
             if(res.ok) {
@@ -214,7 +217,9 @@
 
                 localStorage.setItem('noddfa_token', data.token);
                 localStorage.setItem('noddfa_user_display_name', data.user_display_name);
-                window.location.href = '/portal';
+                
+                // Pass token to URL for the WordPress Switcher to recognize
+                window.location.href = '/portal?token=' + data.token;
             } else { 
                 showStatus(data.message || "Invalid credentials."); 
             }
@@ -313,12 +318,16 @@
             switchView('reset-confirm');
         }
 
-        const [h, f] = await Promise.all([
-            fetch(`${API_BASE}noddfa/v1/header?v=${Date.now()}`),
-            fetch(`${API_BASE}noddfa/v1/footer?v=${Date.now()}`)
-        ]);
-        if (h.ok) document.getElementById('header-placeholder').innerHTML = (await h.json()).html;
-        if (f.ok) document.getElementById('footer-placeholder').innerHTML = (await f.json()).html;
+        try {
+            const [h, f] = await Promise.all([
+                fetch(`${API_BASE}noddfa/v1/header?v=${Date.now()}`),
+                fetch(`${API_BASE}noddfa/v1/footer?v=${Date.now()}`)
+            ]);
+            if (h.ok) document.getElementById('header-placeholder').innerHTML = (await h.json()).html;
+            if (f.ok) document.getElementById('footer-placeholder').innerHTML = (await f.json()).html;
+        } catch (e) {
+            console.error("Error loading header/footer components");
+        }
     }
     document.addEventListener('DOMContentLoaded', loadComponents);
 </script>
