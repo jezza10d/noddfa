@@ -138,12 +138,28 @@
 <script>
     const API_BASE = 'https://noddfa-j3nkslkrxc.live-website.com/wp-json/';
 
-    // Immediately redirect if already logged in
-    if (localStorage.getItem('noddfa_token')) {
-        window.location.href = '/portal';
+    // 1. IMPROVED LOGIN CHECK (Prevents Loops)
+    async function checkExistingLogin() {
+        const token = localStorage.getItem('noddfa_token');
+        if (!token) return;
+
+        try {
+            // Check if token is still valid with WordPress
+            const res = await fetch(`${API_BASE}wp/v2/users/me`, {
+                headers: { 'Authorization': `Bearer ${token}` }
+            });
+            if (res.ok) {
+                window.location.href = '/portal';
+            } else {
+                // Token is dead, clear it so we can sign in fresh
+                localStorage.removeItem('noddfa_token');
+            }
+        } catch (err) {
+            console.error("Auth check failed", err);
+        }
     }
 
-    // 1. View Toggler
+    // 2. View Toggler
     function switchView(view) {
         const views = ['login', 'register', 'forgot', 'reset-confirm'];
         views.forEach(v => {
@@ -177,7 +193,7 @@
         }
     }
 
-    // 2. Notification Helper
+    // 3. Notification Helper
     function showStatus(msg, isError = true) {
         const el = document.getElementById('status-msg');
         if(!el) return;
@@ -186,7 +202,7 @@
         el.classList.remove('hidden');
     }
 
-    // 3. Login Submission
+    // 4. Login Submission
     document.getElementById('loginForm').onsubmit = async (e) => {
         e.preventDefault();
         const btn = e.target.querySelector('button[type="submit"]');
@@ -207,19 +223,16 @@
             const data = await res.json();
             
             if(res.ok && data.token) {
-                // Handle "Remember Me"
                 if(document.getElementById('remember-me').checked) {
                     localStorage.setItem('noddfa_remembered_user', username);
                 } else {
                     localStorage.removeItem('noddfa_remembered_user');
                 }
 
-                // Store credentials for the portal
                 localStorage.setItem('noddfa_token', data.token);
                 localStorage.setItem('noddfa_user_display_name', data.user_display_name);
                 localStorage.setItem('noddfa_user_email', data.user_email);
                 
-                // Redirect to the portal router
                 window.location.href = '/portal';
             } else { 
                 showStatus(data.message || "Invalid credentials. Please check your username and password."); 
@@ -232,7 +245,7 @@
         }
     };
 
-    // 4. Registration Submission
+    // 5. Registration Submission
     document.getElementById('registerForm').onsubmit = async (e) => {
         e.preventDefault();
         const btn = e.target.querySelector('button[type="submit"]');
@@ -248,19 +261,23 @@
                     last_name: document.getElementById('reg-lname').value
                 })
             });
-            const data = await res.json();
             if(res.ok) {
                 showStatus("Account created! You can now sign in.", false);
                 switchView('login');
             } else { 
+                const data = await res.json();
                 showStatus(data.message || "Registration failed."); 
             }
         } catch (err) { showStatus("Connection error."); }
         btn.disabled = false; btn.querySelector('.btn-loader').classList.add('hidden');
     };
 
-    // 5. Initial Load (Header/Footer + Remembered User)
-    async function loadComponents() {
+    // 6. Initial Load
+    async function init() {
+        // Run loop check
+        await checkExistingLogin();
+
+        // Load UI preferences
         const remembered = localStorage.getItem('noddfa_remembered_user');
         if(remembered) {
             const userField = document.getElementById('login-user');
@@ -274,6 +291,7 @@
             switchView('reset-confirm');
         }
 
+        // Load Header/Footer
         try {
             const [h, f] = await Promise.all([
                 fetch(`${API_BASE}noddfa/v1/header?v=${Date.now()}`),
@@ -281,9 +299,10 @@
             ]);
             if (h.ok) document.getElementById('header-placeholder').innerHTML = (await h.json()).html;
             if (f.ok) document.getElementById('footer-placeholder').innerHTML = (await f.json()).html;
-        } catch (e) { console.error("Could not load header/footer"); }
+        } catch (e) { console.error("Component load failed"); }
     }
-    document.addEventListener('DOMContentLoaded', loadComponents);
+
+    document.addEventListener('DOMContentLoaded', init);
 </script>
 
 </body>
