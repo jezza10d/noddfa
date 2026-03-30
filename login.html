@@ -137,7 +137,7 @@
 <script>
     // CHECK LOGIN STATUS IMMEDIATELY
     if (localStorage.getItem('noddfa_token')) {
-        window.location.href = '/portal';
+        window.location.href = '/portal?token=' + data.token;
     }
 
     const API_BASE = 'https://noddfa-j3nkslkrxc.live-website.com/wp-json/';
