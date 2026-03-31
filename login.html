@@ -139,6 +139,26 @@
 <script>
 const API_BASE = 'https://noddfa-j3nkslkrxc.live-website.com/wp-json/';
 
+// 1. Restore View Toggler & UI
+function switchView(view) {
+    const views = ['login', 'register', 'forgot', 'reset-confirm'];
+    views.forEach(v => {
+        const el = document.getElementById(`${v}-view`);
+        if(el) el.classList.add('hidden-view');
+    });
+    const target = document.getElementById(`${view}-view`);
+    if(target) target.classList.remove('hidden-view');
+}
+
+function showStatus(msg, isError = true) {
+    const el = document.getElementById('status-msg');
+    if(!el) return;
+    el.innerText = msg;
+    el.className = `mb-6 p-4 rounded-lg text-sm font-medium ${isError ? 'bg-red-50 text-red-700' : 'bg-green-50 text-green-700'}`;
+    el.classList.remove('hidden');
+}
+
+// 2. Login Handler
 document.getElementById('loginForm').onsubmit = async (e) => {
     e.preventDefault();
     const btn = e.target.querySelector('button[type="submit"]');
@@ -157,8 +177,8 @@ document.getElementById('loginForm').onsubmit = async (e) => {
         
         if(res.ok && data.token) {
             localStorage.setItem('noddfa_token', data.token);
-            // FORCE FEED: Send the token in the URL so the portal HAS it immediately
-            window.location.href = '/portal?token=' + encodeURIComponent(data.token);
+            // Pass token in URL to bypass header-stripping on the next page
+            window.location.href = '/portal?sid=' + encodeURIComponent(data.token);
         } else { 
             showStatus(data.message || "Login Failed."); 
             btn.disabled = false;
@@ -168,6 +188,19 @@ document.getElementById('loginForm').onsubmit = async (e) => {
         btn.disabled = false;
     }
 };
+
+// 3. Restore Header/Footer for Login Page
+async function init() {
+    try {
+        const [h, f] = await Promise.all([
+            fetch(`${API_BASE}noddfa/v1/header`),
+            fetch(`${API_BASE}noddfa/v1/footer`)
+        ]);
+        if (h.ok) document.getElementById('header-placeholder').innerHTML = (await h.json()).html;
+        if (f.ok) document.getElementById('footer-placeholder').innerHTML = (await f.json()).html;
+    } catch (e) { console.error("UI Load Error"); }
+}
+document.addEventListener('DOMContentLoaded', init);
 </script>
 </body>
 </html>
