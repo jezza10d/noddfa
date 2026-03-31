@@ -139,12 +139,11 @@
 <script>
     const API_BASE = 'https://noddfa-j3nkslkrxc.live-website.com/wp-json/';
 
-    // 1. IMPROVED AUTO-LOGIN CHECK
+    // 1. FIX: PROPER SESSION CHECK (Stops the "Vanishing Token" loop)
     async function checkExistingLogin() {
         const token = localStorage.getItem('noddfa_token');
         
-        // If there's no actual token stored, stop immediately. 
-        // This prevents WordPress cookies from forcing a redirect.
+        // If no token exists, do nothing (stay on login page)
         if (!token || token === "undefined" || token === "null") return;
 
         try {
@@ -156,17 +155,20 @@
             });
             
             if (res.ok) {
-                window.location.href = '/portal';
-            } else {
-                // If the token is rejected, clear it so we don't try again
+                // Token is valid - redirect to the dashboard
+                // CHANGE '/portal' to your actual dashboard slug if different
+                window.location.href = '/staff-dashboard'; 
+            } else if (res.status === 401 || res.status === 403) {
+                // ONLY remove if the server explicitly rejects the token as expired/invalid
+                console.warn("Session expired. Clearing token.");
                 localStorage.removeItem('noddfa_token');
             }
         } catch (err) {
-            console.warn("Session check failed.");
+            console.warn("Network hiccup during session check.");
         }
     }
 
-    // ... (rest of View Toggler and status helpers) ...
+    // 2. VIEW TOGGLER
     function switchView(view) {
         const views = ['login', 'register', 'forgot', 'reset-confirm'];
         views.forEach(v => {
@@ -175,9 +177,11 @@
         });
         const targetView = document.getElementById(`${view}-view`);
         if(targetView) targetView.classList.remove('hidden-view');
+        
         const title = document.getElementById('view-title');
         const icon = document.getElementById('header-icon');
         const subtitle = document.getElementById('view-subtitle');
+
         if(view === 'login') { title.innerText = 'Portal Sign In'; icon.innerText = 'lock'; subtitle.innerText = 'Access your member dashboard'; }
         else if(view === 'register') { title.innerText = 'Create Account'; icon.innerText = 'person_add'; subtitle.innerText = 'Join our community hub'; }
         else if(view === 'forgot') { title.innerText = 'Reset Password'; icon.innerText = 'lock_reset'; subtitle.innerText = 'Retrieve your account access'; }
@@ -192,7 +196,7 @@
         el.classList.remove('hidden');
     }
 
-    // 4. Login Submission
+    // 3. LOGIN SUBMISSION (With async safeguard)
     document.getElementById('loginForm').onsubmit = async (e) => {
         e.preventDefault();
         const btn = e.target.querySelector('button[type="submit"]');
@@ -215,7 +219,7 @@
             const data = await res.json();
             
             if(res.ok && data.token) {
-                // SUCCESS: Save the token and info
+                // SUCCESS: Lock the token in before redirecting
                 localStorage.setItem('noddfa_token', data.token);
                 localStorage.setItem('noddfa_user_display_name', data.user_display_name);
                 
@@ -223,7 +227,8 @@
                     localStorage.setItem('noddfa_remembered_user', username);
                 }
                 
-                window.location.href = '/portal';
+                // Final destination redirect
+                window.location.href = '/staff-dashboard';
             } else { 
                 showStatus(data.message || "Invalid credentials."); 
             }
@@ -235,8 +240,43 @@
         }
     };
 
-    // 5. Init
+    // 4. REGISTRATION SUBMISSION (Fixes "Unknown" errors)
+    document.getElementById('registerForm').onsubmit = async (e) => {
+        e.preventDefault();
+        const btn = e.target.querySelector('button[type="submit"]');
+        btn.disabled = true;
+
+        const payload = {
+            username: document.getElementById('reg-email').value.split('@')[0] + Math.floor(Math.random() * 99),
+            email: document.getElementById('reg-email').value,
+            password: document.getElementById('reg-pass').value,
+            first_name: document.getElementById('reg-fname').value,
+            last_name: document.getElementById('reg-lname').value
+        };
+
+        try {
+            const res = await fetch(`${API_BASE}wp/v2/users/register`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
+            });
+            const data = await res.json();
+            if (res.ok) {
+                showStatus("Account created! Please sign in now.", false);
+                switchView('login');
+            } else {
+                showStatus(data.message || "Registration failed. Try a different email.");
+            }
+        } catch (err) {
+            showStatus("Could not connect to registration server.");
+        } finally {
+            btn.disabled = false;
+        }
+    };
+
+    // 5. INITIALIZE
     async function init() {
+        // Run session check
         await checkExistingLogin();
         
         // Load remembered username
@@ -246,7 +286,7 @@
             document.getElementById('remember-me').checked = true;
         }
 
-        // Components
+        // Load Global UI Components (Header/Footer)
         try {
             const [h, f] = await Promise.all([
                 fetch(`${API_BASE}noddfa/v1/header`),
@@ -254,7 +294,7 @@
             ]);
             if (h.ok) document.getElementById('header-placeholder').innerHTML = (await h.json()).html;
             if (f.ok) document.getElementById('footer-placeholder').innerHTML = (await f.json()).html;
-        } catch (e) { console.error("Components failed"); }
+        } catch (e) { console.error("UI Sync failed"); }
     }
 
     document.addEventListener('DOMContentLoaded', init);
