@@ -139,53 +139,14 @@
 <script>
     const API_BASE = 'https://noddfa-j3nkslkrxc.live-website.com/wp-json/';
 
-    // 1. FIX: SESSION CHECK (Redirects to /portal)
-    async function checkExistingLogin() {
-        const token = localStorage.getItem('noddfa_token');
-        
-        if (!token || token === "undefined" || token === "null") return;
-
-        // Prevent redirect loop: If we are already on /portal, don't try to redirect to /portal
-        if (window.location.pathname === '/portal' || window.location.pathname === '/portal/') return;
-
-        try {
-            const res = await fetch(`${API_BASE}wp/v2/users/me`, {
-                headers: { 
-                    'Authorization': `Bearer ${token}`,
-                    'X-Requested-With': 'XMLHttpRequest' 
-                }
-            });
-            
-            if (res.ok) {
-                // Token is valid - let the /portal file handle the role-based view
-                window.location.href = '/portal'; 
-            } else if (res.status === 401 || res.status === 403) {
-                console.warn("Session expired. Clearing token.");
-                localStorage.removeItem('noddfa_token');
-            }
-        } catch (err) {
-            console.warn("Network hiccup during session check.");
-        }
-    }
-
-    // 2. VIEW TOGGLER
+    // 1. SIMPLE VIEW TOGGLER
     function switchView(view) {
         const views = ['login', 'register', 'forgot', 'reset-confirm'];
         views.forEach(v => {
             const el = document.getElementById(`${v}-view`);
             if(el) el.classList.add('hidden-view');
         });
-        const targetView = document.getElementById(`${view}-view`);
-        if(targetView) targetView.classList.remove('hidden-view');
-        
-        const title = document.getElementById('view-title');
-        const icon = document.getElementById('header-icon');
-        const subtitle = document.getElementById('view-subtitle');
-
-        if(view === 'login') { title.innerText = 'Portal Sign In'; icon.innerText = 'lock'; subtitle.innerText = 'Access your member dashboard'; }
-        else if(view === 'register') { title.innerText = 'Create Account'; icon.innerText = 'person_add'; subtitle.innerText = 'Join our community hub'; }
-        else if(view === 'forgot') { title.innerText = 'Reset Password'; icon.innerText = 'lock_reset'; subtitle.innerText = 'Retrieve your account access'; }
-        else if(view === 'reset-confirm') { title.innerText = 'Set New Password'; icon.innerText = 'security'; subtitle.innerText = 'Create a secure new password'; }
+        document.getElementById(`${view}-view`).classList.remove('hidden-view');
     }
 
     function showStatus(msg, isError = true) {
@@ -196,13 +157,11 @@
         el.classList.remove('hidden');
     }
 
-    // 3. LOGIN SUBMISSION (Redirects to /portal)
+    // 2. THE LOGIN HANDLER (No auto-redirects, just direct submission)
     document.getElementById('loginForm').onsubmit = async (e) => {
         e.preventDefault();
         const btn = e.target.querySelector('button[type="submit"]');
-        const loader = btn.querySelector('.btn-loader');
         btn.disabled = true; 
-        if(loader) loader.classList.remove('hidden');
 
         try {
             const username = document.getElementById('login-user').value;
@@ -210,79 +169,34 @@
 
             const res = await fetch(`${API_BASE}jwt-auth/v1/token`, {
                 method: 'POST',
-                headers: { 
-                    'Content-Type': 'application/json',
-                    'X-Requested-With': 'XMLHttpRequest'
-                },
+                headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ username, password })
             });
             const data = await res.json();
             
             if(res.ok && data.token) {
+                // Clear everything first to prevent old session bleed
+                localStorage.clear();
+                
+                // Save fresh data
                 localStorage.setItem('noddfa_token', data.token);
                 localStorage.setItem('noddfa_user_display_name', data.user_display_name);
                 
-                if(document.getElementById('remember-me').checked) {
-                    localStorage.setItem('noddfa_remembered_user', username);
-                }
-                
-                // Pointing to your controller page
+                // Immediate hard redirect to portal
                 window.location.href = '/portal';
             } else { 
-                showStatus(data.message || "Invalid credentials."); 
+                showStatus(data.message || "Login Failed."); 
+                btn.disabled = false;
             }
         } catch (err) { 
-            showStatus("Server connection failed."); 
-        } finally {
-            btn.disabled = false; 
-            if(loader) loader.classList.add('hidden');
-        }
-    };
-
-    // 4. REGISTRATION SUBMISSION
-    document.getElementById('registerForm').onsubmit = async (e) => {
-        e.preventDefault();
-        const btn = e.target.querySelector('button[type="submit"]');
-        btn.disabled = true;
-
-        const payload = {
-            username: document.getElementById('reg-email').value.split('@')[0] + Math.floor(Math.random() * 99),
-            email: document.getElementById('reg-email').value,
-            password: document.getElementById('reg-pass').value,
-            first_name: document.getElementById('reg-fname').value,
-            last_name: document.getElementById('reg-lname').value
-        };
-
-        try {
-            const res = await fetch(`${API_BASE}wp/v2/users/register`, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(payload)
-            });
-            const data = await res.json();
-            if (res.ok) {
-                showStatus("Account created! Please sign in now.", false);
-                switchView('login');
-            } else {
-                showStatus(data.message || "Registration failed.");
-            }
-        } catch (err) {
-            showStatus("Could not connect to registration server.");
-        } finally {
+            showStatus("Connection failed."); 
             btn.disabled = false;
         }
     };
 
-    // 5. INITIALIZE
+    // 3. INIT (Minimal)
     async function init() {
-        await checkExistingLogin();
-        
-        const remembered = localStorage.getItem('noddfa_remembered_user');
-        if(remembered) {
-            document.getElementById('login-user').value = remembered;
-            document.getElementById('remember-me').checked = true;
-        }
-
+        // We REMOVED checkExistingLogin() from here to stop the loop
         try {
             const [h, f] = await Promise.all([
                 fetch(`${API_BASE}noddfa/v1/header`),
