@@ -137,77 +137,51 @@
 </div>
 
 <script>
-    const API_BASE = 'https://noddfa-j3nkslkrxc.live-website.com/wp-json/';
+const API_BASE = 'https://noddfa-j3nkslkrxc.live-website.com/wp-json/';
 
-    // 1. SIMPLE VIEW TOGGLER
-    function switchView(view) {
-        const views = ['login', 'register', 'forgot', 'reset-confirm'];
-        views.forEach(v => {
-            const el = document.getElementById(`${v}-view`);
-            if(el) el.classList.add('hidden-view');
+document.getElementById('loginForm').onsubmit = async (e) => {
+    e.preventDefault();
+    const btn = e.target.querySelector('button[type="submit"]');
+    btn.disabled = true; 
+
+    try {
+        const username = document.getElementById('login-user').value;
+        const password = document.getElementById('login-pass').value;
+
+        const res = await fetch(`${API_BASE}jwt-auth/v1/token`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ username, password })
         });
-        document.getElementById(`${view}-view`).classList.remove('hidden-view');
-    }
-
-    function showStatus(msg, isError = true) {
-        const el = document.getElementById('status-msg');
-        if(!el) return;
-        el.innerText = msg;
-        el.className = `mb-6 p-4 rounded-lg text-sm font-medium ${isError ? 'bg-red-50 text-red-700' : 'bg-green-50 text-green-700'}`;
-        el.classList.remove('hidden');
-    }
-
-    // 2. THE LOGIN HANDLER (No auto-redirects, just direct submission)
-    document.getElementById('loginForm').onsubmit = async (e) => {
-        e.preventDefault();
-        const btn = e.target.querySelector('button[type="submit"]');
-        btn.disabled = true; 
-
-        try {
-            const username = document.getElementById('login-user').value;
-            const password = document.getElementById('login-pass').value;
-
-            const res = await fetch(`${API_BASE}jwt-auth/v1/token`, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ username, password })
-            });
-            const data = await res.json();
+        const data = await res.json();
+        
+        if(res.ok && data.token) {
+            // 1. CLEAR OLD DATA
+            localStorage.clear();
             
-            if(res.ok && data.token) {
-                // Clear everything first to prevent old session bleed
-                localStorage.clear();
-                
-                // Save fresh data
-                localStorage.setItem('noddfa_token', data.token);
-                localStorage.setItem('noddfa_user_display_name', data.user_display_name);
-                
-                // Immediate hard redirect to portal
+            // 2. SET TOKEN
+            localStorage.setItem('noddfa_token', data.token);
+            localStorage.setItem('noddfa_user_display_name', data.user_display_name);
+            
+            console.log("TOKEN SAVED:", data.token);
+            showStatus("Login Successful! Redirecting in 2 seconds...", false);
+
+            // 3. THE DEBUG PAUSE 
+            // This gives you time to see the token in DevTools before the page changes
+            setTimeout(() => {
                 window.location.href = '/portal';
-            } else { 
-                showStatus(data.message || "Login Failed."); 
-                btn.disabled = false;
-            }
-        } catch (err) { 
-            showStatus("Connection failed."); 
+            }, 2000);
+        } else { 
+            showStatus(data.message || "Login Failed."); 
             btn.disabled = false;
         }
-    };
-
-    // 3. INIT (Minimal)
-    async function init() {
-        // We REMOVED checkExistingLogin() from here to stop the loop
-        try {
-            const [h, f] = await Promise.all([
-                fetch(`${API_BASE}noddfa/v1/header`),
-                fetch(`${API_BASE}noddfa/v1/footer`)
-            ]);
-            if (h.ok) document.getElementById('header-placeholder').innerHTML = (await h.json()).html;
-            if (f.ok) document.getElementById('footer-placeholder').innerHTML = (await f.json()).html;
-        } catch (e) { console.error("UI Sync failed"); }
+    } catch (err) { 
+        showStatus("Connection failed."); 
+        btn.disabled = false;
     }
+};
 
-    document.addEventListener('DOMContentLoaded', init);
+// ... keep your switchView and init functions as they were ...
 </script>
 </body>
 </html>
