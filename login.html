@@ -139,12 +139,14 @@
 <script>
     const API_BASE = 'https://noddfa-j3nkslkrxc.live-website.com/wp-json/';
 
-    // 1. FIX: PROPER SESSION CHECK (Stops the "Vanishing Token" loop)
+    // 1. FIX: SESSION CHECK (Redirects to /portal)
     async function checkExistingLogin() {
         const token = localStorage.getItem('noddfa_token');
         
-        // If no token exists, do nothing (stay on login page)
         if (!token || token === "undefined" || token === "null") return;
+
+        // Prevent redirect loop: If we are already on /portal, don't try to redirect to /portal
+        if (window.location.pathname === '/portal' || window.location.pathname === '/portal/') return;
 
         try {
             const res = await fetch(`${API_BASE}wp/v2/users/me`, {
@@ -155,11 +157,9 @@
             });
             
             if (res.ok) {
-                // Token is valid - redirect to the dashboard
-                // CHANGE '/portal' to your actual dashboard slug if different
-                window.location.href = '/staff-dashboard'; 
+                // Token is valid - let the /portal file handle the role-based view
+                window.location.href = '/portal'; 
             } else if (res.status === 401 || res.status === 403) {
-                // ONLY remove if the server explicitly rejects the token as expired/invalid
                 console.warn("Session expired. Clearing token.");
                 localStorage.removeItem('noddfa_token');
             }
@@ -196,7 +196,7 @@
         el.classList.remove('hidden');
     }
 
-    // 3. LOGIN SUBMISSION (With async safeguard)
+    // 3. LOGIN SUBMISSION (Redirects to /portal)
     document.getElementById('loginForm').onsubmit = async (e) => {
         e.preventDefault();
         const btn = e.target.querySelector('button[type="submit"]');
@@ -219,7 +219,6 @@
             const data = await res.json();
             
             if(res.ok && data.token) {
-                // SUCCESS: Lock the token in before redirecting
                 localStorage.setItem('noddfa_token', data.token);
                 localStorage.setItem('noddfa_user_display_name', data.user_display_name);
                 
@@ -227,8 +226,8 @@
                     localStorage.setItem('noddfa_remembered_user', username);
                 }
                 
-                // Final destination redirect
-                window.location.href = '/staff-dashboard';
+                // Pointing to your controller page
+                window.location.href = '/portal';
             } else { 
                 showStatus(data.message || "Invalid credentials."); 
             }
@@ -240,7 +239,7 @@
         }
     };
 
-    // 4. REGISTRATION SUBMISSION (Fixes "Unknown" errors)
+    // 4. REGISTRATION SUBMISSION
     document.getElementById('registerForm').onsubmit = async (e) => {
         e.preventDefault();
         const btn = e.target.querySelector('button[type="submit"]');
@@ -265,7 +264,7 @@
                 showStatus("Account created! Please sign in now.", false);
                 switchView('login');
             } else {
-                showStatus(data.message || "Registration failed. Try a different email.");
+                showStatus(data.message || "Registration failed.");
             }
         } catch (err) {
             showStatus("Could not connect to registration server.");
@@ -276,17 +275,14 @@
 
     // 5. INITIALIZE
     async function init() {
-        // Run session check
         await checkExistingLogin();
         
-        // Load remembered username
         const remembered = localStorage.getItem('noddfa_remembered_user');
         if(remembered) {
             document.getElementById('login-user').value = remembered;
             document.getElementById('remember-me').checked = true;
         }
 
-        // Load Global UI Components (Header/Footer)
         try {
             const [h, f] = await Promise.all([
                 fetch(`${API_BASE}noddfa/v1/header`),
