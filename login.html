@@ -187,6 +187,12 @@ document.getElementById('loginForm').onsubmit = async (e) => {
         showStatus("Connection failed."); 
         btn.disabled = false;
     }
+    // Inside your loginForm.onsubmit:
+if(res.ok && data.token) {
+    localStorage.setItem('noddfa_token', data.token);
+    // This 'sid' in the URL is the key to bypassing the first-load loop
+    window.location.href = '/portal?sid=' + encodeURIComponent(data.token);
+}
 };
 
 // 3. Restore Header/Footer for Login Page
