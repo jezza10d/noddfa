@@ -113,20 +113,20 @@
                                     </div>
                                 </div>
 
-                                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                    <div class="bg-surface border border-outline p-8 rounded-xl shadow-sm hover:border-primary transition-all flex flex-col h-full">
-                                        <div class="flex justify-between items-start mb-4">
+                                <div class="space-y-4">
+                                    <div class="bg-surface border border-outline p-8 rounded-xl shadow-sm relative hover:border-primary/50 transition-all">
+                                        <div class="flex justify-between items-start mb-2">
                                             <h4 class="font-bold text-lg text-secondary">Noddfa Coffee Morning</h4>
                                             <span class="text-xs text-slate-400 font-medium">1 day ago</span>
                                         </div>
-                                        <p class="text-on-surface-variant text-sm flex-grow">Every Wednesday from 10:30 AM. Come along for a chat and a hot drink with neighbors.</p>
+                                        <p class="text-on-surface-variant text-sm">Every Wednesday from 10:30 AM. Come along for a chat and a hot drink with neighbors.</p>
                                     </div>
-                                    <div class="bg-surface border border-outline p-8 rounded-xl shadow-sm hover:border-primary transition-all flex flex-col h-full">
-                                        <div class="flex justify-between items-start mb-4">
+                                    <div class="bg-surface border border-outline p-8 rounded-xl shadow-sm hover:border-primary/50 transition-all">
+                                        <div class="flex justify-between items-start mb-2">
                                             <h4 class="font-bold text-lg text-secondary">Local Election Polling Info</h4>
                                             <span class="text-xs text-slate-400 font-medium">4 days ago</span>
                                         </div>
-                                        <p class="text-on-surface-variant text-sm flex-grow">The community hall will be used as a polling station this Thursday. Normal classes are suspended for the day.</p>
+                                        <p class="text-on-surface-variant text-sm">The community hall will be used as a polling station this Thursday. Normal classes are suspended for the day.</p>
                                     </div>
                                 </div>
                             </section>
@@ -190,21 +190,21 @@
                                 
                                 <div class="space-y-10">
                                     <div>
-                                        <h5 class="text-[12px] font-black text-slate-500 tracking-widest mb-6 uppercase">Buses</h5>
+                                        <h5 class="text-[12px] font-black text-slate-500 tracking-widest mb-6">Buses</h5>
                                         <div id="bus-list" class="space-y-4">
                                             <div class="text-xs text-slate-400 italic">Checking buses...</div>
                                         </div>
                                     </div>
 
                                     <div>
-                                        <h5 class="text-[12px] font-black text-slate-500 tracking-widest mb-6 uppercase">Maesteg station</h5>
+                                        <h5 class="text-[12px] font-black text-slate-500 tracking-widest mb-6">Maesteg station</h5>
                                         <div id="maesteg-trains-list" class="space-y-4">
                                             <div class="text-xs text-slate-400 italic">Checking trains...</div>
                                         </div>
                                     </div>
 
                                     <div>
-                                        <h5 class="text-[12px] font-black text-slate-500 tracking-widest mb-6 uppercase">Port talbot parkway</h5>
+                                        <h5 class="text-[12px] font-black text-slate-500 tracking-widest mb-6">Port talbot parkway</h5>
                                         <div id="ptb-trains-list" class="space-y-4">
                                             <div class="text-xs text-slate-400 italic">Checking trains...</div>
                                         </div>
@@ -273,7 +273,7 @@
                                 </div>
                                 <h3 class="text-sm font-bold text-slate-500 mb-1">Your business</h3>
                                 <p class="text-[10px] text-slate-400 mb-4 px-2">Advertise here to reach local residents.</p>
-                                <button class="bg-white border border-slate-200 text-slate-600 px-4 py-1.5 rounded-full text-[10px] font-bold hover:bg-slate-100 transition-colors uppercase">Enquire</button>
+                                <button class="bg-white border border-slate-200 text-slate-600 px-6 py-2 rounded-full text-[10px] font-bold hover:bg-slate-100 transition-colors uppercase">Enquire</button>
                             </div>
                         </div>
                     </section>
@@ -340,7 +340,7 @@
                         </div>
                         <div class="bg-white rounded-3xl p-1 border border-outline shadow-xl overflow-hidden aspect-video relative">
                             <iframe 
-                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d19839.467362799334!2d-3.6267868515869115!3d51.66258416843574!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x486e680327429671%3A0xc3ec42851174621c!2sGlyncorrwg%2C%20Port%20Talbot!5e0!3m2!1sen!2suk!4v1700000000000!5m2!1sen!2suk" 
+                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2478.118228394464!2d-3.61439!3d51.6617!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x486e680a6b57917b%3A0x6d9f78336338f0d3!2sGlyncorrwg!5e0!3m2!1sen!2suk!4v1711990000000!5m2!1sen!2suk" 
                                 width="100%" 
                                 height="100%" 
                                 style="border:0; border-radius: 1.5rem;" 
@@ -360,7 +360,6 @@
 
     <script>
         const API_BASE = 'https://noddfa-j3nkslkrxc.live-website.com/wp-json';
-        const TRANSPORT_KEY = 'bat_b4026881fec6a0f91a44c56cb02a0007';
 
         async function loadSharedComponents() {
             try {
@@ -405,46 +404,67 @@
             });
         }
 
-        // Logic Perfect Unified Transport
-        async function fetchTransportData(type, code, containerId) {
+        async function fetchTrainStation(code, containerId) {
             const container = document.getElementById(containerId);
-            const endpoint = type === 'bus' ? 'stops' : 'stations';
             try {
-                const response = await fetch(`https://api.busesandtrains.co.uk/v1/${endpoint}/${code}/departures`, {
-                    headers: { 'Authorization': `Bearer ${TRANSPORT_KEY}` }
-                });
-                const data = await response.json();
-                const departures = data.departures || [];
-
-                if (departures.length > 0) {
-                    container.innerHTML = departures.slice(0, 2).map(item => {
-                        const line = item.line_name || item.service_number || (type === 'train' ? 'Rail' : 'Bus');
-                        const destination = item.destination || item.direction || 'Check board';
-                        const time = (item.expected_departure_time || item.aimed_departure_time || '--:--').substring(0, 5);
-                        const isLive = !!item.expected_departure_time;
-
-                        return `
-                        <div class="flex items-start justify-between">
+                const res = await fetch(`https://huxley2.azurewebsites.net/departures/${code}?rows=2`);
+                const data = await res.json();
+                if (data.trainServices && data.trainServices.length > 0) {
+                    container.innerHTML = data.trainServices.slice(0, 2).map(train => `
+                        <div class="flex items-start justify-between group">
                             <div class="flex items-center gap-3 mt-1">
-                                <span class="bg-primary text-white text-[10px] font-black px-2 py-1 rounded shadow-sm">${line}</span>
-                                <span class="text-sm font-bold text-secondary truncate max-w-[120px] lowercase first-letter:uppercase">${destination.toLowerCase()}</span>
+                                <span class="text-sm font-bold text-secondary truncate max-w-[120px] lowercase first-letter:uppercase">${train.destination[0].locationName.toLowerCase()}</span>
                             </div>
                             <div class="text-right">
-                                <div class="text-sm font-black bg-slate-100/50 px-3 py-1 rounded-lg tabular-nums w-14 text-center">${time}</div>
-                                <div class="text-[9px] font-black ${isLive ? 'text-green-600' : 'text-primary'} uppercase tracking-widest mt-0">${isLive ? 'Live' : 'Sched'}</div>
+                                <div class="text-sm font-black bg-slate-100/50 px-3 py-1 rounded-lg tabular-nums w-14 text-center">${train.std}</div>
+                                <div class="text-[9px] font-black ${train.etd === 'On time' ? 'text-green-600' : 'text-primary'} uppercase tracking-widest mt-0">${train.etd}</div>
                             </div>
-                        </div>`;
-                    }).join('');
+                        </div>
+                    `).join('');
                 } else {
                     container.innerHTML = `<div class="text-xs text-slate-400">No services scheduled.</div>`;
                 }
-            } catch (e) { container.innerHTML = `<div class="text-xs text-slate-400">Update failed.</div>`; }
+            } catch (e) { container.innerHTML = `<div class="text-xs text-slate-400">Station update failed.</div>`; }
+        }
+
+        async function fetchLiveBuses() {
+            const container = document.getElementById('bus-list');
+            const stop = '2580BMT0015';
+            const APP_ID = '45788da6';
+            const APP_KEY = 'c684157835154b6840618063065e940a';
+            try {
+                const res = await fetch(`https://transportapi.com/v3/uk/bus/stop/${stop}/live.json?app_id=${APP_ID}&app_key=${APP_KEY}&group=no`);
+                const data = await res.json();
+                let allBuses = [];
+                if (data.departures) {
+                    Object.values(data.departures).forEach(routeBuses => { allBuses = allBuses.concat(routeBuses); });
+                }
+                if (allBuses.length > 0) {
+                    container.innerHTML = allBuses
+                        .sort((a, b) => (a.best_departure_estimate || a.aimed_departure_time).localeCompare(b.best_departure_estimate || b.aimed_departure_time))
+                        .slice(0, 2)
+                        .map(bus => `
+                            <div class="flex items-start justify-between">
+                                <div class="flex items-center gap-3 mt-1">
+                                    <span class="bg-primary text-white text-[10px] font-black px-2 py-1 rounded shadow-sm">${bus.line}</span>
+                                    <span class="text-sm font-bold text-secondary truncate max-w-[120px] lowercase first-letter:uppercase">${bus.direction.toLowerCase()}</span>
+                                </div>
+                                <div class="text-right">
+                                    <div class="text-sm font-black bg-slate-100/50 px-3 py-1 rounded-lg tabular-nums w-14 text-center">${bus.best_departure_estimate || bus.aimed_departure_time}</div>
+                                    <div class="text-[9px] font-black ${bus.status === 'live' ? 'text-green-600' : 'text-primary'} uppercase tracking-widest mt-0">${bus.status === 'live' ? 'Live' : 'Sched'}</div>
+                                </div>
+                            </div>
+                        `).join('');
+                } else {
+                    container.innerHTML = `<div class="text-xs text-slate-400">No buses scheduled.</div>`;
+                }
+            } catch (e) { container.innerHTML = `<div class="text-xs text-slate-400">Bus data unavailable.</div>`; }
         }
 
         async function loadLiveTransport() {
-            fetchTransportData('bus', '2580BMT0015', 'bus-list');
-            fetchTransportData('train', 'MST', 'maesteg-trains-list');
-            fetchTransportData('train', 'PTB', 'ptb-trains-list');
+            fetchTrainStation('MST', 'maesteg-trains-list');
+            fetchTrainStation('PTB', 'ptb-trains-list');
+            fetchLiveBuses();
         }
 
         async function loadLiveWeather() {
@@ -506,7 +526,7 @@
             loadLiveEvents();
             loadLiveWeather();
             loadLiveTransport();
-            setInterval(loadLiveTransport, 300000); // 5 minute refresh
+            setInterval(loadLiveTransport, 60000);
         });
     </script>
 </body>
