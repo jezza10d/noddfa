@@ -43,6 +43,7 @@
             -webkit-box-orient: vertical;  
             overflow: hidden;
         }
+        /* Fix for Category Pills active state */
         .pill-active {
             background-color: #ae0000 !important;
             color: white !important;
@@ -104,7 +105,20 @@
                                 </div>
 
                                 <div id="noticeboard-feed">
-                                    <div class="py-10 text-center text-slate-400 italic">Loading notices...</div>
+                                    <div class="bg-white border border-outline rounded-2xl shadow-sm overflow-hidden flex flex-col md:flex-row mb-6">
+                                        <div class="md:w-1/3 h-48 md:h-auto">
+                                            <img src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?q=80&w=1000" alt="Village Ponds" class="w-full h-full object-cover">
+                                        </div>
+                                        <div class="p-8 md:w-2/3">
+                                            <div class="flex justify-between items-start mb-4">
+                                                <span class="bg-primary text-white text-[10px] font-black px-3 py-1 rounded-full uppercase">Featured spotlight</span>
+                                                <span class="text-xs text-slate-400 font-medium">2 days ago</span>
+                                            </div>
+                                            <h4 class="font-bold text-xl mb-3">Village Ponds Clean Up</h4>
+                                            <p class="text-on-surface-variant text-sm leading-relaxed mb-6">Join the local volunteer group this Saturday at 10:00 AM. We'll be meeting at the main ponds entrance for a general tidy-up.</p>
+                                            <a href="#" class="text-primary font-bold text-xs flex items-center gap-2">Read full details <span class="material-symbols-outlined text-sm">arrow_forward</span></a>
+                                        </div>
+                                    </div>
                                 </div>
                             </section>
 
@@ -120,7 +134,7 @@
                                         <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center text-primary mb-4">
                                             <span class="material-symbols-outlined text-2xl">medical_services</span>
                                         </div>
-                                        <h3 class="text-lg font-bold mb-2 text-secondary">Doctors</h3>
+                                        <h3 class="text-lg font-bold mb-2">Doctors</h3>
                                         <p class="text-on-surface-variant text-xs mb-4">Health Centre hours and booking info.</p>
                                         <span class="text-primary text-[10px] font-black flex items-center gap-2 uppercase">View info <span class="material-symbols-outlined text-xs">arrow_forward</span></span>
                                     </div>
@@ -128,7 +142,7 @@
                                         <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center text-primary mb-4">
                                             <span class="material-symbols-outlined text-2xl">school</span>
                                         </div>
-                                        <h3 class="text-lg font-bold mb-2 text-secondary">Primary School</h3>
+                                        <h3 class="text-lg font-bold mb-2">Primary School</h3>
                                         <p class="text-on-surface-variant text-xs mb-4">Term dates and local school news.</p>
                                         <span class="text-primary text-[10px] font-black flex items-center gap-2 uppercase">Learn more <span class="material-symbols-outlined text-xs">arrow_forward</span></span>
                                     </div>
@@ -136,7 +150,7 @@
                                         <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center text-primary mb-4">
                                             <span class="material-symbols-outlined text-2xl">local_post_office</span>
                                         </div>
-                                        <h3 class="text-lg font-bold mb-2 text-secondary">Post Office</h3>
+                                        <h3 class="text-lg font-bold mb-2">Post Office</h3>
                                         <p class="text-on-surface-variant text-xs mb-4">Located in the village shop. Collection times.</p>
                                         <span class="text-primary text-[10px] font-black flex items-center gap-2 uppercase">Details <span class="material-symbols-outlined text-xs">arrow_forward</span></span>
                                     </div>
@@ -243,7 +257,7 @@
                                 <div class="w-10 h-10 bg-white rounded-full flex items-center justify-center text-slate-300 mb-3 shadow-sm">
                                     <span class="material-symbols-outlined text-xl">add_business</span>
                                 </div>
-                                <h3 class="text-sm font-bold text-slate-500 mb-1 text-secondary">Your business</h3>
+                                <h3 class="text-sm font-bold text-slate-500 mb-1">Your business</h3>
                                 <button class="bg-white border border-slate-200 text-slate-600 px-4 py-1.5 rounded-full text-[10px] font-bold hover:bg-slate-100 transition-colors uppercase">Enquire</button>
                             </div>
                         </div>
@@ -252,7 +266,7 @@
                     <section class="mt-24 w-full">
                         <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-10">
                             <div>
-                                <h2 class="text-secondary text-3xl font-bold">What's On</h2>
+                                <h2 class="text-slate-900 text-3xl font-bold">What's On</h2>
                                 <p class="text-slate-500 mt-2">Join us for activities and events this week</p>
                             </div>
                             <a href="/events" class="self-start md:self-auto text-primary font-bold hover:underline flex items-center gap-2">
@@ -270,18 +284,18 @@
                             <div class="relative z-10 grid md:grid-cols-2 gap-12 items-center">
                                 <div>
                                     <h2 class="text-3xl font-headline font-bold text-secondary mb-4">Report It Dashboard</h2>
-                                    <p class="text-on-surface-variant mb-8 max-w-md">Help us keep our village safe and clean. Directly report issues to Neath Port Talbot Council.</p>
+                                    <p class="text-on-surface-variant mb-8 max-w-md">Help us keep our village safe and clean.</p>
                                     <div class="flex flex-wrap gap-3">
-                                        <a target="_blank" class="bg-white border border-outline hover:border-primary transition-colors px-5 py-3 rounded-full flex items-center gap-3 font-medium text-secondary shadow-sm" href="https://www.npt.gov.uk/2253">
+                                        <a target="_blank" class="bg-white border border-outline hover:border-primary transition-colors px-5 py-3 rounded-full flex items-center gap-3 font-medium text-secondary shadow-sm" href="https://www.npt.gov.uk/parking-roads-and-travel/problems-with-roads-and-streets/potholes">
                                             <span class="material-symbols-outlined text-error">warning</span> Potholes
                                         </a>
-                                        <a target="_blank" class="bg-white border border-outline hover:border-primary transition-colors px-5 py-3 rounded-full flex items-center gap-3 font-medium text-secondary shadow-sm" href="https://www.npt.gov.uk/2261">
+                                        <a target="_blank" class="bg-white border border-outline hover:border-primary transition-colors px-5 py-3 rounded-full flex items-center gap-3 font-medium text-secondary shadow-sm" href="https://www.npt.gov.uk/parking-roads-and-travel/problems-with-roads-and-streets/fly-tipping/">
                                             <span class="material-symbols-outlined text-error">delete_outline</span> Fly-tipping
                                         </a>
-                                        <a target="_blank" class="bg-white border border-outline hover:border-primary transition-colors px-5 py-3 rounded-full flex items-center gap-3 font-medium text-secondary shadow-sm" href="https://www.npt.gov.uk/2265">
+                                        <a target="_blank" class="bg-white border border-outline hover:border-primary transition-colors px-5 py-3 rounded-full flex items-center gap-3 font-medium text-secondary shadow-sm" href="https://www.npt.gov.uk/parking-roads-and-travel/problems-with-roads-and-streets/street-lights/">
                                             <span class="material-symbols-outlined text-error">light_off</span> Street Lighting
                                         </a>
-                                        <a target="_blank" class="bg-white border border-outline hover:border-primary transition-colors px-5 py-3 rounded-full flex items-center gap-3 font-medium text-secondary shadow-sm" href="https://www.npt.gov.uk/2260">
+                                        <a target="_blank" class="bg-white border border-outline hover:border-primary transition-colors px-5 py-3 rounded-full flex items-center gap-3 font-medium text-secondary shadow-sm" href="https://www.npt.gov.uk/parking-roads-and-travel/problems-with-roads-and-streets/dog-fouling/">
                                             <span class="material-symbols-outlined text-error">pets</span> Dog Fouling
                                         </a>
                                     </div>
@@ -306,7 +320,7 @@
                             <p class="text-on-surface-variant mt-2">Locate essential services and explore Glyncorrwg.</p>
                         </div>
                         <div class="bg-white rounded-3xl p-1 border border-outline shadow-xl overflow-hidden aspect-video relative">
-                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d19842.14446583906!2d-3.626786889550781!3d51.66174820000001!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x486e689622944a95%3A0xe449835702219460!2sNoddfa%20Community%20Centre!5e0!3m2!1sen!2suk!4v1715854000000!5m2!1sen!2suk" width="100%" height="100%" style="border:0; border-radius: 1.5rem;" allowfullscreen="" loading="lazy"></iframe>
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d19833.051411228553!2d-3.6268846128318285!3d51.66258055615783!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x486e5e8e7a83d92b%3A0xc3f9a7d3a0e69818!2sGlyncorrwg%2C%20Port%20Talbot!5e0!3m2!1sen!2suk!4v1709400000000!5m2!1sen!2suk" width="100%" height="100%" style="border:0; border-radius: 1.5rem;" allowfullscreen="" loading="lazy"></iframe>
                         </div>
                     </section>
 
@@ -371,7 +385,7 @@
                                 <span class="text-sm font-bold text-secondary truncate max-w-[120px] capitalize">${train.destination[0].locationName.toLowerCase()}</span>
                             </div>
                             <div class="text-right">
-                                <div class="text-sm font-black bg-slate-100/50 px-3 py-1 rounded-lg w-14 text-center tabular-nums">${train.std}</div>
+                                <div class="text-sm font-black bg-slate-100/50 px-3 py-1 rounded-lg w-14 text-center">${train.std}</div>
                                 <div class="text-[9px] font-black ${train.etd === 'On time' ? 'text-green-600' : 'text-primary'} uppercase mt-0">${train.etd}</div>
                             </div>
                         </div>`).join('');
@@ -392,7 +406,6 @@
                     if (data.departures) {
                         Object.values(data.departures).forEach(r => {
                             r.forEach(bus => {
-                                // Prefer live estimate, fallback to aimed time
                                 bus.time = bus.best_departure_estimate || bus.aimed_departure_time;
                                 allBuses.push(bus);
                             });
@@ -410,7 +423,7 @@
                             <div class="text-[9px] font-black ${bus.status === 'live' ? 'text-green-600' : 'text-primary'} uppercase mt-0">${bus.status === 'live' ? 'Live' : 'Sched'}</div>
                         </div>
                     </div>`).join('') : `<div class="text-xs text-slate-400">No buses found for today.</div>`;
-            } catch (e) { container.innerHTML = `<div class="text-xs text-slate-400">Bus update failed.</div>`; }
+            } catch (e) { container.innerHTML = `<div class="text-xs text-slate-400">Bus data unavailable.</div>`; }
         }
 
         async function loadLiveWeather() {
@@ -455,8 +468,6 @@
 
         async function filterNoticeboard(category, btn) {
             const container = document.getElementById('noticeboard-feed');
-            
-            // UI Toggle
             document.querySelectorAll('.category-pill').forEach(pill => pill.classList.remove('pill-active', 'shadow-md'));
             if (btn) btn.classList.add('pill-active', 'shadow-md');
 
@@ -474,16 +485,11 @@
 
                 container.innerHTML = posts.map(post => {
                     const media = post._embedded?.['wp:featuredmedia']?.[0]?.source_url || 'https://images.unsplash.com/photo-1501785888041-af3ef285b470?q=80&w=1000';
-                    const date = new Date(post.date).toLocaleDateString('en-GB');
                     return `
                         <div class="bg-white border border-outline rounded-2xl shadow-sm overflow-hidden flex flex-col md:flex-row mb-6">
                             <div class="md:w-1/3 h-48 md:h-auto"><img src="${media}" class="w-full h-full object-cover"></div>
                             <div class="p-8 md:w-2/3">
-                                <div class="flex justify-between items-start mb-4">
-                                    <span class="bg-primary text-white text-[10px] font-black px-3 py-1 rounded-full uppercase">Community Post</span>
-                                    <span class="text-xs text-slate-400 font-medium">${date}</span>
-                                </div>
-                                <h4 class="font-bold text-xl mb-3 text-secondary">${post.title.rendered}</h4>
+                                <h4 class="font-bold text-xl mb-3">${post.title.rendered}</h4>
                                 <div class="text-on-surface-variant text-sm mb-6 line-clamp-2">${post.excerpt.rendered}</div>
                                 <a href="${post.link}" class="text-primary font-bold text-xs flex items-center gap-2">Read full details <span class="material-symbols-outlined text-sm">arrow_forward</span></a>
                             </div>
