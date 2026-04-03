@@ -46,6 +46,17 @@
             -webkit-box-orient: vertical;  
             overflow: hidden;
         }
+        /* Match Noddfa Command Centre Card Styles */
+        .noddfa-card {
+            background: white;
+            border-radius: 2rem;
+            border: 1px solid #f1f5f9;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .noddfa-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+        }
     </style>
 </head>
 <body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100">
@@ -167,9 +178,10 @@
     async function loadLiveEvents() {
         const container = document.getElementById('events-feed-container');
         try {
-            // Updated to use the correct REST route established in functions.php
-            const response = await fetch(`${API_BASE}/wp/v2/events-api?per_page=12&v=${Date.now()}`);
+            // CRITICAL: Using the specialized portal-events endpoint to mirror site logic
+            const response = await fetch(`${API_BASE}/noddfa/v1/portal-events?v=${Date.now()}`);
             if (!response.ok) throw new Error(`HTTP Error: ${response.status}`);
+            
             const events = await response.json();
             
             if (!events || events.length === 0) {
@@ -177,64 +189,52 @@
                 return;
             }
 
-            const today = new Date();
-            today.setHours(0, 0, 0, 0);
+            // Show top 3 next events
+            const topEvents = events.slice(0, 3);
 
-            // Filter and Sort Logic as seen on /events
-            const upcomingOnly = events
-                .filter(ev => ev.event_date && new Date(ev.event_date) >= today)
-                .sort((a, b) => new Date(a.event_date) - new Date(b.event_date))
-                .slice(0, 3);
-
-            if (upcomingOnly.length === 0) {
-                container.innerHTML = `<div class="col-span-3 py-10 text-center text-slate-500 italic">No upcoming activities scheduled right now.</div>`;
-                return;
-            }
-
-            container.innerHTML = upcomingOnly.map(event => {
-                // Replicating the robust image chain from the main events logic
+            container.innerHTML = topEvents.map(event => {
+                // Match the robust image logic found in part-events-manager.php
                 const img = event.event_image_url || 
-                            event.featured_media_url || 
-                            event._embedded?.['wp:featuredmedia']?.[0]?.source_url || 
                             'https://noddfa-j3nkslkrxc.live-website.com/wp-content/uploads/2026/03/Yoga.png';
                 
+                // Sentence Case Date Formatting
                 let eventDateStr = "Coming Soon";
-                let rawDate = event.event_date || "";
-                
-                if (rawDate) {
-                    const d = new Date(rawDate);
+                if (event.event_date) {
+                    const d = new Date(event.event_date);
                     eventDateStr = d.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
                 }
 
-                const title = event.title?.rendered || event.title || "Untitled Event";
-                
-                // Clean content logic
-                let rawText = event.content?.rendered || event.excerpt?.rendered || "";
+                // Handle title and cleaning description
+                const title = event.event_name || "Untitled Event";
+                let rawText = event.post_content || "";
                 let cleanText = rawText.replace(/<[^>]*>?/gm, '').trim();
-                const shortDesc = cleanText.split(/\s+/).slice(0, 18).join(' ') + '...';
+                const shortDesc = cleanText.split(/\s+/).slice(0, 20).join(' ') + '...';
 
-                // Domain mapping logic
-                let eventLink = (event.link || '').replace('https://noddfa-j3nkslkrxc.live-website.com', 'https://glyncorrwg.wales');
-                if (rawDate && eventLink) {
-                    const separator = eventLink.includes('?') ? '&' : '?';
-                    eventLink = `${eventLink}${separator}event_date=${rawDate}`;
+                // Link mapping to public site structure
+                // Logic based on how glyncorrwg.wales/events handles links
+                let eventLink = `/events/event/${event.event_slug || event.post_id || ''}`;
+                if (event.event_date) {
+                    eventLink += `?event_date=${event.event_date}`;
                 }
 
                 return `
-                    <div onclick="window.location.href='${eventLink}'" class="cursor-pointer bg-white dark:bg-slate-800 border border-primary/5 rounded-xl overflow-hidden hover:shadow-lg transition-all flex flex-col h-full group">
-                        <div class="h-48 overflow-hidden">
-                            <div class="h-full w-full bg-cover bg-center transition-transform duration-500 group-hover:scale-110" style="background-image: url('${img}');"></div>
-                        </div>
-                        <div class="p-6 flex flex-col flex-1">
-                            <h3 class="text-xl font-bold mb-2 text-slate-900 dark:text-white group-hover:text-primary transition-colors">${title}</h3>
-                            <div class="flex items-center gap-2 text-primary text-sm font-bold mb-4">
-                                <span class="material-symbols-outlined text-base">calendar_today</span>
-                                <span>${eventDateStr}</span>
+                    <div onclick="window.location.href='${eventLink}'" class="cursor-pointer noddfa-card overflow-hidden flex flex-col h-full group">
+                        <div class="h-52 overflow-hidden relative">
+                            <div class="h-full w-full bg-cover bg-center transition-transform duration-700 group-hover:scale-110" style="background-image: url('${img}');"></div>
+                            <div class="absolute top-4 left-4 bg-white/90 backdrop-blur px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest text-primary shadow-sm">
+                                Live Event
                             </div>
-                            <p class="text-slate-600 dark:text-slate-400 text-sm mb-6 line-clamp-2">${shortDesc}</p>
+                        </div>
+                        <div class="p-8 flex flex-col flex-1">
+                            <h3 class="text-2xl font-black mb-3 text-secondary group-hover:text-primary transition-colors leading-tight">${title}</h3>
+                            <div class="flex items-center gap-2 text-primary font-bold mb-5">
+                                <span class="material-symbols-outlined text-lg">calendar_today</span>
+                                <span class="text-sm">${eventDateStr}</span>
+                            </div>
+                            <p class="text-slate-500 dark:text-slate-400 text-sm mb-8 line-clamp-2 leading-relaxed">${shortDesc}</p>
                             <div class="mt-auto">
-                                <div class="w-full bg-primary text-white font-bold py-3 rounded-lg flex items-center justify-center gap-2 hover:bg-primary/90 transition-colors">
-                                    More Info <span class="material-symbols-outlined text-sm">arrow_forward</span>
+                                <div class="w-full bg-secondary group-hover:bg-primary text-white font-bold py-4 rounded-2xl flex items-center justify-center gap-3 transition-all shadow-md">
+                                    More Information <span class="material-symbols-outlined text-sm">arrow_forward</span>
                                 </div>
                             </div>
                         </div>
@@ -242,7 +242,7 @@
             }).join('');
         } catch (err) { 
             console.error("Event Feed Error:", err); 
-            container.innerHTML = `<div class="col-span-3 py-10 text-center text-slate-500 italic">Unable to load live activities.</div>`;
+            container.innerHTML = `<div class="col-span-3 py-10 text-center text-slate-500 italic">Unable to load activities at this time.</div>`;
         }
     }
 
@@ -266,17 +266,17 @@
                 const newsLink = post.link.replace('https://noddfa-j3nkslkrxc.live-website.com', 'https://glyncorrwg.wales');
 
                 return `
-                    <div onclick="window.location.href='${newsLink}'" class="cursor-pointer bg-white dark:bg-slate-800 border border-primary/5 rounded-xl overflow-hidden hover:shadow-lg transition-shadow flex flex-col h-full">
+                    <div onclick="window.location.href='${newsLink}'" class="cursor-pointer bg-white dark:bg-slate-800 border border-slate-100 rounded-[2rem] overflow-hidden hover:shadow-xl transition-all flex flex-col h-full group">
                         <div class="h-48 bg-cover bg-center" style="background-image: url('${img}');"></div>
-                        <div class="p-6 flex flex-col flex-1">
-                            <h3 class="text-xl font-bold mb-2 text-slate-900 dark:text-white">${post.title.rendered}</h3>
+                        <div class="p-8 flex flex-col flex-1">
+                            <h3 class="text-xl font-bold mb-3 text-slate-900 dark:text-white group-hover:text-primary transition-colors">${post.title.rendered}</h3>
                             <div class="flex items-center gap-2 text-primary text-sm font-bold mb-4">
                                 <span class="material-symbols-outlined text-base">newspaper</span>
                                 <span>${postDate}</span>
                             </div>
-                            <p class="text-slate-600 dark:text-slate-400 text-sm mb-6 line-clamp-2">${shortDesc}</p>
+                            <p class="text-slate-500 dark:text-slate-400 text-sm mb-8 line-clamp-2 leading-relaxed">${shortDesc}</p>
                             <div class="mt-auto">
-                                <div class="w-full bg-primary text-white font-bold py-3 rounded-lg flex items-center justify-center gap-2 hover:bg-primary/90 transition-colors text-center">
+                                <div class="w-full bg-slate-50 group-hover:bg-primary group-hover:text-white text-secondary font-bold py-3 rounded-xl flex items-center justify-center gap-2 transition-all">
                                     Read Story <span class="material-symbols-outlined text-sm">arrow_forward</span>
                                 </div>
                             </div>
