@@ -43,6 +43,13 @@
             -webkit-box-orient: vertical;  
             overflow: hidden;
         }
+        /* Pill Active State */
+        .pill-active {
+            background-color: #ae0000 !important;
+            color: white !important;
+            border-color: #ae0000 !important;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        }
 
         @media (max-width: 768px) {
             #nav-menu.active-menu {
@@ -93,7 +100,7 @@
                                         </a>
                                     </div>
                                     <div class="flex items-center gap-3">
-                                        <button onclick="filterNoticeboard('all')" class="category-pill bg-primary text-white px-6 py-2 rounded-full text-sm font-bold shadow-md">All Stories</button>
+                                        <button onclick="filterNoticeboard('all')" class="category-pill pill-active bg-white border border-slate-200 text-slate-600 px-6 py-2 rounded-full text-sm font-bold transition-all">All Stories</button>
                                         <button onclick="filterNoticeboard('uncategorized')" class="category-pill bg-white border border-slate-200 text-slate-600 px-6 py-2 rounded-full text-sm font-bold hover:bg-slate-50 transition-colors">Uncategorized</button>
                                     </div>
                                 </div>
@@ -111,23 +118,6 @@
                                             <h4 class="font-bold text-xl mb-3">Village Ponds Clean Up</h4>
                                             <p class="text-on-surface-variant text-sm leading-relaxed mb-6">Join the local volunteer group this Saturday at 10:00 AM. We'll be meeting at the main ponds entrance for a general tidy-up.</p>
                                             <a href="#" class="text-primary font-bold text-xs flex items-center gap-2">Read full details <span class="material-symbols-outlined text-sm">arrow_forward</span></a>
-                                        </div>
-                                    </div>
-
-                                    <div class="space-y-4">
-                                        <div class="bg-surface border border-outline p-8 rounded-xl shadow-sm relative hover:border-primary/50 transition-all">
-                                            <div class="flex justify-between items-start mb-2">
-                                                <h4 class="font-bold text-lg text-secondary">Noddfa Coffee Morning</h4>
-                                                <span class="text-xs text-slate-400 font-medium">1 day ago</span>
-                                            </div>
-                                            <p class="text-on-surface-variant text-sm">Every Wednesday from 10:30 AM. Come along for a chat and a hot drink with neighbors.</p>
-                                        </div>
-                                        <div class="bg-surface border border-outline p-8 rounded-xl shadow-sm hover:border-primary/50 transition-all">
-                                            <div class="flex justify-between items-start mb-2">
-                                                <h4 class="font-bold text-lg text-secondary">Local Election Polling Info</h4>
-                                                <span class="text-xs text-slate-400 font-medium">4 days ago</span>
-                                            </div>
-                                            <p class="text-on-surface-variant text-sm">The community hall will be used as a polling station this Thursday. Normal classes are suspended for the day.</p>
                                         </div>
                                     </div>
                                 </div>
@@ -179,9 +169,7 @@
                                         <div class="text-xs text-slate-500 font-medium">Glyncorrwg, Wales</div>
                                     </div>
                                 </div>
-                                <p id="weather-desc" class="text-sm text-on-surface-variant leading-relaxed">
-                                    Loading live forecast...
-                                </p>
+                                <p id="weather-desc" class="text-sm text-on-surface-variant leading-relaxed">Loading live forecast...</p>
                             </div>
 
                             <div class="bg-white border border-slate-200 rounded-2xl p-8 shadow-sm">
@@ -189,7 +177,6 @@
                                     <span class="material-symbols-outlined text-2xl">departure_board</span>
                                     Transport
                                 </h4>
-                                
                                 <div class="space-y-10">
                                     <div>
                                         <h5 class="text-[12px] font-black text-slate-500 tracking-widest mb-6">Buses</h5>
@@ -197,14 +184,12 @@
                                             <div class="text-xs text-slate-400 italic">Checking buses...</div>
                                         </div>
                                     </div>
-
                                     <div>
                                         <h5 class="text-[12px] font-black text-slate-500 tracking-widest mb-6">Maesteg station</h5>
                                         <div id="maesteg-trains-list" class="space-y-4">
                                             <div class="text-xs text-slate-400 italic">Checking trains...</div>
                                         </div>
                                     </div>
-
                                     <div>
                                         <h5 class="text-[12px] font-black text-slate-500 tracking-widest mb-6">Port talbot parkway</h5>
                                         <div id="ptb-trains-list" class="space-y-4">
@@ -236,11 +221,6 @@
                                 <a href="https://glyncorrwg.wales/community/directory" class="flex items-center gap-2 text-primary font-bold text-sm hover:underline">
                                     View all Directory <span class="material-symbols-outlined text-sm">arrow_forward</span>
                                 </a>
-                            </div>
-                            <div class="flex items-center gap-3">
-                                <button class="bg-primary text-white px-6 py-2 rounded-full text-sm font-bold shadow-md">All Business</button>
-                                <button class="bg-white border border-slate-200 text-slate-600 px-6 py-2 rounded-full text-sm font-bold hover:bg-slate-50 transition-colors">Retail</button>
-                                <button class="bg-white border border-slate-200 text-slate-600 px-6 py-2 rounded-full text-sm font-bold hover:bg-slate-50 transition-colors">Hospitality</button>
                             </div>
                         </div>
                         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -274,7 +254,6 @@
                                     <span class="material-symbols-outlined text-xl">add_business</span>
                                 </div>
                                 <h3 class="text-sm font-bold text-slate-500 mb-1">Your business</h3>
-                                <p class="text-[10px] text-slate-400 mb-4 px-2">Advertise here to reach local residents.</p>
                                 <button class="bg-white border border-slate-200 text-slate-600 px-4 py-1.5 rounded-full text-[10px] font-bold hover:bg-slate-100 transition-colors uppercase">Enquire</button>
                             </div>
                         </div>
@@ -286,10 +265,8 @@
                                 <h2 class="text-slate-900 text-3xl font-bold">What's On</h2>
                                 <p class="text-slate-500 mt-2">Join us for activities and events this week</p>
                             </div>
-                            <a href="/events" class="self-start md:self-auto">
-                                <button class="flex items-center gap-2 text-primary font-bold hover:underline">
-                                    View All Events <span class="material-symbols-outlined">arrow_forward</span>
-                                </button>
+                            <a href="/events" class="self-start md:self-auto text-primary font-bold hover:underline flex items-center gap-2">
+                                View All Events <span class="material-symbols-outlined">arrow_forward</span>
                             </a>
                         </div>
                         <div id="events-feed-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -303,29 +280,29 @@
                             <div class="relative z-10 grid md:grid-cols-2 gap-12 items-center">
                                 <div>
                                     <h2 class="text-3xl font-headline font-bold text-secondary mb-4">Report It Dashboard</h2>
-                                    <p class="text-on-surface-variant mb-8 max-w-md">Help us keep our village safe and clean. Directly report issues to Neath Port Talbot Council via the links below.</p>
+                                    <p class="text-on-surface-variant mb-8 max-w-md">Help us keep our village safe and clean.</p>
                                     <div class="flex flex-wrap gap-3">
-                                        <a class="bg-white border border-outline hover:border-primary transition-colors px-5 py-3 rounded-full flex items-center gap-3 font-medium text-secondary shadow-sm" href="https://www.npt.gov.uk/2253">
+                                        <a target="_blank" class="bg-white border border-outline hover:border-primary transition-colors px-5 py-3 rounded-full flex items-center gap-3 font-medium text-secondary shadow-sm" href="https://www.npt.gov.uk/2253">
                                             <span class="material-symbols-outlined text-error">warning</span> Potholes
                                         </a>
-                                        <a class="bg-white border border-outline hover:border-primary transition-colors px-5 py-3 rounded-full flex items-center gap-3 font-medium text-secondary shadow-sm" href="https://www.npt.gov.uk/2261">
+                                        <a target="_blank" class="bg-white border border-outline hover:border-primary transition-colors px-5 py-3 rounded-full flex items-center gap-3 font-medium text-secondary shadow-sm" href="https://www.npt.gov.uk/2261">
                                             <span class="material-symbols-outlined text-error">delete_outline</span> Fly-tipping
                                         </a>
-                                        <a class="bg-white border border-outline hover:border-primary transition-colors px-5 py-3 rounded-full flex items-center gap-3 font-medium text-secondary shadow-sm" href="https://www.npt.gov.uk/2265">
+                                        <a target="_blank" class="bg-white border border-outline hover:border-primary transition-colors px-5 py-3 rounded-full flex items-center gap-3 font-medium text-secondary shadow-sm" href="https://www.npt.gov.uk/2265">
                                             <span class="material-symbols-outlined text-error">light_off</span> Street Lighting
                                         </a>
-                                        <a class="bg-white border border-outline hover:border-primary transition-colors px-5 py-3 rounded-full flex items-center gap-3 font-medium text-secondary shadow-sm" href="https://www.npt.gov.uk/2260">
+                                        <a target="_blank" class="bg-white border border-outline hover:border-primary transition-colors px-5 py-3 rounded-full flex items-center gap-3 font-medium text-secondary shadow-sm" href="https://www.npt.gov.uk/2260">
                                             <span class="material-symbols-outlined text-error">pets</span> Dog Fouling
                                         </a>
                                     </div>
                                 </div>
                                 <div class="grid grid-cols-2 gap-4">
                                     <div class="bg-white p-6 rounded-2xl shadow-sm flex flex-col items-center text-center">
-                                        <div class="text-4xl font-black text-primary mb-1">24h</div>
-                                        <div class="text-xs uppercase tracking-wider text-on-surface-variant font-bold">Response Goal</div>
+                                        <div class="text-4xl font-black text-primary mb-1">NPT</div>
+                                        <div class="text-xs uppercase tracking-wider text-on-surface-variant font-bold">Official Site</div>
                                     </div>
                                     <div class="bg-white p-6 rounded-2xl shadow-sm flex flex-col items-center text-center">
-                                        <div class="text-4xl font-black text-secondary mb-1">NPT</div>
+                                        <div class="text-4xl font-black text-secondary mb-1">Live</div>
                                         <div class="text-xs uppercase tracking-wider text-on-surface-variant font-bold">Council Direct</div>
                                     </div>
                                 </div>
@@ -334,22 +311,12 @@
                     </section>
 
                     <section class="mt-24 mb-20">
-                        <div class="flex items-center justify-between mb-8">
-                            <div>
-                                <h2 class="text-3xl font-headline font-bold text-secondary">Village Map</h2>
-                                <p class="text-on-surface-variant mt-2">Locate essential services and explore walking routes around Glyncorrwg.</p>
-                            </div>
+                        <div class="mb-8">
+                            <h2 class="text-3xl font-headline font-bold text-secondary">Village Map</h2>
+                            <p class="text-on-surface-variant mt-2">Locate essential services and explore Glyncorrwg.</p>
                         </div>
                         <div class="bg-white rounded-3xl p-1 border border-outline shadow-xl overflow-hidden aspect-video relative">
-                            <iframe 
-                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d19833.051411228553!2d-3.6268846128318285!3d51.66258055615783!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x486e5e8e7a83d92b%3A0xc3f9a7d3a0e69818!2sGlyncorrwg%2C%20Port%20Talbot!5e0!3m2!1sen!2suk!4v1709400000000!5m2!1sen!2suk" 
-                                width="100%" 
-                                height="100%" 
-                                style="border:0; border-radius: 1.5rem;" 
-                                allowfullscreen="" 
-                                loading="lazy" 
-                                referrerpolicy="no-referrer-when-downgrade">
-                            </iframe>
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d19833.051411228553!2d-3.6268846128318285!3d51.66258055615783!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x486e5e8e7a83d92b%3A0xc3f9a7d3a0e69818!2sGlyncorrwg%2C%20Port%20Talbot!5e0!3m2!1sen!2suk!4v1709400000000!5m2!1sen!2suk" width="100%" height="100%" style="border:0; border-radius: 1.5rem;" allowfullscreen="" loading="lazy"></iframe>
                         </div>
                     </section>
 
@@ -372,15 +339,12 @@
                     initMobileMenu(); 
                     highlightActiveLink();
                 }
-
                 const footerResponse = await fetch(`${API_BASE}/noddfa/v1/footer?v=${Date.now()}`);
                 if (footerResponse.ok) {
                     const data = await footerResponse.json();
                     document.getElementById('footer-placeholder').innerHTML = data.html;
                 }
-            } catch (error) {
-                console.error("Error loading shared components:", error);
-            }
+            } catch (error) { console.error("Error loading shared components:", error); }
         }
 
         function initMobileMenu() {
@@ -397,10 +361,8 @@
 
         function highlightActiveLink() {
             const currentPath = window.location.pathname;
-            const navLinks = document.querySelectorAll('.nav-link');
-            navLinks.forEach(link => {
-                const href = link.getAttribute('href');
-                if (currentPath.includes('community') && href && href.includes('community')) {
+            document.querySelectorAll('.nav-link').forEach(link => {
+                if (currentPath.includes('community') && link.getAttribute('href')?.includes('community')) {
                     link.classList.add('text-primary', 'font-semibold', 'border-b-2', 'border-primary');
                 }
             });
@@ -413,21 +375,16 @@
                 const data = await res.json();
                 if (data.trainServices && data.trainServices.length > 0) {
                     container.innerHTML = data.trainServices.slice(0, 2).map(train => `
-                        <div class="flex items-start justify-between group">
+                        <div class="flex items-start justify-between">
                             <div class="flex items-center gap-3 mt-1">
-                                <svg width="18" height="12" viewBox="0 0 46 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M31.2 0L37.5 6.4L18.7 25.2H46V32H13.6L20 25.6L38.8 6.8H11.5L5.1 0.4L0 5.5L0 0H31.2ZM14.8 32L8.5 25.6L27.3 6.8H0V0H32.4L26 6.4L7.2 25.2H34.5L40.9 31.6L46 26.5V32H14.8Z" fill="#ae0000"/>
-                                </svg>
-                                <span class="text-sm font-bold text-secondary truncate max-w-[120px] lowercase first-letter:uppercase">${train.destination[0].locationName.toLowerCase()}</span>
+                                <svg width="18" height="12" viewBox="0 0 46 32" fill="#ae0000"><path d="M31.2 0L37.5 6.4L18.7 25.2H46V32H13.6L20 25.6L38.8 6.8H11.5L5.1 0.4L0 5.5L0 0H31.2ZM14.8 32L8.5 25.6L27.3 6.8H0V0H32.4L26 6.4L7.2 25.2H34.5L40.9 31.6L46 26.5V32H14.8Z"/></svg>
+                                <span class="text-sm font-bold text-secondary truncate max-w-[120px] capitalize">${train.destination[0].locationName.toLowerCase()}</span>
                             </div>
                             <div class="text-right">
-                                <div class="text-sm font-black bg-slate-100/50 px-3 py-1 rounded-lg tabular-nums w-14 text-center">${train.std}</div>
-                                <div class="text-[9px] font-black ${train.etd === 'On time' ? 'text-green-600' : 'text-primary'} uppercase tracking-widest mt-0">${train.etd}</div>
+                                <div class="text-sm font-black bg-slate-100/50 px-3 py-1 rounded-lg w-14 text-center">${train.std}</div>
+                                <div class="text-[9px] font-black ${train.etd === 'On time' ? 'text-green-600' : 'text-primary'} uppercase mt-0">${train.etd}</div>
                             </div>
-                        </div>
-                    `).join('');
-                } else {
-                    container.innerHTML = `<div class="text-xs text-slate-400">No services scheduled.</div>`;
+                        </div>`).join('');
                 }
             } catch (e) { container.innerHTML = `<div class="text-xs text-slate-400">Station update failed.</div>`; }
         }
@@ -435,159 +392,113 @@
         async function fetchLiveBuses() {
             const container = document.getElementById('bus-list');
             const stops = ['2580BMT0015', '2580BMT0012'];
+            const APP_ID = '3596adef';
+            const APP_KEY = '19e21c2ae75b6c8066dca92f75aaa989';
             let allBuses = [];
             try {
                 for (const stop of stops) {
-                    // Implemented provided API Key
-                    const res = await fetch(`https://transportapi.com/v3/uk/bus/stop/${stop}/live.json?app_id=45788da6&app_key=c684157835154b6840618063065e940a&group=no`);
+                    const res = await fetch(`https://transportapi.com/v3/uk/bus/stop/${stop}/live.json?app_id=${APP_ID}&app_key=${APP_KEY}&group=no`);
                     const data = await res.json();
-                    if (data.departures) {
-                        Object.values(data.departures).forEach(routeBuses => { allBuses = allBuses.concat(routeBuses); });
-                    }
+                    if (data.departures) Object.values(data.departures).forEach(r => allBuses = allBuses.concat(r));
                 }
-                if (allBuses.length > 0) {
-                    container.innerHTML = allBuses
-                        .sort((a, b) => (a.best_departure_estimate || a.aimed_departure_time).localeCompare(b.best_departure_estimate || b.aimed_departure_time))
-                        .slice(0, 2)
-                        .map(bus => `
-                            <div class="flex items-start justify-between">
-                                <div class="flex items-center gap-3 mt-1">
-                                    <span class="bg-primary text-white text-[10px] font-black px-2 py-1 rounded shadow-sm">${bus.line}</span>
-                                    <span class="text-sm font-bold text-secondary truncate max-w-[120px] lowercase first-letter:uppercase">${bus.direction.toLowerCase()}</span>
-                                </div>
-                                <div class="text-right">
-                                    <div class="text-sm font-black bg-slate-100/50 px-3 py-1 rounded-lg tabular-nums w-14 text-center">${bus.best_departure_estimate || bus.aimed_departure_time}</div>
-                                    <div class="text-[9px] font-black ${bus.status === 'live' ? 'text-green-600' : 'text-primary'} uppercase tracking-widest mt-0">${bus.status === 'live' ? 'Live' : 'Sched'}</div>
-                                </div>
-                            </div>
-                        `).join('');
-                } else {
-                    container.innerHTML = `<div class="text-xs text-slate-400">No buses scheduled.</div>`;
-                }
+                container.innerHTML = allBuses.length ? allBuses.sort((a, b) => (a.best_departure_estimate || a.aimed_departure_time).localeCompare(b.best_departure_estimate || b.aimed_departure_time)).slice(0, 2).map(bus => `
+                    <div class="flex items-start justify-between">
+                        <div class="flex items-center gap-3 mt-1">
+                            <span class="bg-primary text-white text-[10px] font-black px-2 py-1 rounded shadow-sm">${bus.line}</span>
+                            <span class="text-sm font-bold text-secondary truncate max-w-[120px] capitalize">${bus.direction.toLowerCase()}</span>
+                        </div>
+                        <div class="text-right">
+                            <div class="text-sm font-black bg-slate-100/50 px-3 py-1 rounded-lg w-14 text-center">${bus.best_departure_estimate || bus.aimed_departure_time}</div>
+                            <div class="text-[9px] font-black ${bus.status === 'live' ? 'text-green-600' : 'text-primary'} uppercase mt-0">${bus.status === 'live' ? 'Live' : 'Sched'}</div>
+                        </div>
+                    </div>`).join('') : `<div class="text-xs text-slate-400">No buses scheduled.</div>`;
             } catch (e) { container.innerHTML = `<div class="text-xs text-slate-400">Bus data unavailable.</div>`; }
-        }
-
-        async function loadLiveTransport() {
-            fetchTrainStation('MST', 'maesteg-trains-list');
-            fetchTrainStation('PTB', 'ptb-trains-list');
-            fetchLiveBuses();
         }
 
         async function loadLiveWeather() {
             try {
-                const lat = 51.6617, lon = -3.6122;
-                const res = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current_weather=true`);
+                const res = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=51.6617&longitude=-3.6122&current_weather=true`);
                 const data = await res.json();
                 if (data.current_weather) {
                     const temp = Math.round(data.current_weather.temperature);
-                    const code = data.current_weather.weathercode;
                     document.getElementById('weather-temp').innerText = `${temp}°C`;
-                    let desc = "fair conditions", icon = "sunny";
-                    if (code >= 1 && code <= 3) { desc = "partly cloudy skies"; icon = "cloud"; }
-                    else if (code >= 51) { desc = "light rain likely"; icon = "rainy"; }
-                    document.getElementById('weather-desc').innerText = `It is currently ${temp}°C with ${desc} in Glyncorrwg.`;
-                    document.getElementById('weather-icon').innerText = icon;
+                    document.getElementById('weather-desc').innerText = `It is currently ${temp}°C in Glyncorrwg.`;
                 }
-            } catch (e) { document.getElementById('weather-desc').innerText = "Forecast temporarily unavailable."; }
+            } catch (e) { }
         }
 
         async function loadLiveEvents() {
             const container = document.getElementById('events-feed-container');
             try {
-                const response = await fetch(`${API_BASE}/wp/v2/events-api?per_page=3&scope=future&v=${Date.now()}`);
+                const response = await fetch(`${API_BASE}/noddfa/v1/portal-events?scope=future&v=${Date.now()}`);
                 const events = await response.json();
-                if (!events || events.length === 0) {
-                    container.innerHTML = `<div class="col-span-3 py-10 text-center text-slate-500 italic">No upcoming activities scheduled right now.</div>`;
-                    return;
-                }
-                container.innerHTML = events.map(event => {
-                    const img = event.event_image_url || 'https://images.unsplash.com/photo-1517457373958-b7bdd4587205?q=80&w=2069';
-                    let eventDateStr = "Coming Soon";
-                    if (event.event_date) {
-                        const d = new Date(event.event_date);
-                        eventDateStr = d.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: '2-digit' });
-                    }
+                const publicEvents = events.filter(ev => ev.is_private !== true).slice(0, 3);
+                container.innerHTML = publicEvents.length ? publicEvents.map(event => {
+                    const d = new Date(event.event_date);
+                    const dateStr = d.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
+                    const link = `https://glyncorrwg.wales/events/?event_id=${event.id}&event_date=${event.event_date}`;
                     return `
-                        <div onclick="window.location.href='${event.link}'" class="cursor-pointer bg-white border border-primary/5 rounded-xl overflow-hidden hover:shadow-lg transition-shadow flex flex-col h-full">
-                            <div class="h-48 bg-cover bg-center" style="background-image: url('${img}');"></div>
+                        <div onclick="window.location.href='${link}'" class="cursor-pointer bg-white border border-primary/5 rounded-xl overflow-hidden hover:shadow-lg transition-shadow flex flex-col h-full">
+                            <div class="h-48 bg-cover bg-center" style="background-image: url('${event.banner_url}');"></div>
                             <div class="p-6 flex flex-col flex-1">
-                                <h3 class="text-xl font-bold mb-2 text-slate-900">${event.title.rendered}</h3>
+                                <h3 class="text-xl font-bold mb-2 text-slate-900">${event.title}</h3>
                                 <div class="flex items-center gap-2 text-primary text-sm font-bold mb-4">
                                     <span class="material-symbols-outlined text-base">calendar_today</span>
-                                    <span>${eventDateStr}</span>
+                                    <span>${dateStr}</span>
                                 </div>
                                 <div class="mt-auto">
-                                    <div class="w-full bg-primary text-white font-bold py-3 rounded-lg flex items-center justify-center gap-2 hover:bg-primary/90 transition-colors">
-                                        More Info <span class="material-symbols-outlined text-sm">arrow_forward</span>
-                                    </div>
+                                    <div class="w-full bg-primary text-white font-bold py-3 rounded-lg flex items-center justify-center gap-2 hover:bg-primary/90 transition-colors">More Info <span class="material-symbols-outlined text-sm">arrow_forward</span></div>
                                 </div>
                             </div>
                         </div>`;
-                }).join('');
-            } catch (err) { container.innerHTML = `<div class="col-span-3 py-10 text-center text-slate-500 italic">Unable to load live activities.</div>`; }
+                }).join('') : '<div class="col-span-3 py-10 text-center text-slate-500 italic">No public events scheduled.</div>';
+            } catch (err) { container.innerHTML = `<div class="col-span-3 py-10 text-center text-slate-500 italic">Unable to load events.</div>`; }
         }
 
-        // Logic for Noticeboard Category Pills
         async function filterNoticeboard(category) {
             const container = document.getElementById('noticeboard-feed');
             
-            // Update UI for pills
-            document.querySelectorAll('.category-pill').forEach(pill => {
-                pill.classList.remove('bg-primary', 'text-white', 'shadow-md');
-                pill.classList.add('bg-white', 'border', 'border-slate-200', 'text-slate-600');
-            });
-            event.target.classList.add('bg-primary', 'text-white', 'shadow-md');
-            event.target.classList.remove('bg-white', 'border', 'border-slate-200', 'text-slate-600');
+            // UI Toggle for Pills
+            document.querySelectorAll('.category-pill').forEach(pill => pill.classList.remove('pill-active'));
+            if (event) event.target.classList.add('pill-active');
 
             container.innerHTML = `<div class="py-10 text-center text-slate-400 italic">Filtering posts...</div>`;
-            
             try {
                 let url = `${API_BASE}/wp/v2/posts?per_page=3&_embed`;
-                if (category === 'uncategorized') {
-                    // WP ID for Uncategorized is usually 1
-                    url += `&categories=1`;
-                }
-                
+                if (category === 'uncategorized') url += `&categories=1`;
                 const response = await fetch(url);
                 const posts = await response.json();
                 
-                if (posts.length === 0) {
+                if (!posts.length) {
                     container.innerHTML = `<div class="py-10 text-center text-slate-400 italic">No posts found in this category.</div>`;
                     return;
                 }
 
                 container.innerHTML = posts.map(post => {
-                    const featuredMedia = post._embedded?.['wp:featuredmedia']?.[0]?.source_url || 'https://images.unsplash.com/photo-1501785888041-af3ef285b470?q=80&w=1000';
-                    const date = new Date(post.date).toLocaleDateString('en-GB');
-                    
+                    const media = post._embedded?.['wp:featuredmedia']?.[0]?.source_url || 'https://images.unsplash.com/photo-1501785888041-af3ef285b470?q=80&w=1000';
                     return `
                         <div class="bg-white border border-outline rounded-2xl shadow-sm overflow-hidden flex flex-col md:flex-row mb-6">
-                            <div class="md:w-1/3 h-48 md:h-auto">
-                                <img src="${featuredMedia}" alt="${post.title.rendered}" class="w-full h-full object-cover">
-                            </div>
+                            <div class="md:w-1/3 h-48 md:h-auto"><img src="${media}" class="w-full h-full object-cover"></div>
                             <div class="p-8 md:w-2/3">
-                                <div class="flex justify-between items-start mb-4">
-                                    <span class="bg-primary text-white text-[10px] font-black px-3 py-1 rounded-full uppercase">Community Post</span>
-                                    <span class="text-xs text-slate-400 font-medium">${date}</span>
-                                </div>
                                 <h4 class="font-bold text-xl mb-3">${post.title.rendered}</h4>
-                                <div class="text-on-surface-variant text-sm leading-relaxed mb-6 line-clamp-2">${post.excerpt.rendered}</div>
+                                <div class="text-on-surface-variant text-sm mb-6 line-clamp-2">${post.excerpt.rendered}</div>
                                 <a href="${post.link}" class="text-primary font-bold text-xs flex items-center gap-2">Read full details <span class="material-symbols-outlined text-sm">arrow_forward</span></a>
                             </div>
-                        </div>
-                    `;
+                        </div>`;
                 }).join('');
-            } catch (err) {
-                container.innerHTML = `<div class="py-10 text-center text-slate-400 italic">Error loading posts.</div>`;
-            }
+            } catch (err) { container.innerHTML = `<div class="py-10 text-center text-slate-400 italic">Error loading posts.</div>`; }
         }
 
         document.addEventListener('DOMContentLoaded', () => {
             loadSharedComponents();
             loadLiveEvents();
             loadLiveWeather();
-            loadLiveTransport();
-            setInterval(loadLiveTransport, 60000);
+            fetchTrainStation('MST', 'maesteg-trains-list');
+            fetchTrainStation('PTB', 'ptb-trains-list');
+            fetchLiveBuses();
+            setInterval(fetchLiveBuses, 60000);
+            // Load initial posts
+            filterNoticeboard('all');
         });
     </script>
 </body>
