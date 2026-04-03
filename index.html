@@ -167,8 +167,8 @@
     async function loadLiveEvents() {
         const container = document.getElementById('events-feed-container');
         try {
-            // Updated to fetch from the specific rest_base defined in functions.php
-            const response = await fetch(`${API_BASE}/wp/v2/events-api?per_page=20&v=${Date.now()}`);
+            // Updated to use the correct REST route established in functions.php
+            const response = await fetch(`${API_BASE}/wp/v2/events-api?per_page=12&v=${Date.now()}`);
             if (!response.ok) throw new Error(`HTTP Error: ${response.status}`);
             const events = await response.json();
             
@@ -180,11 +180,11 @@
             const today = new Date();
             today.setHours(0, 0, 0, 0);
 
-            // Since Section 3b in functions.php now handles recurring expansion, we just filter for future and slice
-            const upcomingOnly = events.filter(ev => {
-                if (!ev.event_date) return false;
-                return new Date(ev.event_date) >= today;
-            }).slice(0, 3);
+            // Filter and Sort Logic as seen on /events
+            const upcomingOnly = events
+                .filter(ev => ev.event_date && new Date(ev.event_date) >= today)
+                .sort((a, b) => new Date(a.event_date) - new Date(b.event_date))
+                .slice(0, 3);
 
             if (upcomingOnly.length === 0) {
                 container.innerHTML = `<div class="col-span-3 py-10 text-center text-slate-500 italic">No upcoming activities scheduled right now.</div>`;
@@ -192,28 +192,28 @@
             }
 
             container.innerHTML = upcomingOnly.map(event => {
-                // Support multiple potential image sources from WordPress and fallback
+                // Replicating the robust image chain from the main events logic
                 const img = event.event_image_url || 
                             event.featured_media_url || 
                             event._embedded?.['wp:featuredmedia']?.[0]?.source_url || 
-                            'https://images.unsplash.com/photo-1517457373958-b7bdd4587205?q=80&w=2069';
+                            'https://noddfa-j3nkslkrxc.live-website.com/wp-content/uploads/2026/03/Yoga.png';
                 
                 let eventDateStr = "Coming Soon";
-                let rawDate = "";
-                if (event.event_date) {
-                    rawDate = event.event_date;
-                    const d = new Date(event.event_date);
-                    eventDateStr = d.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: '2-digit' });
+                let rawDate = event.event_date || "";
+                
+                if (rawDate) {
+                    const d = new Date(rawDate);
+                    eventDateStr = d.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
                 }
 
-                // Handle title and description safely
                 const title = event.title?.rendered || event.title || "Untitled Event";
+                
+                // Clean content logic
                 let rawText = event.content?.rendered || event.excerpt?.rendered || "";
-                let cleanText = rawText.replace(/<[^>]*>?/gm, '');
-                cleanText = cleanText.replace(/^.*?\d{2}\/\d{2}\/\d{4}.*?[–-]\s*/g, '');
-                const shortDesc = cleanText.split(/\s+/).slice(0, 20).join(' ') + '...';
+                let cleanText = rawText.replace(/<[^>]*>?/gm, '').trim();
+                const shortDesc = cleanText.split(/\s+/).slice(0, 18).join(' ') + '...';
 
-                // Fix links to point to the public domain
+                // Domain mapping logic
                 let eventLink = (event.link || '').replace('https://noddfa-j3nkslkrxc.live-website.com', 'https://glyncorrwg.wales');
                 if (rawDate && eventLink) {
                     const separator = eventLink.includes('?') ? '&' : '?';
@@ -221,10 +221,12 @@
                 }
 
                 return `
-                    <div onclick="window.location.href='${eventLink}'" class="cursor-pointer bg-white dark:bg-slate-800 border border-primary/5 rounded-xl overflow-hidden hover:shadow-lg transition-shadow flex flex-col h-full">
-                        <div class="h-48 bg-cover bg-center" style="background-image: url('${img}');"></div>
+                    <div onclick="window.location.href='${eventLink}'" class="cursor-pointer bg-white dark:bg-slate-800 border border-primary/5 rounded-xl overflow-hidden hover:shadow-lg transition-all flex flex-col h-full group">
+                        <div class="h-48 overflow-hidden">
+                            <div class="h-full w-full bg-cover bg-center transition-transform duration-500 group-hover:scale-110" style="background-image: url('${img}');"></div>
+                        </div>
                         <div class="p-6 flex flex-col flex-1">
-                            <h3 class="text-xl font-bold mb-2 text-slate-900 dark:text-white">${title}</h3>
+                            <h3 class="text-xl font-bold mb-2 text-slate-900 dark:text-white group-hover:text-primary transition-colors">${title}</h3>
                             <div class="flex items-center gap-2 text-primary text-sm font-bold mb-4">
                                 <span class="material-symbols-outlined text-base">calendar_today</span>
                                 <span>${eventDateStr}</span>
