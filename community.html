@@ -43,7 +43,6 @@
             -webkit-box-orient: vertical;  
             overflow: hidden;
         }
-        /* Active Pill Style */
         .pill-active {
             background-color: #ae0000 !important;
             color: white !important;
@@ -99,13 +98,13 @@
                                         </a>
                                     </div>
                                     <div class="flex items-center gap-3">
-                                        <button onclick="togglePills(this, 'notice')" class="category-pill pill-active bg-white border border-slate-200 text-slate-600 px-6 py-2 rounded-full text-sm font-bold shadow-md transition-all">All Stories</button>
-                                        <button onclick="togglePills(this, 'notice')" class="category-pill bg-white border border-slate-200 text-slate-600 px-6 py-2 rounded-full text-sm font-bold hover:bg-slate-50 transition-colors">Uncategorized</button>
+                                        <button onclick="togglePills(this)" class="category-pill pill-active bg-white border border-slate-200 text-slate-600 px-6 py-2 rounded-full text-sm font-bold shadow-md transition-all">All Stories</button>
+                                        <button onclick="togglePills(this)" class="category-pill bg-white border border-slate-200 text-slate-600 px-6 py-2 rounded-full text-sm font-bold hover:bg-slate-50 transition-colors">Uncategorized</button>
                                     </div>
                                 </div>
 
-                                <div id="noticeboard-container" class="space-y-6">
-                                    <div class="bg-white border border-outline rounded-2xl shadow-sm overflow-hidden flex flex-col md:flex-row mb-6">
+                                <div class="space-y-6">
+                                    <div class="bg-white border border-outline rounded-2xl shadow-sm overflow-hidden flex flex-col md:flex-row">
                                         <div class="md:w-1/3 h-48 md:h-auto">
                                             <img src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?q=80&w=1000" alt="Village Ponds" class="w-full h-full object-cover">
                                         </div>
@@ -120,27 +119,24 @@
                                         </div>
                                     </div>
 
-                                    <div class="bg-white border border-outline rounded-2xl shadow-sm overflow-hidden flex flex-col md:flex-row mb-6">
-                                        <div class="p-8 w-full">
+                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                        <div class="bg-white border border-outline p-8 rounded-2xl shadow-sm hover:border-primary transition-all">
                                             <div class="flex justify-between items-start mb-4">
-                                                <span class="bg-primary text-white text-[10px] font-black px-3 py-1 rounded-full uppercase">Community Post</span>
+                                                <span class="bg-primary text-white text-[10px] font-black px-3 py-1 rounded-full uppercase tracking-tighter">Community Event</span>
                                                 <span class="text-xs text-slate-400 font-medium">1 day ago</span>
                                             </div>
                                             <h4 class="font-bold text-xl mb-3 text-secondary">Noddfa Coffee Morning</h4>
-                                            <p class="text-on-surface-variant text-sm leading-relaxed mb-6">Every Wednesday from 10:30 AM. Come along for a chat and a hot drink with neighbors at the community centre hall.</p>
-                                            <a href="#" class="text-primary font-bold text-xs flex items-center gap-2">Read full details <span class="material-symbols-outlined text-sm">arrow_forward</span></a>
+                                            <p class="text-on-surface-variant text-sm leading-relaxed mb-6">Every Wednesday from 10:30 AM. Come along for a chat and a hot drink with neighbors.</p>
+                                            <a href="#" class="text-primary font-bold text-xs flex items-center gap-2">More info <span class="material-symbols-outlined text-sm">arrow_forward</span></a>
                                         </div>
-                                    </div>
-
-                                    <div class="bg-white border border-outline rounded-2xl shadow-sm overflow-hidden flex flex-col md:flex-row mb-6">
-                                        <div class="p-8 w-full">
+                                        <div class="bg-white border border-outline p-8 rounded-2xl shadow-sm hover:border-primary transition-all">
                                             <div class="flex justify-between items-start mb-4">
-                                                <span class="bg-primary text-white text-[10px] font-black px-3 py-1 rounded-full uppercase">Information</span>
+                                                <span class="bg-primary text-white text-[10px] font-black px-3 py-1 rounded-full uppercase tracking-tighter">Information</span>
                                                 <span class="text-xs text-slate-400 font-medium">4 days ago</span>
                                             </div>
-                                            <h4 class="font-bold text-xl mb-3 text-secondary">Local Election Polling Info</h4>
-                                            <p class="text-on-surface-variant text-sm leading-relaxed mb-6">The community hall will be used as a polling station this Thursday. Normal classes are suspended for the day.</p>
-                                            <a href="#" class="text-primary font-bold text-xs flex items-center gap-2">Read full details <span class="material-symbols-outlined text-sm">arrow_forward</span></a>
+                                            <h4 class="font-bold text-xl mb-3 text-secondary">Local Election Info</h4>
+                                            <p class="text-on-surface-variant text-sm leading-relaxed mb-6">The community hall will be used as a polling station this Thursday. Normal classes are suspended.</p>
+                                            <a href="#" class="text-primary font-bold text-xs flex items-center gap-2">More info <span class="material-symbols-outlined text-sm">arrow_forward</span></a>
                                         </div>
                                     </div>
                                 </div>
@@ -155,10 +151,10 @@
                                         </a>
                                     </div>
                                     <div class="flex items-center gap-3">
-                                        <button onclick="togglePills(this, 'service')" class="category-pill pill-active bg-white border border-slate-200 text-slate-600 px-6 py-2 rounded-full text-sm font-bold shadow-md transition-all">All Services</button>
-                                        <button onclick="togglePills(this, 'service')" class="category-pill bg-white border border-slate-200 text-slate-600 px-6 py-2 rounded-full text-sm font-bold hover:bg-slate-50 transition-colors">Doctors</button>
-                                        <button onclick="togglePills(this, 'service')" class="category-pill bg-white border border-slate-200 text-slate-600 px-6 py-2 rounded-full text-sm font-bold hover:bg-slate-50 transition-colors">Schools</button>
-                                        <button onclick="togglePills(this, 'service')" class="category-pill bg-white border border-slate-200 text-slate-600 px-6 py-2 rounded-full text-sm font-bold hover:bg-slate-50 transition-colors">Post Office</button>
+                                        <button onclick="togglePills(this)" class="category-pill pill-active bg-white border border-slate-200 text-slate-600 px-6 py-2 rounded-full text-sm font-bold shadow-md transition-all">All Services</button>
+                                        <button onclick="togglePills(this)" class="category-pill bg-white border border-slate-200 text-slate-600 px-6 py-2 rounded-full text-sm font-bold hover:bg-slate-50 transition-colors">Doctors</button>
+                                        <button onclick="togglePills(this)" class="category-pill bg-white border border-slate-200 text-slate-600 px-6 py-2 rounded-full text-sm font-bold hover:bg-slate-50 transition-colors">Schools</button>
+                                        <button onclick="togglePills(this)" class="category-pill bg-white border border-slate-200 text-slate-600 px-6 py-2 rounded-full text-sm font-bold hover:bg-slate-50 transition-colors">Post Office</button>
                                     </div>
                                 </div>
                                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -254,9 +250,9 @@
                                 </a>
                             </div>
                             <div class="flex items-center gap-3">
-                                <button onclick="togglePills(this, 'biz')" class="category-pill pill-active bg-white border border-slate-200 text-slate-600 px-6 py-2 rounded-full text-sm font-bold shadow-md">All Business</button>
-                                <button onclick="togglePills(this, 'biz')" class="category-pill bg-white border border-slate-200 text-slate-600 px-6 py-2 rounded-full text-sm font-bold hover:bg-slate-50 transition-colors">Retail</button>
-                                <button onclick="togglePills(this, 'biz')" class="category-pill bg-white border border-slate-200 text-slate-600 px-6 py-2 rounded-full text-sm font-bold hover:bg-slate-50 transition-colors">Hospitality</button>
+                                <button onclick="togglePills(this)" class="category-pill pill-active bg-white border border-slate-200 text-slate-600 px-6 py-2 rounded-full text-sm font-bold shadow-md">All Business</button>
+                                <button onclick="togglePills(this)" class="category-pill bg-white border border-slate-200 text-slate-600 px-6 py-2 rounded-full text-sm font-bold hover:bg-slate-50 transition-colors">Retail</button>
+                                <button onclick="togglePills(this)" class="category-pill bg-white border border-slate-200 text-slate-600 px-6 py-2 rounded-full text-sm font-bold hover:bg-slate-50 transition-colors">Hospitality</button>
                             </div>
                         </div>
                         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -345,16 +341,6 @@
                             </div>
                         </div>
                     </section>
-
-                    <section class="mt-24 mb-20">
-                        <div class="mb-8">
-                            <h2 class="text-3xl font-headline font-bold text-secondary">Village Map</h2>
-                            <p class="text-on-surface-variant mt-2">Locate essential services and explore Glyncorrwg.</p>
-                        </div>
-                        <div class="bg-white rounded-3xl p-1 border border-outline shadow-xl overflow-hidden aspect-video relative">
-                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d19833.051411228553!2d-3.6268846128318285!3d51.66258055615783!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x486e5e8e7a83d92b%3A0xc3f9a7d3a0e69818!2sGlyncorrwg%2C%20Port%20Talbot!5e0!3m2!1sen!2suk!4v1709400000000!5m2!1sen!2suk" width="100%" height="100%" style="border:0; border-radius: 1.5rem;" allowfullscreen="" loading="lazy"></iframe>
-                        </div>
-                    </section>
                 </div>
             </main>
             <footer id="footer-placeholder"></footer>
@@ -363,8 +349,9 @@
 
     <script>
         const API_BASE = 'https://noddfa-j3nkslkrxc.live-website.com/wp-json';
+        const TRANSPORT_API_KEY = 'YOUR_ACTUAL_KEY_HERE'; // INJECTED: Unified API Key
 
-        function togglePills(clickedBtn, group) {
+        function togglePills(clickedBtn) {
             const container = clickedBtn.parentElement;
             container.querySelectorAll('.category-pill').forEach(pill => {
                 pill.classList.remove('pill-active', 'shadow-md');
@@ -411,58 +398,46 @@
             });
         }
 
-        async function fetchTrainStation(code, containerId) {
+        // Unified Transport Function
+        async function fetchTransportData(type, code, containerId) {
             const container = document.getElementById(containerId);
+            const endpoint = type === 'bus' ? 'stops' : 'stations';
             try {
-                const res = await fetch(`https://huxley2.azurewebsites.net/departures/${code}?rows=2`);
-                const data = await res.json();
-                if (data.trainServices && data.trainServices.length > 0) {
-                    container.innerHTML = data.trainServices.slice(0, 2).map(train => `
+                const response = await fetch(`https://api.busesandtrains.co.uk/v1/${endpoint}/${code}/departures`, {
+                    headers: { 'Authorization': `Bearer ${TRANSPORT_API_KEY}` }
+                });
+                const data = await response.json();
+                const departures = data.departures || [];
+
+                if (departures.length > 0) {
+                    container.innerHTML = departures.slice(0, 3).map(item => {
+                        const line = item.line_name || item.service_number || (type === 'train' ? 'Rail' : 'Bus');
+                        const destination = item.destination || item.direction || 'Check board';
+                        const time = (item.expected_departure_time || item.aimed_departure_time || '--:--').substring(0, 5);
+                        const isLive = !!item.expected_departure_time;
+
+                        return `
                         <div class="flex items-start justify-between">
                             <div class="flex items-center gap-3 mt-1">
-                                <svg width="18" height="12" viewBox="0 0 46 32" fill="#ae0000"><path d="M31.2 0L37.5 6.4L18.7 25.2H46V32H13.6L20 25.6L38.8 6.8H11.5L5.1 0.4L0 5.5L0 0H31.2ZM14.8 32L8.5 25.6L27.3 6.8H0V0H32.4L26 6.4L7.2 25.2H34.5L40.9 31.6L46 26.5V32H14.8Z"/></svg>
-                                <span class="text-sm font-bold text-secondary truncate max-w-[120px] capitalize">${train.destination[0].locationName.toLowerCase()}</span>
+                                <span class="bg-primary text-white text-[10px] font-black px-2 py-1 rounded shadow-sm">${line}</span>
+                                <span class="text-sm font-bold text-secondary truncate max-w-[120px] capitalize">${destination.toLowerCase()}</span>
                             </div>
                             <div class="text-right">
-                                <div class="text-sm font-black bg-slate-100/50 px-3 py-1 rounded-lg w-14 text-center">${train.std}</div>
-                                <div class="text-[9px] font-black ${train.etd === 'On time' ? 'text-green-600' : 'text-primary'} uppercase mt-0">${train.etd}</div>
+                                <div class="text-sm font-black bg-slate-100/50 px-3 py-1 rounded-lg w-14 text-center tabular-nums">${time}</div>
+                                <div class="text-[9px] font-black ${isLive ? 'text-green-600' : 'text-primary'} uppercase mt-0">
+                                    ${isLive ? 'Live' : 'Sched'}
+                                </div>
                             </div>
-                        </div>`).join('');
-                }
-            } catch (e) { container.innerHTML = `<div class="text-xs text-slate-400">Station update failed.</div>`; }
+                        </div>`;
+                    }).join('');
+                } else { container.innerHTML = `<div class="text-xs text-slate-400">No services found.</div>`; }
+            } catch (e) { container.innerHTML = `<div class="text-xs text-slate-400">Update pending...</div>`; }
         }
 
-        async function fetchLiveBuses() {
-            const container = document.getElementById('bus-list');
-            const stops = ['2580BMT0015', '2580BMT0012'];
-            const APP_ID = '3596adef';
-            const APP_KEY = '19e21c2ae75b6c8066dca92f75aaa989';
-            let allBuses = [];
-            try {
-                for (const stop of stops) {
-                    const res = await fetch(`https://transportapi.com/v3/uk/bus/stop/${stop}/live.json?app_id=${APP_ID}&app_key=${APP_KEY}&group=no`);
-                    const data = await res.json();
-                    if (data.departures) {
-                        Object.values(data.departures).forEach(r => {
-                            r.forEach(bus => {
-                                bus.time = bus.best_departure_estimate || bus.aimed_departure_time;
-                                allBuses.push(bus);
-                            });
-                        });
-                    }
-                }
-                container.innerHTML = allBuses.length ? allBuses.sort((a, b) => a.time.localeCompare(b.time)).slice(0, 3).map(bus => `
-                    <div class="flex items-start justify-between">
-                        <div class="flex items-center gap-3 mt-1">
-                            <span class="bg-primary text-white text-[10px] font-black px-2 py-1 rounded shadow-sm">${bus.line}</span>
-                            <span class="text-sm font-bold text-secondary truncate max-w-[120px] capitalize">${bus.direction.toLowerCase()}</span>
-                        </div>
-                        <div class="text-right">
-                            <div class="text-sm font-black bg-slate-100/50 px-3 py-1 rounded-lg w-14 text-center tabular-nums">${bus.time}</div>
-                            <div class="text-[9px] font-black ${bus.status === 'live' ? 'text-green-600' : 'text-primary'} uppercase mt-0">${bus.status === 'live' ? 'Live' : 'Sched'}</div>
-                        </div>
-                    </div>`).join('') : `<div class="text-xs text-slate-400">No buses found for today.</div>`;
-            } catch (e) { container.innerHTML = `<div class="text-xs text-slate-400">Bus data unavailable.</div>`; }
+        function loadAllTransport() {
+            fetchTransportData('bus', '2580BMT0015', 'bus-list');
+            fetchTransportData('train', 'MST', 'maesteg-trains-list');
+            fetchTransportData('train', 'PTB', 'ptb-trains-list');
         }
 
         async function loadLiveWeather() {
@@ -501,18 +476,16 @@
                                 </div>
                             </div>
                         </div>`;
-                }).join('') : '<div class="col-span-3 py-10 text-center text-slate-500 italic">No public events scheduled.</div>';
-            } catch (err) { container.innerHTML = `<div class="col-span-3 py-10 text-center text-slate-500 italic">Unable to load events.</div>`; }
+                }).join('') : '<div class="col-span-3 py-10 text-center text-slate-500 italic">No events scheduled.</div>';
+            } catch (err) { container.innerHTML = `<div class="col-span-3 py-10 text-center text-slate-500 italic">Error loading events.</div>`; }
         }
 
         document.addEventListener('DOMContentLoaded', () => {
             loadSharedComponents();
             loadLiveEvents();
             loadLiveWeather();
-            fetchTrainStation('MST', 'maesteg-trains-list');
-            fetchTrainStation('PTB', 'ptb-trains-list');
-            fetchLiveBuses();
-            setInterval(fetchLiveBuses, 60000);
+            loadAllTransport();
+            setInterval(loadAllTransport, 300000); // 5 minute refresh
         });
     </script>
 </body>
