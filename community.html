@@ -482,13 +482,16 @@
             const busContainer = document.getElementById('bus-live-content');
             const trainContainer = document.getElementById('train-live-content');
         
-            // Robust time formatter
+            // Robust time formatter: Converts UTC to London Local
             const formatTime = (rawTime) => {
                 if (!rawTime) return "--:--";
                 try {
-                    // 1. Clean the string (handle HH:mm:ss or HH:mm)
-                    const cleanTime = rawTime.split(':').slice(0, 2).join(':'); 
-                    const [hours, minutes] = cleanTime.split(':');
+                    // 1. Standardize input (handles HH:mm:ss or HH:mm)
+                    const parts = rawTime.split(':');
+                    if (parts.length < 2) return rawTime;
+        
+                    const hours = parseInt(parts[0]);
+                    const minutes = parseInt(parts[1]);
                     
                     // 2. Create a date object forced to UTC
                     const d = new Date();
@@ -496,11 +499,11 @@
                         d.getUTCFullYear(), 
                         d.getUTCMonth(), 
                         d.getUTCDate(), 
-                        parseInt(hours), 
-                        parseInt(minutes)
+                        hours, 
+                        minutes
                     ));
         
-                    // 3. Convert to London Local (Handles BST automatically)
+                    // 3. Convert to London Local (Automatically handles BST vs GMT)
                     return utcDate.toLocaleTimeString('en-GB', {
                         timeZone: 'Europe/London',
                         hour: '2-digit',
@@ -508,8 +511,8 @@
                         hour12: false
                     });
                 } catch (e) {
-                    console.error("Time Parse Error:", e);
-                    return rawTime; // Return original if logic fails
+                    console.error("Time logic error:", e);
+                    return rawTime; // Safety fallback: show the raw API time
                 }
             };
         
@@ -522,9 +525,11 @@
                 const busData = await busRes.json();
                 const trainData = await trainRes.json();
         
+                // Render Buses
                 if (busData && busData.departures) {
                     busContainer.innerHTML = busData.departures.slice(0, 5).map(bus => {
-                        const time = bus.best_departure_estimate || bus.aimed_departure_time || bus.expected_departure_time;
+                        // Try multiple possible time fields from the API
+                        const apiTime = bus.best_departure_estimate || bus.aimed_departure_time || bus.expected_departure_time;
                         return `
                             <div class="flex items-center justify-between p-4 bg-white rounded-xl border border-outline/10 shadow-sm">
                                 <div class="flex items-center gap-4">
@@ -535,13 +540,14 @@
                                     </div>
                                 </div>
                                 <div class="text-right">
-                                    <div class="text-lg font-black text-primary">${formatTime(time)}</div>
+                                    <div class="text-lg font-black text-primary">${formatTime(apiTime)}</div>
                                     <div class="text-[10px] font-bold uppercase text-slate-400">Scheduled</div>
                                 </div>
                             </div>`;
                     }).join('');
                 }
         
+                // Render Trains
                 if (trainData && trainData.departures) {
                     trainContainer.innerHTML = trainData.departures.slice(0, 5).map(train => {
                         return `
@@ -552,29 +558,7 @@
                                 </div>
                                 <div class="text-right">
                                     <div class="text-lg font-black text-primary">${formatTime(train.aimed_departure_time)}</div>
-                                    <div class="text-[10px] font-bold uppercase text-slate-400">Platform ${train.platform || '-'}</div>
-                                </div>
-                            </div>`;
-                    }).join('');
-                }
-            } catch (err) {
-                console.error("Transport Load Error:", err);
-            }
-        }        
-                if (trainData.departures) {
-                    trainContainer.innerHTML = trainData.departures.slice(0, 5).map(train => {
-                        // APPLY THE FIX HERE
-                        const displayTime = formatTime(train.aimed_departure_time);
-                        
-                        return `
-                            <div class="flex items-center justify-between p-4 bg-background rounded-xl border border-outline/10">
-                                <div>
-                                    <div class="font-bold text-slate-900">${train.destination_name}</div>
-                                    <div class="text-xs text-slate-500 font-bold uppercase text-slate-400">${train.status || 'On Time'}</div>
-                                </div>
-                                <div class="text-right">
-                                    <div class="text-lg font-black text-primary">${displayTime}</div>
-                                    <div class="text-[10px] font-bold uppercase text-slate-400">Platform ${train.platform || '-'}</div>
+                                    <div class="text-[10px] font-bold uppercase text-slate-400">Plat ${train.platform || '-'}</div>
                                 </div>
                             </div>`;
                     }).join('');
