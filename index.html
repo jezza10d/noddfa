@@ -167,43 +167,40 @@
     async function loadLiveEvents() {
         const container = document.getElementById('events-feed-container');
         try {
-            // Using the portal-events route as it has the cleanest image and private-filtering logic already in functions.php
+            // Using the portal-events route from functions.php because it correctly handles 
+            // the expansion of recurring dates and identifies private hires.
             const response = await fetch(`${API_BASE}/noddfa/v1/portal-events?scope=future&v=${Date.now()}`);
             if (!response.ok) throw new Error(`HTTP Error: ${response.status}`);
             const events = await response.json();
             
             if (!events || events.length === 0) {
-                container.innerHTML = `<div class="col-span-3 py-10 text-center text-slate-500 italic">No upcoming activities scheduled.</div>`;
+                container.innerHTML = `<div class="col-span-3 py-10 text-center text-slate-500 italic">No upcoming public activities scheduled.</div>`;
                 return;
             }
 
-            // Filter for Public events only and show exactly the next 3
+            // FILTER: Next 3 PUBLIC events only.
             const publicEvents = events
                 .filter(ev => ev.is_private !== true)
                 .slice(0, 3);
 
             if (publicEvents.length === 0) {
-                container.innerHTML = `<div class="col-span-3 py-10 text-center text-slate-500 italic">No public events scheduled.</div>`;
+                container.innerHTML = `<div class="col-span-3 py-10 text-center text-slate-500 italic">No public events found.</div>`;
                 return;
             }
 
             container.innerHTML = publicEvents.map(event => {
-                // banner_url is set in functions.php to provide a valid fallback
+                // Use the banner_url provided by the API.
                 const img = event.banner_url;
                 
-                let eventDateStr = "Coming Soon";
-                if (event.event_date) {
-                    const d = new Date(event.event_date);
-                    eventDateStr = d.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
-                }
+                const d = new Date(event.event_date);
+                const eventDateStr = d.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
 
-                // Clean the content excerpt
-                let rawText = event.content || "";
-                let cleanText = rawText.replace(/<[^>]*>?/gm, '').trim();
+                const rawText = event.content || "";
+                const cleanText = rawText.replace(/<[^>]*>?/gm, '').trim();
                 const shortDesc = cleanText.split(/\s+/).slice(0, 18).join(' ') + '...';
 
-                // Fix links to glyncorrwg.wales
-                let eventLink = `https://glyncorrwg.wales/events/?event_id=${event.id}&event_date=${event.event_date}`;
+                // Link strictly to the events page on the live domain
+                const eventLink = `https://glyncorrwg.wales/events/?event_id=${event.id}&event_date=${event.event_date}`;
 
                 return `
                     <div onclick="window.location.href='${eventLink}'" class="cursor-pointer bg-white dark:bg-slate-800 border border-primary/5 rounded-xl overflow-hidden hover:shadow-lg transition-shadow flex flex-col h-full">
@@ -225,7 +222,7 @@
             }).join('');
         } catch (err) { 
             console.error("Event Feed Error:", err); 
-            container.innerHTML = `<div class="col-span-3 py-10 text-center text-slate-500 italic">Unable to load events at this time.</div>`;
+            container.innerHTML = `<div class="col-span-3 py-10 text-center text-slate-500 italic">Unable to load live activities.</div>`;
         }
     }
 
@@ -268,7 +265,7 @@
             }).join('');
         } catch (err) { 
             console.error("News Feed Error:", err); 
-            container.innerHTML = `<div class="col-span-3 py-10 text-center text-slate-500 italic">Unable to load news.</div>`;
+            container.innerHTML = `<div class="col-span-3 py-10 text-center text-slate-500 italic">Unable to load latest news.</div>`;
         }
     }
 
