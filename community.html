@@ -412,14 +412,12 @@
             });
         }
 
-async function fetchTrainStation(code, containerId) {
+        async function fetchTrainStation(code, containerId) {
             const container = document.getElementById(containerId);
             try {
-                // Hits your working PHP bridge
                 const res = await fetch(`${API_BASE}/noddfa/v1/transport/train/${code}`);
                 const data = await res.json();
                 
-                // Matches the "departures" structure from Buses & Trains API
                 if (data.departures && data.departures.length > 0) {
                     container.innerHTML = data.departures.slice(0, 2).map(train => `
                         <div class="flex items-start justify-between group">
@@ -429,27 +427,31 @@ async function fetchTrainStation(code, containerId) {
                             </div>
                             <div class="text-right">
                                 <div class="text-sm font-black bg-slate-100/50 px-3 py-1 rounded-lg tabular-nums w-14 text-center">${train.scheduled}</div>
-                                <div class="text-[9px] font-black ${train.expected === 'On time' ? 'text-green-600' : 'text-primary'} uppercase tracking-widest mt-0">${train.expected}</div>
+                                <div class="text-[9px] font-black ${train.expected === 'On time' ? 'text-green-600' : 'text-primary'} uppercase tracking-widest mt-0">${train.expected || 'Scheduled'}</div>
                             </div>
                         </div>
                     `).join('');
                 } else {
                     container.innerHTML = `<div class="text-xs text-slate-400 italic">No services scheduled.</div>`;
                 }
-            } catch (e) { container.innerHTML = `<div class="text-xs text-slate-400 italic">Data unavailable.</div>`; }
+            } catch (e) { 
+                container.innerHTML = `<div class="text-xs text-slate-400 italic">Data unavailable.</div>`; 
+            }
         }
 
         async function fetchLiveBuses() {
             const container = document.getElementById('bus-list');
-            const stopId = '5820AWG60316'; // Your requested Bridge Street Stop
+            const stopId = '5820AWG60316'; // Bridge Street
             try {
                 const res = await fetch(`${API_BASE}/noddfa/v1/transport/bus/${stopId}`);
                 const data = await res.json();
                 
+                // B&T API uses "departures", not "services"
                 if (data.departures && data.departures.length > 0) {
                     container.innerHTML = data.departures.slice(0, 2).map(bus => {
-                        // Extract time from ISO string "2025-03-15T14:30:00"
-                        const time = bus.scheduled.includes('T') ? bus.scheduled.split('T')[1].substring(0, 5) : bus.scheduled;
+                        // Extract just the time (16:15) from the ISO string
+                        const timeOnly = bus.scheduled.includes('T') ? bus.scheduled.split('T')[1].substring(0, 5) : bus.scheduled;
+                        
                         return `
                             <div class="flex items-start justify-between">
                                 <div class="flex items-center gap-3 mt-1">
@@ -457,7 +459,7 @@ async function fetchTrainStation(code, containerId) {
                                     <span class="text-sm font-bold text-secondary truncate max-w-[120px]">${bus.destination}</span>
                                 </div>
                                 <div class="text-right">
-                                    <div class="text-sm font-black bg-slate-100/50 px-3 py-1 rounded-lg tabular-nums w-14 text-center">${time}</div>
+                                    <div class="text-sm font-black bg-slate-100/50 px-3 py-1 rounded-lg tabular-nums w-14 text-center">${timeOnly}</div>
                                     <div class="text-[9px] font-black text-primary uppercase tracking-widest mt-0">${bus.status.replace('_', ' ')}</div>
                                 </div>
                             </div>
@@ -466,7 +468,9 @@ async function fetchTrainStation(code, containerId) {
                 } else {
                     container.innerHTML = `<div class="text-xs text-slate-400 italic">No buses scheduled.</div>`;
                 }
-            } catch (e) { container.innerHTML = `<div class="text-xs text-slate-400 italic">No buses scheduled.</div>`; }
+            } catch (e) { 
+                container.innerHTML = `<div class="text-xs text-slate-400 italic">Data unavailable.</div>`; 
+            }
         }
 
         async function loadLiveTransport() {
