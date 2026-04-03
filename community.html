@@ -389,6 +389,24 @@
             }
         }
 
+        function offsetTime(apiTime) {
+            if (!apiTime || typeof apiTime !== 'string') return apiTime;
+            
+            // Detect if the user's browser is currently in Summer Time (BST)
+            const isBST = new Date().getTimezoneOffset() !== 0;
+            if (!isBST) return apiTime; // Return as is if it's Winter (GMT)
+        
+            try {
+                let [hours, minutes] = apiTime.split(':');
+                let h = parseInt(hours);
+                // Add 1 hour for BST, wrap around if it's midnight
+                h = (h + 1) % 24;
+                return `${h.toString().padStart(2, '0')}:${minutes}`;
+            } catch (e) {
+                return apiTime; // If anything goes wrong, just show the original time
+            }
+        }
+
         function initMobileMenu() {
             const toggleBtn = document.getElementById('menu-toggle');
             const navMenu = document.getElementById('nav-menu');
@@ -479,81 +497,12 @@
         }
 
         async function loadLiveTransport() {
-            const busContainer = document.getElementById('bus-live-content');
-            const trainContainer = document.getElementById('train-live-content');
-        
-            // SIMPLEST TIME FIX: Just adds 1 hour if we are in BST
-            const formatTime = (rawTime) => {
-                if (!rawTime || typeof rawTime !== 'string') return "--:--";
-                try {
-                    const parts = rawTime.split(':');
-                    let hours = parseInt(parts[0]);
-                    const minutes = parts[1];
-        
-                    // Detect if UK is in BST (British Summer Time)
-                    // If the offset isn't 0, it's Summer Time (+1)
-                    const isBST = new Date().getTimezoneOffset() !== 0;
-                    
-                    if (isBST) {
-                        hours = (hours + 1) % 24;
-                    }
-        
-                    // Ensure leading zero (e.g. 09:05)
-                    const displayHours = hours.toString().padStart(2, '0');
-                    return `${displayHours}:${minutes}`;
-                } catch (e) {
-                    return rawTime; 
-                }
-            };
-        
-            try {
-                const [busRes, trainRes] = await Promise.all([
-                    fetch('https://noddfa-j3nkslkrxc.live-website.com/wp-json/noddfa/v1/transport/bus/5820AWG60316'),
-                    fetch('https://noddfa-j3nkslkrxc.live-website.com/wp-json/noddfa/v1/transport/train/MAI')
-                ]);
-        
-                const busData = await busRes.json();
-                const trainData = await trainRes.json();
-        
-                if (busData && busData.departures) {
-                    busContainer.innerHTML = busData.departures.slice(0, 5).map(bus => {
-                        const apiTime = bus.best_departure_estimate || bus.aimed_departure_time || bus.expected_departure_time;
-                        return `
-                            <div class="flex items-center justify-between p-4 bg-white rounded-xl border border-outline/10 shadow-sm">
-                                <div class="flex items-center gap-4">
-                                    <div class="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center text-primary font-bold">${bus.line_name}</div>
-                                    <div>
-                                        <div class="font-bold text-slate-900">${bus.direction}</div>
-                                        <div class="text-[10px] font-bold uppercase text-slate-400">${bus.operator_name}</div>
-                                    </div>
-                                </div>
-                                <div class="text-right">
-                                    <div class="text-lg font-black text-primary">${formatTime(apiTime)}</div>
-                                    <div class="text-[10px] font-bold uppercase text-slate-400">Scheduled</div>
-                                </div>
-                            </div>`;
-                    }).join('');
-                }
-        
-                if (trainData && trainData.departures) {
-                    trainContainer.innerHTML = trainData.departures.slice(0, 5).map(train => {
-                        return `
-                            <div class="flex items-center justify-between p-4 bg-white rounded-xl border border-outline/10 shadow-sm">
-                                <div>
-                                    <div class="font-bold text-slate-900">${train.destination_name}</div>
-                                    <div class="text-[10px] font-bold uppercase text-slate-400">${train.status || 'On Time'}</div>
-                                </div>
-                                <div class="text-right">
-                                    <div class="text-lg font-black text-primary">${formatTime(train.aimed_departure_time)}</div>
-                                    <div class="text-[10px] font-bold uppercase text-slate-400">Plat ${train.platform || '-'}</div>
-                                </div>
-                            </div>`;
-                    }).join('');
-                }
-            } catch (err) {
-                console.error("Transport Error:", err);
-            }
+            fetchTrainStation('MST', 'maesteg-trains-list'); // Maesteg Station
+            fetchTrainStation('PTA', 'pta-trains-list');     // Port Talbot Parkway
+            fetchLiveBuses();
         }
+
+        
         
         async function loadLiveWeather() {
             try {
