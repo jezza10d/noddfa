@@ -132,11 +132,18 @@
                             </section>
 
                             <section>
-                                <div class="flex items-center justify-between mb-8">
-                                    <h2 class="text-3xl font-headline font-bold text-secondary">Local services</h2>
-                                    <a href="https://glyncorrwg.wales/community/directory" class="flex items-center gap-2 text-primary font-bold text-sm hover:underline">
-                                        View all Services <span class="material-symbols-outlined text-sm">arrow_forward</span>
-                                    </a>
+                                <div class="mb-8">
+                                    <div class="flex items-center justify-between mb-8">
+                                        <h2 class="text-3xl font-headline font-bold text-secondary">Local services</h2>
+                                        <a href="https://glyncorrwg.wales/community/directory" class="flex items-center gap-2 text-primary font-bold text-sm hover:underline">
+                                            View all Services <span class="material-symbols-outlined text-sm">arrow_forward</span>
+                                        </a>
+                                    </div>
+                                    <div class="flex items-center gap-3 mb-8">
+                                        <button class="bg-primary text-white px-6 py-2 rounded-full text-sm font-bold shadow-md">All Services</button>
+                                        <button class="bg-white border border-slate-200 text-slate-600 px-6 py-2 rounded-full text-sm font-bold hover:bg-slate-50 transition-colors">Health</button>
+                                        <button class="bg-white border border-slate-200 text-slate-600 px-6 py-2 rounded-full text-sm font-bold hover:bg-slate-50 transition-colors">Education</button>
+                                    </div>
                                 </div>
                                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                                     <div class="bg-surface border border-outline p-6 rounded-xl shadow-sm hover:border-primary transition-all">
@@ -190,21 +197,21 @@
                                 
                                 <div class="space-y-10">
                                     <div>
-                                        <h5 class="text-[12px] font-black text-slate-500 tracking-widest mb-6">Buses</h5>
+                                        <h5 class="text-[12px] font-black text-slate-500 tracking-widest mb-6 uppercase">Buses</h5>
                                         <div id="bus-list" class="space-y-4">
                                             <div class="text-xs text-slate-400 italic">Checking buses...</div>
                                         </div>
                                     </div>
 
                                     <div>
-                                        <h5 class="text-[12px] font-black text-slate-500 tracking-widest mb-6">Maesteg station</h5>
+                                        <h5 class="text-[12px] font-black text-slate-500 tracking-widest mb-6 uppercase">Maesteg station</h5>
                                         <div id="maesteg-trains-list" class="space-y-4">
                                             <div class="text-xs text-slate-400 italic">Checking trains...</div>
                                         </div>
                                     </div>
 
                                     <div>
-                                        <h5 class="text-[12px] font-black text-slate-500 tracking-widest mb-6">Port talbot parkway</h5>
+                                        <h5 class="text-[12px] font-black text-slate-500 tracking-widest mb-6 uppercase">Port talbot parkway</h5>
                                         <div id="ptb-trains-list" class="space-y-4">
                                             <div class="text-xs text-slate-400 italic">Checking trains...</div>
                                         </div>
@@ -273,7 +280,7 @@
                                 </div>
                                 <h3 class="text-sm font-bold text-slate-500 mb-1">Your business</h3>
                                 <p class="text-[10px] text-slate-400 mb-4 px-2">Advertise here to reach local residents.</p>
-                                <button class="bg-white border border-slate-200 text-slate-600 px-6 py-2 rounded-full text-[10px] font-bold hover:bg-slate-100 transition-colors uppercase">Enquire</button>
+                                <button onclick="window.location.href='mailto:info@glyncorrwg.wales'" class="bg-white border border-slate-200 text-slate-600 px-4 py-1.5 rounded-full text-[10px] font-bold hover:bg-slate-100 transition-colors uppercase">Enquire</button>
                             </div>
                         </div>
                     </section>
@@ -303,16 +310,16 @@
                                     <h2 class="text-3xl font-headline font-bold text-secondary mb-4">Report It Dashboard</h2>
                                     <p class="text-on-surface-variant mb-8 max-w-md">Help us keep our village safe and clean. Directly report issues to Neath Port Talbot Council via the links below.</p>
                                     <div class="flex flex-wrap gap-3">
-                                        <a class="bg-white border border-outline hover:border-primary transition-colors px-5 py-3 rounded-full flex items-center gap-3 font-medium text-secondary shadow-sm" href="https://www.npt.gov.uk/2253">
+                                        <a class="bg-white border border-outline hover:border-primary transition-colors px-5 py-3 rounded-full flex items-center gap-3 font-medium text-secondary shadow-sm" href="https://www.npt.gov.uk/parking-roads-and-travel/problems-with-roads-and-streets/potholes">
                                             <span class="material-symbols-outlined text-error">warning</span> Potholes
                                         </a>
-                                        <a class="bg-white border border-outline hover:border-primary transition-colors px-5 py-3 rounded-full flex items-center gap-3 font-medium text-secondary shadow-sm" href="https://www.npt.gov.uk/2261">
+                                        <a class="bg-white border border-outline hover:border-primary transition-colors px-5 py-3 rounded-full flex items-center gap-3 font-medium text-secondary shadow-sm" href="https://www.npt.gov.uk/parking-roads-and-travel/problems-with-roads-and-streets/fly-tipping/">
                                             <span class="material-symbols-outlined text-error">delete_outline</span> Fly-tipping
                                         </a>
-                                        <a class="bg-white border border-outline hover:border-primary transition-colors px-5 py-3 rounded-full flex items-center gap-3 font-medium text-secondary shadow-sm" href="https://www.npt.gov.uk/2265">
+                                        <a class="bg-white border border-outline hover:border-primary transition-colors px-5 py-3 rounded-full flex items-center gap-3 font-medium text-secondary shadow-sm" href="https://www.npt.gov.uk/parking-roads-and-travel/problems-with-roads-and-streets/street-lights/">
                                             <span class="material-symbols-outlined text-error">light_off</span> Street Lighting
                                         </a>
-                                        <a class="bg-white border border-outline hover:border-primary transition-colors px-5 py-3 rounded-full flex items-center gap-3 font-medium text-secondary shadow-sm" href="https://www.npt.gov.uk/2260">
+                                        <a class="bg-white border border-outline hover:border-primary transition-colors px-5 py-3 rounded-full flex items-center gap-3 font-medium text-secondary shadow-sm" href="https://www.npt.gov.uk/parking-roads-and-travel/problems-with-roads-and-streets/dog-fouling/">
                                             <span class="material-symbols-outlined text-error">pets</span> Dog Fouling
                                         </a>
                                     </div>
@@ -340,7 +347,7 @@
                         </div>
                         <div class="bg-white rounded-3xl p-1 border border-outline shadow-xl overflow-hidden aspect-video relative">
                             <iframe 
-                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2478.118228394464!2d-3.61439!3d51.6617!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x486e680a6b57917b%3A0x6d9f78336338f0d3!2sGlyncorrwg!5e0!3m2!1sen!2suk!4v1711990000000!5m2!1sen!2suk" 
+                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d19864.873215848987!2d-3.6268846!3d51.6631182!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x486e5c92c5567b7f%3A0x7d6745f448651a5a!2sGlyncorrwg%2C%20Port%20Talbot!5e0!3m2!1sen!2suk!4v1709459012345!5m2!1sen!2suk" 
                                 width="100%" 
                                 height="100%" 
                                 style="border:0; border-radius: 1.5rem;" 
@@ -360,6 +367,7 @@
 
     <script>
         const API_BASE = 'https://noddfa-j3nkslkrxc.live-website.com/wp-json';
+        const TRANSPORT_KEY = 'bat_b4026881fec6a0f91a44c56cb02a0007';
 
         async function loadSharedComponents() {
             try {
@@ -407,17 +415,18 @@
         async function fetchTrainStation(code, containerId) {
             const container = document.getElementById(containerId);
             try {
-                const res = await fetch(`https://huxley2.azurewebsites.net/departures/${code}?rows=2`);
+                const res = await fetch(`https://transportapi.com/v3/uk/train/station/${code}/live.json?app_id=45788da6&app_key=c684157835154b6840618063065e940a&group=no`);
                 const data = await res.json();
-                if (data.trainServices && data.trainServices.length > 0) {
-                    container.innerHTML = data.trainServices.slice(0, 2).map(train => `
+                if (data.departures && data.departures.all && data.departures.all.length > 0) {
+                    container.innerHTML = data.departures.all.slice(0, 2).map(train => `
                         <div class="flex items-start justify-between group">
                             <div class="flex items-center gap-3 mt-1">
-                                <span class="text-sm font-bold text-secondary truncate max-w-[120px] lowercase first-letter:uppercase">${train.destination[0].locationName.toLowerCase()}</span>
+                                <span class="material-symbols-outlined text-primary text-sm">train</span>
+                                <span class="text-sm font-bold text-secondary truncate max-w-[120px] lowercase first-letter:uppercase">${train.destination_name.toLowerCase()}</span>
                             </div>
                             <div class="text-right">
-                                <div class="text-sm font-black bg-slate-100/50 px-3 py-1 rounded-lg tabular-nums w-14 text-center">${train.std}</div>
-                                <div class="text-[9px] font-black ${train.etd === 'On time' ? 'text-green-600' : 'text-primary'} uppercase tracking-widest mt-0">${train.etd}</div>
+                                <div class="text-sm font-black bg-slate-100/50 px-3 py-1 rounded-lg tabular-nums w-14 text-center">${train.aimed_departure_time}</div>
+                                <div class="text-[9px] font-black ${train.status === 'ON TIME' ? 'text-green-600' : 'text-primary'} uppercase tracking-widest mt-0">${train.status.toLowerCase()}</div>
                             </div>
                         </div>
                     `).join('');
@@ -429,15 +438,15 @@
 
         async function fetchLiveBuses() {
             const container = document.getElementById('bus-list');
-            const stop = '2580BMT0015';
-            const APP_ID = '45788da6';
-            const APP_KEY = 'c684157835154b6840618063065e940a';
+            const stops = ['2580BMT0015', '2580BMT0012'];
+            let allBuses = [];
             try {
-                const res = await fetch(`https://transportapi.com/v3/uk/bus/stop/${stop}/live.json?app_id=${APP_ID}&app_key=${APP_KEY}&group=no`);
-                const data = await res.json();
-                let allBuses = [];
-                if (data.departures) {
-                    Object.values(data.departures).forEach(routeBuses => { allBuses = allBuses.concat(routeBuses); });
+                for (const stop of stops) {
+                    const res = await fetch(`https://transportapi.com/v3/uk/bus/stop/${stop}/live.json?app_id=45788da6&app_key=c684157835154b6840618063065e940a&group=no`);
+                    const data = await res.json();
+                    if (data.departures) {
+                        Object.values(data.departures).forEach(routeBuses => { allBuses = allBuses.concat(routeBuses); });
+                    }
                 }
                 if (allBuses.length > 0) {
                     container.innerHTML = allBuses
