@@ -46,17 +46,6 @@
             -webkit-box-orient: vertical;  
             overflow: hidden;
         }
-        /* Match Noddfa Command Centre Card Styles */
-        .noddfa-card {
-            background: white;
-            border-radius: 2rem;
-            border: 1px solid #f1f5f9;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        .noddfa-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
-        }
     </style>
 </head>
 <body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100">
@@ -178,10 +167,9 @@
     async function loadLiveEvents() {
         const container = document.getElementById('events-feed-container');
         try {
-            // CRITICAL: Using the specialized portal-events endpoint to mirror site logic
-            const response = await fetch(`${API_BASE}/noddfa/v1/portal-events?v=${Date.now()}`);
+            // Use the specific API endpoint built in functions.php that handles recurrence
+            const response = await fetch(`${API_BASE}/wp/v2/events-api?per_page=10&v=${Date.now()}`);
             if (!response.ok) throw new Error(`HTTP Error: ${response.status}`);
-            
             const events = await response.json();
             
             if (!events || events.length === 0) {
@@ -189,52 +177,50 @@
                 return;
             }
 
-            // Show top 3 next events
-            const topEvents = events.slice(0, 3);
+            // Filter for only Public events and show exactly the next 3
+            const publicEvents = events
+                .filter(ev => ev.is_private !== true)
+                .slice(0, 3);
 
-            container.innerHTML = topEvents.map(event => {
-                // Match the robust image logic found in part-events-manager.php
-                const img = event.event_image_url || 
-                            'https://noddfa-j3nkslkrxc.live-website.com/wp-content/uploads/2026/03/Yoga.png';
+            if (publicEvents.length === 0) {
+                container.innerHTML = `<div class="col-span-3 py-10 text-center text-slate-500 italic">No public events scheduled right now.</div>`;
+                return;
+            }
+
+            container.innerHTML = publicEvents.map(event => {
+                const img = event.banner_url || 'https://images.unsplash.com/photo-1517457373958-b7bdd4587205?q=80&w=2069';
                 
-                // Sentence Case Date Formatting
                 let eventDateStr = "Coming Soon";
-                if (event.event_date) {
-                    const d = new Date(event.event_date);
+                let rawDate = event.event_date || "";
+                
+                if (rawDate) {
+                    const d = new Date(rawDate);
                     eventDateStr = d.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
                 }
 
-                // Handle title and cleaning description
-                const title = event.event_name || "Untitled Event";
-                let rawText = event.post_content || "";
+                let rawText = event.content?.rendered || event.excerpt?.rendered || "";
                 let cleanText = rawText.replace(/<[^>]*>?/gm, '').trim();
-                const shortDesc = cleanText.split(/\s+/).slice(0, 20).join(' ') + '...';
+                const shortDesc = cleanText.split(/\s+/).slice(0, 18).join(' ') + '...';
 
-                // Link mapping to public site structure
-                // Logic based on how glyncorrwg.wales/events handles links
-                let eventLink = `/events/event/${event.event_slug || event.post_id || ''}`;
-                if (event.event_date) {
-                    eventLink += `?event_date=${event.event_date}`;
+                let eventLink = (event.link || '#').replace('https://noddfa-j3nkslkrxc.live-website.com', 'https://glyncorrwg.wales');
+                if (rawDate && eventLink !== '#') {
+                    const separator = eventLink.includes('?') ? '&' : '?';
+                    eventLink = `${eventLink}${separator}event_date=${rawDate}`;
                 }
 
                 return `
-                    <div onclick="window.location.href='${eventLink}'" class="cursor-pointer noddfa-card overflow-hidden flex flex-col h-full group">
-                        <div class="h-52 overflow-hidden relative">
-                            <div class="h-full w-full bg-cover bg-center transition-transform duration-700 group-hover:scale-110" style="background-image: url('${img}');"></div>
-                            <div class="absolute top-4 left-4 bg-white/90 backdrop-blur px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest text-primary shadow-sm">
-                                Live Event
+                    <div onclick="window.location.href='${eventLink}'" class="cursor-pointer bg-white dark:bg-slate-800 border border-primary/5 rounded-xl overflow-hidden hover:shadow-lg transition-shadow flex flex-col h-full">
+                        <div class="h-48 bg-cover bg-center" style="background-image: url('${img}');"></div>
+                        <div class="p-6 flex flex-col flex-1">
+                            <h3 class="text-xl font-bold mb-2 text-slate-900 dark:text-white">${event.title.rendered || event.title}</h3>
+                            <div class="flex items-center gap-2 text-primary text-sm font-bold mb-4">
+                                <span class="material-symbols-outlined text-base">calendar_today</span>
+                                <span>${eventDateStr} at ${event.event_start_time || ''}</span>
                             </div>
-                        </div>
-                        <div class="p-8 flex flex-col flex-1">
-                            <h3 class="text-2xl font-black mb-3 text-secondary group-hover:text-primary transition-colors leading-tight">${title}</h3>
-                            <div class="flex items-center gap-2 text-primary font-bold mb-5">
-                                <span class="material-symbols-outlined text-lg">calendar_today</span>
-                                <span class="text-sm">${eventDateStr}</span>
-                            </div>
-                            <p class="text-slate-500 dark:text-slate-400 text-sm mb-8 line-clamp-2 leading-relaxed">${shortDesc}</p>
+                            <p class="text-slate-600 dark:text-slate-400 text-sm mb-6 line-clamp-2">${shortDesc}</p>
                             <div class="mt-auto">
-                                <div class="w-full bg-secondary group-hover:bg-primary text-white font-bold py-4 rounded-2xl flex items-center justify-center gap-3 transition-all shadow-md">
-                                    More Information <span class="material-symbols-outlined text-sm">arrow_forward</span>
+                                <div class="w-full bg-primary text-white font-bold py-3 rounded-lg flex items-center justify-center gap-2 hover:bg-primary/90 transition-colors">
+                                    More Info <span class="material-symbols-outlined text-sm">arrow_forward</span>
                                 </div>
                             </div>
                         </div>
@@ -242,7 +228,7 @@
             }).join('');
         } catch (err) { 
             console.error("Event Feed Error:", err); 
-            container.innerHTML = `<div class="col-span-3 py-10 text-center text-slate-500 italic">Unable to load activities at this time.</div>`;
+            container.innerHTML = `<div class="col-span-3 py-10 text-center text-slate-500 italic">Unable to load live activities.</div>`;
         }
     }
 
@@ -266,17 +252,17 @@
                 const newsLink = post.link.replace('https://noddfa-j3nkslkrxc.live-website.com', 'https://glyncorrwg.wales');
 
                 return `
-                    <div onclick="window.location.href='${newsLink}'" class="cursor-pointer bg-white dark:bg-slate-800 border border-slate-100 rounded-[2rem] overflow-hidden hover:shadow-xl transition-all flex flex-col h-full group">
+                    <div onclick="window.location.href='${newsLink}'" class="cursor-pointer bg-white dark:bg-slate-800 border border-primary/5 rounded-xl overflow-hidden hover:shadow-lg transition-shadow flex flex-col h-full">
                         <div class="h-48 bg-cover bg-center" style="background-image: url('${img}');"></div>
-                        <div class="p-8 flex flex-col flex-1">
-                            <h3 class="text-xl font-bold mb-3 text-slate-900 dark:text-white group-hover:text-primary transition-colors">${post.title.rendered}</h3>
+                        <div class="p-6 flex flex-col flex-1">
+                            <h3 class="text-xl font-bold mb-2 text-slate-900 dark:text-white">${post.title.rendered}</h3>
                             <div class="flex items-center gap-2 text-primary text-sm font-bold mb-4">
                                 <span class="material-symbols-outlined text-base">newspaper</span>
                                 <span>${postDate}</span>
                             </div>
-                            <p class="text-slate-500 dark:text-slate-400 text-sm mb-8 line-clamp-2 leading-relaxed">${shortDesc}</p>
+                            <p class="text-slate-600 dark:text-slate-400 text-sm mb-6 line-clamp-2">${shortDesc}</p>
                             <div class="mt-auto">
-                                <div class="w-full bg-slate-50 group-hover:bg-primary group-hover:text-white text-secondary font-bold py-3 rounded-xl flex items-center justify-center gap-2 transition-all">
+                                <div class="w-full bg-primary text-white font-bold py-3 rounded-lg flex items-center justify-center gap-2 hover:bg-primary/90 transition-colors text-center">
                                     Read Story <span class="material-symbols-outlined text-sm">arrow_forward</span>
                                 </div>
                             </div>
