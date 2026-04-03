@@ -477,6 +477,23 @@
                 container.innerHTML = `<div class="text-xs text-slate-400 italic">Data unavailable.</div>`; 
             }
         }
+
+        // Helper to convert UTC string (16:28) to London Local (17:28)
+        function toLondonTime(apiTime) {
+            if (!apiTime) return "--:--";
+            const [hours, minutes] = apiTime.split(':');
+            const date = new Date();
+            // Create a date object treated as UTC
+            const utcDate = new Date(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate(), hours, minutes));
+            
+            // Return formatted to London (automatically handles BST/GMT)
+            return utcDate.toLocaleTimeString('en-GB', {
+                timeZone: 'Europe/London',
+                hour: '2-digit',
+                minute: '2-digit',
+                hour12: false
+            });
+        }
         
         async function loadLiveTransport() {
             fetchTrainStation('MST', 'maesteg-trains-list'); // Maesteg Station
