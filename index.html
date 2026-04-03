@@ -167,7 +167,8 @@
     async function loadLiveEvents() {
         const container = document.getElementById('events-feed-container');
         try {
-            const response = await fetch(`${API_BASE}/wp/v2/events-api?per_page=10&scope=future&_embed&v=${Date.now()}`);
+            // Updated to fetch from the specific rest_base defined in functions.php
+            const response = await fetch(`${API_BASE}/wp/v2/events-api?per_page=20&v=${Date.now()}`);
             if (!response.ok) throw new Error(`HTTP Error: ${response.status}`);
             const events = await response.json();
             
@@ -179,6 +180,7 @@
             const today = new Date();
             today.setHours(0, 0, 0, 0);
 
+            // Since Section 3b in functions.php now handles recurring expansion, we just filter for future and slice
             const upcomingOnly = events.filter(ev => {
                 if (!ev.event_date) return false;
                 return new Date(ev.event_date) >= today;
@@ -190,7 +192,7 @@
             }
 
             container.innerHTML = upcomingOnly.map(event => {
-                // FIX: Support multiple potential image sources from WordPress
+                // Support multiple potential image sources from WordPress and fallback
                 const img = event.event_image_url || 
                             event.featured_media_url || 
                             event._embedded?.['wp:featuredmedia']?.[0]?.source_url || 
@@ -204,13 +206,16 @@
                     eventDateStr = d.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: '2-digit' });
                 }
 
+                // Handle title and description safely
+                const title = event.title?.rendered || event.title || "Untitled Event";
                 let rawText = event.content?.rendered || event.excerpt?.rendered || "";
                 let cleanText = rawText.replace(/<[^>]*>?/gm, '');
                 cleanText = cleanText.replace(/^.*?\d{2}\/\d{2}\/\d{4}.*?[–-]\s*/g, '');
                 const shortDesc = cleanText.split(/\s+/).slice(0, 20).join(' ') + '...';
 
-                let eventLink = event.link.replace('https://noddfa-j3nkslkrxc.live-website.com', 'https://glyncorrwg.wales');
-                if (rawDate) {
+                // Fix links to point to the public domain
+                let eventLink = (event.link || '').replace('https://noddfa-j3nkslkrxc.live-website.com', 'https://glyncorrwg.wales');
+                if (rawDate && eventLink) {
                     const separator = eventLink.includes('?') ? '&' : '?';
                     eventLink = `${eventLink}${separator}event_date=${rawDate}`;
                 }
@@ -219,7 +224,7 @@
                     <div onclick="window.location.href='${eventLink}'" class="cursor-pointer bg-white dark:bg-slate-800 border border-primary/5 rounded-xl overflow-hidden hover:shadow-lg transition-shadow flex flex-col h-full">
                         <div class="h-48 bg-cover bg-center" style="background-image: url('${img}');"></div>
                         <div class="p-6 flex flex-col flex-1">
-                            <h3 class="text-xl font-bold mb-2 text-slate-900 dark:text-white">${event.title.rendered}</h3>
+                            <h3 class="text-xl font-bold mb-2 text-slate-900 dark:text-white">${title}</h3>
                             <div class="flex items-center gap-2 text-primary text-sm font-bold mb-4">
                                 <span class="material-symbols-outlined text-base">calendar_today</span>
                                 <span>${eventDateStr}</span>
