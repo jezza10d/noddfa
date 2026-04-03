@@ -43,7 +43,7 @@
             -webkit-box-orient: vertical;  
             overflow: hidden;
         }
-        /* Fix for Category Pills active state */
+        /* Active Pill Style */
         .pill-active {
             background-color: #ae0000 !important;
             color: white !important;
@@ -99,12 +99,12 @@
                                         </a>
                                     </div>
                                     <div class="flex items-center gap-3">
-                                        <button onclick="filterNoticeboard('all', this)" class="category-pill pill-active bg-white border border-slate-200 text-slate-600 px-6 py-2 rounded-full text-sm font-bold shadow-md transition-all">All Stories</button>
-                                        <button onclick="filterNoticeboard('uncategorized', this)" class="category-pill bg-white border border-slate-200 text-slate-600 px-6 py-2 rounded-full text-sm font-bold hover:bg-slate-50 transition-colors">Uncategorized</button>
+                                        <button onclick="togglePills(this, 'notice')" class="category-pill pill-active bg-white border border-slate-200 text-slate-600 px-6 py-2 rounded-full text-sm font-bold shadow-md transition-all">All Stories</button>
+                                        <button onclick="togglePills(this, 'notice')" class="category-pill bg-white border border-slate-200 text-slate-600 px-6 py-2 rounded-full text-sm font-bold hover:bg-slate-50 transition-colors">Uncategorized</button>
                                     </div>
                                 </div>
 
-                                <div id="noticeboard-feed">
+                                <div id="noticeboard-container" class="space-y-6">
                                     <div class="bg-white border border-outline rounded-2xl shadow-sm overflow-hidden flex flex-col md:flex-row mb-6">
                                         <div class="md:w-1/3 h-48 md:h-auto">
                                             <img src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?q=80&w=1000" alt="Village Ponds" class="w-full h-full object-cover">
@@ -119,15 +119,47 @@
                                             <a href="#" class="text-primary font-bold text-xs flex items-center gap-2">Read full details <span class="material-symbols-outlined text-sm">arrow_forward</span></a>
                                         </div>
                                     </div>
+
+                                    <div class="bg-white border border-outline rounded-2xl shadow-sm overflow-hidden flex flex-col md:flex-row mb-6">
+                                        <div class="p-8 w-full">
+                                            <div class="flex justify-between items-start mb-4">
+                                                <span class="bg-primary text-white text-[10px] font-black px-3 py-1 rounded-full uppercase">Community Post</span>
+                                                <span class="text-xs text-slate-400 font-medium">1 day ago</span>
+                                            </div>
+                                            <h4 class="font-bold text-xl mb-3 text-secondary">Noddfa Coffee Morning</h4>
+                                            <p class="text-on-surface-variant text-sm leading-relaxed mb-6">Every Wednesday from 10:30 AM. Come along for a chat and a hot drink with neighbors at the community centre hall.</p>
+                                            <a href="#" class="text-primary font-bold text-xs flex items-center gap-2">Read full details <span class="material-symbols-outlined text-sm">arrow_forward</span></a>
+                                        </div>
+                                    </div>
+
+                                    <div class="bg-white border border-outline rounded-2xl shadow-sm overflow-hidden flex flex-col md:flex-row mb-6">
+                                        <div class="p-8 w-full">
+                                            <div class="flex justify-between items-start mb-4">
+                                                <span class="bg-primary text-white text-[10px] font-black px-3 py-1 rounded-full uppercase">Information</span>
+                                                <span class="text-xs text-slate-400 font-medium">4 days ago</span>
+                                            </div>
+                                            <h4 class="font-bold text-xl mb-3 text-secondary">Local Election Polling Info</h4>
+                                            <p class="text-on-surface-variant text-sm leading-relaxed mb-6">The community hall will be used as a polling station this Thursday. Normal classes are suspended for the day.</p>
+                                            <a href="#" class="text-primary font-bold text-xs flex items-center gap-2">Read full details <span class="material-symbols-outlined text-sm">arrow_forward</span></a>
+                                        </div>
+                                    </div>
                                 </div>
                             </section>
 
                             <section>
-                                <div class="flex items-center justify-between mb-8">
-                                    <h2 class="text-3xl font-headline font-bold text-secondary">Local services</h2>
-                                    <a href="https://glyncorrwg.wales/community/directory" class="flex items-center gap-2 text-primary font-bold text-sm hover:underline">
-                                        View all Services <span class="material-symbols-outlined text-sm">arrow_forward</span>
-                                    </a>
+                                <div class="mb-8">
+                                    <div class="flex items-center justify-between mb-6">
+                                        <h2 class="text-3xl font-headline font-bold text-secondary">Local services</h2>
+                                        <a href="https://glyncorrwg.wales/community/directory" class="flex items-center gap-2 text-primary font-bold text-sm hover:underline">
+                                            View all Services <span class="material-symbols-outlined text-sm">arrow_forward</span>
+                                        </a>
+                                    </div>
+                                    <div class="flex items-center gap-3">
+                                        <button onclick="togglePills(this, 'service')" class="category-pill pill-active bg-white border border-slate-200 text-slate-600 px-6 py-2 rounded-full text-sm font-bold shadow-md transition-all">All Services</button>
+                                        <button onclick="togglePills(this, 'service')" class="category-pill bg-white border border-slate-200 text-slate-600 px-6 py-2 rounded-full text-sm font-bold hover:bg-slate-50 transition-colors">Doctors</button>
+                                        <button onclick="togglePills(this, 'service')" class="category-pill bg-white border border-slate-200 text-slate-600 px-6 py-2 rounded-full text-sm font-bold hover:bg-slate-50 transition-colors">Schools</button>
+                                        <button onclick="togglePills(this, 'service')" class="category-pill bg-white border border-slate-200 text-slate-600 px-6 py-2 rounded-full text-sm font-bold hover:bg-slate-50 transition-colors">Post Office</button>
+                                    </div>
                                 </div>
                                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                                     <div class="bg-surface border border-outline p-6 rounded-xl shadow-sm hover:border-primary transition-all">
@@ -222,9 +254,9 @@
                                 </a>
                             </div>
                             <div class="flex items-center gap-3">
-                                <button class="bg-primary text-white px-6 py-2 rounded-full text-sm font-bold shadow-md">All Business</button>
-                                <button class="bg-white border border-slate-200 text-slate-600 px-6 py-2 rounded-full text-sm font-bold hover:bg-slate-50 transition-colors">Retail</button>
-                                <button class="bg-white border border-slate-200 text-slate-600 px-6 py-2 rounded-full text-sm font-bold hover:bg-slate-50 transition-colors">Hospitality</button>
+                                <button onclick="togglePills(this, 'biz')" class="category-pill pill-active bg-white border border-slate-200 text-slate-600 px-6 py-2 rounded-full text-sm font-bold shadow-md">All Business</button>
+                                <button onclick="togglePills(this, 'biz')" class="category-pill bg-white border border-slate-200 text-slate-600 px-6 py-2 rounded-full text-sm font-bold hover:bg-slate-50 transition-colors">Retail</button>
+                                <button onclick="togglePills(this, 'biz')" class="category-pill bg-white border border-slate-200 text-slate-600 px-6 py-2 rounded-full text-sm font-bold hover:bg-slate-50 transition-colors">Hospitality</button>
                             </div>
                         </div>
                         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -323,16 +355,23 @@
                             <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d19833.051411228553!2d-3.6268846128318285!3d51.66258055615783!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x486e5e8e7a83d92b%3A0xc3f9a7d3a0e69818!2sGlyncorrwg%2C%20Port%20Talbot!5e0!3m2!1sen!2suk!4v1709400000000!5m2!1sen!2suk" width="100%" height="100%" style="border:0; border-radius: 1.5rem;" allowfullscreen="" loading="lazy"></iframe>
                         </div>
                     </section>
-
                 </div>
             </main>
-
             <footer id="footer-placeholder"></footer>
         </div>
     </div>
 
     <script>
         const API_BASE = 'https://noddfa-j3nkslkrxc.live-website.com/wp-json';
+
+        function togglePills(clickedBtn, group) {
+            const container = clickedBtn.parentElement;
+            container.querySelectorAll('.category-pill').forEach(pill => {
+                pill.classList.remove('pill-active', 'shadow-md');
+                pill.classList.add('bg-white', 'text-slate-600');
+            });
+            clickedBtn.classList.add('pill-active', 'shadow-md');
+        }
 
         async function loadSharedComponents() {
             try {
@@ -466,38 +505,6 @@
             } catch (err) { container.innerHTML = `<div class="col-span-3 py-10 text-center text-slate-500 italic">Unable to load events.</div>`; }
         }
 
-        async function filterNoticeboard(category, btn) {
-            const container = document.getElementById('noticeboard-feed');
-            document.querySelectorAll('.category-pill').forEach(pill => pill.classList.remove('pill-active', 'shadow-md'));
-            if (btn) btn.classList.add('pill-active', 'shadow-md');
-
-            container.innerHTML = `<div class="py-10 text-center text-slate-400 italic">Filtering posts...</div>`;
-            try {
-                let url = `${API_BASE}/wp/v2/posts?per_page=3&_embed`;
-                if (category === 'uncategorized') url += `&categories=1`;
-                const response = await fetch(url);
-                const posts = await response.json();
-                
-                if (!posts.length) {
-                    container.innerHTML = `<div class="py-10 text-center text-slate-400 italic">No posts found in this category.</div>`;
-                    return;
-                }
-
-                container.innerHTML = posts.map(post => {
-                    const media = post._embedded?.['wp:featuredmedia']?.[0]?.source_url || 'https://images.unsplash.com/photo-1501785888041-af3ef285b470?q=80&w=1000';
-                    return `
-                        <div class="bg-white border border-outline rounded-2xl shadow-sm overflow-hidden flex flex-col md:flex-row mb-6">
-                            <div class="md:w-1/3 h-48 md:h-auto"><img src="${media}" class="w-full h-full object-cover"></div>
-                            <div class="p-8 md:w-2/3">
-                                <h4 class="font-bold text-xl mb-3">${post.title.rendered}</h4>
-                                <div class="text-on-surface-variant text-sm mb-6 line-clamp-2">${post.excerpt.rendered}</div>
-                                <a href="${post.link}" class="text-primary font-bold text-xs flex items-center gap-2">Read full details <span class="material-symbols-outlined text-sm">arrow_forward</span></a>
-                            </div>
-                        </div>`;
-                }).join('');
-            } catch (err) { container.innerHTML = `<div class="py-10 text-center text-slate-400 italic">Error loading posts.</div>`; }
-        }
-
         document.addEventListener('DOMContentLoaded', () => {
             loadSharedComponents();
             loadLiveEvents();
@@ -506,7 +513,6 @@
             fetchTrainStation('PTB', 'ptb-trains-list');
             fetchLiveBuses();
             setInterval(fetchLiveBuses, 60000);
-            filterNoticeboard('all', document.querySelector('.category-pill'));
         });
     </script>
 </body>
