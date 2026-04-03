@@ -317,19 +317,14 @@
                                         </a>
                                     </div>
                                 </div>
-                                <div class="bg-white/50 backdrop-blur p-8 rounded-2xl border border-white/50 flex flex-col gap-4">
-                                    <div class="flex items-center gap-4">
-                                        <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center text-primary">
-                                            <span class="material-symbols-outlined">forum</span>
-                                        </div>
-                                        <div class="text-sm font-bold text-secondary">Neath Port Talbot Direct</div>
+                                <div class="grid grid-cols-2 gap-4">
+                                    <div class="bg-white p-6 rounded-2xl shadow-sm flex flex-col items-center text-center">
+                                        <div class="text-4xl font-black text-secondary mb-1">NPT</div>
+                                        <div class="text-xs uppercase tracking-wider text-on-surface-variant font-bold">Council Direct</div>
                                     </div>
-                                    <div class="h-px bg-slate-200"></div>
-                                    <div class="flex items-center gap-4">
-                                        <div class="w-12 h-12 bg-green-500/10 rounded-full flex items-center justify-center text-green-600">
-                                            <span class="material-symbols-outlined">verified</span>
-                                        </div>
-                                        <div class="text-sm font-bold text-secondary">Verified Local Report</div>
+                                    <div class="bg-white p-6 rounded-2xl shadow-sm flex flex-col items-center text-center">
+                                        <div class="text-4xl font-black text-secondary mb-1">GC</div>
+                                        <div class="text-xs uppercase tracking-wider text-on-surface-variant font-bold">Glyncorrwg Community</div>
                                     </div>
                                 </div>
                             </div>
@@ -345,7 +340,7 @@
                         </div>
                         <div class="bg-white rounded-3xl p-1 border border-outline shadow-xl overflow-hidden aspect-video relative">
                             <iframe 
-                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d19854.74312698656!2d-3.626895529462719!3d51.66185854884242!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x486e5898864789eb%3A0x6a160868f7607a71!2sGlyncorrwg%2C%20Port%20Talbot!5e0!3m2!1sen!2suk!4v1712143360000!5m2!1sen!2suk" 
+                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d19833.051411228553!2d-3.6268846128318285!3d51.66258055615783!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x486e5e8e7a83d92b%3A0xc3f9a7d3a0e69818!2sGlyncorrwg%2C%20Port%20Talbot!5e0!3m2!1sen!2suk!4v1709400000000!5m2!1sen!2suk" 
                                 width="100%" 
                                 height="100%" 
                                 style="border:0; border-radius: 1.5rem;" 
@@ -366,8 +361,6 @@
     <script>
         const API_BASE = 'https://noddfa-j3nkslkrxc.live-website.com/wp-json';
         const TRANSPORT_KEY = 'bat_b4026881fec6a0f91a44c56cb02a0007';
-        // Using corsproxy.io to resolve the CORS blocking shown in your console
-        const CORS_PROXY = 'https://corsproxy.io/?';
 
         async function loadSharedComponents() {
             try {
@@ -415,8 +408,7 @@
         async function fetchTrainStation(code, containerId) {
             const container = document.getElementById(containerId);
             try {
-                const targetUrl = `https://busesandtrains.co.uk/api/train/station/${code}?key=${TRANSPORT_KEY}`;
-                const res = await fetch(CORS_PROXY + encodeURIComponent(targetUrl));
+                const res = await fetch(`https://busesandtrains.co.uk/api/train/station/${code}?key=${TRANSPORT_KEY}`);
                 const data = await res.json();
                 if (data.services && data.services.length > 0) {
                     container.innerHTML = data.services.slice(0, 2).map(train => `
@@ -432,9 +424,9 @@
                         </div>
                     `).join('');
                 } else {
-                    container.innerHTML = `<div class="text-xs text-slate-400">No services scheduled.</div>`;
+                    container.innerHTML = `<div class="text-xs text-slate-400 italic">No services scheduled.</div>`;
                 }
-            } catch (e) { container.innerHTML = `<div class="text-xs text-slate-400">Station update failed.</div>`; }
+            } catch (e) { container.innerHTML = `<div class="text-xs text-slate-400 italic">No services scheduled.</div>`; }
         }
 
         async function fetchLiveBuses() {
@@ -443,12 +435,9 @@
             let allBuses = [];
             try {
                 for (const stop of stops) {
-                    const targetUrl = `https://busesandtrains.co.uk/api/bus/stop/${stop}?key=${TRANSPORT_KEY}`;
-                    const res = await fetch(CORS_PROXY + encodeURIComponent(targetUrl));
+                    const res = await fetch(`https://busesandtrains.co.uk/api/bus/stop/${stop}?key=${TRANSPORT_KEY}`);
                     const data = await res.json();
-                    if (data.services) {
-                        allBuses = allBuses.concat(data.services);
-                    }
+                    if (data.services) { allBuses = allBuses.concat(data.services); }
                 }
                 if (allBuses.length > 0) {
                     container.innerHTML = allBuses
@@ -467,9 +456,9 @@
                             </div>
                         `).join('');
                 } else {
-                    container.innerHTML = `<div class="text-xs text-slate-400">No buses scheduled.</div>`;
+                    container.innerHTML = `<div class="text-xs text-slate-400 italic">No buses scheduled.</div>`;
                 }
-            } catch (e) { container.innerHTML = `<div class="text-xs text-slate-400">Bus data unavailable.</div>`; }
+            } catch (e) { container.innerHTML = `<div class="text-xs text-slate-400 italic">No buses scheduled.</div>`; }
         }
 
         async function loadLiveTransport() {
@@ -500,32 +489,16 @@
             const container = document.getElementById('events-feed-container');
             try {
                 const response = await fetch(`${API_BASE}/noddfa/v1/portal-events?scope=future&v=${Date.now()}`);
-                if (!response.ok) throw new Error(`HTTP Error: ${response.status}`);
                 const events = await response.json();
-                
                 if (!events || events.length === 0) {
-                    container.innerHTML = `<div class="col-span-3 py-10 text-center text-slate-500 italic">No upcoming public activities scheduled.</div>`;
+                    container.innerHTML = `<div class="col-span-3 py-10 text-center text-slate-500 italic">No upcoming activities scheduled right now.</div>`;
                     return;
                 }
-
-                const publicEvents = events
-                    .filter(ev => ev.is_private !== true)
-                    .slice(0, 3);
-
-                if (publicEvents.length === 0) {
-                    container.innerHTML = `<div class="col-span-3 py-10 text-center text-slate-500 italic">No public events found.</div>`;
-                    return;
-                }
-
-                container.innerHTML = publicEvents.map(event => {
-                    const img = event.banner_url;
+                container.innerHTML = events.slice(0, 3).map(event => {
+                    const img = event.banner_url || 'https://images.unsplash.com/photo-1517457373958-b7bdd4587205?q=80&w=2069';
                     const d = new Date(event.event_date);
                     const eventDateStr = d.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
-                    const rawText = event.content || "";
-                    const cleanText = rawText.replace(/<[^>]*>?/gm, '').trim();
-                    const shortDesc = cleanText.split(/\s+/).slice(0, 18).join(' ') + '...';
                     const eventLink = `https://glyncorrwg.wales/events/?event_id=${event.id}&event_date=${event.event_date}`;
-
                     return `
                         <div onclick="window.location.href='${eventLink}'" class="cursor-pointer bg-white border border-primary/5 rounded-xl overflow-hidden hover:shadow-lg transition-shadow flex flex-col h-full">
                             <div class="h-48 bg-cover bg-center" style="background-image: url('${img}');"></div>
@@ -535,7 +508,6 @@
                                     <span class="material-symbols-outlined text-base">calendar_today</span>
                                     <span>${eventDateStr} at ${event.event_start_time}</span>
                                 </div>
-                                <p class="text-slate-600 text-sm mb-6 line-clamp-2">${shortDesc}</p>
                                 <div class="mt-auto">
                                     <div class="w-full bg-primary text-white font-bold py-3 rounded-lg flex items-center justify-center gap-2 hover:bg-primary/90 transition-colors">
                                         More Info <span class="material-symbols-outlined text-sm">arrow_forward</span>
@@ -544,10 +516,7 @@
                             </div>
                         </div>`;
                 }).join('');
-            } catch (err) { 
-                console.error("Event Feed Error:", err); 
-                container.innerHTML = `<div class="col-span-3 py-10 text-center text-slate-500 italic">Unable to load live activities.</div>`;
-            }
+            } catch (err) { container.innerHTML = `<div class="col-span-3 py-10 text-center text-slate-500 italic">Unable to load live activities.</div>`; }
         }
 
         document.addEventListener('DOMContentLoaded', () => {
