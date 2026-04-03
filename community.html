@@ -441,17 +441,19 @@
 
         async function fetchLiveBuses() {
             const container = document.getElementById('bus-list');
-            const stopId = '5820AWG60316'; // Bridge Street
+            const stopId = '5820AWG60316'; // Bridge Street Stop
             try {
                 const res = await fetch(`${API_BASE}/noddfa/v1/transport/bus/${stopId}`);
                 const data = await res.json();
                 
-                // B&T API uses "departures", not "services"
+                // B&T API returns a "departures" array
                 if (data.departures && data.departures.length > 0) {
                     container.innerHTML = data.departures.slice(0, 2).map(bus => {
-                        // Extract just the time (16:15) from the ISO string
-                        const timeOnly = bus.scheduled.includes('T') ? bus.scheduled.split('T')[1].substring(0, 5) : bus.scheduled;
-                        
+                        // Extract 16:15 from ISO string "2025-03-20T16:15:00"
+                        const displayTime = bus.scheduled.includes('T') 
+                            ? bus.scheduled.split('T')[1].substring(0, 5) 
+                            : bus.scheduled;
+        
                         return `
                             <div class="flex items-start justify-between">
                                 <div class="flex items-center gap-3 mt-1">
@@ -459,7 +461,7 @@
                                     <span class="text-sm font-bold text-secondary truncate max-w-[120px]">${bus.destination}</span>
                                 </div>
                                 <div class="text-right">
-                                    <div class="text-sm font-black bg-slate-100/50 px-3 py-1 rounded-lg tabular-nums w-14 text-center">${timeOnly}</div>
+                                    <div class="text-sm font-black bg-slate-100/50 px-3 py-1 rounded-lg tabular-nums w-14 text-center">${displayTime}</div>
                                     <div class="text-[9px] font-black text-primary uppercase tracking-widest mt-0">${bus.status.replace('_', ' ')}</div>
                                 </div>
                             </div>
