@@ -311,22 +311,34 @@
                                     <h2 class="text-3xl font-headline font-bold text-secondary mb-4">Report It Dashboard</h2>
                                     <p class="text-on-surface-variant mb-8 max-w-md">Help us keep our village safe and clean. Directly report issues to Neath Port Talbot Council via the links below.</p>
                                     <div class="flex flex-wrap gap-3">
-                                        <a class="bg-white border border-outline hover:border-primary transition-colors px-5 py-3 rounded-full flex items-center gap-3 font-medium text-secondary shadow-sm" href="https://www.npt.gov.uk/2253">
+                                        <a target="_blank" class="bg-white border border-outline hover:border-primary transition-colors px-5 py-3 rounded-full flex items-center gap-3 font-medium text-secondary shadow-sm" href="https://www.npt.gov.uk/parking-roads-and-travel/problems-with-roads-and-streets/potholes">
                                             <span class="material-symbols-outlined text-error">warning</span> Potholes
                                         </a>
-                                        <a class="bg-white border border-outline hover:border-primary transition-colors px-5 py-3 rounded-full flex items-center gap-3 font-medium text-secondary shadow-sm" href="https://www.npt.gov.uk/2261">
+                                        <a target="_blank" class="bg-white border border-outline hover:border-primary transition-colors px-5 py-3 rounded-full flex items-center gap-3 font-medium text-secondary shadow-sm" href="https://www.npt.gov.uk/parking-roads-and-travel/problems-with-roads-and-streets/fly-tipping/">
                                             <span class="material-symbols-outlined text-error">delete_outline</span> Fly-tipping
                                         </a>
-                                        <a class="bg-white border border-outline hover:border-primary transition-colors px-5 py-3 rounded-full flex items-center gap-3 font-medium text-secondary shadow-sm" href="https://www.npt.gov.uk/2265">
+                                        <a target="_blank" class="bg-white border border-outline hover:border-primary transition-colors px-5 py-3 rounded-full flex items-center gap-3 font-medium text-secondary shadow-sm" href="https://www.npt.gov.uk/parking-roads-and-travel/problems-with-roads-and-streets/street-lights/">
                                             <span class="material-symbols-outlined text-error">light_off</span> Street Lighting
                                         </a>
-                                        <a class="bg-white border border-outline hover:border-primary transition-colors px-5 py-3 rounded-full flex items-center gap-3 font-medium text-secondary shadow-sm" href="https://www.npt.gov.uk/2260">
+                                        <a target="_blank" class="bg-white border border-outline hover:border-primary transition-colors px-5 py-3 rounded-full flex items-center gap-3 font-medium text-secondary shadow-sm" href="https://www.npt.gov.uk/parking-roads-and-travel/problems-with-roads-and-streets/dog-fouling/">
                                             <span class="material-symbols-outlined text-error">pets</span> Dog Fouling
                                         </a>
                                     </div>
                                 </div>
-                                <div class="flex justify-center">
-                                    <img src="https://www.npt.gov.uk/images/npt-logo.png" alt="Neath Port Talbot Council" class="h-24 md:h-32 object-contain opacity-90">
+                                <div class="bg-white/50 backdrop-blur p-8 rounded-2xl border border-white/50 flex flex-col gap-4">
+                                    <div class="flex items-center gap-4">
+                                        <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center text-primary">
+                                            <span class="material-symbols-outlined">forum</span>
+                                        </div>
+                                        <div class="text-sm font-bold text-secondary">Neath Port Talbot Direct</div>
+                                    </div>
+                                    <div class="h-px bg-slate-200"></div>
+                                    <div class="flex items-center gap-4">
+                                        <div class="w-12 h-12 bg-green-500/10 rounded-full flex items-center justify-center text-green-600">
+                                            <span class="material-symbols-outlined">verified</span>
+                                        </div>
+                                        <div class="text-sm font-bold text-secondary">Verified Local Report</div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -341,7 +353,7 @@
                         </div>
                         <div class="bg-white rounded-3xl p-1 border border-outline shadow-xl overflow-hidden aspect-video relative">
                             <iframe 
-                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d19833.051411228553!2d-3.6268846128318285!3d51.66258055615783!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x486e5e8e7a83d92b%3A0xc3f9a7d3a0e69818!2sGlyncorrwg%2C%20Port%20Talbot!5e0!3m2!1sen!2suk!4v1709400000000!5m2!1sen!2suk" 
+                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d19833.821731697524!2d-3.6268846!3d51.661138!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x486e5c949826353d%3A0x66f6f966144e55e!2sGlyncorrwg!5e0!3m2!1sen!2suk!4v1711200000000!5m2!1sen!2suk" 
                                 width="100%" 
                                 height="100%" 
                                 style="border:0; border-radius: 1.5rem;" 
@@ -411,8 +423,8 @@
             try {
                 const res = await fetch(`https://busesandtrains.co.uk/api/train/station/${code}?key=${TRANSPORT_KEY}`);
                 const data = await res.json();
-                if (data.departures && data.departures.length > 0) {
-                    container.innerHTML = data.departures.slice(0, 2).map(train => `
+                if (data.services && data.services.length > 0) {
+                    container.innerHTML = data.services.slice(0, 2).map(train => `
                         <div class="flex items-start justify-between group">
                             <div class="flex items-center gap-3 mt-1">
                                 <span class="material-symbols-outlined text-primary text-sm">train</span>
@@ -438,8 +450,8 @@
                 for (const stop of stops) {
                     const res = await fetch(`https://busesandtrains.co.uk/api/bus/stop/${stop}?key=${TRANSPORT_KEY}`);
                     const data = await res.json();
-                    if (data.departures) {
-                        allBuses = allBuses.concat(data.departures);
+                    if (data.services) {
+                        allBuses = allBuses.concat(data.services);
                     }
                 }
                 if (allBuses.length > 0) {
