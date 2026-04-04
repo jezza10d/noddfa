@@ -111,38 +111,11 @@
                                             View all Services <span class="material-symbols-outlined text-sm">arrow_forward</span>
                                         </a>
                                     </div>
-                                    <div class="flex items-center gap-3">
-                                        <button class="bg-primary text-white px-6 py-2 rounded-full text-sm font-bold shadow-md">All Services</button>
-                                        <button class="bg-white border border-slate-200 text-slate-600 px-6 py-2 rounded-full text-sm font-bold hover:bg-slate-50 transition-colors">Health</button>
-                                        <button class="bg-white border border-slate-200 text-slate-600 px-6 py-2 rounded-full text-sm font-bold hover:bg-slate-50 transition-colors">Education</button>
-                                        <button class="bg-white border border-slate-200 text-slate-600 px-6 py-2 rounded-full text-sm font-bold hover:bg-slate-50 transition-colors">Public</button>
-                                    </div>
+                                    <div id="local-services-category-pills" class="flex flex-wrap items-center gap-3">
+                                        </div>
                                 </div>
-                                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                                    <div class="bg-surface border border-outline p-6 rounded-xl shadow-sm hover:border-primary transition-all">
-                                        <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center text-primary mb-4">
-                                            <span class="material-symbols-outlined text-2xl">medical_services</span>
-                                        </div>
-                                        <h3 class="text-lg font-bold mb-2">Doctors</h3>
-                                        <p class="text-on-surface-variant text-xs mb-4">Health Centre hours and booking info.</p>
-                                        <span class="text-primary text-[10px] font-black flex items-center gap-2 uppercase">View info <span class="material-symbols-outlined text-xs">arrow_forward</span></span>
-                                    </div>
-                                    <div class="bg-surface border border-outline p-6 rounded-xl shadow-sm hover:border-primary transition-all">
-                                        <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center text-primary mb-4">
-                                            <span class="material-symbols-outlined text-2xl">school</span>
-                                        </div>
-                                        <h3 class="text-lg font-bold mb-2">Primary School</h3>
-                                        <p class="text-on-surface-variant text-xs mb-4">Term dates and local school news.</p>
-                                        <span class="text-primary text-[10px] font-black flex items-center gap-2 uppercase">Learn more <span class="material-symbols-outlined text-xs">arrow_forward</span></span>
-                                    </div>
-                                    <div class="bg-surface border border-outline p-6 rounded-xl shadow-sm hover:border-primary transition-all">
-                                        <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center text-primary mb-4">
-                                            <span class="material-symbols-outlined text-2xl">local_post_office</span>
-                                        </div>
-                                        <h3 class="text-lg font-bold mb-2">Post Office</h3>
-                                        <p class="text-on-surface-variant text-xs mb-4">Located in the village shop. Collection times.</p>
-                                        <span class="text-primary text-[10px] font-black flex items-center gap-2 uppercase">Details <span class="material-symbols-outlined text-xs">arrow_forward</span></span>
-                                    </div>
+                                <div id="local-services-container" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                                    <div class="col-span-full py-10 text-center text-slate-400 italic">Loading local services...</div>
                                 </div>
                             </section>
                         </div>
@@ -216,11 +189,7 @@
                                 </a>
                             </div>
                             <div id="directory-category-pills" class="flex flex-wrap items-center gap-3">
-                                <button onclick="filterDirectoryByCat('all', this)" class="dir-cat-btn bg-primary text-white px-6 py-2 rounded-full text-sm font-bold shadow-md">All Business</button>
-                                <button onclick="filterDirectoryByCat('retail', this)" class="dir-cat-btn bg-white border border-slate-200 text-slate-600 px-6 py-2 rounded-full text-sm font-bold hover:bg-slate-50 transition-colors">Retail</button>
-                                <button onclick="filterDirectoryByCat('hospitality', this)" class="dir-cat-btn bg-white border border-slate-200 text-slate-600 px-6 py-2 rounded-full text-sm font-bold hover:bg-slate-50 transition-colors">Hospitality</button>
-                                <button onclick="filterDirectoryByCat('sports', this)" class="dir-cat-btn bg-white border border-slate-200 text-slate-600 px-6 py-2 rounded-full text-sm font-bold hover:bg-slate-50 transition-colors">Sports</button>
-                            </div>
+                                </div>
                         </div>
                         <div id="business-directory-container" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
                             <div class="col-span-full py-10 text-center text-slate-400 italic">Loading directory...</div>
@@ -289,7 +258,7 @@
                         </div>
                         <div class="bg-white rounded-3xl p-1 border border-outline shadow-xl overflow-hidden aspect-video relative">
                             <iframe 
-                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d19835.326880010074!2d-3.6268844!3d51.6617!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x486e41b7d5e4b9f3%3A0x7d6f5f3e5f3e5f3e!2sGlyncorrwg%2C%20Port%20Talbot%20SA13%203AB!5e0!3m2!1sen!2suk!4v1620000000000!5m2!1sen!2suk" 
+                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d19830.490795493064!2d-3.630048187890625!3d51.661708823775195!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x486e5c54433e8b09%3A0x7d6a5c1a89c3a37!2sGlyncorrwg!5e0!3m2!1sen!2suk!4v1700000000000" 
                                 width="100%" 
                                 height="100%" 
                                 style="border:0; border-radius: 1.5rem;" 
@@ -551,61 +520,99 @@
 
         let allDirectoryItems = [];
         let currentDirectoryFilter = 'all';
+        let currentLocalFilter = 'all';
 
         async function loadLiveDirectory() {
-            const container = document.getElementById('business-directory-container');
+            const bizContainer = document.getElementById('business-directory-container');
+            const localContainer = document.getElementById('local-services-container');
             try {
-                const res = await fetch(`${API_BASE}/wp/v2/directory?_embed&per_page=40`);
-                const wpData = await res.json();
-                allDirectoryItems = wpData.filter(item => {
-                    const meta = item.directory_meta || {};
-                    return meta.entry_type !== 'local_service';
-                });
-                renderDirectoryGrid();
+                const res = await fetch(`${API_BASE}/wp/v2/directory?_embed&per_page=100`);
+                allDirectoryItems = await res.json();
+                
+                // Set up dynamic categories for both sections
+                setupCategoryPills('biz', 'directory-category-pills');
+                setupCategoryPills('local', 'local-services-category-pills');
+                
+                renderGrids();
             } catch (err) {
                 console.error("Directory Load Error:", err);
-                container.innerHTML = `<div class="col-span-full text-center text-slate-400">Directory temporarily offline.</div>`;
+                bizContainer.innerHTML = `<div class="col-span-full text-center text-slate-400">Directory offline.</div>`;
+                localContainer.innerHTML = `<div class="col-span-full text-center text-slate-400">Services offline.</div>`;
             }
         }
 
-        function renderDirectoryGrid() {
-            const container = document.getElementById('business-directory-container');
-            let pool = [...allDirectoryItems];
-            if (currentDirectoryFilter !== 'all') {
-                pool = pool.filter(item => {
-                    const categories = item._embedded?.['wp:term']?.[0] || [];
-                    return categories.some(cat => cat.slug.toLowerCase() === currentDirectoryFilter.toLowerCase());
-                });
-            }
-            for (let i = pool.length - 1; i > 0; i--) {
-                const j = Math.floor(Math.random() * (i + 1));
-                [pool[i], pool[j]] = [pool[j], pool[i]];
-            }
-            const selected = pool.slice(0, 3);
-            let html = selected.map(item => {
-                const meta = item.directory_meta || {};
-                const logoUrl = (typeof meta.logo === 'string' && meta.logo.startsWith('http')) ? meta.logo : null;
-                const visualContent = logoUrl 
-                    ? `<img src="${logoUrl}" class="w-full h-full object-contain" alt="${item.title.rendered}">`
-                    : `<span class="material-symbols-outlined text-3xl">storefront</span>`;
-                return `
-                    <a href="${item.link}" class="bg-surface border border-outline p-8 rounded-3xl shadow-sm hover:border-primary hover:shadow-xl transition-all group flex flex-col h-full">
-                        <div class="w-14 h-14 ${logoUrl ? 'bg-transparent' : 'bg-primary/5'} rounded-2xl flex items-center justify-center text-primary mb-6 group-hover:bg-primary group-hover:text-white transition-all overflow-hidden shrink-0">
-                            ${visualContent}
+        function setupCategoryPills(type, containerId) {
+            const container = document.getElementById(containerId);
+            const items = allDirectoryItems.filter(i => {
+                const isLocal = i.directory_meta?.entry_type === 'local_service';
+                return type === 'local' ? isLocal : !isLocal;
+            });
+
+            const uniqueCats = {};
+            items.forEach(item => {
+                const terms = item._embedded?.['wp:term']?.[0] || [];
+                terms.forEach(t => uniqueCats[t.slug] = t.name);
+            });
+
+            let html = `<button onclick="filterType('${type}', 'all', this)" class="${type}-cat-btn bg-primary text-white px-6 py-2 rounded-full text-sm font-bold shadow-md">All</button>`;
+            Object.entries(uniqueCats).forEach(([slug, name]) => {
+                html += `<button onclick="filterType('${type}', '${slug}', this)" class="${type}-cat-btn bg-white border border-slate-200 text-slate-600 px-6 py-2 rounded-full text-sm font-bold hover:bg-slate-50 transition-colors">${name}</button>`;
+            });
+            container.innerHTML = html;
+        }
+
+        function filterType(type, slug, btn) {
+            if(type === 'biz') currentDirectoryFilter = slug;
+            else currentLocalFilter = slug;
+
+            document.querySelectorAll(`.${type}-cat-btn`).forEach(b => {
+                b.classList.remove('bg-primary', 'text-white', 'shadow-md');
+                b.classList.add('bg-white', 'text-slate-600', 'border', 'border-slate-200');
+            });
+            btn.classList.add('bg-primary', 'text-white', 'shadow-md');
+            btn.classList.remove('bg-white', 'text-slate-600', 'border-slate-200');
+            renderGrids();
+        }
+
+        function createCardHtml(item) {
+            const meta = item.directory_meta || {};
+            const categories = item._embedded?.['wp:term']?.[0] || [];
+            const primaryCat = categories.length > 0 ? categories[0].name : 'General';
+            const logoUrl = (typeof meta.logo === 'string' && meta.logo.startsWith('http')) ? meta.logo : null;
+            
+            const visualContent = logoUrl 
+                ? `<img src="${logoUrl}" class="w-full h-full object-contain" alt="${item.title.rendered}">`
+                : `<span class="material-symbols-outlined text-3xl">${meta.icon || 'storefront'}</span>`;
+
+            return `
+                <a href="${item.link}" class="bg-surface border border-outline p-8 rounded-3xl shadow-sm hover:border-primary hover:shadow-xl transition-all group flex flex-col h-full">
+                    <div class="w-14 h-14 ${logoUrl ? 'bg-transparent' : 'bg-primary/5'} rounded-2xl flex items-center justify-center text-primary mb-4 group-hover:bg-primary group-hover:text-white transition-all overflow-hidden shrink-0">
+                        ${visualContent}
+                    </div>
+                    <div class="bg-primary/10 text-primary text-[9px] font-black px-3 py-1 rounded-full uppercase self-start mb-4 tracking-widest">${primaryCat}</div>
+                    <div class="mb-6 flex-grow">
+                        <h3 class="text-xl font-bold text-secondary mb-1 leading-tight line-clamp-1">${item.title.rendered}</h3>
+                        <p class="text-on-surface-variant text-sm font-medium leading-relaxed line-clamp-2">${meta.headline || ''}</p>
+                    </div>
+                    <div class="pt-6 border-t border-slate-50 flex items-center justify-between mt-auto">
+                        <span class="text-[9px] font-bold text-slate-400 uppercase tracking-tighter">${meta.foot_note || 'Verified Listing'}</span>
+                        <div class="text-primary text-[10px] font-black flex items-center gap-1 uppercase">
+                            View <span class="material-symbols-outlined text-xs">arrow_forward</span>
                         </div>
-                        <div class="mb-6 flex-grow">
-                            <h3 class="text-xl font-bold text-secondary mb-1 leading-tight line-clamp-1">${item.title.rendered}</h3>
-                            <p class="text-on-surface-variant text-sm font-medium leading-relaxed line-clamp-2">${meta.headline || ''}</p>
-                        </div>
-                        <div class="pt-6 border-t border-slate-50 flex items-center justify-between mt-auto">
-                            <span class="text-[9px] font-bold text-slate-400 uppercase tracking-tighter">${meta.foot_note || 'Verified Listing'}</span>
-                            <div class="text-primary text-[10px] font-black flex items-center gap-1 uppercase">
-                                View <span class="material-symbols-outlined text-xs">arrow_forward</span>
-                            </div>
-                        </div>
-                    </a>`;
-            }).join('');
-            html += `
+                    </div>
+                </a>`;
+        }
+
+        function renderGrids() {
+            // Render Business Grid
+            const bizPool = allDirectoryItems.filter(i => {
+                const isBiz = i.directory_meta?.entry_type !== 'local_service';
+                const matches = currentDirectoryFilter === 'all' || (i._embedded?.['wp:term']?.[0] || []).some(t => t.slug === currentDirectoryFilter);
+                return isBiz && matches;
+            }).slice(0, 3);
+            
+            let bizHtml = bizPool.map(createCardHtml).join('');
+            bizHtml += `
                 <div class="bg-slate-50 border border-dashed border-slate-300 p-8 rounded-3xl flex flex-col items-center justify-center text-center">
                     <div class="w-12 h-12 bg-white rounded-2xl flex items-center justify-center text-slate-300 mb-4 shadow-sm">
                         <span class="material-symbols-outlined text-2xl">add_business</span>
@@ -614,18 +621,15 @@
                     <p class="text-[10px] text-slate-400 mb-6 px-2">Promote your business here for just £10/year.</p>
                     <a href="/contact" class="bg-white border border-slate-200 text-slate-600 px-6 py-2 rounded-full text-[10px] font-bold hover:bg-slate-100 transition-colors uppercase tracking-widest">Enquire</a>
                 </div>`;
-            container.innerHTML = html;
-        }
+            document.getElementById('business-directory-container').innerHTML = bizHtml;
 
-        function filterDirectoryByCat(slug, btn) {
-            currentDirectoryFilter = slug;
-            document.querySelectorAll('.dir-cat-btn').forEach(b => {
-                b.classList.remove('bg-primary', 'text-white', 'shadow-md');
-                b.classList.add('bg-white', 'text-slate-600', 'border', 'border-slate-200');
-            });
-            btn.classList.add('bg-primary', 'text-white', 'shadow-md');
-            btn.classList.remove('bg-white', 'text-slate-600', 'border-slate-200');
-            renderDirectoryGrid();
+            // Render Local Services Grid
+            const localPool = allDirectoryItems.filter(i => {
+                const isLocal = i.directory_meta?.entry_type === 'local_service';
+                const matches = currentLocalFilter === 'all' || (i._embedded?.['wp:term']?.[0] || []).some(t => t.slug === currentLocalFilter);
+                return isLocal && matches;
+            }).slice(0, 3);
+            document.getElementById('local-services-container').innerHTML = localPool.map(createCardHtml).join('');
         }
 
         document.addEventListener('DOMContentLoaded', () => {
