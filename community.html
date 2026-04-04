@@ -36,23 +36,8 @@
         .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; display: inline-block; }
         .line-clamp-1 { display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; overflow: hidden; }
         .line-clamp-2 { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
-        
-        @media (max-width: 768px) {
-            #nav-menu.active-menu {
-                display: flex !important;
-                flex-direction: column !important;
-                gap: 1.5rem !important;
-                padding: 2rem !important;
-                align-items: flex-start !important;
-                position: absolute !important;
-                top: 72px !important;
-                left: 0 !important;
-                width: 100% !important;
-                background: white !important;
-                z-index: 50 !important;
-                box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-            }
-        }
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
     </style>
 </head>
 <body class="bg-background font-body text-on-background">
@@ -63,13 +48,15 @@
             <header id="header-placeholder" class="min-h-[72px] relative z-50 bg-white"></header>
 
             <main class="flex flex-col items-center w-full">
-                <header class="relative w-full h-[350px] flex items-center justify-center overflow-hidden">
+                <header class="relative w-full h-[400px] flex items-center justify-center overflow-hidden">
                     <img alt="Glyncorrwg scenery" class="absolute inset-0 w-full h-full object-cover" src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=2070"/>
                     <div class="absolute inset-0 bg-secondary/60 mix-blend-multiply"></div>
                     <div class="relative z-10 text-center px-4">
                         <span class="bg-primary text-white text-[10px] font-black px-4 py-1.5 rounded-full mb-4 inline-block shadow-lg uppercase tracking-widest">Community Hub</span>
-                        <h1 class="text-5xl md:text-6xl font-headline font-black text-white mb-4 tracking-tight">Community Hub</h1>
-                        <p class="text-xl text-white/90 font-medium max-w-2xl mx-auto">Connecting Glyncorrwg through local services and live updates</p>
+                        <h1 class="text-5xl md:text-6xl font-headline font-black text-white mb-6 tracking-tight">Community Hub</h1>
+                        
+                        <div id="category-pills" class="flex items-center justify-center gap-3 flex-wrap max-w-3xl mx-auto">
+                            </div>
                     </div>
                 </header>
 
@@ -86,29 +73,26 @@
                                         </a>
                                     </div>
                                 </div>
-                                <div id="notices-feed-container" class="space-y-6">
-                                    <div class="py-10 text-center text-slate-400 italic">Fetching latest notices...</div>
-                                </div>
+                                <div id="notices-feed-container" class="space-y-6"></div>
                             </section>
 
                             <section>
                                 <div class="mb-8">
                                     <div class="flex items-center justify-between mb-6">
-                                        <h2 class="text-3xl font-headline font-bold text-secondary">Local services</h2>
+                                        <h2 class="text-3xl font-headline font-bold text-secondary">Local Services</h2>
                                         <a href="/community/directory?local=true" class="flex items-center gap-2 text-primary font-bold text-sm hover:underline">
                                             View all Services <span class="material-symbols-outlined text-sm">arrow_forward</span>
                                         </a>
                                     </div>
                                 </div>
                                 <div id="local-services-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                                    <div class="py-10 text-center text-slate-400 italic col-span-full">Loading services...</div>
-                                </div>
+                                    </div>
                             </section>
                         </div>
 
                         <aside class="lg:col-span-4 space-y-8">
                             <div class="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm">
-                                <h4 class="text-lg font-bold text-secondary mb-4">Village weather</h4>
+                                <h4 class="text-lg font-bold text-secondary mb-4">Village Weather</h4>
                                 <div class="flex items-center gap-4 mb-4">
                                     <span id="weather-icon" class="material-symbols-outlined text-4xl text-primary">cloudy_snowing</span>
                                     <div>
@@ -116,7 +100,7 @@
                                         <div class="text-xs text-slate-500 font-medium">Glyncorrwg, Wales</div>
                                     </div>
                                 </div>
-                                <p id="weather-desc" class="text-sm text-on-surface-variant leading-relaxed">Loading weather data...</p>
+                                <p id="weather-desc" class="text-sm text-on-surface-variant leading-relaxed">Loading weather...</p>
                             </div>
 
                             <div class="bg-white border border-slate-200 rounded-2xl p-8 shadow-sm">
@@ -129,30 +113,17 @@
                     </div>
 
                     <section class="mt-24">
-                        <div class="mb-10">
-                            <div class="flex items-center justify-between mb-6">
-                                <h2 class="text-3xl font-headline font-bold text-secondary">Business directory</h2>
-                                <a href="/community/directory" class="flex items-center gap-2 text-primary font-bold text-sm hover:underline">
-                                    View all Directory <span class="material-symbols-outlined text-sm">arrow_forward</span>
-                                </a>
+                        <div class="mb-10 text-center md:text-left">
+                            <div class="flex flex-col md:flex-row md:items-center justify-between gap-6">
+                                <div>
+                                    <h2 class="text-3xl font-headline font-bold text-secondary">Business Directory</h2>
+                                    <p class="text-on-surface-variant mt-2">Support our local businesses and entrepreneurs</p>
+                                </div>
+                                <a href="/community/directory" class="bg-primary text-white px-8 py-3 rounded-xl font-bold text-sm hover:scale-105 transition-all">View Full Directory</a>
                             </div>
                         </div>
                         <div id="business-directory-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                            <div class="py-10 text-center text-slate-400 italic col-span-full">Loading directory...</div>
-                        </div>
-                    </section>
-
-                    <section class="mt-24 w-full">
-                        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-10">
-                            <div>
-                                <h2 class="text-slate-900 text-3xl font-bold">What's On</h2>
-                                <p class="text-slate-500 mt-2">Join us for activities and events this week</p>
                             </div>
-                            <a href="/events" class="flex items-center gap-2 text-primary font-bold hover:underline">
-                                View All Events <span class="material-symbols-outlined">arrow_forward</span>
-                            </a>
-                        </div>
-                        <div id="events-feed-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"></div>
                     </section>
                 </div>
             </main>
@@ -164,76 +135,73 @@
     <script>
         const API_BASE = 'https://noddfa-j3nkslkrxc.live-website.com/wp-json';
 
-        // SHARED COMPONENTS
-        async function loadSharedComponents() {
-            try {
-                const [h, f] = await Promise.all([
-                    fetch(`${API_BASE}/noddfa/v1/header`),
-                    fetch(`${API_BASE}/noddfa/v1/footer`)
-                ]);
-                if (h.ok) document.getElementById('header-placeholder').innerHTML = (await h.json()).html;
-                if (f.ok) document.getElementById('footer-placeholder').innerHTML = (await f.json()).html;
-            } catch (e) { console.error(e); }
+        // Helper: Shuffle Array
+        const shuffle = (array) => array.sort(() => Math.random() - 0.5);
+
+        // Helper: Create Pixel Perfect Card
+        function createDirectoryCard(item) {
+            const meta = item.directory_meta;
+            return `
+                <a href="${item.link}" class="group bg-white p-8 rounded-[2rem] border border-slate-100 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all flex flex-col h-full relative">
+                    <div class="mb-8">
+                        <div class="w-16 h-16 bg-slate-50 rounded-2xl flex items-center justify-center text-primary mb-6 group-hover:scale-110 transition-transform overflow-hidden">
+                            ${meta.logo ? `<img src="${meta.logo}" class="w-full h-full object-cover" />` : `<span class="material-symbols-outlined text-3xl">store</span>`}
+                        </div>
+                        <h3 class="text-xl font-bold text-secondary mb-1 leading-tight line-clamp-1">${item.title.rendered}</h3>
+                        <p class="text-on-surface-variant text-sm font-medium leading-relaxed line-clamp-2">${meta.headline || ''}</p>
+                    </div>
+                    <div class="pt-6 border-t border-slate-50 flex items-center justify-between mt-auto">
+                        <span class="text-[9px] font-bold text-slate-400 uppercase tracking-tighter">${meta.foot_note || 'Directory'}</span>
+                        <div class="text-primary text-[10px] font-black flex items-center gap-1 uppercase">
+                            View <span class="material-symbols-outlined text-xs">arrow_forward</span>
+                        </div>
+                    </div>
+                </a>`;
         }
 
-        // DIRECTORY DYNAMIC LOGIC
         async function loadDirectory() {
-            const localContainer = document.getElementById('local-services-grid');
-            const businessContainer = document.getElementById('business-directory-grid');
-
             try {
-                // Fetching from the standard WP REST endpoint using your custom bridge
-                const res = await fetch(`${API_BASE}/wp/v2/directory?per_page=50&_embed`);
-                const items = await res.json();
+                // Fetch Categories for Pills
+                const catRes = await fetch(`${API_BASE}/wp/v2/directory_category`);
+                const categories = await catRes.json();
+                const pillContainer = document.getElementById('category-pills');
+                pillContainer.innerHTML = categories.map(cat => `
+                    <a href="/community/directory?category=${cat.id}" class="px-5 py-2 bg-white/10 backdrop-blur-md border border-white/20 rounded-full text-white text-xs font-bold hover:bg-primary transition-all">
+                        ${cat.name}
+                    </a>
+                `).join('');
 
-                let localHtml = '';
-                let businessHtml = '';
-                let localCount = 0;
-                let businessCount = 0;
+                // Fetch Directory Items
+                const res = await fetch(`${API_BASE}/wp/v2/directory?per_page=100`);
+                const allItems = await res.json();
 
-                items.forEach(item => {
-                    const meta = item.directory_meta; // Data from your functions.php bridge
-                    const isLocal = meta.entry_type === 'local';
-                    
-                    // Pixel Perfect Card Construction
-                    const cardHtml = `
-                        <a href="${item.link}" class="group bg-white p-8 rounded-[2rem] border border-slate-100 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all flex flex-col h-full relative">
-                            <div class="mb-8">
-                                <div class="w-16 h-16 bg-slate-50 rounded-2xl flex items-center justify-center text-primary mb-6 group-hover:scale-110 transition-transform overflow-hidden">
-                                    ${meta.logo 
-                                        ? `<img src="${meta.logo}" class="w-full h-full object-cover" />` 
-                                        : `<span class="material-symbols-outlined text-3xl">store</span>`
-                                    }
-                                </div>
-                                <h3 class="text-xl font-bold text-secondary mb-1 leading-tight line-clamp-1">${item.title.rendered}</h3>
-                                <p class="text-on-surface-variant text-sm font-medium leading-relaxed line-clamp-2">${meta.headline || ''}</p>
-                            </div>
-                            <div class="pt-6 border-t border-slate-50 flex items-center justify-between mt-auto">
-                                <span class="text-[9px] font-bold text-slate-400 uppercase tracking-tighter">${meta.foot_note || 'Directory'}</span>
-                                <div class="text-primary text-[10px] font-black flex items-center gap-1 uppercase">
-                                    View <span class="material-symbols-outlined text-xs">arrow_forward</span>
-                                </div>
-                            </div>
-                        </a>`;
+                // 1. Local Services (Random 3)
+                const locals = allItems.filter(i => i.directory_meta.entry_type === 'local');
+                document.getElementById('local-services-grid').innerHTML = shuffle(locals).slice(0, 3).map(createDirectoryCard).join('');
 
-                    if (isLocal && localCount < 3) {
-                        localHtml += cardHtml;
-                        localCount++;
-                    } else if (!isLocal && businessCount < 4) {
-                        businessHtml += cardHtml;
-                        businessCount++;
-                    }
-                });
+                // 2. Business Directory (Random 3 + 1 Static Advert)
+                const businesses = allItems.filter(i => i.directory_meta.entry_type !== 'local');
+                const businessHtml = shuffle(businesses).slice(0, 3).map(createDirectoryCard).join('');
+                
+                // Static Advert Slot (Slot 4)
+                const advertHtml = `
+                    <div class="bg-secondary p-8 rounded-[2rem] border border-white/5 shadow-sm flex flex-col h-full text-white relative overflow-hidden">
+                        <div class="relative z-10">
+                            <span class="bg-primary text-[8px] font-black px-2 py-0.5 rounded uppercase tracking-tighter mb-4 inline-block">Partner</span>
+                            <h3 class="text-xl font-bold mb-2 leading-tight">Advertise With Us</h3>
+                            <p class="text-white/60 text-sm font-medium leading-relaxed mb-6">Reach over 2,000 residents in the valley every month.</p>
+                            <a href="/contact" class="mt-auto inline-flex items-center gap-2 text-primary text-[10px] font-black uppercase">
+                                Enquire Now <span class="material-symbols-outlined text-xs">arrow_forward</span>
+                            </a>
+                        </div>
+                        <span class="material-symbols-outlined absolute -right-4 -bottom-4 text-white/5 text-9xl">campaign</span>
+                    </div>`;
+                
+                document.getElementById('business-directory-grid').innerHTML = businessHtml + advertHtml;
 
-                localContainer.innerHTML = localHtml || '<div class="col-span-full py-10 text-center text-slate-400 italic">No local services available.</div>';
-                businessContainer.innerHTML = businessHtml || '<div class="col-span-full py-10 text-center text-slate-400 italic">No business listings available.</div>';
-
-            } catch (err) {
-                console.error('Directory Fetch Error:', err);
-            }
+            } catch (err) { console.error('Directory Hub Error:', err); }
         }
 
-        // REMAINING DYNAMIC FEEDS
         async function loadLiveNotices() {
             try {
                 const res = await fetch(`${API_BASE}/wp/v2/notices?per_page=3&_embed`);
@@ -249,25 +217,11 @@
             } catch (e) {}
         }
 
-        async function loadLiveEvents() {
+        async function loadSharedComponents() {
             try {
-                const res = await fetch(`${API_BASE}/noddfa/v1/events`);
-                const data = await res.json();
-                document.getElementById('events-feed-container').innerHTML = data.slice(0, 3).map(event => `
-                    <div class="bg-white rounded-3xl border border-slate-100 shadow-sm overflow-hidden flex flex-col group hover:shadow-xl transition-all cursor-pointer" onclick="window.location.href='${event.url}'">
-                        <div class="h-48 overflow-hidden"><img src="${event.image}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"></div>
-                        <div class="p-8 flex-1 flex flex-col">
-                            <h3 class="text-xl font-bold text-secondary mb-4 line-clamp-1">${event.title}</h3>
-                            <div class="flex items-center gap-2 text-primary text-sm font-bold mb-4">
-                                <span class="material-symbols-outlined text-base">calendar_today</span>
-                                <span>${event.event_date} at ${event.event_start_time}</span>
-                            </div>
-                            <p class="text-slate-600 text-sm mb-6 line-clamp-2">${event.headline}</p>
-                            <div class="mt-auto">
-                                <div class="w-full bg-primary text-white font-bold py-3 rounded-lg flex items-center justify-center gap-2">More Info <span class="material-symbols-outlined text-sm">arrow_forward</span></div>
-                            </div>
-                        </div>
-                    </div>`).join('');
+                const [h, f] = await Promise.all([fetch(`${API_BASE}/noddfa/v1/header`), fetch(`${API_BASE}/noddfa/v1/footer`)]);
+                if (h.ok) document.getElementById('header-placeholder').innerHTML = (await h.json()).html;
+                if (f.ok) document.getElementById('footer-placeholder').innerHTML = (await f.json()).html;
             } catch (e) {}
         }
 
@@ -304,10 +258,8 @@
             loadSharedComponents();
             loadDirectory();
             loadLiveNotices();
-            loadLiveEvents();
             loadLiveWeather();
             loadLiveTransport();
-            setInterval(loadLiveTransport, 60000);
         });
     </script>
 </body>
