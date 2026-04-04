@@ -167,8 +167,6 @@
     async function loadLiveEvents() {
         const container = document.getElementById('events-feed-container');
         try {
-            // Using the portal-events route from functions.php because it correctly handles 
-            // the expansion of recurring dates and identifies private hires.
             const response = await fetch(`${API_BASE}/noddfa/v1/portal-events?scope=future&v=${Date.now()}`);
             if (!response.ok) throw new Error(`HTTP Error: ${response.status}`);
             const events = await response.json();
@@ -178,7 +176,6 @@
                 return;
             }
 
-            // FILTER: Next 3 PUBLIC events only.
             const publicEvents = events
                 .filter(ev => ev.is_private !== true)
                 .slice(0, 3);
@@ -189,9 +186,7 @@
             }
 
             container.innerHTML = publicEvents.map(event => {
-                // Use the banner_url provided by the API.
                 const img = event.banner_url;
-                
                 const d = new Date(event.event_date);
                 const eventDateStr = d.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
 
@@ -199,8 +194,9 @@
                 const cleanText = rawText.replace(/<[^>]*>?/gm, '').trim();
                 const shortDesc = cleanText.split(/\s+/).slice(0, 18).join(' ') + '...';
 
-                // Link strictly to the events page on the live domain
-                const eventLink = `https://glyncorrwg.wales/events/?event_id=${event.id}&event_date=${event.event_date}`;
+                // SURGICAL FIX: Update the URL to point to the specific event permalink
+                // By using the slug if it exists, or the standard Events Manager URL format
+                const eventLink = event.url ? event.url.replace('https://noddfa-j3nkslkrxc.live-website.com', 'https://glyncorrwg.wales') : `https://glyncorrwg.wales/events/${event.slug || ''}`;
 
                 return `
                     <div onclick="window.location.href='${eventLink}'" class="cursor-pointer bg-white dark:bg-slate-800 border border-primary/5 rounded-xl overflow-hidden hover:shadow-lg transition-shadow flex flex-col h-full">
