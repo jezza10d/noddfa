@@ -194,9 +194,8 @@
                 const cleanText = rawText.replace(/<[^>]*>?/gm, '').trim();
                 const shortDesc = cleanText.split(/\s+/).slice(0, 18).join(' ') + '...';
 
-                // SURGICAL FIX: Update the URL to point to the specific event permalink
-                // By using the slug if it exists, or the standard Events Manager URL format
-                const eventLink = event.url ? event.url.replace('https://noddfa-j3nkslkrxc.live-website.com', 'https://glyncorrwg.wales') : `https://glyncorrwg.wales/events/${event.slug || ''}`;
+                // SURGICAL FIX: Construct the URL specifically matching https://glyncorrwg.wales/events/{slug}?event_date={date}
+                const eventLink = `https://glyncorrwg.wales/events/${event.slug}?event_date=${event.event_date}`;
 
                 return `
                     <div onclick="window.location.href='${eventLink}'" class="cursor-pointer bg-white dark:bg-slate-800 border border-primary/5 rounded-xl overflow-hidden hover:shadow-lg transition-shadow flex flex-col h-full">
