@@ -395,11 +395,11 @@
                         <div class="flex items-start justify-between group">
                             <div class="flex items-center gap-3 mt-1">
                                 <span class="material-symbols-outlined text-primary text-sm">train</span>
-                                <span class="text-sm font-bold text-secondary truncate max-w-[120px]">${train.destination}</span>
+                                <span class="text-sm font-bold text-secondary truncate max-w-[120px] text-left">${train.destination}</span>
                             </div>
-                            <div class="text-right">
+                            <div class="flex flex-col items-end">
                                 <div class="text-sm font-black bg-slate-100/50 px-3 py-1 rounded-lg tabular-nums w-14 text-center">${train.scheduled}</div>
-                                <div class="text-[9px] font-black ${train.expected === 'On time' ? 'text-green-600' : 'text-primary'} uppercase tracking-widest mt-0">${train.expected || 'Scheduled'}</div>
+                                <div class="text-[9px] font-black ${train.expected === 'On time' ? 'text-green-600' : 'text-primary'} uppercase tracking-widest mt-0 text-right w-full">${train.expected || 'Scheduled'}</div>
                             </div>
                         </div>
                     `).join('');
@@ -430,11 +430,11 @@
                             <div class="flex items-start justify-between">
                                 <div class="flex items-center gap-3 mt-1">
                                     <span class="bg-primary text-white text-[10px] font-black px-2 py-1 rounded shadow-sm">${bus.line || 'Bus'}</span>
-                                    <span class="text-sm font-bold text-secondary truncate max-w-[120px]">${bus.destination || 'Service'}</span>
+                                    <span class="text-sm font-bold text-secondary truncate max-w-[120px] text-left">${bus.destination || 'Service'}</span>
                                 </div>
-                                <div class="text-right">
+                                <div class="flex flex-col items-end">
                                     <div class="text-sm font-black bg-slate-100/50 px-3 py-1 rounded-lg tabular-nums w-14 text-center">${timeOnly}</div>
-                                    <div class="text-[9px] font-black text-primary uppercase tracking-widest mt-0">${displayStatus}</div>
+                                    <div class="text-[9px] font-black text-primary uppercase tracking-widest mt-0 text-right w-full">${displayStatus}</div>
                                 </div>
                             </div>
                         `;
@@ -493,33 +493,34 @@
                     const featuredMedia = notice._embedded?.['wp:featuredmedia']?.[0]?.source_url;
                     const url = `${NOTICEBOARD_URL}/#notice-${notice.id}`;
 
-                    // Check for image to apply conditional layout
                     const hasImage = !!featuredMedia;
-                    const imageHtml = hasImage ? `<div class="md:w-1/3 h-48 md:h-auto"><img src="${featuredMedia}" class="w-full h-full object-cover"></div>` : '';
                     const contentWidthClass = hasImage ? 'md:w-2/3' : 'w-full';
 
                     if (index === 0) {
+                        const imageHtml = hasImage ? `<div class="md:w-1/3 h-full"><img src="${featuredMedia}" class="w-full h-full object-cover"></div>` : '';
                         html += `
-                            <div onclick="window.location.href='${url}'" class="cursor-pointer bg-white border border-outline rounded-2xl shadow-sm overflow-hidden flex flex-col md:flex-row mb-6 hover:shadow-md transition-shadow">
+                            <div onclick="window.location.href='${url}'" class="cursor-pointer bg-white border border-outline rounded-2xl shadow-sm overflow-hidden flex flex-col md:flex-row mb-6 hover:shadow-md transition-shadow h-[200px]">
                                 ${imageHtml}
-                                <div class="p-8 ${contentWidthClass}">
-                                    <div class="flex justify-between items-start mb-4">
+                                <div class="p-6 md:p-8 ${contentWidthClass} flex flex-col justify-center">
+                                    <div class="flex justify-between items-start mb-2">
                                         <span class="bg-primary text-white text-[10px] font-black px-3 py-1 rounded-full uppercase">Featured spotlight</span>
                                         <span class="text-xs text-slate-400 font-medium">${date}</span>
                                     </div>
-                                    <h4 class="font-bold text-xl mb-3">${notice.title.rendered}</h4>
-                                    <p class="text-on-surface-variant text-sm leading-relaxed mb-6">${snippet}</p>
-                                    <div class="text-primary font-bold text-xs flex items-center gap-2">Read full details <span class="material-symbols-outlined text-sm">arrow_forward</span></div>
+                                    <h4 class="font-bold text-xl mb-2">${notice.title.rendered}</h4>
+                                    <p class="text-on-surface-variant text-sm line-clamp-2 mb-4">${snippet}</p>
+                                    <div class="text-primary font-bold text-xs flex items-center gap-2">Read details <span class="material-symbols-outlined text-sm">arrow_forward</span></div>
                                 </div>
                             </div>
                             <div class="space-y-4">`;
                     } else {
+                        const imageHtml = hasImage ? `<div class="md:w-1/4 h-full"><img src="${featuredMedia}" class="w-full h-full object-cover"></div>` : '';
+                        const textWidthClass = hasImage ? 'md:w-3/4' : 'w-full';
                         html += `
-                            <div onclick="window.location.href='${url}'" class="cursor-pointer bg-surface border border-outline rounded-xl shadow-sm overflow-hidden flex flex-col md:flex-row hover:border-primary/50 transition-all">
+                            <div onclick="window.location.href='${url}'" class="cursor-pointer bg-surface border border-outline rounded-xl shadow-sm overflow-hidden flex flex-col md:flex-row hover:border-primary/50 transition-all h-[140px]">
                                 ${imageHtml}
-                                <div class="p-8 ${contentWidthClass}">
-                                    <div class="flex justify-between items-start mb-2">
-                                        <h4 class="font-bold text-lg text-secondary">${notice.title.rendered}</h4>
+                                <div class="p-6 ${textWidthClass} flex flex-col justify-center">
+                                    <div class="flex justify-between items-start mb-1">
+                                        <h4 class="font-bold text-lg text-secondary truncate">${notice.title.rendered}</h4>
                                         <span class="text-xs text-slate-400 font-medium">${date}</span>
                                     </div>
                                     <p class="text-on-surface-variant text-sm line-clamp-2">${snippet}</p>
