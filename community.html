@@ -81,7 +81,7 @@
                                 <div class="mb-8">
                                     <div class="flex items-center justify-between mb-6">
                                         <h2 class="text-3xl font-headline font-bold text-secondary">Noticeboard</h2>
-                                        <a href="/notices" class="flex items-center gap-2 text-primary font-bold text-sm hover:underline">
+                                        <a href="/community/noticeboard" class="flex items-center gap-2 text-primary font-bold text-sm hover:underline">
                                             View all posts <span class="material-symbols-outlined text-sm">arrow_forward</span>
                                         </a>
                                     </div>
@@ -95,7 +95,7 @@
                                 <div class="mb-8">
                                     <div class="flex items-center justify-between mb-6">
                                         <h2 class="text-3xl font-headline font-bold text-secondary">Local services</h2>
-                                        <a href="/directory?local=true" class="flex items-center gap-2 text-primary font-bold text-sm hover:underline">
+                                        <a href="/community/directory?local=true" class="flex items-center gap-2 text-primary font-bold text-sm hover:underline">
                                             View all Services <span class="material-symbols-outlined text-sm">arrow_forward</span>
                                         </a>
                                     </div>
@@ -132,7 +132,7 @@
                         <div class="mb-10">
                             <div class="flex items-center justify-between mb-6">
                                 <h2 class="text-3xl font-headline font-bold text-secondary">Business directory</h2>
-                                <a href="/directory" class="flex items-center gap-2 text-primary font-bold text-sm hover:underline">
+                                <a href="/community/directory" class="flex items-center gap-2 text-primary font-bold text-sm hover:underline">
                                     View all Directory <span class="material-symbols-outlined text-sm">arrow_forward</span>
                                 </a>
                             </div>
@@ -164,6 +164,7 @@
     <script>
         const API_BASE = 'https://noddfa-j3nkslkrxc.live-website.com/wp-json';
 
+        // SHARED COMPONENTS
         async function loadSharedComponents() {
             try {
                 const [h, f] = await Promise.all([
@@ -175,12 +176,14 @@
             } catch (e) { console.error(e); }
         }
 
+        // DIRECTORY DYNAMIC LOGIC
         async function loadDirectory() {
             const localContainer = document.getElementById('local-services-grid');
             const businessContainer = document.getElementById('business-directory-grid');
 
             try {
-                const res = await fetch(`${API_BASE}/wp/v2/directory?per_page=100&_embed`);
+                // Fetching from the standard WP REST endpoint using your custom bridge
+                const res = await fetch(`${API_BASE}/wp/v2/directory?per_page=50&_embed`);
                 const items = await res.json();
 
                 let localHtml = '';
@@ -189,9 +192,10 @@
                 let businessCount = 0;
 
                 items.forEach(item => {
-                    const meta = item.directory_meta || {};
+                    const meta = item.directory_meta; // Data from your functions.php bridge
                     const isLocal = meta.entry_type === 'local';
                     
+                    // Pixel Perfect Card Construction
                     const cardHtml = `
                         <a href="${item.link}" class="group bg-white p-8 rounded-[2rem] border border-slate-100 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all flex flex-col h-full relative">
                             <div class="mb-8">
@@ -229,12 +233,13 @@
             }
         }
 
+        // REMAINING DYNAMIC FEEDS
         async function loadLiveNotices() {
             try {
                 const res = await fetch(`${API_BASE}/wp/v2/notices?per_page=3&_embed`);
                 const notices = await res.json();
                 document.getElementById('notices-feed-container').innerHTML = notices.map(n => `
-                    <div class="bg-white border border-outline rounded-xl p-6 hover:shadow-md transition-all flex justify-between items-center cursor-pointer" onclick="window.location.href='${n.link}'">
+                    <div class="bg-white border border-outline rounded-xl p-6 hover:shadow-md transition-all flex justify-between items-center cursor-pointer" onclick="window.location.href='/notices/${n.slug}'">
                         <div>
                             <h4 class="font-bold text-lg text-secondary">${n.title.rendered}</h4>
                             <p class="text-on-surface-variant text-sm line-clamp-1">${n.excerpt.rendered.replace(/<[^>]*>?/gm, '')}</p>
