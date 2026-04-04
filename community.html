@@ -20,104 +20,87 @@
               "outline": "#ae00001a",
               "on-surface-variant": "#475569",
               "surface": "#ffffff",
-              "surface-container": "#f1eeee",
-              "error": "#ba1a1a"
+              "surface-container": "#f1eeee"
             },
-            fontFamily: {
-              "headline": ["Lexend"],
-              "body": ["Lexend"],
-              "display": ["Lexend"]
-            }
+            fontFamily: { "headline": ["Lexend"], "body": ["Lexend"] }
           },
         },
       }
     </script>
     <style>
-        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; display: inline-block; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
         .line-clamp-1 { display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; overflow: hidden; }
         .line-clamp-2 { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
     </style>
 </head>
 <body class="bg-background font-body text-on-background">
 
-    <div class="relative flex h-auto min-h-screen w-full flex-col group/design-root overflow-x-hidden">
+    <div class="relative flex h-auto min-h-screen w-full flex-col overflow-x-hidden">
         <div class="layout-container flex h-full grow flex-col">
 
             <header id="header-placeholder" class="min-h-[72px] relative z-50 bg-white"></header>
 
             <main class="flex flex-col items-center w-full">
-                <header class="relative w-full h-[450px] flex items-center justify-center overflow-hidden">
-                    <img alt="Glyncorrwg scenery" class="absolute inset-0 w-full h-full object-cover" src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=2070"/>
-                    <div class="absolute inset-0 bg-secondary/60 mix-blend-multiply"></div>
+                <header class="relative w-full h-[500px] flex items-center justify-center overflow-hidden">
+                    <img alt="Hero" class="absolute inset-0 w-full h-full object-cover" src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=2070"/>
+                    <div class="absolute inset-0 bg-secondary/70 mix-blend-multiply"></div>
                     <div class="relative z-10 text-center px-4 w-full max-w-5xl">
-                        <span class="bg-primary text-white text-[10px] font-black px-4 py-1.5 rounded-full mb-4 inline-block shadow-lg uppercase tracking-widest">Community Hub</span>
+                        <span class="bg-primary text-white text-[10px] font-black px-4 py-1.5 rounded-full mb-4 inline-block uppercase tracking-widest">Village Portal</span>
                         <h1 class="text-5xl md:text-7xl font-headline font-black text-white mb-8 tracking-tighter">Everything Glyncorrwg</h1>
-                        
                         <div id="hero-category-pills" class="flex items-center justify-center gap-3 flex-wrap">
                             </div>
                     </div>
                 </header>
 
                 <div class="max-w-7xl w-full mx-auto px-6 py-16">
-                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 mb-16">
+                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 mb-20">
                         
-                        <div class="lg:col-span-8 space-y-16">
+                        <div class="lg:col-span-8 space-y-20">
                             <section>
-                                <div class="mb-8">
-                                    <div class="flex items-center justify-between mb-6">
-                                        <h2 class="text-3xl font-headline font-bold text-secondary">Village Noticeboard</h2>
-                                        <a href="/community/noticeboard" class="flex items-center gap-2 text-primary font-bold text-sm hover:underline">
-                                            View all posts <span class="material-symbols-outlined text-sm">arrow_forward</span>
-                                        </a>
-                                    </div>
+                                <div class="flex items-center justify-between mb-8">
+                                    <h2 class="text-3xl font-headline font-bold text-secondary">Village Noticeboard</h2>
+                                    <a href="/notices" class="text-primary font-bold text-sm flex items-center gap-2">View All <span class="material-symbols-outlined text-sm">arrow_forward</span></a>
                                 </div>
-                                <div id="notices-feed-container" class="space-y-6"></div>
+                                <div id="notices-feed" class="space-y-4"></div>
                             </section>
 
                             <section>
-                                <div class="mb-8">
-                                    <div class="flex items-center justify-between mb-6">
-                                        <h2 class="text-3xl font-headline font-bold text-secondary">Local Services</h2>
-                                        <a href="/community/directory?local=true" class="flex items-center gap-2 text-primary font-bold text-sm hover:underline">
-                                            View all Services <span class="material-symbols-outlined text-sm">arrow_forward</span>
-                                        </a>
-                                    </div>
+                                <div class="flex items-center justify-between mb-8">
+                                    <h2 class="text-3xl font-headline font-bold text-secondary">Local Services</h2>
+                                    <a href="/directory?local=true" class="text-primary font-bold text-sm flex items-center gap-2">View All <span class="material-symbols-outlined text-sm">arrow_forward</span></a>
                                 </div>
-                                <div id="local-services-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+                                <div id="local-services-grid" class="grid grid-cols-1 sm:grid-cols-2 gap-6"></div>
                             </section>
                         </div>
 
                         <aside class="lg:col-span-4 space-y-8">
-                            <div class="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm">
-                                <h4 class="text-lg font-bold text-secondary mb-4">Village Weather</h4>
-                                <div class="flex items-center gap-4 mb-4">
-                                    <span id="weather-icon" class="material-symbols-outlined text-4xl text-primary">cloudy_snowing</span>
+                            <div class="bg-white border border-slate-200 rounded-3xl p-8 shadow-sm">
+                                <h4 class="text-sm font-black uppercase tracking-widest text-slate-400 mb-6">Current Weather</h4>
+                                <div class="flex items-center gap-6">
+                                    <span id="weather-icon" class="material-symbols-outlined text-5xl text-primary">light_mode</span>
                                     <div>
-                                        <div id="weather-temp" class="text-2xl font-black text-secondary">--°C</div>
-                                        <div class="text-xs text-slate-500 font-medium">Glyncorrwg, Wales</div>
+                                        <div id="weather-temp" class="text-4xl font-black text-secondary">--°C</div>
+                                        <div class="text-sm text-slate-500">Glyncorrwg, Wales</div>
                                     </div>
                                 </div>
-                                <p id="weather-desc" class="text-sm text-on-surface-variant">Updating weather data...</p>
                             </div>
 
-                            <div class="bg-white border border-slate-200 rounded-2xl p-8 shadow-sm">
-                                <h4 class="text-xl font-bold text-secondary mb-8 flex items-center gap-3">
-                                    <span class="material-symbols-outlined text-2xl">departure_board</span> Transport
-                                </h4>
+                            <div class="bg-secondary text-white rounded-3xl p-8 shadow-sm">
+                                <h4 class="text-sm font-black uppercase tracking-widest text-white/40 mb-6">Live Transport</h4>
                                 <div id="bus-list" class="space-y-6"></div>
                             </div>
                         </aside>
                     </div>
 
-                    <section class="mt-24">
-                        <div class="mb-10 flex flex-col md:flex-row md:items-center justify-between gap-6">
+                    <section class="border-t border-slate-200 pt-20">
+                        <div class="flex flex-col md:flex-row justify-between items-end gap-6 mb-12">
                             <div>
-                                <h2 class="text-3xl font-headline font-bold text-secondary">Business Directory</h2>
-                                <p class="text-on-surface-variant mt-2 font-medium">Discover and support local valley businesses.</p>
+                                <h2 class="text-4xl font-headline font-bold text-secondary">Business Directory</h2>
+                                <p class="text-slate-500 mt-2">Supporting local entrepreneurs across the valley.</p>
                             </div>
-                            <a href="/community/directory" class="bg-primary text-white px-8 py-4 rounded-2xl font-bold text-sm shadow-lg hover:scale-105 transition-all">View All Businesses</a>
+                            <a href="/directory" class="bg-primary text-white px-8 py-4 rounded-2xl font-bold hover:scale-105 transition-transform">Browse Full Directory</a>
                         </div>
-                        <div id="business-directory-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"></div>
+                        <div id="business-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"></div>
                     </section>
                 </div>
             </main>
@@ -129,122 +112,99 @@
     <script>
         const API_BASE = 'https://noddfa-j3nkslkrxc.live-website.com/wp-json';
 
-        const shuffle = (array) => array.sort(() => Math.random() - 0.5);
+        async function init() {
+            loadSharedComponents();
+            loadWeather();
+            
+            // 1. Load Categories for Hero
+            const catRes = await fetch(`${API_BASE}/wp/v2/directory_category`);
+            const categories = await catRes.json();
+            renderHeroPills(categories);
 
-        function getCategoryName(catIds, allCats) {
-            if (!catIds || catIds.length === 0) return 'Directory';
-            const cat = allCats.find(c => c.id === catIds[0]);
-            return cat ? cat.name : 'Directory';
+            // 2. Load Directory Data
+            const dirRes = await fetch(`${API_BASE}/wp/v2/directory?per_page=100`);
+            const allItems = await dirRes.json();
+            renderDirectorySections(allItems, categories);
+
+            // 3. Load Notices
+            loadNotices();
         }
 
-        async function loadDirectory() {
-            try {
-                const catRes = await fetch(`${API_BASE}/wp/v2/directory_category`);
-                const categories = await catRes.json();
-                
-                // Hero Pills
-                document.getElementById('hero-category-pills').innerHTML = categories.map(cat => `
-                    <a href="/community/directory?category=${cat.id}" class="px-6 py-2.5 bg-white/10 backdrop-blur-md border border-white/20 rounded-full text-white text-xs font-bold hover:bg-primary hover:border-primary transition-all">
-                        ${cat.name}
-                    </a>
-                `).join('');
-
-                const res = await fetch(`${API_BASE}/wp/v2/directory?per_page=100`);
-                const allItems = await res.json();
-
-                // 1. Filter Local Services
-                const locals = allItems.filter(i => i.directory_meta && i.directory_meta.entry_type === 'local');
-                document.getElementById('local-services-grid').innerHTML = shuffle(locals).slice(0, 3).map(item => createCardHtml(item, categories)).join('');
-
-                // 2. Filter General Businesses
-                const businesses = allItems.filter(i => !i.directory_meta || i.directory_meta.entry_type !== 'local');
-                const businessCards = shuffle(businesses).slice(0, 3).map(item => createCardHtml(item, categories)).join('');
-                
-                const advertHtml = `
-                    <div class="bg-secondary p-8 rounded-[2rem] border border-white/5 shadow-sm flex flex-col h-full text-white relative overflow-hidden group">
-                        <div class="relative z-10 h-full flex flex-col">
-                            <span class="bg-primary text-[9px] font-black px-2.5 py-1 rounded-lg uppercase tracking-wider mb-6 inline-block w-fit">Partner</span>
-                            <h3 class="text-2xl font-bold mb-3 leading-tight">Join the Directory</h3>
-                            <p class="text-white/60 text-sm font-medium leading-relaxed mb-8">Reach more residents. List your local business today.</p>
-                            <a href="/contact" class="mt-auto flex items-center gap-2 text-primary font-black uppercase text-[11px] tracking-widest group-hover:gap-4 transition-all">
-                                Contact Us <span class="material-symbols-outlined text-xs">arrow_forward</span>
-                            </a>
-                        </div>
-                        <span class="material-symbols-outlined absolute -right-8 -bottom-8 text-white/5 text-[12rem] rotate-12">campaign</span>
-                    </div>`;
-
-                document.getElementById('business-directory-grid').innerHTML = businessCards + advertHtml;
-
-            } catch (err) { console.error('Directory Hub Error:', err); }
+        function renderHeroPills(cats) {
+            document.getElementById('hero-category-pills').innerHTML = cats.map(c => `
+                <a href="/directory?category=${c.id}" class="px-6 py-2.5 bg-white/10 backdrop-blur-md border border-white/20 rounded-full text-white text-xs font-bold hover:bg-primary transition-all">
+                    ${c.name}
+                </a>
+            `).join('');
         }
 
-        function createCardHtml(item, allCats) {
+        function renderDirectorySections(items, cats) {
+            const locals = items.filter(i => i.directory_meta?.entry_type === 'local').sort(() => 0.5 - Math.random()).slice(0, 4);
+            const businesses = items.filter(i => i.directory_meta?.entry_type !== 'local').sort(() => 0.5 - Math.random()).slice(0, 3);
+
+            document.getElementById('local-services-grid').innerHTML = locals.map(i => createCard(i, cats)).join('');
+            
+            const bizContainer = document.getElementById('business-grid');
+            const bizHtml = businesses.map(i => createCard(i, cats)).join('');
+            const adHtml = `
+                <div class="bg-slate-100 p-8 rounded-[2rem] border-2 border-dashed border-slate-300 flex flex-col justify-center text-center">
+                    <span class="material-symbols-outlined text-4xl text-slate-400 mb-4">add_business</span>
+                    <h4 class="font-bold text-secondary">Your Business?</h4>
+                    <p class="text-xs text-slate-500 mt-2 mb-6">List your business in the directory today.</p>
+                    <a href="/contact" class="text-primary font-black text-[10px] uppercase tracking-widest">Get Started</a>
+                </div>`;
+            bizContainer.innerHTML = bizHtml + adHtml;
+        }
+
+        function createCard(item, cats) {
             const meta = item.directory_meta || {};
-            const catName = getCategoryName(item.directory_category, allCats);
-
+            const catName = cats.find(c => c.id === item.directory_category[0])?.name || 'Business';
             return `
-                <a href="${item.link}" class="group bg-white p-8 rounded-[2rem] border border-slate-100 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all flex flex-col h-full relative">
-                    <div class="mb-8">
-                        <div class="flex items-start justify-between mb-6">
-                            <div class="w-16 h-16 bg-slate-50 rounded-2xl flex items-center justify-center text-primary group-hover:scale-110 transition-transform overflow-hidden shadow-inner">
-                                ${meta.logo ? `<img src="${meta.logo}" class="w-full h-full object-cover" />` : `<span class="material-symbols-outlined text-3xl">store</span>`}
-                            </div>
-                            <span class="px-3 py-1 bg-slate-50 text-slate-400 text-[9px] font-bold rounded-full uppercase tracking-widest border border-slate-100 group-hover:bg-primary group-hover:text-white transition-all">
-                                ${catName}
-                            </span>
+                <a href="${item.link}" class="group bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm hover:shadow-xl transition-all flex flex-col h-full">
+                    <div class="flex items-center justify-between mb-6">
+                        <div class="w-12 h-12 bg-slate-50 rounded-xl flex items-center justify-center overflow-hidden">
+                            ${meta.logo ? `<img src="${meta.logo}" class="w-full h-full object-cover">` : `<span class="material-symbols-outlined text-primary">store</span>`}
                         </div>
-                        <h3 class="text-xl font-bold text-secondary mb-1 leading-tight line-clamp-1">${item.title.rendered}</h3>
-                        <p class="text-on-surface-variant text-sm font-medium leading-relaxed line-clamp-2">${meta.headline || ''}</p>
+                        <span class="text-[9px] font-bold px-3 py-1 bg-slate-50 text-slate-400 rounded-full uppercase">${catName}</span>
                     </div>
-                    <div class="pt-6 border-t border-slate-50 flex items-center justify-between mt-auto">
-                        <span class="text-[9px] font-bold text-slate-400 uppercase tracking-tighter">${meta.foot_note || 'Member'}</span>
-                        <div class="text-primary text-[10px] font-black flex items-center gap-1 uppercase">
-                            Open <span class="material-symbols-outlined text-xs">arrow_forward</span>
-                        </div>
+                    <h3 class="font-bold text-secondary text-lg mb-1 group-hover:text-primary transition-colors">${item.title.rendered}</h3>
+                    <p class="text-sm text-slate-500 line-clamp-2 mb-6">${meta.headline || ''}</p>
+                    <div class="mt-auto pt-4 border-t border-slate-50 flex items-center justify-between">
+                        <span class="text-[10px] font-bold text-slate-300 uppercase">${meta.foot_note || 'Verified'}</span>
+                        <span class="material-symbols-outlined text-primary text-sm">arrow_forward</span>
                     </div>
                 </a>`;
         }
 
+        async function loadNotices() {
+            const res = await fetch(`${API_BASE}/wp/v2/notices?per_page=3`);
+            const data = await res.json();
+            document.getElementById('notices-feed').innerHTML = data.map(n => `
+                <div class="bg-white p-6 rounded-2xl border border-slate-100 flex items-center justify-between group cursor-pointer" onclick="window.location.href='${n.link}'">
+                    <div>
+                        <h4 class="font-bold text-secondary group-hover:text-primary transition-colors">${n.title.rendered}</h4>
+                        <p class="text-xs text-slate-400 mt-1">Glyncorrwg Village Post</p>
+                    </div>
+                    <span class="material-symbols-outlined text-slate-300 group-hover:text-primary">chevron_right</span>
+                </div>
+            `).join('');
+        }
+
+        async function loadWeather() {
+            const res = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=51.6617&longitude=-3.6122&current_weather=true`);
+            const data = await res.json();
+            if(data.current_weather) {
+                document.getElementById('weather-temp').innerText = `${Math.round(data.current_weather.temperature)}°C`;
+            }
+        }
+
         async function loadSharedComponents() {
-            try {
-                const [h, f] = await Promise.all([fetch(`${API_BASE}/noddfa/v1/header`), fetch(`${API_BASE}/noddfa/v1/footer`)]);
-                if (h.ok) document.getElementById('header-placeholder').innerHTML = (await h.json()).html;
-                if (f.ok) document.getElementById('footer-placeholder').innerHTML = (await f.json()).html;
-            } catch (e) {}
+            const [h, f] = await Promise.all([fetch(`${API_BASE}/noddfa/v1/header`), fetch(`${API_BASE}/noddfa/v1/footer`)]);
+            if (h.ok) document.getElementById('header-placeholder').innerHTML = (await h.json()).html;
+            if (f.ok) document.getElementById('footer-placeholder').innerHTML = (await f.json()).html;
         }
 
-        async function loadLiveNotices() {
-            try {
-                const res = await fetch(`${API_BASE}/wp/v2/notices?per_page=3`);
-                const data = await res.json();
-                document.getElementById('notices-feed-container').innerHTML = data.map(n => `
-                    <div class="bg-white border border-outline rounded-2xl p-6 hover:shadow-md transition-all flex justify-between items-center cursor-pointer" onclick="window.location.href='/notices/${n.slug}'">
-                        <div>
-                            <h4 class="font-bold text-lg text-secondary">${n.title.rendered}</h4>
-                            <p class="text-on-surface-variant text-sm font-medium line-clamp-1">${n.excerpt.rendered.replace(/<[^>]*>?/gm, '')}</p>
-                        </div>
-                        <span class="material-symbols-outlined text-primary">arrow_forward</span>
-                    </div>`).join('');
-            } catch (e) {}
-        }
-
-        async function loadLiveWeather() {
-            try {
-                const res = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=51.6617&longitude=-3.6122&current_weather=true`);
-                const data = await res.json();
-                if (data.current_weather) {
-                    document.getElementById('weather-temp').innerText = `${Math.round(data.current_weather.temperature)}°C`;
-                    document.getElementById('weather-desc').innerText = "Current conditions in the valley.";
-                }
-            } catch (e) {}
-        }
-
-        document.addEventListener('DOMContentLoaded', () => {
-            loadSharedComponents();
-            loadDirectory();
-            loadLiveNotices();
-            loadLiveWeather();
-        });
+        document.addEventListener('DOMContentLoaded', init);
     </script>
 </body>
 </html>
