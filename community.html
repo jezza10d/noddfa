@@ -49,11 +49,11 @@
                 <header class="relative w-full h-[450px] flex items-center justify-center overflow-hidden">
                     <img alt="Glyncorrwg scenery" class="absolute inset-0 w-full h-full object-cover" src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=2070"/>
                     <div class="absolute inset-0 bg-secondary/60 mix-blend-multiply"></div>
-                    <div class="relative z-10 text-center px-4">
+                    <div class="relative z-10 text-center px-4 w-full max-w-5xl">
                         <span class="bg-primary text-white text-[10px] font-black px-4 py-1.5 rounded-full mb-4 inline-block shadow-lg uppercase tracking-widest">Community Hub</span>
-                        <h1 class="text-5xl md:text-6xl font-headline font-black text-white mb-6 tracking-tight">Everything Glyncorrwg</h1>
+                        <h1 class="text-5xl md:text-7xl font-headline font-black text-white mb-8 tracking-tighter">Everything Glyncorrwg</h1>
                         
-                        <div id="hero-category-pills" class="flex items-center justify-center gap-3 flex-wrap max-w-4xl mx-auto mt-8">
+                        <div id="hero-category-pills" class="flex items-center justify-center gap-3 flex-wrap">
                             </div>
                     </div>
                 </header>
@@ -97,7 +97,7 @@
                                         <div class="text-xs text-slate-500 font-medium">Glyncorrwg, Wales</div>
                                     </div>
                                 </div>
-                                <p id="weather-desc" class="text-sm text-on-surface-variant leading-relaxed">Checking conditions...</p>
+                                <p id="weather-desc" class="text-sm text-on-surface-variant">Checking weather...</p>
                             </div>
 
                             <div class="bg-white border border-slate-200 rounded-2xl p-8 shadow-sm">
@@ -113,12 +113,11 @@
                         <div class="mb-10 flex flex-col md:flex-row md:items-center justify-between gap-6">
                             <div>
                                 <h2 class="text-3xl font-headline font-bold text-secondary">Business Directory</h2>
-                                <p class="text-on-surface-variant mt-2 font-medium">Find and support local businesses in the valley.</p>
+                                <p class="text-on-surface-variant mt-2 font-medium">Support our local businesses and entrepreneurs.</p>
                             </div>
-                            <a href="/community/directory" class="bg-primary text-white px-8 py-4 rounded-2xl font-bold text-sm shadow-lg hover:scale-105 transition-all">Explore Directory</a>
+                            <a href="/community/directory" class="bg-primary text-white px-8 py-4 rounded-2xl font-bold text-sm shadow-lg hover:scale-105 transition-all">View All Businesses</a>
                         </div>
-                        <div id="business-directory-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                            </div>
+                        <div id="business-directory-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"></div>
                     </section>
                 </div>
             </main>
@@ -130,10 +129,8 @@
     <script>
         const API_BASE = 'https://noddfa-j3nkslkrxc.live-website.com/wp-json';
 
-        // Utility: Shuffle Arrays for Randomization
         const shuffle = (array) => array.sort(() => Math.random() - 0.5);
 
-        // Utility: Find Category Name from IDs
         function getCategoryName(catIds, allCats) {
             if (!catIds || catIds.length === 0) return 'Directory';
             const cat = allCats.find(c => c.id === catIds[0]);
@@ -142,50 +139,44 @@
 
         async function loadDirectory() {
             try {
-                // 1. Fetch Categories for Hero Pills and Labels
+                // Fetch Categories for Pills
                 const catRes = await fetch(`${API_BASE}/wp/v2/directory_category`);
                 const categories = await catRes.json();
                 
-                const heroPills = document.getElementById('hero-category-pills');
-                heroPills.innerHTML = categories.map(cat => `
+                document.getElementById('hero-category-pills').innerHTML = categories.map(cat => `
                     <a href="/community/directory?category=${cat.id}" class="px-6 py-2.5 bg-white/10 backdrop-blur-md border border-white/20 rounded-full text-white text-xs font-bold hover:bg-primary hover:border-primary transition-all">
                         ${cat.name}
                     </a>
                 `).join('');
 
-                // 2. Fetch Directory Items
+                // Fetch All Directory Data
                 const res = await fetch(`${API_BASE}/wp/v2/directory?per_page=100`);
-                const items = await res.json();
+                const allItems = await res.json();
 
-                // 3. Render Local Services (3 Random)
-                const locals = items.filter(i => i.directory_meta && i.directory_meta.entry_type === 'local');
-                const localGrid = document.getElementById('local-services-grid');
-                localGrid.innerHTML = shuffle(locals).slice(0, 3).map(item => createCardHtml(item, categories)).join('');
+                // 1. Local Services (Random 3)
+                const locals = allItems.filter(i => i.directory_meta && i.directory_meta.entry_type === 'local');
+                document.getElementById('local-services-grid').innerHTML = shuffle(locals).slice(0, 3).map(item => createCardHtml(item, categories)).join('');
 
-                // 4. Render Business Directory (3 Random + 1 Advert)
-                const businesses = items.filter(i => !i.directory_meta || i.directory_meta.entry_type !== 'local');
-                const businessGrid = document.getElementById('business-directory-grid');
-                
+                // 2. Business Directory (Random 3 + 1 Static Advert)
+                const businesses = allItems.filter(i => !i.directory_meta || i.directory_meta.entry_type !== 'local');
                 const businessCards = shuffle(businesses).slice(0, 3).map(item => createCardHtml(item, categories)).join('');
                 
                 const advertHtml = `
                     <div class="bg-secondary p-8 rounded-[2rem] border border-white/5 shadow-sm flex flex-col h-full text-white relative overflow-hidden group">
                         <div class="relative z-10 h-full flex flex-col">
-                            <span class="bg-primary text-[9px] font-black px-2.5 py-1 rounded-lg uppercase tracking-wider mb-6 inline-block w-fit">Partnership</span>
-                            <h3 class="text-2xl font-bold mb-3 leading-tight">Grow Your Business</h3>
-                            <p class="text-white/60 text-sm font-medium leading-relaxed mb-8">Reach the entire valley. List your business on our community hub today.</p>
+                            <span class="bg-primary text-[9px] font-black px-2.5 py-1 rounded-lg uppercase tracking-wider mb-6 inline-block w-fit">Partner Slot</span>
+                            <h3 class="text-2xl font-bold mb-3 leading-tight">Your Business Here</h3>
+                            <p class="text-white/60 text-sm font-medium leading-relaxed mb-8">Reach the entire valley and support the community.</p>
                             <a href="/contact" class="mt-auto flex items-center gap-2 text-primary font-black uppercase text-[11px] tracking-widest group-hover:gap-4 transition-all">
-                                Get Started <span class="material-symbols-outlined text-xs">arrow_forward</span>
+                                Advertise Now <span class="material-symbols-outlined text-xs">arrow_forward</span>
                             </a>
                         </div>
                         <span class="material-symbols-outlined absolute -right-8 -bottom-8 text-white/5 text-[12rem] rotate-12">campaign</span>
                     </div>`;
 
-                businessGrid.innerHTML = businessCards + advertHtml;
+                document.getElementById('business-directory-grid').innerHTML = businessCards + advertHtml;
 
-            } catch (err) {
-                console.error('Directory Hub Load Error:', err);
-            }
+            } catch (err) { console.error('Directory Hub Error:', err); }
         }
 
         function createCardHtml(item, allCats) {
@@ -196,12 +187,10 @@
                 <a href="${item.link}" class="group bg-white p-8 rounded-[2rem] border border-slate-100 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all flex flex-col h-full relative">
                     <div class="mb-8">
                         <div class="flex items-start justify-between mb-6">
-                            <div class="w-16 h-16 bg-slate-50 rounded-2xl flex items-center justify-center text-primary group-hover:scale-110 transition-transform overflow-hidden shadow-inner">
-                                ${meta.logo 
-                                    ? `<img src="${meta.logo}" class="w-full h-full object-cover" />` 
-                                    : `<span class="material-symbols-outlined text-3xl">store</span>`}
+                            <div class="w-16 h-16 bg-slate-50 rounded-2xl flex items-center justify-center text-primary group-hover:scale-110 transition-transform overflow-hidden">
+                                ${meta.logo ? `<img src="${meta.logo}" class="w-full h-full object-cover" />` : `<span class="material-symbols-outlined text-3xl">store</span>`}
                             </div>
-                            <span class="px-3 py-1 bg-slate-50 text-slate-400 text-[9px] font-bold rounded-full uppercase tracking-widest border border-slate-100 group-hover:bg-primary group-hover:text-white group-hover:border-primary transition-colors">
+                            <span class="px-3 py-1 bg-slate-50 text-slate-400 text-[9px] font-bold rounded-full uppercase tracking-widest border border-slate-100 group-hover:bg-primary group-hover:text-white group-hover:border-primary transition-all">
                                 ${catName}
                             </span>
                         </div>
@@ -209,15 +198,14 @@
                         <p class="text-on-surface-variant text-sm font-medium leading-relaxed line-clamp-2">${meta.headline || ''}</p>
                     </div>
                     <div class="pt-6 border-t border-slate-50 flex items-center justify-between mt-auto">
-                        <span class="text-[9px] font-bold text-slate-400 uppercase tracking-tighter">${meta.foot_note || 'Member'}</span>
+                        <span class="text-[9px] font-bold text-slate-400 uppercase tracking-tighter">${meta.foot_note || 'Verified'}</span>
                         <div class="text-primary text-[10px] font-black flex items-center gap-1 uppercase">
-                            Details <span class="material-symbols-outlined text-xs">arrow_forward</span>
+                            View <span class="material-symbols-outlined text-xs">arrow_forward</span>
                         </div>
                     </div>
                 </a>`;
         }
 
-        // Shared Logic for Header/Footer/Weather/Notices
         async function loadSharedComponents() {
             try {
                 const [h, f] = await Promise.all([fetch(`${API_BASE}/noddfa/v1/header`), fetch(`${API_BASE}/noddfa/v1/footer`)]);
@@ -247,7 +235,7 @@
                 const data = await res.json();
                 if (data.current_weather) {
                     document.getElementById('weather-temp').innerText = `${Math.round(data.current_weather.temperature)}°C`;
-                    document.getElementById('weather-desc').innerText = "Current local conditions.";
+                    document.getElementById('weather-desc').innerText = "Current conditions in Glyncorrwg.";
                 }
             } catch (e) {}
         }
