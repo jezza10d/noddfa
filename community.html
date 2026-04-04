@@ -107,16 +107,15 @@
                                 <div class="mb-8">
                                     <div class="flex items-center justify-between mb-6">
                                         <h2 class="text-3xl font-headline font-bold text-secondary">Local services</h2>
-                                        <a href="https://glyncorrwg.wales/community/directory" class="flex items-center gap-2 text-primary font-bold text-sm hover:underline">
+                                        <a href="/community/directory" class="flex items-center gap-2 text-primary font-bold text-sm hover:underline">
                                             View all Services <span class="material-symbols-outlined text-sm">arrow_forward</span>
                                         </a>
                                     </div>
                                     <div id="local-services-pills" class="flex items-center gap-3">
-                                        <button class="bg-primary text-white px-6 py-2 rounded-full text-sm font-bold shadow-md">All Services</button>
-                                    </div>
+                                        </div>
                                 </div>
                                 <div id="local-services-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                                    <div class="py-10 text-center text-slate-400 italic col-span-full">Loading local services...</div>
+                                    <div class="py-10 text-center text-slate-400 italic col-span-full">Loading services...</div>
                                 </div>
                             </section>
                         </div>
@@ -153,19 +152,6 @@
                                     </div>
                                 </div>
                             </div>
-
-                            <div class="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm">
-                                <h4 class="text-lg font-bold text-secondary mb-4">Bin collection days</h4>
-                                <div class="flex items-center gap-4">
-                                    <div class="w-12 h-12 bg-slate-100 rounded-xl flex items-center justify-center text-secondary">
-                                        <span class="material-symbols-outlined text-2xl">delete</span>
-                                    </div>
-                                    <div>
-                                        <div class="font-bold text-sm text-secondary">Next: Monday</div>
-                                        <div class="text-[10px] text-primary font-black uppercase tracking-tight">Recycling & food waste</div>
-                                    </div>
-                                </div>
-                            </div>
                         </aside>
                     </div>
 
@@ -173,13 +159,12 @@
                         <div class="mb-10">
                             <div class="flex items-center justify-between mb-6">
                                 <h2 class="text-3xl font-headline font-bold text-secondary">Business directory</h2>
-                                <a href="https://glyncorrwg.wales/community/directory" class="flex items-center gap-2 text-primary font-bold text-sm hover:underline">
+                                <a href="/community/directory" class="flex items-center gap-2 text-primary font-bold text-sm hover:underline">
                                     View all Directory <span class="material-symbols-outlined text-sm">arrow_forward</span>
                                 </a>
                             </div>
                             <div id="business-directory-pills" class="flex items-center gap-3">
-                                <button class="bg-primary text-white px-6 py-2 rounded-full text-sm font-bold shadow-md">All Businesses</button>
-                            </div>
+                                </div>
                         </div>
                         <div id="business-directory-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
                             <div class="py-10 text-center text-slate-400 italic col-span-full">Loading directory...</div>
@@ -220,32 +205,36 @@
             } catch (e) { console.error(e); }
         }
 
-        // DIRECTORY UPDATES (LOCAL SERVICES & BUSINESS DIRECTORY)
+        // DIRECTORY LOGIC
         async function loadDirectory() {
             try {
                 const res = await fetch(`${API_BASE}/noddfa/v1/directory`);
                 const data = await res.json();
                 
-                // 1. Local Services Logic
+                // Process Local Services
                 const localItems = data.items.filter(i => i.is_local_service);
-                renderGrid(document.getElementById('local-services-grid'), localItems.slice(0,3));
+                renderGrid(document.getElementById('local-services-grid'), localItems.slice(0, 3));
                 renderPills(document.getElementById('local-services-pills'), data.categories, localItems, true);
 
-                // 2. Business Directory Logic
+                // Process Business Directory
                 const businessItems = data.items.filter(i => !i.is_local_service);
-                renderGrid(document.getElementById('business-directory-grid'), businessItems.slice(0,4));
+                renderGrid(document.getElementById('business-directory-grid'), businessItems.slice(0, 4));
                 renderPills(document.getElementById('business-directory-pills'), data.categories, businessItems, false);
             } catch (err) { console.error(err); }
         }
 
-        function renderPills(container, categories, items, isLocal) {
+        function renderPills(container, allCats, items, isLocal) {
             const usedIds = [...new Set(items.flatMap(i => i.category_ids))];
-            const activeCats = categories.filter(c => usedIds.includes(c.id));
+            const activeCats = allCats.filter(c => usedIds.includes(c.id));
             container.innerHTML = `<button class="bg-primary text-white px-6 py-2 rounded-full text-sm font-bold shadow-md">All</button>` +
                 activeCats.map(cat => `<button onclick="window.location.href='/community/directory?cat=${cat.id}${isLocal?'&local=true':''}'" class="bg-white border border-slate-200 text-slate-600 px-6 py-2 rounded-full text-sm font-bold hover:bg-slate-50 transition-colors">${cat.name}</button>`).join('');
         }
 
         function renderGrid(container, items) {
+            if (!items.length) {
+                container.innerHTML = `<div class="py-10 text-center text-slate-400 italic col-span-full">No listings found.</div>`;
+                return;
+            }
             container.innerHTML = items.map(item => `
                 <a href="${item.url}" class="group bg-white p-8 rounded-[2rem] border border-slate-100 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all flex flex-col h-full relative">
                     ${item.is_sponsored ? '<span class="absolute top-6 right-6 bg-primary text-white text-[8px] font-black px-2 py-0.5 rounded uppercase tracking-tighter">Sponsored</span>' : ''}
@@ -263,7 +252,7 @@
                 </a>`).join('');
         }
 
-        // REMAINING FEEDS (PRESERVED)
+        // REMAINING FEEDS
         async function loadLiveNotices() {
             try {
                 const res = await fetch(`${API_BASE}/wp/v2/notices?per_page=3&_embed`);
