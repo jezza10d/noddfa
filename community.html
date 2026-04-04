@@ -490,16 +490,19 @@
                     const date = new Date(notice.date).toLocaleDateString('en-GB', { day: 'numeric', month: 'short' });
                     const cleanContent = notice.content.rendered.replace(/<[^>]*>?/gm, '').trim();
                     const snippet = cleanContent.split(/\s+/).slice(0, 20).join(' ') + '...';
-                    const img = notice._embedded?.['wp:featuredmedia']?.[0]?.source_url || 'https://images.unsplash.com/photo-1501785888041-af3ef285b470?q=80&w=1000';
+                    const featuredMedia = notice._embedded?.['wp:featuredmedia']?.[0]?.source_url;
                     const url = `${NOTICEBOARD_URL}/#notice-${notice.id}`;
+
+                    // Check for image to apply conditional layout
+                    const hasImage = !!featuredMedia;
+                    const imageHtml = hasImage ? `<div class="md:w-1/3 h-48 md:h-auto"><img src="${featuredMedia}" class="w-full h-full object-cover"></div>` : '';
+                    const contentWidthClass = hasImage ? 'md:w-2/3' : 'w-full';
 
                     if (index === 0) {
                         html += `
                             <div onclick="window.location.href='${url}'" class="cursor-pointer bg-white border border-outline rounded-2xl shadow-sm overflow-hidden flex flex-col md:flex-row mb-6 hover:shadow-md transition-shadow">
-                                <div class="md:w-1/3 h-48 md:h-auto">
-                                    <img src="${img}" class="w-full h-full object-cover">
-                                </div>
-                                <div class="p-8 md:w-2/3">
+                                ${imageHtml}
+                                <div class="p-8 ${contentWidthClass}">
                                     <div class="flex justify-between items-start mb-4">
                                         <span class="bg-primary text-white text-[10px] font-black px-3 py-1 rounded-full uppercase">Featured spotlight</span>
                                         <span class="text-xs text-slate-400 font-medium">${date}</span>
@@ -512,12 +515,15 @@
                             <div class="space-y-4">`;
                     } else {
                         html += `
-                            <div onclick="window.location.href='${url}'" class="cursor-pointer bg-surface border border-outline p-8 rounded-xl shadow-sm relative hover:border-primary/50 transition-all">
-                                <div class="flex justify-between items-start mb-2">
-                                    <h4 class="font-bold text-lg text-secondary">${notice.title.rendered}</h4>
-                                    <span class="text-xs text-slate-400 font-medium">${date}</span>
+                            <div onclick="window.location.href='${url}'" class="cursor-pointer bg-surface border border-outline rounded-xl shadow-sm overflow-hidden flex flex-col md:flex-row hover:border-primary/50 transition-all">
+                                ${imageHtml}
+                                <div class="p-8 ${contentWidthClass}">
+                                    <div class="flex justify-between items-start mb-2">
+                                        <h4 class="font-bold text-lg text-secondary">${notice.title.rendered}</h4>
+                                        <span class="text-xs text-slate-400 font-medium">${date}</span>
+                                    </div>
+                                    <p class="text-on-surface-variant text-sm line-clamp-2">${snippet}</p>
                                 </div>
-                                <p class="text-on-surface-variant text-sm line-clamp-2">${snippet}</p>
                             </div>`;
                     }
                 });
