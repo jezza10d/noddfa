@@ -33,9 +33,33 @@
       }
     </script>
     <style>
-        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; display: inline-block; }
-        .line-clamp-1 { display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; overflow: hidden; }
-        .line-clamp-2 { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+        }
+        .line-clamp-2 {
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;  
+            overflow: hidden;
+        }
+
+        @media (max-width: 768px) {
+            #nav-menu.active-menu {
+                display: flex !important;
+                flex-direction: column !important;
+                gap: 1.5rem !important;
+                padding: 2rem !important;
+                align-items: flex-start !important;
+                position: absolute !important;
+                top: 72px !important;
+                left: 0 !important;
+                width: 100% !important;
+                background: white !important;
+                z-index: 50 !important;
+                box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            }
+        }
     </style>
 </head>
 <body class="bg-background font-body text-on-background">
@@ -61,24 +85,64 @@
                         
                         <div class="lg:col-span-8 space-y-16">
                             <section>
-                                <div class="flex items-center justify-between mb-8">
-                                    <h2 class="text-3xl font-headline font-bold text-secondary">Noticeboard</h2>
-                                    <a href="/community/noticeboard" class="flex items-center gap-2 text-primary font-bold text-sm hover:underline">
-                                        View all posts <span class="material-symbols-outlined text-sm">arrow_forward</span>
-                                    </a>
+                                <div class="mb-8">
+                                    <div class="flex items-center justify-between mb-6">
+                                        <h2 class="text-3xl font-headline font-bold text-secondary">Noticeboard</h2>
+                                        <a href="https://glyncorrwg.wales/community/noticeboard" class="flex items-center gap-2 text-primary font-bold text-sm hover:underline">
+                                            View all posts <span class="material-symbols-outlined text-sm">arrow_forward</span>
+                                        </a>
+                                    </div>
+                                    <div class="flex items-center gap-3">
+                                        <button class="bg-primary text-white px-6 py-2 rounded-full text-sm font-bold shadow-md">All Stories</button>
+                                        <button class="bg-white border border-slate-200 text-slate-600 px-6 py-2 rounded-full text-sm font-bold hover:bg-slate-50 transition-colors">Uncategorized</button>
+                                    </div>
                                 </div>
-                                <div id="notices-feed-container" class="space-y-6"></div>
+
+                                <div id="notices-feed-container" class="space-y-6">
+                                    <div class="py-10 text-center text-slate-400 italic">Fetching latest notices...</div>
+                                </div>
                             </section>
 
                             <section>
-                                <div class="flex items-center justify-between mb-8">
-                                    <h2 class="text-3xl font-headline font-bold text-secondary">Local services</h2>
-                                    <a href="/community/directory?local=true" class="flex items-center gap-2 text-primary font-bold text-sm hover:underline">
-                                        View all Services <span class="material-symbols-outlined text-sm">arrow_forward</span>
-                                    </a>
+                                <div class="mb-8">
+                                    <div class="flex items-center justify-between mb-6">
+                                        <h2 class="text-3xl font-headline font-bold text-secondary">Local services</h2>
+                                        <a href="https://glyncorrwg.wales/community/directory" class="flex items-center gap-2 text-primary font-bold text-sm hover:underline">
+                                            View all Services <span class="material-symbols-outlined text-sm">arrow_forward</span>
+                                        </a>
+                                    </div>
+                                    <div class="flex items-center gap-3">
+                                        <button class="bg-primary text-white px-6 py-2 rounded-full text-sm font-bold shadow-md">All Services</button>
+                                        <button class="bg-white border border-slate-200 text-slate-600 px-6 py-2 rounded-full text-sm font-bold hover:bg-slate-50 transition-colors">Health</button>
+                                        <button class="bg-white border border-slate-200 text-slate-600 px-6 py-2 rounded-full text-sm font-bold hover:bg-slate-50 transition-colors">Education</button>
+                                        <button class="bg-white border border-slate-200 text-slate-600 px-6 py-2 rounded-full text-sm font-bold hover:bg-slate-50 transition-colors">Public</button>
+                                    </div>
                                 </div>
-                                <div id="local-services-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                                    <div class="py-10 text-center text-slate-400 italic col-span-full">Loading services...</div>
+                                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                                    <div class="bg-surface border border-outline p-6 rounded-xl shadow-sm hover:border-primary transition-all">
+                                        <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center text-primary mb-4">
+                                            <span class="material-symbols-outlined text-2xl">medical_services</span>
+                                        </div>
+                                        <h3 class="text-lg font-bold mb-2">Doctors</h3>
+                                        <p class="text-on-surface-variant text-xs mb-4">Health Centre hours and booking info.</p>
+                                        <span class="text-primary text-[10px] font-black flex items-center gap-2 uppercase">View info <span class="material-symbols-outlined text-xs">arrow_forward</span></span>
+                                    </div>
+                                    <div class="bg-surface border border-outline p-6 rounded-xl shadow-sm hover:border-primary transition-all">
+                                        <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center text-primary mb-4">
+                                            <span class="material-symbols-outlined text-2xl">school</span>
+                                        </div>
+                                        <h3 class="text-lg font-bold mb-2">Primary School</h3>
+                                        <p class="text-on-surface-variant text-xs mb-4">Term dates and local school news.</p>
+                                        <span class="text-primary text-[10px] font-black flex items-center gap-2 uppercase">Learn more <span class="material-symbols-outlined text-xs">arrow_forward</span></span>
+                                    </div>
+                                    <div class="bg-surface border border-outline p-6 rounded-xl shadow-sm hover:border-primary transition-all">
+                                        <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center text-primary mb-4">
+                                            <span class="material-symbols-outlined text-2xl">local_post_office</span>
+                                        </div>
+                                        <h3 class="text-lg font-bold mb-2">Post Office</h3>
+                                        <p class="text-on-surface-variant text-xs mb-4">Located in the village shop. Collection times.</p>
+                                        <span class="text-primary text-[10px] font-black flex items-center gap-2 uppercase">Details <span class="material-symbols-outlined text-xs">arrow_forward</span></span>
+                                    </div>
                                 </div>
                             </section>
                         </div>
@@ -93,27 +157,72 @@
                                         <div class="text-xs text-slate-500 font-medium">Glyncorrwg, Wales</div>
                                     </div>
                                 </div>
-                                <p id="weather-desc" class="text-sm text-on-surface-variant leading-relaxed">Loading weather...</p>
+                                <p id="weather-desc" class="text-sm text-on-surface-variant leading-relaxed">
+                                    Loading live forecast...
+                                </p>
                             </div>
 
                             <div class="bg-white border border-slate-200 rounded-2xl p-8 shadow-sm">
                                 <h4 class="text-xl font-bold text-secondary mb-8 flex items-center gap-3">
-                                    <span class="material-symbols-outlined text-2xl">departure_board</span> Transport
+                                    <span class="material-symbols-outlined text-2xl">departure_board</span>
+                                    Transport
                                 </h4>
-                                <div id="bus-list" class="space-y-6"></div>
+                                
+                                <div class="space-y-10">
+                                    <div>
+                                        <h5 class="text-[12px] font-black text-slate-500 tracking-widest mb-6">Buses</h5>
+                                        <div id="bus-list" class="space-y-4">
+                                            <div class="text-xs text-slate-400 italic">Checking buses...</div>
+                                        </div>
+                                    </div>
+
+                                    <div>
+                                        <h5 class="text-[12px] font-black text-slate-500 tracking-widest mb-6">Maesteg station</h5>
+                                        <div id="maesteg-trains-list" class="space-y-4">
+                                            <div class="text-xs text-slate-400 italic">Checking trains...</div>
+                                        </div>
+                                    </div>
+
+                                    <div>
+                                        <h5 class="text-[12px] font-black text-slate-500 tracking-widest mb-6">Port talbot parkway</h5>
+                                        <div id="pta-trains-list" class="space-y-4">
+                                            <div class="text-xs text-slate-400 italic">Checking trains...</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm">
+                                <h4 class="text-lg font-bold text-secondary mb-4">Bin collection days</h4>
+                                <div class="flex items-center gap-4">
+                                    <div class="w-12 h-12 bg-slate-100 rounded-xl flex items-center justify-center text-secondary">
+                                        <span class="material-symbols-outlined text-2xl">delete</span>
+                                    </div>
+                                    <div>
+                                        <div class="font-bold text-sm text-secondary">Next: Monday</div>
+                                        <div class="text-[10px] text-primary font-black uppercase tracking-tight">Recycling & food waste</div>
+                                    </div>
+                                </div>
                             </div>
                         </aside>
                     </div>
 
                     <section class="mt-24">
-                        <div class="flex items-center justify-between mb-10">
-                            <h2 class="text-3xl font-headline font-bold text-secondary">Business directory</h2>
-                            <a href="/community/directory" class="flex items-center gap-2 text-primary font-bold text-sm hover:underline">
-                                View all Directory <span class="material-symbols-outlined text-sm">arrow_forward</span>
-                            </a>
+                        <div class="mb-10">
+                            <div class="flex items-center justify-between mb-6">
+                                <h2 class="text-3xl font-headline font-bold text-secondary">Business directory</h2>
+                                <a href="https://glyncorrwg.wales/community/directory" class="flex items-center gap-2 text-primary font-bold text-sm hover:underline">
+                                    View all Directory <span class="material-symbols-outlined text-sm">arrow_forward</span>
+                                </a>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <button class="bg-primary text-white px-6 py-2 rounded-full text-sm font-bold shadow-md">All Business</button>
+                                <button class="bg-white border border-slate-200 text-slate-600 px-6 py-2 rounded-full text-sm font-bold hover:bg-slate-50 transition-colors">Retail</button>
+                                <button class="bg-white border border-slate-200 text-slate-600 px-6 py-2 rounded-full text-sm font-bold hover:bg-slate-50 transition-colors">Hospitality</button>
+                            </div>
                         </div>
-                        <div id="business-directory-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                            <div class="py-10 text-center text-slate-400 italic col-span-full">Loading directory...</div>
+                        <div id="business-directory-container" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                            <div class="col-span-full py-10 text-center text-slate-400 italic">Loading directory...</div>
                         </div>
                     </section>
 
@@ -123,12 +232,73 @@
                                 <h2 class="text-slate-900 text-3xl font-bold">What's On</h2>
                                 <p class="text-slate-500 mt-2">Join us for activities and events this week</p>
                             </div>
-                            <a href="/events" class="flex items-center gap-2 text-primary font-bold hover:underline">
-                                View All Events <span class="material-symbols-outlined">arrow_forward</span>
+                            <a href="/events" class="self-start md:self-auto">
+                                <button class="flex items-center gap-2 text-primary font-bold hover:underline">
+                                    View All Events <span class="material-symbols-outlined">arrow_forward</span>
+                                </button>
                             </a>
                         </div>
-                        <div id="events-feed-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"></div>
+                        <div id="events-feed-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                            <div class="col-span-3 py-20 text-center text-slate-500 italic">Checking for upcoming activities...</div>
+                        </div>
                     </section>
+
+                    <section class="mt-24 mb-20">
+                        <div class="bg-surface-container rounded-3xl p-8 md:p-12 overflow-hidden relative border border-outline shadow-sm">
+                            <div class="absolute top-0 right-0 w-64 h-64 bg-primary opacity-5 rounded-full -translate-y-1/2 translate-x-1/2"></div>
+                            <div class="relative z-10 grid md:grid-cols-2 gap-12 items-center">
+                                <div>
+                                    <h2 class="text-3xl font-headline font-bold text-secondary mb-4">Report It Dashboard</h2>
+                                    <p class="text-on-surface-variant mb-8 max-w-md">Help us keep our village safe and clean. Directly report issues to Neath Port Talbot Council via the links below.</p>
+                                    <div class="flex flex-wrap gap-3">
+                                        <a href="https://www.npt.gov.uk/parking-roads-and-travel/problems-with-roads-and-streets/potholes" target="_blank" class="bg-white border border-outline hover:border-primary transition-colors px-5 py-3 rounded-full flex items-center gap-3 font-medium text-secondary shadow-sm">
+                                            <span class="material-symbols-outlined text-error">warning</span> Potholes
+                                        </a>
+                                        <a href="https://www.npt.gov.uk/parking-roads-and-travel/problems-with-roads-and-streets/fly-tipping/" target="_blank" class="bg-white border border-outline hover:border-primary transition-colors px-5 py-3 rounded-full flex items-center gap-3 font-medium text-secondary shadow-sm">
+                                            <span class="material-symbols-outlined text-error">delete_outline</span> Fly-tipping
+                                        </a>
+                                        <a href="https://www.npt.gov.uk/parking-roads-and-travel/problems-with-roads-and-streets/street-lights/" target="_blank" class="bg-white border border-outline hover:border-primary transition-colors px-5 py-3 rounded-full flex items-center gap-3 font-medium text-secondary shadow-sm">
+                                            <span class="material-symbols-outlined text-error">light_off</span> Street Lighting
+                                        </a>
+                                        <a href="https://www.npt.gov.uk/parking-roads-and-travel/problems-with-roads-and-streets/dog-fouling/" target="_blank" class="bg-white border border-outline hover:border-primary transition-colors px-5 py-3 rounded-full flex items-center gap-3 font-medium text-secondary shadow-sm">
+                                            <span class="material-symbols-outlined text-error">pets</span> Dog Fouling
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="grid grid-cols-2 gap-4">
+                                    <div class="bg-white p-6 rounded-2xl shadow-sm flex flex-col items-center text-center">
+                                        <div class="text-4xl font-black text-secondary mb-1">NPT</div>
+                                        <div class="text-xs uppercase tracking-wider text-on-surface-variant font-bold">Council Direct</div>
+                                    </div>
+                                    <div class="bg-white p-6 rounded-2xl shadow-sm flex flex-col items-center text-center">
+                                        <div class="text-4xl font-black text-secondary mb-1">GC</div>
+                                        <div class="text-xs uppercase tracking-wider text-on-surface-variant font-bold">Glyncorrwg Community</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="mt-24 mb-20">
+                        <div class="flex items-center justify-between mb-8">
+                            <div>
+                                <h2 class="text-3xl font-headline font-bold text-secondary">Village Map</h2>
+                                <p class="text-on-surface-variant mt-2">Locate essential services and explore walking routes around Glyncorrwg.</p>
+                            </div>
+                        </div>
+                        <div class="bg-white rounded-3xl p-1 border border-outline shadow-xl overflow-hidden aspect-video relative">
+                            <iframe 
+                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d19835.326880010074!2d-3.6268844!3d51.6617!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x486e41b7d5e4b9f3%3A0x7d6f5f3e5f3e5f3e!2sGlyncorrwg%2C%20Port%20Talbot%20SA13%203AB!5e0!3m2!1sen!2suk!4v1620000000000!5m2!1sen!2suk" 
+                                width="100%" 
+                                height="100%" 
+                                style="border:0; border-radius: 1.5rem;" 
+                                allowfullscreen="" 
+                                loading="lazy" 
+                                referrerpolicy="no-referrer-when-downgrade">
+                            </iframe>
+                        </div>
+                    </section>
+
                 </div>
             </main>
 
@@ -137,132 +307,317 @@
     </div>
 
     <script>
-        // API Base pointed to the specific WordPress domain
         const API_BASE = 'https://noddfa-j3nkslkrxc.live-website.com/wp-json';
 
         async function loadSharedComponents() {
             try {
-                const [h, f] = await Promise.all([
-                    fetch(`${API_BASE}/noddfa/v1/header`),
-                    fetch(`${API_BASE}/noddfa/v1/footer`)
-                ]);
-                if (h.ok) document.getElementById('header-placeholder').innerHTML = (await h.json()).html;
-                if (f.ok) document.getElementById('footer-placeholder').innerHTML = (await f.json()).html;
-            } catch (e) { console.error(e); }
-        }
+                const headerResponse = await fetch(`${API_BASE}/noddfa/v1/header?v=${Date.now()}`);
+                if (headerResponse.ok) {
+                    const data = await headerResponse.json();
+                    document.getElementById('header-placeholder').innerHTML = data.html;
+                    initMobileMenu(); 
+                    highlightActiveLink();
+                }
 
-        async function loadDirectoryFeeds() {
-            const localContainer = document.getElementById('local-services-grid');
-            const businessContainer = document.getElementById('business-directory-grid');
-
-            try {
-                const res = await fetch(`${API_BASE}/noddfa/v1/directory`);
-                const items = await res.json();
-
-                const createCard = (item) => `
-                    <a href="${item.url}" class="group bg-white p-8 rounded-[2rem] border border-slate-100 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all flex flex-col h-full relative">
-                        <div class="mb-8">
-                            <div class="w-16 h-16 bg-slate-50 rounded-2xl flex items-center justify-center text-primary mb-6 group-hover:scale-110 transition-transform overflow-hidden">
-                                ${item.logo 
-                                    ? `<img src="${item.logo}" class="w-full h-full object-cover" />` 
-                                    : `<span class="material-symbols-outlined text-3xl">store</span>`}
-                            </div>
-                            <h3 class="text-xl font-bold text-secondary mb-1 leading-tight line-clamp-1">${item.name}</h3>
-                            <p class="text-on-surface-variant text-sm font-medium leading-relaxed line-clamp-2">${item.headline || ''}</p>
-                        </div>
-                        <div class="pt-6 border-t border-slate-50 flex items-center justify-between mt-auto">
-                            <span class="text-[9px] font-bold text-slate-400 uppercase tracking-tighter">${item.footnote || 'Directory'}</span>
-                            <div class="text-primary text-[10px] font-black flex items-center gap-1 uppercase">
-                                View <span class="material-symbols-outlined text-xs">arrow_forward</span>
-                            </div>
-                        </div>
-                    </a>`;
-
-                // Filtering logic applied from page-directory.php
-                const localItems = items.filter(i => i.is_local === true).slice(0, 3);
-                const businessItems = items.filter(i => i.is_local === false).slice(0, 4);
-
-                localContainer.innerHTML = localItems.length ? localItems.map(createCard).join('') : '<p class="italic text-slate-400">No services found.</p>';
-                businessContainer.innerHTML = businessItems.length ? businessItems.map(createCard).join('') : '<p class="italic text-slate-400">No businesses found.</p>';
-
-            } catch (err) {
-                console.error('Directory Fetch Error:', err);
+                const footerResponse = await fetch(`${API_BASE}/noddfa/v1/footer?v=${Date.now()}`);
+                if (footerResponse.ok) {
+                    const data = await footerResponse.json();
+                    document.getElementById('footer-placeholder').innerHTML = data.html;
+                }
+            } catch (error) {
+                console.error("Error loading shared components:", error);
             }
         }
 
-        async function loadLiveNotices() {
-            try {
-                const res = await fetch(`${API_BASE}/wp/v2/notices?per_page=3&_embed`);
-                const notices = await res.json();
-                document.getElementById('notices-feed-container').innerHTML = notices.map(n => `
-                    <div class="bg-white border border-outline rounded-xl p-6 hover:shadow-md transition-all flex justify-between items-center cursor-pointer" onclick="window.location.href='/notices/${n.slug}'">
-                        <div>
-                            <h4 class="font-bold text-lg text-secondary">${n.title.rendered}</h4>
-                            <p class="text-on-surface-variant text-sm line-clamp-1">${n.excerpt.rendered.replace(/<[^>]*>?/gm, '')}</p>
-                        </div>
-                        <span class="text-xs text-slate-400 font-medium ml-4 whitespace-nowrap">${new Date(n.date).toLocaleDateString('en-GB', {day:'numeric', month:'short'})}</span>
-                    </div>`).join('');
-            } catch (e) {}
+        function initMobileMenu() {
+            const toggleBtn = document.getElementById('menu-toggle');
+            const navMenu = document.getElementById('nav-menu');
+            if (toggleBtn && navMenu) {
+                toggleBtn.onclick = (e) => {
+                    e.preventDefault();
+                    navMenu.classList.toggle('active-menu');
+                    navMenu.classList.toggle('hidden');
+                };
+            }
         }
 
-        async function loadLiveEvents() {
+        function highlightActiveLink() {
+            const currentPath = window.location.pathname;
+            const navLinks = document.querySelectorAll('.nav-link');
+            navLinks.forEach(link => {
+                const href = link.getAttribute('href');
+                if (currentPath.includes('community') && href && href.includes('community')) {
+                    link.classList.add('text-primary', 'font-semibold', 'border-b-2', 'border-primary');
+                }
+            });
+        }
+
+        async function fetchTrainStation(code, containerId) {
+            const container = document.getElementById(containerId);
             try {
-                const res = await fetch(`${API_BASE}/noddfa/v1/events`);
+                const res = await fetch(`${API_BASE}/noddfa/v1/transport/train/${code}`);
                 const data = await res.json();
-                document.getElementById('events-feed-container').innerHTML = data.slice(0, 3).map(event => `
-                    <div class="bg-white rounded-3xl border border-slate-100 shadow-sm overflow-hidden flex flex-col group hover:shadow-xl transition-all cursor-pointer" onclick="window.location.href='${event.url}'">
-                        <div class="h-48 overflow-hidden"><img src="${event.image}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"></div>
-                        <div class="p-8 flex-1 flex flex-col">
-                            <h3 class="text-xl font-bold text-secondary mb-4 line-clamp-1">${event.title}</h3>
-                            <div class="flex items-center gap-2 text-primary text-sm font-bold mb-4">
-                                <span class="material-symbols-outlined text-base">calendar_today</span>
-                                <span>${event.event_date} at ${event.event_start_time}</span>
+                
+                if (data.departures && data.departures.length > 0) {
+                    container.innerHTML = data.departures.slice(0, 2).map(train => `
+                        <div class="flex items-start justify-between group">
+                            <div class="flex items-center gap-3 mt-1">
+                                <span class="material-symbols-outlined text-primary text-sm">train</span>
+                                <span class="text-sm font-bold text-secondary truncate max-w-[120px] text-left">${train.destination}</span>
                             </div>
-                            <p class="text-slate-600 text-sm mb-6 line-clamp-2">${event.headline}</p>
-                            <div class="mt-auto">
-                                <div class="w-full bg-primary text-white font-bold py-3 rounded-lg flex items-center justify-center gap-2">More Info <span class="material-symbols-outlined text-sm">arrow_forward</span></div>
+                            <div class="flex flex-col items-end">
+                                <div class="text-sm font-black bg-slate-100/50 px-3 py-1 rounded-lg tabular-nums w-14 text-center">${train.scheduled}</div>
+                                <div class="text-[9px] font-black ${train.expected === 'On time' ? 'text-green-600' : 'text-primary'} uppercase tracking-widest mt-0 text-right w-full">${train.expected || 'Scheduled'}</div>
                             </div>
                         </div>
-                    </div>`).join('');
-            } catch (e) {}
+                    `).join('');
+                } else {
+                    container.innerHTML = `<div class="text-xs text-slate-400 italic">No services scheduled.</div>`;
+                }
+            } catch (e) { 
+                container.innerHTML = `<div class="text-xs text-slate-400 italic">Data unavailable.</div>`; 
+            }
+        }
+
+        async function fetchLiveBuses() {
+            const container = document.getElementById('bus-list');
+            const stopId = '5820AWG60316'; // Glyncorrwg Stop
+            try {
+                const res = await fetch(`${API_BASE}/noddfa/v1/transport/bus/${stopId}`);
+                const data = await res.json();
+                
+                if (data.departures && data.departures.length > 0) {
+                    container.innerHTML = data.departures.slice(0, 2).map(bus => {
+                        const timeOnly = bus.scheduled && bus.scheduled.includes('T') 
+                            ? bus.scheduled.split('T')[1].substring(0, 5) 
+                            : (bus.scheduled || '--:--');
+        
+                        const displayStatus = bus.status ? bus.status.replace('_', ' ') : 'Scheduled';
+                
+                        return `
+                            <div class="flex items-start justify-between">
+                                <div class="flex items-center gap-3 mt-1">
+                                    <span class="bg-primary text-white text-[10px] font-black px-2 py-1 rounded shadow-sm">${bus.line || 'Bus'}</span>
+                                    <span class="text-sm font-bold text-secondary truncate max-w-[120px] text-left">${bus.destination || 'Service'}</span>
+                                </div>
+                                <div class="flex flex-col items-end">
+                                    <div class="text-sm font-black bg-slate-100/50 px-3 py-1 rounded-lg tabular-nums w-14 text-center">${timeOnly}</div>
+                                    <div class="text-[9px] font-black text-primary uppercase tracking-widest mt-0 text-right w-full">${displayStatus}</div>
+                                </div>
+                            </div>
+                        `;
+                    }).join('');
+                } else {
+                    container.innerHTML = `<div class="text-xs text-slate-400 italic">No buses scheduled.</div>`;
+                }
+            } catch (e) { 
+                console.error("Bus Fetch Error:", e);
+                container.innerHTML = `<div class="text-xs text-slate-400 italic">Data unavailable.</div>`; 
+            }
+        }
+
+        async function loadLiveTransport() {
+            fetchTrainStation('MST', 'maesteg-trains-list'); 
+            fetchTrainStation('PTA', 'pta-trains-list');     
+            fetchLiveBuses();
         }
 
         async function loadLiveWeather() {
             try {
-                const res = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=51.6617&longitude=-3.6122&current_weather=true`);
+                const lat = 51.6617, lon = -3.6122;
+                const res = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current_weather=true`);
                 const data = await res.json();
                 if (data.current_weather) {
-                    document.getElementById('weather-temp').innerText = `${Math.round(data.current_weather.temperature)}°C`;
-                    document.getElementById('weather-desc').innerText = "Current conditions in Glyncorrwg.";
+                    const temp = Math.round(data.current_weather.temperature);
+                    const code = data.current_weather.weathercode;
+                    document.getElementById('weather-temp').innerText = `${temp}°C`;
+                    let desc = "fair conditions", icon = "sunny";
+                    if (code >= 1 && code <= 3) { desc = "partly cloudy skies"; icon = "cloud"; }
+                    else if (code >= 51) { desc = "light rain likely"; icon = "rainy"; }
+                    document.getElementById('weather-desc').innerText = `It is currently ${temp}°C with ${desc} in Glyncorrwg.`;
+                    document.getElementById('weather-icon').innerText = icon;
                 }
-            } catch (e) {}
+            } catch (e) { document.getElementById('weather-desc').innerText = "Forecast temporarily unavailable."; }
         }
 
-        async function loadLiveTransport() {
+        async function loadLiveNotices() {
+            const container = document.getElementById('notices-feed-container');
+            const NOTICEBOARD_URL = 'https://glyncorrwg.wales/community/noticeboard';
+            
             try {
-                const bRes = await fetch(`${API_BASE}/noddfa/v1/transport/buses`);
-                const bData = await bRes.json();
-                document.getElementById('bus-list').innerHTML = bData.slice(0, 3).map(b => `
-                    <div class="flex items-center justify-between">
-                        <div class="flex items-center gap-3">
-                            <div class="w-8 h-8 bg-primary/10 rounded-lg flex items-center justify-center text-primary font-bold text-[10px]">${b.service_number}</div>
-                            <div>
-                                <div class="text-[11px] font-bold text-secondary">${b.destination}</div>
-                                <div class="text-[9px] text-slate-400 font-medium">via ${b.via}</div>
+                const res = await fetch(`${API_BASE}/wp/v2/notices?per_page=3&_embed`);
+                const notices = await res.json();
+
+                if (!notices || notices.length === 0) {
+                    container.innerHTML = `<div class="py-10 text-center text-slate-400 italic">No recent notices to show.</div>`;
+                    return;
+                }
+
+                let html = '';
+                notices.forEach((notice, index) => {
+                    const date = new Date(notice.date).toLocaleDateString('en-GB', { day: 'numeric', month: 'short' });
+                    const cleanContent = notice.content.rendered.replace(/<[^>]*>?/gm, '').trim();
+                    const snippet = cleanContent.split(/\s+/).slice(0, 20).join(' ') + '...';
+                    const featuredMedia = notice._embedded?.['wp:featuredmedia']?.[0]?.source_url;
+                    const url = `${NOTICEBOARD_URL}/#notice-${notice.id}`;
+
+                    const hasImage = !!featuredMedia;
+                    const contentWidthClass = hasImage ? 'md:w-2/3' : 'w-full';
+
+                    if (index === 0) {
+                        const imageHtml = hasImage ? `<div class="md:w-1/3 h-full"><img src="${featuredMedia}" class="w-full h-full object-cover"></div>` : '';
+                        html += `
+                            <div onclick="window.location.href='${url}'" class="cursor-pointer bg-white border border-outline rounded-2xl shadow-sm overflow-hidden flex flex-col md:flex-row mb-6 hover:shadow-md transition-shadow h-[200px]">
+                                ${imageHtml}
+                                <div class="p-6 md:p-8 ${contentWidthClass} flex flex-col justify-center">
+                                    <div class="flex justify-between items-start mb-2">
+                                        <span class="bg-primary text-white text-[10px] font-black px-3 py-1 rounded-full uppercase">Featured spotlight</span>
+                                        <span class="text-xs text-slate-400 font-medium">${date}</span>
+                                    </div>
+                                    <h4 class="font-bold text-xl mb-2">${notice.title.rendered}</h4>
+                                    <p class="text-on-surface-variant text-sm line-clamp-2 mb-4">${snippet}</p>
+                                    <div class="text-primary font-bold text-xs flex items-center gap-2">Read details <span class="material-symbols-outlined text-sm">arrow_forward</span></div>
+                                </div>
                             </div>
+                            <div class="space-y-4">`;
+                    } else {
+                        const imageHtml = hasImage ? `<div class="md:w-1/4 h-full"><img src="${featuredMedia}" class="w-full h-full object-cover"></div>` : '';
+                        const textWidthClass = hasImage ? 'md:w-3/4' : 'w-full';
+                        html += `
+                            <div onclick="window.location.href='${url}'" class="cursor-pointer bg-surface border border-outline rounded-xl shadow-sm overflow-hidden flex flex-col md:flex-row hover:border-primary/50 transition-all h-[140px]">
+                                ${imageHtml}
+                                <div class="p-6 ${textWidthClass} flex flex-col justify-center">
+                                    <div class="flex justify-between items-start mb-1">
+                                        <h4 class="font-bold text-lg text-secondary truncate">${notice.title.rendered}</h4>
+                                        <span class="text-xs text-slate-400 font-medium">${date}</span>
+                                    </div>
+                                    <p class="text-on-surface-variant text-sm line-clamp-2">${snippet}</p>
+                                </div>
+                            </div>`;
+                    }
+                });
+                if (notices.length > 0) html += `</div>`;
+                container.innerHTML = html;
+            } catch (err) {
+                container.innerHTML = `<div class="py-10 text-center text-slate-400 italic">Noticeboard feed offline.</div>`;
+            }
+        }
+
+        async function loadLiveEvents() {
+            const container = document.getElementById('events-feed-container');
+            try {
+                const response = await fetch(`${API_BASE}/noddfa/v1/portal-events?scope=future&v=${Date.now()}`);
+                if (!response.ok) throw new Error(`HTTP Error: ${response.status}`);
+                const events = await response.json();
+                
+                if (!events || events.length === 0) {
+                    container.innerHTML = `<div class="col-span-3 py-10 text-center text-slate-500 italic">No upcoming public activities scheduled.</div>`;
+                    return;
+                }
+        
+                const publicEvents = events.filter(ev => ev.is_private !== true).slice(0, 3);
+        
+                container.innerHTML = publicEvents.map(event => {
+                    const img = event.banner_url;
+                    const d = new Date(event.event_date);
+                    const eventDateStr = d.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
+                    const cleanText = (event.content || "").replace(/<[^>]*>?/gm, '').trim();
+                    const shortDesc = cleanText.split(/\s+/).slice(0, 18).join(' ') + '...';
+                    const eventLink = `${event.link}?event_date=${event.event_date}`;
+        
+                    return `
+                        <div onclick="window.location.href='${eventLink}'" class="cursor-pointer bg-white dark:bg-slate-800 border border-primary/5 rounded-xl overflow-hidden hover:shadow-lg transition-shadow flex flex-col h-full">
+                            <div class="h-48 bg-cover bg-center" style="background-image: url('${img}');"></div>
+                            <div class="p-6 flex flex-col flex-1">
+                                <h3 class="text-xl font-bold mb-2 text-slate-900 dark:text-white">${event.title}</h3>
+                                <div class="flex items-center gap-2 text-primary text-sm font-bold mb-4">
+                                    <span class="material-symbols-outlined text-base">calendar_today</span>
+                                    <span>${eventDateStr} at ${event.event_start_time}</span>
+                                </div>
+                                <p class="text-slate-600 dark:text-slate-400 text-sm mb-6 line-clamp-2">${shortDesc}</p>
+                                <div class="mt-auto">
+                                    <div class="w-full bg-primary text-white font-bold py-3 rounded-lg flex items-center justify-center gap-2 hover:bg-primary/90 transition-colors">
+                                        More Info <span class="material-symbols-outlined text-sm">arrow_forward</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>`;
+                }).join('');
+            } catch (err) { 
+                container.innerHTML = `<div class="col-span-3 py-10 text-center text-slate-500 italic">Unable to load live activities.</div>`;
+            }
+        }
+
+        async function loadLiveDirectory() {
+            const container = document.getElementById('business-directory-container');
+            try {
+                const res = await fetch(`${API_BASE}/wp/v2/directory?_embed&per_page=4`);
+                const wpData = await res.json();
+                
+                // Filter: We ONLY want items where entry_type is NOT 'local_service'
+                const businesses = wpData.filter(item => {
+                    const meta = item.directory_meta || {};
+                    return meta.entry_type !== 'local_service';
+                }).slice(0, 3); // Take top 3 to leave room for the "Your Business" CTA
+
+                if (businesses.length === 0) {
+                    container.innerHTML = `<div class="col-span-full text-center text-slate-400 py-10">No businesses listed yet.</div>`;
+                    return;
+                }
+
+                let html = businesses.map(item => {
+                    const meta = item.directory_meta || {};
+                    const logoUrl = (typeof meta.logo === 'string' && meta.logo.startsWith('http')) ? meta.logo : null;
+                    
+                    // Clean up the URL to point to the directory subfolder
+                    let url = item.link.replace('/news/', '/');
+                    if (!url.includes('/community/directory/')) url = url.replace('/directory/', '/community/directory/');
+
+                    const visualContent = logoUrl 
+                        ? `<img src="${logoUrl}" class="w-full h-full object-contain" alt="${item.title.rendered}">`
+                        : `<span class="material-symbols-outlined text-2xl">store</span>`;
+
+                    return `
+                        <div onclick="window.location.href='${url}'" class="cursor-pointer bg-surface border border-outline p-6 rounded-xl shadow-sm relative hover:border-primary transition-all flex flex-col h-full">
+                            <div class="w-12 h-12 ${logoUrl ? 'bg-transparent' : 'bg-primary/10'} rounded-full flex items-center justify-center text-primary mb-4 overflow-hidden">
+                                ${visualContent}
+                            </div>
+                            <h3 class="font-bold mb-2 text-secondary line-clamp-1">${item.title.rendered}</h3>
+                            <p class="text-on-surface-variant text-xs mb-4 flex-grow line-clamp-2">${meta.headline || ''}</p>
+                            <span class="text-primary text-[10px] font-black flex items-center gap-2 uppercase mt-auto">
+                                View Details <span class="material-symbols-outlined text-xs">arrow_forward</span>
+                            </span>
                         </div>
-                        <div class="text-[11px] font-black text-primary">${b.expected_time}</div>
-                    </div>`).join('');
-            } catch (e) {}
+                    `;
+                }).join('');
+
+                // Re-append the "Your Business" Enquire card at the end
+                html += `
+                    <div class="bg-slate-50 border border-dashed border-slate-300 p-6 rounded-xl flex flex-col items-center justify-center text-center">
+                        <div class="w-10 h-10 bg-white rounded-full flex items-center justify-center text-slate-300 mb-3 shadow-sm">
+                            <span class="material-symbols-outlined text-xl">add_business</span>
+                        </div>
+                        <h3 class="text-sm font-bold text-slate-500 mb-1">Your business</h3>
+                        <p class="text-[10px] text-slate-400 mb-4 px-2">Advertise here to reach local residents.</p>
+                        <a href="/contact" class="bg-white border border-slate-200 text-slate-600 px-4 py-1.5 rounded-full text-[10px] font-bold hover:bg-slate-100 transition-colors uppercase">Enquire</a>
+                    </div>
+                `;
+
+                container.innerHTML = html;
+            } catch (err) {
+                console.error("Directory Load Error:", err);
+                container.innerHTML = `<div class="col-span-full text-center text-slate-400">Directory currently offline.</div>`;
+            }
         }
 
         document.addEventListener('DOMContentLoaded', () => {
             loadSharedComponents();
-            loadDirectoryFeeds();
             loadLiveNotices();
             loadLiveEvents();
             loadLiveWeather();
             loadLiveTransport();
+            loadLiveDirectory();
+            setInterval(loadLiveTransport, 60000);
         });
     </script>
 </body>
