@@ -351,7 +351,7 @@
 
         async function fetchLiveBuses() {
             const container = document.getElementById('bus-list');
-            const stopId = '5820AWG60316'; // Glyncorrwg Stop
+            const stopId = '5820AWG60316'; 
             try {
                 const res = await fetch(`${API_BASE}/noddfa/v1/transport/bus/${stopId}`);
                 const data = await res.json();
@@ -523,21 +523,16 @@
         let currentLocalFilter = 'all';
 
         async function loadLiveDirectory() {
-            const bizContainer = document.getElementById('business-directory-container');
-            const localContainer = document.getElementById('local-services-container');
             try {
                 const res = await fetch(`${API_BASE}/wp/v2/directory?_embed&per_page=100`);
                 allDirectoryItems = await res.json();
                 
-                // Set up dynamic categories for both sections
                 setupCategoryPills('biz', 'directory-category-pills');
                 setupCategoryPills('local', 'local-services-category-pills');
                 
                 renderGrids();
             } catch (err) {
                 console.error("Directory Load Error:", err);
-                bizContainer.innerHTML = `<div class="col-span-full text-center text-slate-400">Directory offline.</div>`;
-                localContainer.innerHTML = `<div class="col-span-full text-center text-slate-400">Services offline.</div>`;
             }
         }
 
@@ -580,16 +575,19 @@
             const primaryCat = categories.length > 0 ? categories[0].name : 'General';
             const logoUrl = (typeof meta.logo === 'string' && meta.logo.startsWith('http')) ? meta.logo : null;
             
+            // Trim /news from the URL
+            const cleanUrl = item.link.replace('/news', '');
+
             const visualContent = logoUrl 
                 ? `<img src="${logoUrl}" class="w-full h-full object-contain" alt="${item.title.rendered}">`
                 : `<span class="material-symbols-outlined text-3xl">${meta.icon || 'storefront'}</span>`;
 
             return `
-                <a href="${item.link}" class="bg-surface border border-outline p-8 rounded-3xl shadow-sm hover:border-primary hover:shadow-xl transition-all group flex flex-col h-full">
+                <a href="${cleanUrl}" class="bg-surface border border-outline p-8 rounded-3xl shadow-sm hover:border-primary hover:shadow-xl transition-all group flex flex-col h-full">
                     <div class="w-14 h-14 ${logoUrl ? 'bg-transparent' : 'bg-primary/5'} rounded-2xl flex items-center justify-center text-primary mb-4 group-hover:bg-primary group-hover:text-white transition-all overflow-hidden shrink-0">
                         ${visualContent}
                     </div>
-                    <div class="bg-primary/10 text-primary text-[9px] font-black px-3 py-1 rounded-full uppercase self-start mb-4 tracking-widest">${primaryCat}</div>
+                    <div class="bg-primary text-white text-[9px] font-black px-3 py-1 rounded-full uppercase self-start mb-4 tracking-widest">${primaryCat}</div>
                     <div class="mb-6 flex-grow">
                         <h3 class="text-xl font-bold text-secondary mb-1 leading-tight line-clamp-1">${item.title.rendered}</h3>
                         <p class="text-on-surface-variant text-sm font-medium leading-relaxed line-clamp-2">${meta.headline || ''}</p>
