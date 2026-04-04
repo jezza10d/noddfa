@@ -216,7 +216,7 @@
                                 </a>
                             </div>
                             <div id="directory-category-pills" class="flex flex-wrap items-center gap-3">
-                                <button onclick="filterDirectoryByCat('all', this)" class="dir-cat-btn bg-primary text-white px-6 py-2 rounded-full text-sm font-bold shadow-md">All Business</button>
+                                <button onclick="window.location.href='https://glyncorrwg.wales/community/directory'" class="bg-primary text-white px-6 py-2 rounded-full text-sm font-bold shadow-md">All Businesses</button>
                                 <button onclick="filterDirectoryByCat('retail', this)" class="dir-cat-btn bg-white border border-slate-200 text-slate-600 px-6 py-2 rounded-full text-sm font-bold hover:bg-slate-50 transition-colors">Retail</button>
                                 <button onclick="filterDirectoryByCat('hospitality', this)" class="dir-cat-btn bg-white border border-slate-200 text-slate-600 px-6 py-2 rounded-full text-sm font-bold hover:bg-slate-50 transition-colors">Hospitality</button>
                                 <button onclick="filterDirectoryByCat('sports', this)" class="dir-cat-btn bg-white border border-slate-200 text-slate-600 px-6 py-2 rounded-full text-sm font-bold hover:bg-slate-50 transition-colors">Sports</button>
@@ -584,12 +584,17 @@
             const selected = pool.slice(0, 3);
             let html = selected.map(item => {
                 const meta = item.directory_meta || {};
+                const categories = item._embedded?.['wp:term']?.[0] || [];
+                const firstCat = categories[0]?.name || 'Business';
                 const logoUrl = (typeof meta.logo === 'string' && meta.logo.startsWith('http')) ? meta.logo : null;
                 const visualContent = logoUrl 
                     ? `<img src="${logoUrl}" class="w-full h-full object-contain" alt="${item.title.rendered}">`
                     : `<span class="material-symbols-outlined text-3xl">storefront</span>`;
                 return `
-                    <a href="${item.link}" class="bg-surface border border-outline p-8 rounded-3xl shadow-sm hover:border-primary hover:shadow-xl transition-all group flex flex-col h-full">
+                    <a href="${item.link}" class="relative bg-surface border border-outline p-8 rounded-3xl shadow-sm hover:border-primary hover:shadow-xl transition-all group flex flex-col h-full">
+                        <div class="absolute top-6 right-6 bg-slate-100 text-slate-500 text-[9px] font-black px-3 py-1.5 rounded-full uppercase tracking-widest group-hover:bg-primary group-hover:text-white transition-colors">
+                            ${firstCat}
+                        </div>
                         <div class="w-14 h-14 ${logoUrl ? 'bg-transparent' : 'bg-primary/5'} rounded-2xl flex items-center justify-center text-primary mb-6 group-hover:bg-primary group-hover:text-white transition-all overflow-hidden shrink-0">
                             ${visualContent}
                         </div>
