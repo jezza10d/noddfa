@@ -137,6 +137,7 @@
     </div>
 
     <script>
+        // API Base pointed to the specific WordPress domain
         const API_BASE = 'https://noddfa-j3nkslkrxc.live-website.com/wp-json';
 
         async function loadSharedComponents() {
@@ -150,13 +151,11 @@
             } catch (e) { console.error(e); }
         }
 
-        // Logic transferred from page-directory.php
         async function loadDirectoryFeeds() {
             const localContainer = document.getElementById('local-services-grid');
             const businessContainer = document.getElementById('business-directory-grid');
 
             try {
-                // Fetch from the custom endpoint used in your PHP file
                 const res = await fetch(`${API_BASE}/noddfa/v1/directory`);
                 const items = await res.json();
 
@@ -179,19 +178,12 @@
                         </div>
                     </a>`;
 
-                // Logic: Local Services (only is_local: true)
+                // Filtering logic applied from page-directory.php
                 const localItems = items.filter(i => i.is_local === true).slice(0, 3);
-                
-                // Logic: Business Directory (only is_local: false)
                 const businessItems = items.filter(i => i.is_local === false).slice(0, 4);
 
-                localContainer.innerHTML = localItems.length 
-                    ? localItems.map(createCard).join('') 
-                    : '<p class="col-span-full italic text-slate-400 text-center">No local services found.</p>';
-                
-                businessContainer.innerHTML = businessItems.length 
-                    ? businessItems.map(createCard).join('') 
-                    : '<p class="col-span-full italic text-slate-400 text-center">No business listings found.</p>';
+                localContainer.innerHTML = localItems.length ? localItems.map(createCard).join('') : '<p class="italic text-slate-400">No services found.</p>';
+                businessContainer.innerHTML = businessItems.length ? businessItems.map(createCard).join('') : '<p class="italic text-slate-400">No businesses found.</p>';
 
             } catch (err) {
                 console.error('Directory Fetch Error:', err);
