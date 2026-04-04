@@ -111,39 +111,12 @@
                                             View all Services <span class="material-symbols-outlined text-sm">arrow_forward</span>
                                         </a>
                                     </div>
-                                    <div class="flex items-center gap-3">
+                                    <div id="local-services-pills" class="flex items-center gap-3">
                                         <button class="bg-primary text-white px-6 py-2 rounded-full text-sm font-bold shadow-md">All Services</button>
-                                        <button class="bg-white border border-slate-200 text-slate-600 px-6 py-2 rounded-full text-sm font-bold hover:bg-slate-50 transition-colors">Health</button>
-                                        <button class="bg-white border border-slate-200 text-slate-600 px-6 py-2 rounded-full text-sm font-bold hover:bg-slate-50 transition-colors">Education</button>
-                                        <button class="bg-white border border-slate-200 text-slate-600 px-6 py-2 rounded-full text-sm font-bold hover:bg-slate-50 transition-colors">Public</button>
                                     </div>
                                 </div>
-                                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                                    <div class="bg-surface border border-outline p-6 rounded-xl shadow-sm hover:border-primary transition-all">
-                                        <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center text-primary mb-4">
-                                            <span class="material-symbols-outlined text-2xl">medical_services</span>
-                                        </div>
-                                        <h3 class="text-lg font-bold mb-2">Doctors</h3>
-                                        <p class="text-on-surface-variant text-xs mb-4">Health Centre hours and booking info.</p>
-                                        <span class="text-primary text-[10px] font-black flex items-center gap-2 uppercase">View info <span class="material-symbols-outlined text-xs">arrow_forward</span></span>
+                                <div id="local-services-container" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                                     </div>
-                                    <div class="bg-surface border border-outline p-6 rounded-xl shadow-sm hover:border-primary transition-all">
-                                        <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center text-primary mb-4">
-                                            <span class="material-symbols-outlined text-2xl">school</span>
-                                        </div>
-                                        <h3 class="text-lg font-bold mb-2">Primary School</h3>
-                                        <p class="text-on-surface-variant text-xs mb-4">Term dates and local school news.</p>
-                                        <span class="text-primary text-[10px] font-black flex items-center gap-2 uppercase">Learn more <span class="material-symbols-outlined text-xs">arrow_forward</span></span>
-                                    </div>
-                                    <div class="bg-surface border border-outline p-6 rounded-xl shadow-sm hover:border-primary transition-all">
-                                        <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center text-primary mb-4">
-                                            <span class="material-symbols-outlined text-2xl">local_post_office</span>
-                                        </div>
-                                        <h3 class="text-lg font-bold mb-2">Post Office</h3>
-                                        <p class="text-on-surface-variant text-xs mb-4">Located in the village shop. Collection times.</p>
-                                        <span class="text-primary text-[10px] font-black flex items-center gap-2 uppercase">Details <span class="material-symbols-outlined text-xs">arrow_forward</span></span>
-                                    </div>
-                                </div>
                             </section>
                         </div>
 
@@ -212,7 +185,7 @@
                             <div class="flex items-center justify-between mb-6">
                                 <h2 class="text-3xl font-headline font-bold text-secondary">Business directory</h2>
                                 <a href="https://glyncorrwg.wales/community/directory" class="flex items-center gap-2 text-primary font-bold text-sm hover:underline">
-                                    View full Directory <span class="material-symbols-outlined text-sm">arrow_forward</span>
+                                    View all Directory <span class="material-symbols-outlined text-sm">arrow_forward</span>
                                 </a>
                             </div>
                             <div id="directory-category-pills" class="flex flex-wrap items-center gap-3">
@@ -287,7 +260,7 @@
                         </div>
                         <div class="bg-white rounded-3xl p-1 border border-outline shadow-xl overflow-hidden aspect-video relative">
                             <iframe 
-                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d19835.34006126639!2d-3.61!3d51.66!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x486e680a6b579133%3A0x633d7b8786f5c091!2sGlyncorrwg!5e0!3m2!1sen!2suk!4v1715000000000!5m2!1sen!2suk" 
+                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d19830.413725585!2d-3.6263544!3d51.6617199!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x486e68087998b31b%3A0x6e273f55099f6671!2sGlyncorrwg%2C%20Port%20Talbot!5e0!3m2!1sen!2suk!4v1700000000000" 
                                 width="100%" 
                                 height="100%" 
                                 style="border:0; border-radius: 1.5rem;" 
@@ -347,7 +320,7 @@
             });
         }
 
-        // --- Noticeboard & Events Feeds ---
+        // --- Restored Noticeboard ---
         async function loadLiveNotices() {
             const container = document.getElementById('notices-feed-container');
             try {
@@ -384,6 +357,7 @@
             } catch (err) { container.innerHTML = `<div class="py-10 text-center text-slate-400 italic">Feed unavailable.</div>`; }
         }
 
+        // --- Restored Events ---
         async function loadLiveEvents() {
             const container = document.getElementById('events-feed-container');
             try {
@@ -406,7 +380,7 @@
             } catch (err) { container.innerHTML = `<div class="col-span-3 py-10 text-center text-slate-500 italic">Events offline.</div>`; }
         }
 
-        // --- Transport & Weather ---
+        // --- Restored Transport & Weather ---
         async function fetchLiveBuses() {
             const container = document.getElementById('bus-list');
             try {
@@ -449,18 +423,18 @@
             } catch (e) { console.error("Weather error"); }
         }
 
-        // --- Refined Directory Logic ---
+        // --- Business Directory Logic ---
         async function loadLiveDirectory() {
             const container = document.getElementById('business-directory-container');
             const pillContainer = document.getElementById('directory-category-pills');
             try {
-                const res = await fetch(`${API_BASE}/wp/v2/directory?_embed&per_page=50`);
-                const allData = await res.json();
-                const businesses = allData.filter(i => i.directory_meta?.entry_type !== 'local_service');
+                const res = await fetch(`${API_BASE}/wp/v2/directory?_embed&per_page=100`);
+                const allItems = await res.json();
+                const businesses = allItems.filter(i => i.directory_meta?.entry_type !== 'local_service');
                 businesses.sort(() => 0.5 - Math.random());
                 const selected = businesses.slice(0, 3);
-
                 const activeCats = [];
+
                 let html = selected.map(item => {
                     const meta = item.directory_meta || {};
                     const terms = item._embedded?.['wp:term']?.[0] || [];
@@ -496,6 +470,39 @@
             } catch (err) { container.innerHTML = `<div class="col-span-full text-center text-slate-400">Directory offline.</div>`; }
         }
 
+        // --- New Local Services Dynamic Injection ---
+        async function loadLocalServices() {
+            const container = document.getElementById('local-services-container');
+            const pillContainer = document.getElementById('local-services-pills');
+            try {
+                const res = await fetch(`${API_BASE}/wp/v2/directory?_embed&per_page=50`);
+                const allItems = await res.json();
+                const services = allItems.filter(i => i.directory_meta?.entry_type === 'local_service').slice(0, 3);
+                
+                const activeCats = [];
+                container.innerHTML = services.map(item => {
+                    const meta = item.directory_meta || {};
+                    const terms = item._embedded?.['wp:term']?.[0] || [];
+                    const cat = terms[0] || { name: 'Service', slug: 'service' };
+                    if (!activeCats.find(c => c.slug === cat.slug)) activeCats.push(cat);
+
+                    return `
+                        <div onclick="window.location.href='${item.link}'" class="cursor-pointer bg-surface border border-outline p-6 rounded-xl shadow-sm hover:border-primary transition-all">
+                            <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center text-primary mb-4">
+                                <span class="material-symbols-outlined text-2xl">${meta.icon || 'medical_services'}</span>
+                            </div>
+                            <h3 class="text-lg font-bold mb-2">${item.title.rendered}</h3>
+                            <p class="text-on-surface-variant text-xs mb-4 line-clamp-2">${meta.headline || ''}</p>
+                            <span class="text-primary text-[10px] font-black flex items-center gap-2 uppercase">View info <span class="material-symbols-outlined text-xs">arrow_forward</span></span>
+                        </div>`;
+                }).join('');
+
+                pillContainer.innerHTML = `<button onclick="window.location.href='https://glyncorrwg.wales/community/directory?type=local_service'" class="bg-primary text-white px-6 py-2 rounded-full text-sm font-bold shadow-md">All Services</button>` + 
+                    activeCats.map(c => `<button onclick="window.location.href='https://glyncorrwg.wales/community/directory?category=${c.slug}&type=local_service'" class="bg-white border border-slate-200 text-slate-600 px-6 py-2 rounded-full text-sm font-bold hover:bg-slate-50 transition-colors">${c.name}</button>`).join('');
+
+            } catch (err) { container.innerHTML = `<div class="col-span-full text-center text-slate-400">Local services offline.</div>`; }
+        }
+
         // --- Init ---
         document.addEventListener('DOMContentLoaded', () => {
             loadSharedComponents();
@@ -503,6 +510,7 @@
             loadLiveEvents();
             loadLiveWeather();
             loadLiveDirectory();
+            loadLocalServices();
             fetchLiveBuses();
             fetchTrains('MST', 'maesteg-trains-list');
             fetchTrains('PTA', 'pta-trains-list');
