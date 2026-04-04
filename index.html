@@ -164,13 +164,11 @@
         } catch (e) { console.error("Component Loader error", e); }
     }
 
-async function loadLiveEvents() {
+    async function loadLiveEvents() {
         const container = document.getElementById('events-feed-container');
         try {
-            // Fetching from the specific custom endpoint defined in functions.php (Section 22)
             const response = await fetch(`${API_BASE}/noddfa/v1/portal-events?scope=future&v=${Date.now()}`);
             if (!response.ok) throw new Error(`HTTP Error: ${response.status}`);
-            
             const events = await response.json();
             
             if (!events || events.length === 0) {
@@ -178,29 +176,20 @@ async function loadLiveEvents() {
                 return;
             }
 
-            // FILTER: Show only public events (Section 22 provides is_private flag)
-            const publicEvents = events
-                .filter(ev => ev.is_private !== true)
-                .slice(0, 3);
-
-            if (publicEvents.length === 0) {
-                container.innerHTML = `<div class="col-span-3 py-10 text-center text-slate-500 italic">No public events found.</div>`;
-                return;
-            }
+            const publicEvents = events.filter(ev => ev.is_private !== true).slice(0, 3);
 
             container.innerHTML = publicEvents.map(event => {
-                // Use the data structure defined in functions.php Section 22
-                const img = event.banner_url; 
+                const img = event.banner_url;
                 const d = new Date(event.event_date);
                 const eventDateStr = d.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
 
-                // Process content for the snippet
                 const rawText = event.content || "";
                 const cleanText = rawText.replace(/<[^>]*>?/gm, '').trim();
                 const shortDesc = cleanText.split(/\s+/).slice(0, 18).join(' ') + '...';
 
-                // Construct the link to the live domain as handled by the Vercel Domain Fixer (Section 13)
-                const eventLink = `https://glyncorrwg.wales/events/?event_id=${event.id}&event_date=${event.event_date}`;
+                // CORRECTED LINK LOGIC: Use slug-based link + date param
+                // This turns the URL into https://glyncorrwg.wales/events/bingo-night-2?event_date=2026-04-07
+                const eventLink = `${event.link}?event_date=${event.event_date}`;
 
                 return `
                     <div onclick="window.location.href='${eventLink}'" class="cursor-pointer bg-white dark:bg-slate-800 border border-primary/5 rounded-xl overflow-hidden hover:shadow-lg transition-shadow flex flex-col h-full">
@@ -225,7 +214,7 @@ async function loadLiveEvents() {
             container.innerHTML = `<div class="col-span-3 py-10 text-center text-slate-500 italic">Unable to load live activities.</div>`;
         }
     }
-    
+
     async function loadLatestNews() {
         const container = document.getElementById('news-feed-container');
         try {
