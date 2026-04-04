@@ -504,40 +504,57 @@
             } catch (e) { document.getElementById('weather-desc').innerText = "Forecast temporarily unavailable."; }
         }
 
-        async function loadLiveEvents() {
+        async function loadEvents() {
             const container = document.getElementById('events-feed-container');
             try {
-                const response = await fetch(`${API_BASE}/noddfa/v1/portal-events?scope=future&v=${Date.now()}`);
+                // Fetch events (using cache busting)
+                const response = await fetch(`${API_BASE}/noddfa/v1/events?v=${Date.now()}`);
+                if (!response.ok) throw new Error('Failed to fetch events');
                 const events = await response.json();
+        
                 if (!events || events.length === 0) {
-                    container.innerHTML = `<div class="col-span-3 py-10 text-center text-slate-500 italic">No upcoming activities scheduled right now.</div>`;
+                    container.innerHTML = `<div class="col-span-3 py-20 text-center text-slate-500 italic">No upcoming events scheduled at this time.</div>`;
                     return;
                 }
+        
                 container.innerHTML = events.slice(0, 3).map(event => {
-                    const img = event.banner_url || 'https://images.unsplash.com/photo-1517457373958-b7bdd4587205?q=80&w=2069';
-                    const d = new Date(event.event_date);
-                    const eventDateStr = d.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
-                    const eventLink = `https://glyncorrwg.wales/events/?event_id=${event.id}&event_date=${event.event_date}`;
+                    // FIX: Identify the link (handling different possible property names)
+                    const rawLink = event.url || event.link || '#';
+                    
+                    // DECISIVE FIX: Strip the backend domain and prepend the correct public domain
+                    const eventLink = rawLink.split('live-website.com').pop().replace(/^\/?/, 'https://glyncorrwg.wales/');
+        
+                    const eventDate = new Date(event.event_date);
+                    const day = eventDate.getDate();
+                    const month = eventDate.toLocaleString('en-GB', { month: 'short' }).toUpperCase();
+        
                     return `
-                        <div onclick="window.location.href='${eventLink}'" class="cursor-pointer bg-white border border-primary/5 rounded-xl overflow-hidden hover:shadow-lg transition-shadow flex flex-col h-full">
-                            <div class="h-48 bg-cover bg-center" style="background-image: url('${img}');"></div>
-                            <div class="p-6 flex flex-col flex-1">
-                                <h3 class="text-xl font-bold mb-2 text-slate-900">${event.title}</h3>
-                                <div class="flex items-center gap-2 text-primary text-sm font-bold mb-4">
-                                    <span class="material-symbols-outlined text-base">calendar_today</span>
-                                    <span>${eventDateStr} at ${event.event_start_time}</span>
+                        <div onclick="window.location.href='${eventLink}'" class="cursor-pointer group bg-white border border-outline rounded-2xl overflow-hidden hover:shadow-xl transition-all flex flex-col h-full">
+                            <div class="relative h-48 overflow-hidden">
+                                <img src="${event.image}" alt="${event.title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                                <div class="absolute top-4 left-4 bg-white rounded-xl p-2 shadow-lg text-center min-w-[50px]">
+                                    <div class="text-primary font-black text-lg leading-none">${day}</div>
+                                    <div class="text-[10px] font-bold text-slate-500 uppercase tracking-tighter">${month}</div>
                                 </div>
-                                <div class="mt-auto">
-                                    <div class="w-full bg-primary text-white font-bold py-3 rounded-lg flex items-center justify-center gap-2 hover:bg-primary/90 transition-colors">
-                                        More Info <span class="material-symbols-outlined text-sm">arrow_forward</span>
-                                    </div>
+                            </div>
+                            <div class="p-6 flex flex-col flex-1">
+                                <h3 class="font-bold text-xl mb-3 text-secondary group-hover:text-primary transition-colors">${event.title}</h3>
+                                <div class="flex items-center gap-2 text-slate-500 text-xs mb-6 font-medium">
+                                    <span class="material-symbols-outlined text-sm">schedule</span>
+                                    ${event.event_start_time}
+                                </div>
+                                <div class="mt-auto pt-4 border-t border-slate-50 flex items-center justify-between">
+                                    <span class="text-primary font-black text-[10px] uppercase tracking-widest">Book tickets</span>
+                                    <span class="material-symbols-outlined text-primary group-hover:translate-x-1 transition-transform">arrow_forward</span>
                                 </div>
                             </div>
                         </div>`;
                 }).join('');
-            } catch (err) { container.innerHTML = `<div class="col-span-3 py-10 text-center text-slate-500 italic">Unable to load live activities.</div>`; }
+            } catch (err) {
+                console.error("Events Feed Error:", err);
+                container.innerHTML = `<div class="col-span-3 py-20 text-center text-slate-500 italic">Unable to load upcoming events.</div>`;
+            }
         }
-
         document.addEventListener('DOMContentLoaded', () => {
             loadSharedComponents();
             loadLiveEvents();
