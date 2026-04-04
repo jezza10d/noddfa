@@ -20,87 +20,139 @@
               "outline": "#ae00001a",
               "on-surface-variant": "#475569",
               "surface": "#ffffff",
-              "surface-container": "#f1eeee"
+              "surface-container": "#f1eeee",
+              "error": "#ba1a1a"
             },
-            fontFamily: { "headline": ["Lexend"], "body": ["Lexend"] }
+            fontFamily: {
+              "headline": ["Lexend"],
+              "body": ["Lexend"],
+              "display": ["Lexend"]
+            }
           },
         },
       }
     </script>
     <style>
-        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; display: inline-block; }
         .line-clamp-1 { display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; overflow: hidden; }
         .line-clamp-2 { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+        
+        @media (max-width: 768px) {
+            #nav-menu.active-menu {
+                display: flex !important;
+                flex-direction: column !important;
+                gap: 1.5rem !important;
+                padding: 2rem !important;
+                align-items: flex-start !important;
+                position: absolute !important;
+                top: 72px !important;
+                left: 0 !important;
+                width: 100% !important;
+                background: white !important;
+                z-index: 50 !important;
+                box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            }
+        }
     </style>
 </head>
 <body class="bg-background font-body text-on-background">
 
-    <div class="relative flex h-auto min-h-screen w-full flex-col overflow-x-hidden">
+    <div class="relative flex h-auto min-h-screen w-full flex-col group/design-root overflow-x-hidden">
         <div class="layout-container flex h-full grow flex-col">
 
             <header id="header-placeholder" class="min-h-[72px] relative z-50 bg-white"></header>
 
             <main class="flex flex-col items-center w-full">
-                <header class="relative w-full h-[500px] flex items-center justify-center overflow-hidden">
-                    <img alt="Hero" class="absolute inset-0 w-full h-full object-cover" src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=2070"/>
-                    <div class="absolute inset-0 bg-secondary/70 mix-blend-multiply"></div>
-                    <div class="relative z-10 text-center px-4 w-full max-w-5xl">
-                        <span class="bg-primary text-white text-[10px] font-black px-4 py-1.5 rounded-full mb-4 inline-block uppercase tracking-widest">Village Portal</span>
-                        <h1 class="text-5xl md:text-7xl font-headline font-black text-white mb-8 tracking-tighter">Everything Glyncorrwg</h1>
-                        <div id="hero-category-pills" class="flex items-center justify-center gap-3 flex-wrap">
-                            </div>
+                <header class="relative w-full h-[350px] flex items-center justify-center overflow-hidden">
+                    <img alt="Glyncorrwg scenery" class="absolute inset-0 w-full h-full object-cover" src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=2070"/>
+                    <div class="absolute inset-0 bg-secondary/60 mix-blend-multiply"></div>
+                    <div class="relative z-10 text-center px-4">
+                        <span class="bg-primary text-white text-[10px] font-black px-4 py-1.5 rounded-full mb-4 inline-block shadow-lg uppercase tracking-widest">Community Hub</span>
+                        <h1 class="text-5xl md:text-6xl font-headline font-black text-white mb-4 tracking-tight">Community Hub</h1>
+                        <p class="text-xl text-white/90 font-medium max-w-2xl mx-auto">Connecting Glyncorrwg through local services and live updates</p>
                     </div>
                 </header>
 
                 <div class="max-w-7xl w-full mx-auto px-6 py-16">
-                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 mb-20">
+                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 mb-16">
                         
-                        <div class="lg:col-span-8 space-y-20">
+                        <div class="lg:col-span-8 space-y-16">
                             <section>
-                                <div class="flex items-center justify-between mb-8">
-                                    <h2 class="text-3xl font-headline font-bold text-secondary">Village Noticeboard</h2>
-                                    <a href="/notices" class="text-primary font-bold text-sm flex items-center gap-2">View All <span class="material-symbols-outlined text-sm">arrow_forward</span></a>
+                                <div class="mb-8">
+                                    <div class="flex items-center justify-between mb-6">
+                                        <h2 class="text-3xl font-headline font-bold text-secondary">Noticeboard</h2>
+                                        <a href="/notices" class="flex items-center gap-2 text-primary font-bold text-sm hover:underline">
+                                            View all posts <span class="material-symbols-outlined text-sm">arrow_forward</span>
+                                        </a>
+                                    </div>
                                 </div>
-                                <div id="notices-feed" class="space-y-4"></div>
+                                <div id="notices-feed-container" class="space-y-6">
+                                    <div class="py-10 text-center text-slate-400 italic">Fetching latest notices...</div>
+                                </div>
                             </section>
 
                             <section>
-                                <div class="flex items-center justify-between mb-8">
-                                    <h2 class="text-3xl font-headline font-bold text-secondary">Local Services</h2>
-                                    <a href="/directory?local=true" class="text-primary font-bold text-sm flex items-center gap-2">View All <span class="material-symbols-outlined text-sm">arrow_forward</span></a>
+                                <div class="mb-8">
+                                    <div class="flex items-center justify-between mb-6">
+                                        <h2 class="text-3xl font-headline font-bold text-secondary">Local services</h2>
+                                        <a href="/directory?local=true" class="flex items-center gap-2 text-primary font-bold text-sm hover:underline">
+                                            View all Services <span class="material-symbols-outlined text-sm">arrow_forward</span>
+                                        </a>
+                                    </div>
                                 </div>
-                                <div id="local-services-grid" class="grid grid-cols-1 sm:grid-cols-2 gap-6"></div>
+                                <div id="local-services-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                                    <div class="py-10 text-center text-slate-400 italic col-span-full">Loading services...</div>
+                                </div>
                             </section>
                         </div>
 
                         <aside class="lg:col-span-4 space-y-8">
-                            <div class="bg-white border border-slate-200 rounded-3xl p-8 shadow-sm">
-                                <h4 class="text-sm font-black uppercase tracking-widest text-slate-400 mb-6">Current Weather</h4>
-                                <div class="flex items-center gap-6">
-                                    <span id="weather-icon" class="material-symbols-outlined text-5xl text-primary">light_mode</span>
+                            <div class="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm">
+                                <h4 class="text-lg font-bold text-secondary mb-4">Village weather</h4>
+                                <div class="flex items-center gap-4 mb-4">
+                                    <span id="weather-icon" class="material-symbols-outlined text-4xl text-primary">cloudy_snowing</span>
                                     <div>
-                                        <div id="weather-temp" class="text-4xl font-black text-secondary">--°C</div>
-                                        <div class="text-sm text-slate-500">Glyncorrwg, Wales</div>
+                                        <div id="weather-temp" class="text-2xl font-black text-secondary">--°C</div>
+                                        <div class="text-xs text-slate-500 font-medium">Glyncorrwg, Wales</div>
                                     </div>
                                 </div>
+                                <p id="weather-desc" class="text-sm text-on-surface-variant leading-relaxed">Loading weather data...</p>
                             </div>
 
-                            <div class="bg-secondary text-white rounded-3xl p-8 shadow-sm">
-                                <h4 class="text-sm font-black uppercase tracking-widest text-white/40 mb-6">Live Transport</h4>
+                            <div class="bg-white border border-slate-200 rounded-2xl p-8 shadow-sm">
+                                <h4 class="text-xl font-bold text-secondary mb-8 flex items-center gap-3">
+                                    <span class="material-symbols-outlined text-2xl">departure_board</span> Transport
+                                </h4>
                                 <div id="bus-list" class="space-y-6"></div>
                             </div>
                         </aside>
                     </div>
 
-                    <section class="border-t border-slate-200 pt-20">
-                        <div class="flex flex-col md:flex-row justify-between items-end gap-6 mb-12">
-                            <div>
-                                <h2 class="text-4xl font-headline font-bold text-secondary">Business Directory</h2>
-                                <p class="text-slate-500 mt-2">Supporting local entrepreneurs across the valley.</p>
+                    <section class="mt-24">
+                        <div class="mb-10">
+                            <div class="flex items-center justify-between mb-6">
+                                <h2 class="text-3xl font-headline font-bold text-secondary">Business directory</h2>
+                                <a href="/directory" class="flex items-center gap-2 text-primary font-bold text-sm hover:underline">
+                                    View all Directory <span class="material-symbols-outlined text-sm">arrow_forward</span>
+                                </a>
                             </div>
-                            <a href="/directory" class="bg-primary text-white px-8 py-4 rounded-2xl font-bold hover:scale-105 transition-transform">Browse Full Directory</a>
                         </div>
-                        <div id="business-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"></div>
+                        <div id="business-directory-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                            <div class="py-10 text-center text-slate-400 italic col-span-full">Loading directory...</div>
+                        </div>
+                    </section>
+
+                    <section class="mt-24 w-full">
+                        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-10">
+                            <div>
+                                <h2 class="text-slate-900 text-3xl font-bold">What's On</h2>
+                                <p class="text-slate-500 mt-2">Join us for activities and events this week</p>
+                            </div>
+                            <a href="/events" class="flex items-center gap-2 text-primary font-bold hover:underline">
+                                View All Events <span class="material-symbols-outlined">arrow_forward</span>
+                            </a>
+                        </div>
+                        <div id="events-feed-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"></div>
                     </section>
                 </div>
             </main>
@@ -112,99 +164,146 @@
     <script>
         const API_BASE = 'https://noddfa-j3nkslkrxc.live-website.com/wp-json';
 
-        async function init() {
-            loadSharedComponents();
-            loadWeather();
-            
-            // 1. Load Categories for Hero
-            const catRes = await fetch(`${API_BASE}/wp/v2/directory_category`);
-            const categories = await catRes.json();
-            renderHeroPills(categories);
-
-            // 2. Load Directory Data
-            const dirRes = await fetch(`${API_BASE}/wp/v2/directory?per_page=100`);
-            const allItems = await dirRes.json();
-            renderDirectorySections(allItems, categories);
-
-            // 3. Load Notices
-            loadNotices();
+        async function loadSharedComponents() {
+            try {
+                const [h, f] = await Promise.all([
+                    fetch(`${API_BASE}/noddfa/v1/header`),
+                    fetch(`${API_BASE}/noddfa/v1/footer`)
+                ]);
+                if (h.ok) document.getElementById('header-placeholder').innerHTML = (await h.json()).html;
+                if (f.ok) document.getElementById('footer-placeholder').innerHTML = (await f.json()).html;
+            } catch (e) { console.error(e); }
         }
 
-        function renderHeroPills(cats) {
-            document.getElementById('hero-category-pills').innerHTML = cats.map(c => `
-                <a href="/directory?category=${c.id}" class="px-6 py-2.5 bg-white/10 backdrop-blur-md border border-white/20 rounded-full text-white text-xs font-bold hover:bg-primary transition-all">
-                    ${c.name}
-                </a>
-            `).join('');
-        }
+        async function loadDirectory() {
+            const localContainer = document.getElementById('local-services-grid');
+            const businessContainer = document.getElementById('business-directory-grid');
 
-        function renderDirectorySections(items, cats) {
-            const locals = items.filter(i => i.directory_meta?.entry_type === 'local').sort(() => 0.5 - Math.random()).slice(0, 4);
-            const businesses = items.filter(i => i.directory_meta?.entry_type !== 'local').sort(() => 0.5 - Math.random()).slice(0, 3);
+            try {
+                const res = await fetch(`${API_BASE}/wp/v2/directory?per_page=100&_embed`);
+                const items = await res.json();
 
-            document.getElementById('local-services-grid').innerHTML = locals.map(i => createCard(i, cats)).join('');
-            
-            const bizContainer = document.getElementById('business-grid');
-            const bizHtml = businesses.map(i => createCard(i, cats)).join('');
-            const adHtml = `
-                <div class="bg-slate-100 p-8 rounded-[2rem] border-2 border-dashed border-slate-300 flex flex-col justify-center text-center">
-                    <span class="material-symbols-outlined text-4xl text-slate-400 mb-4">add_business</span>
-                    <h4 class="font-bold text-secondary">Your Business?</h4>
-                    <p class="text-xs text-slate-500 mt-2 mb-6">List your business in the directory today.</p>
-                    <a href="/contact" class="text-primary font-black text-[10px] uppercase tracking-widest">Get Started</a>
-                </div>`;
-            bizContainer.innerHTML = bizHtml + adHtml;
-        }
+                let localHtml = '';
+                let businessHtml = '';
+                let localCount = 0;
+                let businessCount = 0;
 
-        function createCard(item, cats) {
-            const meta = item.directory_meta || {};
-            const catName = cats.find(c => c.id === item.directory_category[0])?.name || 'Business';
-            return `
-                <a href="${item.link}" class="group bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm hover:shadow-xl transition-all flex flex-col h-full">
-                    <div class="flex items-center justify-between mb-6">
-                        <div class="w-12 h-12 bg-slate-50 rounded-xl flex items-center justify-center overflow-hidden">
-                            ${meta.logo ? `<img src="${meta.logo}" class="w-full h-full object-cover">` : `<span class="material-symbols-outlined text-primary">store</span>`}
-                        </div>
-                        <span class="text-[9px] font-bold px-3 py-1 bg-slate-50 text-slate-400 rounded-full uppercase">${catName}</span>
-                    </div>
-                    <h3 class="font-bold text-secondary text-lg mb-1 group-hover:text-primary transition-colors">${item.title.rendered}</h3>
-                    <p class="text-sm text-slate-500 line-clamp-2 mb-6">${meta.headline || ''}</p>
-                    <div class="mt-auto pt-4 border-t border-slate-50 flex items-center justify-between">
-                        <span class="text-[10px] font-bold text-slate-300 uppercase">${meta.foot_note || 'Verified'}</span>
-                        <span class="material-symbols-outlined text-primary text-sm">arrow_forward</span>
-                    </div>
-                </a>`;
-        }
+                items.forEach(item => {
+                    const meta = item.directory_meta || {};
+                    const isLocal = meta.entry_type === 'local';
+                    
+                    const cardHtml = `
+                        <a href="${item.link}" class="group bg-white p-8 rounded-[2rem] border border-slate-100 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all flex flex-col h-full relative">
+                            <div class="mb-8">
+                                <div class="w-16 h-16 bg-slate-50 rounded-2xl flex items-center justify-center text-primary mb-6 group-hover:scale-110 transition-transform overflow-hidden">
+                                    ${meta.logo 
+                                        ? `<img src="${meta.logo}" class="w-full h-full object-cover" />` 
+                                        : `<span class="material-symbols-outlined text-3xl">store</span>`
+                                    }
+                                </div>
+                                <h3 class="text-xl font-bold text-secondary mb-1 leading-tight line-clamp-1">${item.title.rendered}</h3>
+                                <p class="text-on-surface-variant text-sm font-medium leading-relaxed line-clamp-2">${meta.headline || ''}</p>
+                            </div>
+                            <div class="pt-6 border-t border-slate-50 flex items-center justify-between mt-auto">
+                                <span class="text-[9px] font-bold text-slate-400 uppercase tracking-tighter">${meta.foot_note || 'Directory'}</span>
+                                <div class="text-primary text-[10px] font-black flex items-center gap-1 uppercase">
+                                    View <span class="material-symbols-outlined text-xs">arrow_forward</span>
+                                </div>
+                            </div>
+                        </a>`;
 
-        async function loadNotices() {
-            const res = await fetch(`${API_BASE}/wp/v2/notices?per_page=3`);
-            const data = await res.json();
-            document.getElementById('notices-feed').innerHTML = data.map(n => `
-                <div class="bg-white p-6 rounded-2xl border border-slate-100 flex items-center justify-between group cursor-pointer" onclick="window.location.href='${n.link}'">
-                    <div>
-                        <h4 class="font-bold text-secondary group-hover:text-primary transition-colors">${n.title.rendered}</h4>
-                        <p class="text-xs text-slate-400 mt-1">Glyncorrwg Village Post</p>
-                    </div>
-                    <span class="material-symbols-outlined text-slate-300 group-hover:text-primary">chevron_right</span>
-                </div>
-            `).join('');
-        }
+                    if (isLocal && localCount < 3) {
+                        localHtml += cardHtml;
+                        localCount++;
+                    } else if (!isLocal && businessCount < 4) {
+                        businessHtml += cardHtml;
+                        businessCount++;
+                    }
+                });
 
-        async function loadWeather() {
-            const res = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=51.6617&longitude=-3.6122&current_weather=true`);
-            const data = await res.json();
-            if(data.current_weather) {
-                document.getElementById('weather-temp').innerText = `${Math.round(data.current_weather.temperature)}°C`;
+                localContainer.innerHTML = localHtml || '<div class="col-span-full py-10 text-center text-slate-400 italic">No local services available.</div>';
+                businessContainer.innerHTML = businessHtml || '<div class="col-span-full py-10 text-center text-slate-400 italic">No business listings available.</div>';
+
+            } catch (err) {
+                console.error('Directory Fetch Error:', err);
             }
         }
 
-        async function loadSharedComponents() {
-            const [h, f] = await Promise.all([fetch(`${API_BASE}/noddfa/v1/header`), fetch(`${API_BASE}/noddfa/v1/footer`)]);
-            if (h.ok) document.getElementById('header-placeholder').innerHTML = (await h.json()).html;
-            if (f.ok) document.getElementById('footer-placeholder').innerHTML = (await f.json()).html;
+        async function loadLiveNotices() {
+            try {
+                const res = await fetch(`${API_BASE}/wp/v2/notices?per_page=3&_embed`);
+                const notices = await res.json();
+                document.getElementById('notices-feed-container').innerHTML = notices.map(n => `
+                    <div class="bg-white border border-outline rounded-xl p-6 hover:shadow-md transition-all flex justify-between items-center cursor-pointer" onclick="window.location.href='${n.link}'">
+                        <div>
+                            <h4 class="font-bold text-lg text-secondary">${n.title.rendered}</h4>
+                            <p class="text-on-surface-variant text-sm line-clamp-1">${n.excerpt.rendered.replace(/<[^>]*>?/gm, '')}</p>
+                        </div>
+                        <span class="text-xs text-slate-400 font-medium ml-4 whitespace-nowrap">${new Date(n.date).toLocaleDateString('en-GB', {day:'numeric', month:'short'})}</span>
+                    </div>`).join('');
+            } catch (e) {}
         }
 
-        document.addEventListener('DOMContentLoaded', init);
+        async function loadLiveEvents() {
+            try {
+                const res = await fetch(`${API_BASE}/noddfa/v1/events`);
+                const data = await res.json();
+                document.getElementById('events-feed-container').innerHTML = data.slice(0, 3).map(event => `
+                    <div class="bg-white rounded-3xl border border-slate-100 shadow-sm overflow-hidden flex flex-col group hover:shadow-xl transition-all cursor-pointer" onclick="window.location.href='${event.url}'">
+                        <div class="h-48 overflow-hidden"><img src="${event.image}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"></div>
+                        <div class="p-8 flex-1 flex flex-col">
+                            <h3 class="text-xl font-bold text-secondary mb-4 line-clamp-1">${event.title}</h3>
+                            <div class="flex items-center gap-2 text-primary text-sm font-bold mb-4">
+                                <span class="material-symbols-outlined text-base">calendar_today</span>
+                                <span>${event.event_date} at ${event.event_start_time}</span>
+                            </div>
+                            <p class="text-slate-600 text-sm mb-6 line-clamp-2">${event.headline}</p>
+                            <div class="mt-auto">
+                                <div class="w-full bg-primary text-white font-bold py-3 rounded-lg flex items-center justify-center gap-2">More Info <span class="material-symbols-outlined text-sm">arrow_forward</span></div>
+                            </div>
+                        </div>
+                    </div>`).join('');
+            } catch (e) {}
+        }
+
+        async function loadLiveWeather() {
+            try {
+                const res = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=51.6617&longitude=-3.6122&current_weather=true`);
+                const data = await res.json();
+                if (data.current_weather) {
+                    document.getElementById('weather-temp').innerText = `${Math.round(data.current_weather.temperature)}°C`;
+                    document.getElementById('weather-desc').innerText = "Current conditions in Glyncorrwg.";
+                }
+            } catch (e) {}
+        }
+
+        async function loadLiveTransport() {
+            try {
+                const bRes = await fetch(`${API_BASE}/noddfa/v1/transport/buses`);
+                const bData = await bRes.json();
+                document.getElementById('bus-list').innerHTML = bData.slice(0, 3).map(b => `
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center gap-3">
+                            <div class="w-8 h-8 bg-primary/10 rounded-lg flex items-center justify-center text-primary font-bold text-[10px]">${b.service_number}</div>
+                            <div>
+                                <div class="text-[11px] font-bold text-secondary">${b.destination}</div>
+                                <div class="text-[9px] text-slate-400 font-medium">via ${b.via}</div>
+                            </div>
+                        </div>
+                        <div class="text-[11px] font-black text-primary">${b.expected_time}</div>
+                    </div>`).join('');
+            } catch (e) {}
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            loadSharedComponents();
+            loadDirectory();
+            loadLiveNotices();
+            loadLiveEvents();
+            loadLiveWeather();
+            loadLiveTransport();
+            setInterval(loadLiveTransport, 60000);
+        });
     </script>
 </body>
 </html>
