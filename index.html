@@ -232,7 +232,9 @@
                 const postDate = new Date(post.date).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
                 const cleanExcerpt = post.excerpt.rendered ? post.excerpt.rendered.replace(/<[^>]*>?/gm, '') : "";
                 const shortDesc = cleanExcerpt.split(/\s+/).slice(0, 20).join(' ') + '...';
-                const newsLink = post.link.replace('https://noddfa-j3nkslkrxc.live-website.com', 'https://glyncorrwg.wales');
+                
+                // --- UPDATED LINK LOGIC ---
+                const newsLink = post.link.replace('noddfa-j3nkslkrxc.live-website.com', 'glyncorrwg.wales');
 
                 return `
                     <div onclick="window.location.href='${newsLink}'" class="cursor-pointer bg-white dark:bg-slate-800 border border-primary/5 rounded-xl overflow-hidden hover:shadow-lg transition-shadow flex flex-col h-full">
