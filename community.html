@@ -43,8 +43,7 @@
             -webkit-box-orient: vertical;  
             overflow: hidden;
         }
-        
-        /* Mobile Menu support matching page-directory.php */
+
         @media (max-width: 768px) {
             #nav-menu.active-menu {
                 display: flex !important;
@@ -109,16 +108,14 @@
                                     <div class="flex items-center justify-between mb-6">
                                         <h2 class="text-3xl font-headline font-bold text-secondary">Local Services</h2>
                                         <a href="https://glyncorrwg.wales/community/directory?local=true" class="flex items-center gap-2 text-primary font-bold text-sm hover:underline">
-                                            View All Services <span class="material-symbols-outlined text-sm">arrow_forward</span>
+                                            View all Services <span class="material-symbols-outlined text-sm">arrow_forward</span>
                                         </a>
                                     </div>
                                     <div id="local-services-pills" class="flex flex-wrap items-center gap-2">
-                                        <div class="py-2 text-slate-400 text-xs italic">Loading categories...</div>
-                                    </div>
+                                        </div>
                                 </div>
                                 <div id="local-services-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                                    <div class="col-span-full py-10 text-center text-slate-400 italic">Fetching services...</div>
-                                </div>
+                                    </div>
                             </section>
                         </div>
 
@@ -187,16 +184,14 @@
                             <div class="flex items-center justify-between mb-6">
                                 <h2 class="text-3xl font-headline font-bold text-secondary">Business Directory</h2>
                                 <a href="https://glyncorrwg.wales/community/directory" class="flex items-center gap-2 text-primary font-bold text-sm hover:underline">
-                                    View All Directory <span class="material-symbols-outlined text-sm">arrow_forward</span>
+                                    View all Directory <span class="material-symbols-outlined text-sm">arrow_forward</span>
                                 </a>
                             </div>
                             <div id="business-directory-pills" class="flex flex-wrap items-center gap-2">
-                                <div class="py-2 text-slate-400 text-xs italic">Loading categories...</div>
-                            </div>
+                                </div>
                         </div>
                         <div id="business-directory-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                            <div class="col-span-full py-10 text-center text-slate-400 italic">Fetching businesses...</div>
-                        </div>
+                            </div>
                     </section>
 
                     <section class="mt-24 w-full">
@@ -212,59 +207,127 @@
                             </a>
                         </div>
                         <div id="events-feed-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                            <div class="col-span-3 py-10 text-center text-slate-400 italic">Fetching live events...</div>
+                            <div class="col-span-3 py-20 text-center text-slate-500 italic">Checking for upcoming activities...</div>
                         </div>
                     </section>
+
+                    <section class="mt-24 mb-20">
+                        <div class="bg-surface-container rounded-3xl p-8 md:p-12 overflow-hidden relative border border-outline shadow-sm">
+                            <div class="absolute top-0 right-0 w-64 h-64 bg-primary opacity-5 rounded-full -translate-y-1/2 translate-x-1/2"></div>
+                            <div class="relative z-10 grid md:grid-cols-2 gap-12 items-center">
+                                <div>
+                                    <h2 class="text-3xl font-headline font-bold text-secondary mb-4">Report It Dashboard</h2>
+                                    <p class="text-on-surface-variant mb-8 max-w-md">Help us keep our village safe and clean. Directly report issues to Neath Port Talbot Council via the links below.</p>
+                                    <div class="flex flex-wrap gap-3">
+                                        <a href="https://www.npt.gov.uk/parking-roads-and-travel/problems-with-roads-and-streets/potholes" target="_blank" class="bg-white border border-outline hover:border-primary transition-colors px-5 py-3 rounded-full flex items-center gap-3 font-medium text-secondary shadow-sm">
+                                            <span class="material-symbols-outlined text-error">warning</span> Potholes
+                                        </a>
+                                        <a href="https://www.npt.gov.uk/parking-roads-and-travel/problems-with-roads-and-streets/fly-tipping/" target="_blank" class="bg-white border border-outline hover:border-primary transition-colors px-5 py-3 rounded-full flex items-center gap-3 font-medium text-secondary shadow-sm">
+                                            <span class="material-symbols-outlined text-error">delete_outline</span> Fly-tipping
+                                        </a>
+                                        <a href="https://www.npt.gov.uk/parking-roads-and-travel/problems-with-roads-and-streets/street-lights/" target="_blank" class="bg-white border border-outline hover:border-primary transition-colors px-5 py-3 rounded-full flex items-center gap-3 font-medium text-secondary shadow-sm">
+                                            <span class="material-symbols-outlined text-error">light_off</span> Street Lighting
+                                        </a>
+                                        <a href="https://www.npt.gov.uk/parking-roads-and-travel/problems-with-roads-and-streets/dog-fouling/" target="_blank" class="bg-white border border-outline hover:border-primary transition-colors px-5 py-3 rounded-full flex items-center gap-3 font-medium text-secondary shadow-sm">
+                                            <span class="material-symbols-outlined text-error">pets</span> Dog Fouling
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="grid grid-cols-2 gap-4">
+                                    <div class="bg-white p-6 rounded-2xl shadow-sm flex flex-col items-center text-center">
+                                        <div class="text-4xl font-black text-secondary mb-1">NPT</div>
+                                        <div class="text-xs uppercase tracking-wider text-on-surface-variant font-bold">Council Direct</div>
+                                    </div>
+                                    <div class="bg-white p-6 rounded-2xl shadow-sm flex flex-col items-center text-center">
+                                        <div class="text-4xl font-black text-secondary mb-1">GC</div>
+                                        <div class="text-xs uppercase tracking-wider text-on-surface-variant font-bold">Glyncorrwg Community</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="mt-24 mb-20">
+                        <div class="flex items-center justify-between mb-8">
+                            <div>
+                                <h2 class="text-3xl font-headline font-bold text-secondary">Village Map</h2>
+                                <p class="text-on-surface-variant mt-2">Locate essential services and explore walking routes around Glyncorrwg.</p>
+                            </div>
+                        </div>
+                        <div class="bg-white rounded-3xl p-1 border border-outline shadow-xl overflow-hidden aspect-video relative">
+                            <iframe 
+                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d19835.326880010074!2d-3.6268844!3d51.6617!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x486e41b7d5e4b9f3%3A0x7d6f5f3e5f3e5f3e!2sGlyncorrwg%2C%20Port%20Talbot%20SA13%203AB!5e0!3m2!1sen!2suk!4v1620000000000!5m2!1sen!2suk" 
+                                width="100%" 
+                                height="100%" 
+                                style="border:0; border-radius: 1.5rem;" 
+                                allowfullscreen="" 
+                                loading="lazy" 
+                                referrerpolicy="no-referrer-when-downgrade">
+                            </iframe>
+                        </div>
+                    </section>
+
                 </div>
             </main>
 
-            <footer id="footer-placeholder" class="bg-secondary text-white py-12"></footer>
+            <footer id="footer-placeholder"></footer>
         </div>
     </div>
 
     <script>
-        const API_BASE = "https://noddfa-j3nkslkrxc.live-website.com/wp-json";
+        const API_BASE = 'https://noddfa-j3nkslkrxc.live-website.com/wp-json';
 
         async function loadSharedComponents() {
             try {
-                const [h, f] = await Promise.all([
-                    fetch(`${API_BASE}/noddfa/v1/header`),
-                    fetch(`${API_BASE}/noddfa/v1/footer`)
-                ]);
-                
-                if (h.ok) {
-                    const headerData = await h.json();
-                    const container = document.getElementById('header-placeholder');
-                    container.innerHTML = headerData.html;
-                    
-                    const btn = container.querySelector('#menu-toggle');
-                    const nav = container.querySelector('#nav-menu');
-                    if (btn && nav) {
-                        btn.onclick = (e) => {
-                            e.preventDefault();
-                            nav.classList.toggle('active-menu');
-                            nav.classList.toggle('hidden');
-                        };
-                    }
+                const headerResponse = await fetch(`${API_BASE}/noddfa/v1/header?v=${Date.now()}`);
+                if (headerResponse.ok) {
+                    const data = await headerResponse.json();
+                    document.getElementById('header-placeholder').innerHTML = data.html;
+                    initMobileMenu(); 
+                    highlightActiveLink();
                 }
-                
-                if (f.ok) {
-                    const footerData = await f.json();
-                    document.getElementById('footer-placeholder').innerHTML = footerData.html;
+
+                const footerResponse = await fetch(`${API_BASE}/noddfa/v1/footer?v=${Date.now()}`);
+                if (footerResponse.ok) {
+                    const data = await footerResponse.json();
+                    document.getElementById('footer-placeholder').innerHTML = data.html;
                 }
-            } catch (e) { console.error('Theme Component Error:', e); }
+            } catch (error) {
+                console.error("Error loading shared components:", error);
+            }
         }
 
+        function initMobileMenu() {
+            const toggleBtn = document.getElementById('menu-toggle');
+            const navMenu = document.getElementById('nav-menu');
+            if (toggleBtn && navMenu) {
+                toggleBtn.onclick = (e) => {
+                    e.preventDefault();
+                    navMenu.classList.toggle('active-menu');
+                    navMenu.classList.toggle('hidden');
+                };
+            }
+        }
+
+        function highlightActiveLink() {
+            const currentPath = window.location.pathname;
+            const navLinks = document.querySelectorAll('.nav-link');
+            navLinks.forEach(link => {
+                const href = link.getAttribute('href');
+                if (currentPath.includes('community') && href && href.includes('community')) {
+                    link.classList.add('text-primary', 'font-semibold', 'border-b-2', 'border-primary');
+                }
+            });
+        }
+
+        // NEW: DIRECTORY LOGIC
         async function loadDirectoryData() {
             try {
                 const response = await fetch(`${API_BASE}/noddfa/v1/directory`);
                 const data = await response.json();
-                
                 renderLocalServices(data);
                 renderBusinessDirectory(data);
-            } catch (err) {
-                console.error("Directory Load Error:", err);
-            }
+            } catch (err) { console.error("Directory Load Error:", err); }
         }
 
         function renderLocalServices(data) {
@@ -272,19 +335,11 @@
             const pillContainer = document.getElementById('local-services-pills');
             
             const localItems = data.items.filter(item => item.is_local_service);
-            const categories = data.categories.filter(cat => 
-                localItems.some(item => item.category_ids.includes(cat.id))
-            );
+            const categories = data.categories.filter(cat => localItems.some(item => item.category_ids.includes(cat.id)));
 
-            // Render Pills
             pillContainer.innerHTML = `<button onclick="window.location.href='https://glyncorrwg.wales/community/directory?local=true'" class="bg-primary text-white px-6 py-2 rounded-full text-sm font-bold shadow-md">All Services</button>` + 
-                categories.map(cat => `
-                    <button onclick="window.location.href='https://glyncorrwg.wales/community/directory?cat=${cat.id}&local=true'" class="bg-white border border-slate-200 text-slate-600 px-6 py-2 rounded-full text-sm font-bold hover:bg-slate-50 transition-colors">
-                        ${cat.name}
-                    </button>
-                `).join('');
+                categories.map(cat => `<button onclick="window.location.href='https://glyncorrwg.wales/community/directory?cat=${cat.id}&local=true'" class="bg-white border border-slate-200 text-slate-600 px-6 py-2 rounded-full text-sm font-bold hover:bg-slate-50 transition-colors">${cat.name}</button>`).join('');
 
-            // Render Grid - Match page-directory.php design
             container.innerHTML = localItems.slice(0, 3).map(item => `
                 <a href="${item.url}" class="group bg-white p-8 rounded-[2rem] border border-slate-100 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all flex flex-col h-full">
                     <div class="mb-8">
@@ -296,12 +351,9 @@
                     </div>
                     <div class="pt-6 border-t border-slate-50 flex items-center justify-between mt-auto">
                         <span class="text-[9px] font-bold text-slate-400 uppercase tracking-tighter">${item.footnote || 'Local Service'}</span>
-                        <div class="text-primary text-[10px] font-black flex items-center gap-1 uppercase">
-                            View <span class="material-symbols-outlined text-xs">arrow_forward</span>
-                        </div>
+                        <div class="text-primary text-[10px] font-black flex items-center gap-1 uppercase">View <span class="material-symbols-outlined text-xs">arrow_forward</span></div>
                     </div>
-                </a>
-            `).join('');
+                </a>`).join('');
         }
 
         function renderBusinessDirectory(data) {
@@ -309,19 +361,11 @@
             const pillContainer = document.getElementById('business-directory-pills');
             
             const businessItems = data.items.filter(item => !item.is_local_service);
-            const categories = data.categories.filter(cat => 
-                businessItems.some(item => item.category_ids.includes(cat.id))
-            );
+            const categories = data.categories.filter(cat => businessItems.some(item => item.category_ids.includes(cat.id)));
 
-            // Render Pills
             pillContainer.innerHTML = `<button onclick="window.location.href='https://glyncorrwg.wales/community/directory'" class="bg-primary text-white px-6 py-2 rounded-full text-sm font-bold shadow-md">All Business</button>` + 
-                categories.map(cat => `
-                    <button onclick="window.location.href='https://glyncorrwg.wales/community/directory?cat=${cat.id}'" class="bg-white border border-slate-200 text-slate-600 px-6 py-2 rounded-full text-sm font-bold hover:bg-slate-50 transition-colors">
-                        ${cat.name}
-                    </button>
-                `).join('');
+                categories.map(cat => `<button onclick="window.location.href='https://glyncorrwg.wales/community/directory?cat=${cat.id}'" class="bg-white border border-slate-200 text-slate-600 px-6 py-2 rounded-full text-sm font-bold hover:bg-slate-50 transition-colors">${cat.name}</button>`).join('');
 
-            // Render Grid - Match page-directory.php design
             container.innerHTML = businessItems.slice(0, 3).map(item => `
                 <a href="${item.url}" class="group bg-white p-8 rounded-[2rem] border border-slate-100 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all flex flex-col h-full relative">
                     ${item.is_sponsored ? '<span class="absolute top-6 right-6 bg-primary text-white text-[8px] font-black px-2 py-0.5 rounded uppercase tracking-tighter">Sponsored</span>' : ''}
@@ -334,75 +378,200 @@
                     </div>
                     <div class="pt-6 border-t border-slate-50 flex items-center justify-between mt-auto">
                         <span class="text-[9px] font-bold text-slate-400 uppercase tracking-tighter">${item.footnote || 'Business'}</span>
-                        <div class="text-primary text-[10px] font-black flex items-center gap-1 uppercase">
-                            View <span class="material-symbols-outlined text-xs">arrow_forward</span>
-                        </div>
+                        <div class="text-primary text-[10px] font-black flex items-center gap-1 uppercase">View <span class="material-symbols-outlined text-xs">arrow_forward</span></div>
                     </div>
-                </a>
-            `).concat(`
+                </a>`).concat(`
                 <div class="bg-slate-50 border-2 border-dashed border-slate-200 p-8 rounded-[2rem] flex flex-col items-center justify-center text-center group hover:bg-white hover:border-primary transition-all">
-                    <div class="w-14 h-14 bg-white rounded-2xl flex items-center justify-center text-slate-300 mb-4 shadow-sm group-hover:text-primary transition-colors">
-                        <span class="material-symbols-outlined text-2xl">add_business</span>
-                    </div>
+                    <div class="w-14 h-14 bg-white rounded-2xl flex items-center justify-center text-slate-300 mb-4 shadow-sm group-hover:text-primary transition-colors"><span class="material-symbols-outlined text-2xl">add_business</span></div>
                     <h3 class="text-md font-bold text-secondary mb-2">Your Business</h3>
                     <p class="text-xs text-slate-400 mb-6 px-4">Advertise here to reach local residents.</p>
                     <button class="bg-white border border-slate-200 text-slate-600 px-6 py-2 rounded-full text-[10px] font-black hover:bg-primary hover:text-white hover:border-primary transition-all uppercase tracking-widest">Enquire Now</button>
-                </div>
-            `).join('');
+                </div>`).join('');
+        }
+
+        async function fetchTrainStation(code, containerId) {
+            const container = document.getElementById(containerId);
+            try {
+                const res = await fetch(`${API_BASE}/noddfa/v1/transport/train/${code}`);
+                const data = await res.json();
+                
+                if (data.departures && data.departures.length > 0) {
+                    container.innerHTML = data.departures.slice(0, 2).map(train => `
+                        <div class="flex items-start justify-between group">
+                            <div class="flex items-center gap-3 mt-1">
+                                <span class="material-symbols-outlined text-primary text-sm">train</span>
+                                <span class="text-sm font-bold text-secondary truncate max-w-[120px] text-left">${train.destination}</span>
+                            </div>
+                            <div class="flex flex-col items-end">
+                                <div class="text-sm font-black bg-slate-100/50 px-3 py-1 rounded-lg tabular-nums w-14 text-center">${train.scheduled}</div>
+                                <div class="text-[9px] font-black ${train.expected === 'On time' ? 'text-green-600' : 'text-primary'} uppercase tracking-widest mt-0 text-right w-full">${train.expected || 'Scheduled'}</div>
+                            </div>
+                        </div>
+                    `).join('');
+                } else {
+                    container.innerHTML = `<div class="text-xs text-slate-400 italic">No services scheduled.</div>`;
+                }
+            } catch (e) { 
+                container.innerHTML = `<div class="text-xs text-slate-400 italic">Data unavailable.</div>`; 
+            }
+        }
+
+        async function fetchLiveBuses() {
+            const container = document.getElementById('bus-list');
+            const stopId = '5820AWG60316'; // Glyncorrwg Stop
+            try {
+                const res = await fetch(`${API_BASE}/noddfa/v1/transport/bus/${stopId}`);
+                const data = await res.json();
+                
+                if (data.departures && data.departures.length > 0) {
+                    container.innerHTML = data.departures.slice(0, 2).map(bus => {
+                        const timeOnly = bus.scheduled && bus.scheduled.includes('T') 
+                            ? bus.scheduled.split('T')[1].substring(0, 5) 
+                            : (bus.scheduled || '--:--');
+        
+                        const displayStatus = bus.status ? bus.status.replace('_', ' ') : 'Scheduled';
+                
+                        return `
+                            <div class="flex items-start justify-between">
+                                <div class="flex items-center gap-3 mt-1">
+                                    <span class="bg-primary text-white text-[10px] font-black px-2 py-1 rounded shadow-sm">${bus.line || 'Bus'}</span>
+                                    <span class="text-sm font-bold text-secondary truncate max-w-[120px] text-left">${bus.destination || 'Service'}</span>
+                                </div>
+                                <div class="flex flex-col items-end">
+                                    <div class="text-sm font-black bg-slate-100/50 px-3 py-1 rounded-lg tabular-nums w-14 text-center">${timeOnly}</div>
+                                    <div class="text-[9px] font-black text-primary uppercase tracking-widest mt-0 text-right w-full">${displayStatus}</div>
+                                </div>
+                            </div>
+                        `;
+                    }).join('');
+                } else {
+                    container.innerHTML = `<div class="text-xs text-slate-400 italic">No buses scheduled.</div>`;
+                }
+            } catch (e) { 
+                console.error("Bus Fetch Error:", e);
+                container.innerHTML = `<div class="text-xs text-slate-400 italic">Data unavailable.</div>`; 
+            }
+        }
+
+        async function loadLiveTransport() {
+            fetchTrainStation('MST', 'maesteg-trains-list'); 
+            fetchTrainStation('PTA', 'pta-trains-list');     
+            fetchLiveBuses();
+        }
+
+        async function loadLiveWeather() {
+            try {
+                const lat = 51.6617, lon = -3.6122;
+                const res = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current_weather=true`);
+                const data = await res.json();
+                if (data.current_weather) {
+                    const temp = Math.round(data.current_weather.temperature);
+                    const code = data.current_weather.weathercode;
+                    document.getElementById('weather-temp').innerText = `${temp}°C`;
+                    let desc = "fair conditions", icon = "sunny";
+                    if (code >= 1 && code <= 3) { desc = "partly cloudy skies"; icon = "cloud"; }
+                    else if (code >= 51) { desc = "light rain likely"; icon = "rainy"; }
+                    document.getElementById('weather-desc').innerText = `It is currently ${temp}°C with ${desc} in Glyncorrwg.`;
+                    document.getElementById('weather-icon').innerText = icon;
+                }
+            } catch (e) { document.getElementById('weather-desc').innerText = "Forecast temporarily unavailable."; }
         }
 
         async function loadLiveNotices() {
             const container = document.getElementById('notices-feed-container');
+            const NOTICEBOARD_URL = 'https://glyncorrwg.wales/community/noticeboard';
+            
             try {
-                const res = await fetch(`${API_BASE}/wp/v2/posts?per_page=3&_embed`);
-                const posts = await res.json();
-                container.innerHTML = posts.map(post => {
-                    const img = post._embedded?.['wp:featuredmedia']?.[0]?.source_url || 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=2070';
-                    return `
-                        <div class="bg-white rounded-2xl overflow-hidden border border-slate-200 shadow-sm flex flex-col md:flex-row hover:shadow-md transition-shadow">
-                            <div class="w-full md:w-48 h-48 shrink-0">
-                                <img src="${img}" class="w-full h-full object-cover" alt="${post.title.rendered}"/>
-                            </div>
-                            <div class="p-6 flex flex-col justify-center">
-                                <div class="flex items-center gap-3 mb-2">
-                                    <span class="text-[10px] font-black text-primary uppercase tracking-widest">Notice</span>
-                                    <span class="text-slate-300 text-xs">•</span>
-                                    <span class="text-slate-400 text-xs font-medium">${new Date(post.date).toLocaleDateString('en-GB', { day:'numeric', month:'short' })}</span>
+                const res = await fetch(`${API_BASE}/wp/v2/notices?per_page=3&_embed`);
+                const notices = await res.json();
+
+                if (!notices || notices.length === 0) {
+                    container.innerHTML = `<div class="py-10 text-center text-slate-400 italic">No recent notices to show.</div>`;
+                    return;
+                }
+
+                let html = '';
+                notices.forEach((notice, index) => {
+                    const date = new Date(notice.date).toLocaleDateString('en-GB', { day: 'numeric', month: 'short' });
+                    const cleanContent = notice.content.rendered.replace(/<[^>]*>?/gm, '').trim();
+                    const snippet = cleanContent.split(/\s+/).slice(0, 20).join(' ') + '...';
+                    const featuredMedia = notice._embedded?.['wp:featuredmedia']?.[0]?.source_url;
+                    const url = `${NOTICEBOARD_URL}/#notice-${notice.id}`;
+
+                    const hasImage = !!featuredMedia;
+                    const contentWidthClass = hasImage ? 'md:w-2/3' : 'w-full';
+
+                    if (index === 0) {
+                        const imageHtml = hasImage ? `<div class="md:w-1/3 h-full"><img src="${featuredMedia}" class="w-full h-full object-cover"></div>` : '';
+                        html += `
+                            <div onclick="window.location.href='${url}'" class="cursor-pointer bg-white border border-outline rounded-2xl shadow-sm overflow-hidden flex flex-col md:flex-row mb-6 hover:shadow-md transition-shadow h-[200px]">
+                                ${imageHtml}
+                                <div class="p-6 md:p-8 ${contentWidthClass} flex flex-col justify-center">
+                                    <div class="flex justify-between items-start mb-2">
+                                        <span class="bg-primary text-white text-[10px] font-black px-3 py-1 rounded-full uppercase">Featured spotlight</span>
+                                        <span class="text-xs text-slate-400 font-medium">${date}</span>
+                                    </div>
+                                    <h4 class="font-bold text-xl mb-2">${notice.title.rendered}</h4>
+                                    <p class="text-on-surface-variant text-sm line-clamp-2 mb-4">${snippet}</p>
+                                    <div class="text-primary font-bold text-xs flex items-center gap-2">Read details <span class="material-symbols-outlined text-sm">arrow_forward</span></div>
                                 </div>
-                                <h3 class="text-xl font-bold text-secondary mb-2">${post.title.rendered}</h3>
-                                <p class="text-slate-600 text-sm line-clamp-2 mb-4">${post.excerpt.rendered.replace(/<[^>]*>/g, '')}</p>
-                                <a href="${post.link}" class="text-primary text-xs font-black uppercase flex items-center gap-2">Read Story <span class="material-symbols-outlined text-xs">arrow_forward</span></a>
                             </div>
-                        </div>`;
-                }).join('');
-            } catch (err) { container.innerHTML = `<div class="py-10 text-center text-slate-500 italic">Unable to load notices.</div>`; }
+                            <div class="space-y-4">`;
+                    } else {
+                        const imageHtml = hasImage ? `<div class="md:w-1/4 h-full"><img src="${featuredMedia}" class="w-full h-full object-cover"></div>` : '';
+                        const textWidthClass = hasImage ? 'md:w-3/4' : 'w-full';
+                        html += `
+                            <div onclick="window.location.href='${url}'" class="cursor-pointer bg-surface border border-outline rounded-xl shadow-sm overflow-hidden flex flex-col md:flex-row hover:border-primary/50 transition-all h-[140px]">
+                                ${imageHtml}
+                                <div class="p-6 ${textWidthClass} flex flex-col justify-center">
+                                    <div class="flex justify-between items-start mb-1">
+                                        <h4 class="font-bold text-lg text-secondary truncate">${notice.title.rendered}</h4>
+                                        <span class="text-xs text-slate-400 font-medium">${date}</span>
+                                    </div>
+                                    <p class="text-on-surface-variant text-sm line-clamp-2">${snippet}</p>
+                                </div>
+                            </div>`;
+                    }
+                });
+                if (notices.length > 0) html += `</div>`;
+                container.innerHTML = html;
+            } catch (err) {
+                container.innerHTML = `<div class="py-10 text-center text-slate-400 italic">Noticeboard feed offline.</div>`;
+            }
         }
 
         async function loadLiveEvents() {
             const container = document.getElementById('events-feed-container');
             try {
-                const res = await fetch(`${API_BASE}/noddfa/v1/events`);
-                const events = await res.json();
-                container.innerHTML = events.slice(0, 3).map(event => {
-                    const eventDate = new Date(event.event_start_date);
-                    const eventDateStr = eventDate.toLocaleDateString('en-GB', { day: 'numeric', month: 'long' });
-                    const shortDesc = (event.post_content || "").replace(/<[^>]*>/g, '').substring(0, 100) + "...";
+                const response = await fetch(`${API_BASE}/noddfa/v1/portal-events?scope=future&v=${Date.now()}`);
+                if (!response.ok) throw new Error(`HTTP Error: ${response.status}`);
+                const events = await response.json();
+                
+                if (!events || events.length === 0) {
+                    container.innerHTML = `<div class="col-span-3 py-10 text-center text-slate-500 italic">No upcoming public activities scheduled.</div>`;
+                    return;
+                }
+        
+                const publicEvents = events.filter(ev => ev.is_private !== true).slice(0, 3);
+        
+                container.innerHTML = publicEvents.map(event => {
+                    const img = event.banner_url;
+                    const d = new Date(event.event_date);
+                    const eventDateStr = d.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
+                    const cleanText = (event.content || "").replace(/<[^>]*>?/gm, '').trim();
+                    const shortDesc = cleanText.split(/\s+/).slice(0, 18).join(' ') + '...';
+                    const eventLink = `${event.link}?event_date=${event.event_date}`;
+        
                     return `
-                        <div class="bg-white rounded-3xl overflow-hidden border border-slate-100 shadow-sm flex flex-col group hover:shadow-xl transition-all duration-300">
-                            <div class="h-56 relative overflow-hidden">
-                                <img src="${event.image_url || 'https://images.unsplash.com/photo-1501281668745-f7f57925c3b4?q=80&w=2070'}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" alt="${event.event_name}"/>
-                                <div class="absolute top-4 left-4 bg-white/90 backdrop-blur px-4 py-2 rounded-2xl text-center shadow-sm">
-                                    <div class="text-primary font-black text-xl leading-none">${eventDate.getDate()}</div>
-                                    <div class="text-secondary font-bold text-[10px] uppercase tracking-tighter">${eventDate.toLocaleDateString('en-GB', { month: 'short' })}</div>
-                                </div>
-                            </div>
-                            <div class="p-8 flex flex-col flex-1">
-                                <h3 class="text-2xl font-bold text-secondary mb-4 leading-tight">${event.event_name}</h3>
+                        <div onclick="window.location.href='${eventLink}'" class="cursor-pointer bg-white dark:bg-slate-800 border border-primary/5 rounded-xl overflow-hidden hover:shadow-lg transition-shadow flex flex-col h-full">
+                            <div class="h-48 bg-cover bg-center" style="background-image: url('${img}');"></div>
+                            <div class="p-6 flex flex-col flex-1">
+                                <h3 class="text-xl font-bold mb-2 text-slate-900 dark:text-white">${event.title}</h3>
                                 <div class="flex items-center gap-2 text-primary text-sm font-bold mb-4">
                                     <span class="material-symbols-outlined text-base">calendar_today</span>
                                     <span>${eventDateStr} at ${event.event_start_time}</span>
                                 </div>
-                                <p class="text-slate-600 text-sm mb-6 line-clamp-2">${shortDesc}</p>
+                                <p class="text-slate-600 dark:text-slate-400 text-sm mb-6 line-clamp-2">${shortDesc}</p>
                                 <div class="mt-auto">
                                     <div class="w-full bg-primary text-white font-bold py-3 rounded-lg flex items-center justify-center gap-2 hover:bg-primary/90 transition-colors">
                                         More Info <span class="material-symbols-outlined text-sm">arrow_forward</span>
@@ -411,61 +580,9 @@
                             </div>
                         </div>`;
                 }).join('');
-            } catch (err) { container.innerHTML = `<div class="col-span-3 py-10 text-center text-slate-500 italic">Unable to load live activities.</div>`; }
-        }
-
-        async function loadLiveWeather() {
-            try {
-                const res = await fetch('https://api.open-meteo.com/v1/forecast?latitude=51.6586&longitude=-3.6547&current=temperature_2m,weather_code');
-                const data = await res.json();
-                const temp = Math.round(data.current.temperature_2m);
-                document.getElementById('weather-temp').innerText = `${temp}°C`;
-                const code = data.current.weather_code;
-                let icon = 'sunny';
-                let desc = "Clear skies over Glyncorrwg.";
-                if (code > 0) { icon = 'partly_cloudy_day'; desc = "Partly cloudy in the village."; }
-                if (code > 50) { icon = 'rainy'; desc = "Light rain expected today."; }
-                if (code > 70) { icon = 'cloudy_snowing'; desc = "Cold conditions and snow possible."; }
-                document.getElementById('weather-icon').innerText = icon;
-                document.getElementById('weather-desc').innerText = desc;
-            } catch (e) { console.error("Weather Error", e); }
-        }
-
-        async function loadLiveTransport() {
-            const busCont = document.getElementById('bus-list');
-            const trainMCont = document.getElementById('maesteg-trains-list');
-            const trainPCont = document.getElementById('pta-trains-list');
-
-            const itemStyle = (line, dest, time) => `
-                <div class="flex items-center justify-between group">
-                    <div class="flex items-center gap-3">
-                        <div class="w-8 h-8 bg-slate-50 rounded-lg flex items-center justify-center text-[10px] font-black text-secondary group-hover:bg-primary/10 group-hover:text-primary transition-colors">${line}</div>
-                        <div class="text-xs font-bold text-secondary line-clamp-1">${dest}</div>
-                    </div>
-                    <div class="text-[10px] font-black text-primary">${time}</div>
-                </div>
-            `;
-
-            try {
-                const [b, tm, tp] = await Promise.all([
-                    fetch(`${API_BASE}/noddfa/v1/transport?type=bus`),
-                    fetch(`${API_BASE}/noddfa/v1/transport?type=train&station=MAE`),
-                    fetch(`${API_BASE}/noddfa/v1/transport?type=train&station=PTB`)
-                ]);
-                
-                if (b.ok) {
-                    const data = await b.json();
-                    busCont.innerHTML = data.slice(0, 3).map(x => itemStyle(x.line, x.destination, x.time)).join('') || '<div class="text-[10px] text-slate-400 italic">No scheduled buses</div>';
-                }
-                if (tm.ok) {
-                    const data = await tm.json();
-                    trainMCont.innerHTML = data.slice(0, 2).map(x => itemStyle('TRN', x.destination, x.time)).join('') || '<div class="text-[10px] text-slate-400 italic">No departures</div>';
-                }
-                if (tp.ok) {
-                    const data = await tp.json();
-                    trainPCont.innerHTML = data.slice(0, 2).map(x => itemStyle('TRN', x.destination, x.time)).join('') || '<div class="text-[10px] text-slate-400 italic">No departures</div>';
-                }
-            } catch (e) { console.error("Transport error", e); }
+            } catch (err) { 
+                container.innerHTML = `<div class="col-span-3 py-10 text-center text-slate-500 italic">Unable to load live activities.</div>`;
+            }
         }
 
         document.addEventListener('DOMContentLoaded', () => {
