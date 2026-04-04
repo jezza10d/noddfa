@@ -194,17 +194,11 @@
                 const cleanText = rawText.replace(/<[^>]*>?/gm, '').trim();
                 const shortDesc = cleanText.split(/\s+/).slice(0, 18).join(' ') + '...';
 
-                // NEW FIX: Use the 'link' property provided by Section 12 in functions.php
-                const rawLink = event.link || ""; 
+                // --- FIX: Use Section 12 link logic ---
+                // We use the full link provided by the API (which includes the slug and date)
+                // and replace the backend domain with the public domain.
+                const rawLink = event.link || "";
                 const eventLink = rawLink.replace('https://noddfa-j3nkslkrxc.live-website.com', 'https://glyncorrwg.wales');
-                
-                // Fallback logic if the link property is missing for any reason
-                if (!rawLink) {
-                    const slug = event.event_slug || event.slug;
-                    eventLink = slug 
-                        ? `https://glyncorrwg.wales/events/${slug}?event_date=${event.event_date}`
-                        : `https://glyncorrwg.wales/events/?event_id=${event.id}&event_date=${event.event_date}`;
-                }
 
                 return `
                     <div onclick="window.location.href='${eventLink}'" class="cursor-pointer bg-white dark:bg-slate-800 border border-primary/5 rounded-xl overflow-hidden hover:shadow-lg transition-shadow flex flex-col h-full">
