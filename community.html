@@ -221,7 +221,8 @@
                         </div>
                         
                         <div id="business-directory-container" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                            </div>
+                            <div class="col-span-full py-10 text-center text-slate-400 italic">Loading directory...</div>
+                        </div>
                     </section>
 
                     <section class="mt-24 w-full">
@@ -277,6 +278,26 @@
                         </div>
                     </section>
 
+                    <section class="mt-24 mb-20">
+                        <div class="flex items-center justify-between mb-8">
+                            <div>
+                                <h2 class="text-3xl font-headline font-bold text-secondary">Village Map</h2>
+                                <p class="text-on-surface-variant mt-2">Locate essential services and explore walking routes around Glyncorrwg.</p>
+                            </div>
+                        </div>
+                        <div class="bg-white rounded-3xl p-1 border border-outline shadow-xl overflow-hidden aspect-video relative">
+                            <iframe 
+                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d19835.34006126639!2d-3.61!3d51.66!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x486e680a6b579133%3A0x633d7b8786f5c091!2sGlyncorrwg!5e0!3m2!1sen!2suk!4v1715000000000!5m2!1sen!2suk" 
+                                width="100%" 
+                                height="100%" 
+                                style="border:0; border-radius: 1.5rem;" 
+                                allowfullscreen="" 
+                                loading="lazy" 
+                                referrerpolicy="no-referrer-when-downgrade">
+                            </iframe>
+                        </div>
+                    </section>
+
                 </div>
             </main>
 
@@ -287,127 +308,135 @@
     <script>
         const API_BASE = 'https://noddfa-j3nkslkrxc.live-website.com/wp-json';
 
-        // --- Shared UI ---
+        // --- Core Shared Components ---
         async function loadSharedComponents() {
             try {
-                const headerResponse = await fetch(`${API_BASE}/noddfa/v1/header?v=${Date.now()}`);
-                if (headerResponse.ok) {
-                    const data = await headerResponse.json();
+                const hRes = await fetch(`${API_BASE}/noddfa/v1/header?v=${Date.now()}`);
+                if (hRes.ok) {
+                    const data = await hRes.json();
                     document.getElementById('header-placeholder').innerHTML = data.html;
                     initMobileMenu(); 
                     highlightActiveLink();
                 }
-                const footerResponse = await fetch(`${API_BASE}/noddfa/v1/footer?v=${Date.now()}`);
-                if (footerResponse.ok) {
-                    const data = await footerResponse.json();
+                const fRes = await fetch(`${API_BASE}/noddfa/v1/footer?v=${Date.now()}`);
+                if (fRes.ok) {
+                    const data = await fRes.json();
                     document.getElementById('footer-placeholder').innerHTML = data.html;
                 }
-            } catch (error) { console.error("Error loading components:", error); }
+            } catch (error) { console.error("Error loading header/footer:", error); }
         }
 
         function initMobileMenu() {
-            const toggleBtn = document.getElementById('menu-toggle');
-            const navMenu = document.getElementById('nav-menu');
-            if (toggleBtn && navMenu) {
-                toggleBtn.onclick = (e) => {
+            const btn = document.getElementById('menu-toggle');
+            const menu = document.getElementById('nav-menu');
+            if (btn && menu) {
+                btn.onclick = (e) => {
                     e.preventDefault();
-                    navMenu.classList.toggle('active-menu');
-                    navMenu.classList.toggle('hidden');
+                    menu.classList.toggle('active-menu');
+                    menu.classList.toggle('hidden');
                 };
             }
         }
 
         function highlightActiveLink() {
-            const currentPath = window.location.pathname;
+            const path = window.location.pathname;
             document.querySelectorAll('.nav-link').forEach(link => {
-                if (currentPath.includes('community') && link.getAttribute('href')?.includes('community')) {
+                if (path.includes('community') && link.getAttribute('href')?.includes('community')) {
                     link.classList.add('text-primary', 'font-semibold', 'border-b-2', 'border-primary');
                 }
             });
         }
 
-        // --- Business Directory Logic ---
-        async function loadLiveDirectory() {
-            const container = document.getElementById('business-directory-container');
-            const pillContainer = document.getElementById('directory-category-pills');
-            
+        // --- Noticeboard & Events Feeds ---
+        async function loadLiveNotices() {
+            const container = document.getElementById('notices-feed-container');
             try {
-                const res = await fetch(`${API_BASE}/wp/v2/directory?_embed&per_page=50`);
-                const wpData = await res.json();
-                
-                // Filter for Businesses only
-                const allBusinesses = wpData.filter(item => (item.directory_meta?.entry_type !== 'local_service'));
-
-                // Pick 3 random
-                allBusinesses.sort(() => 0.5 - Math.random());
-                const selected = allBusinesses.slice(0, 3);
-
-                // Collect categories for the header pills
-                const activeCategories = [];
-                
-                let html = selected.map(item => {
-                    const meta = item.directory_meta || {};
-                    const terms = item._embedded?.['wp:term']?.[0] || [];
-                    const category = terms[0] || { name: 'Business', slug: 'business' };
-                    
-                    // Add to active categories list if not already there
-                    if (!activeCategories.find(c => c.slug === category.slug)) {
-                        activeCategories.push(category);
-                    }
-
-                    const logo = (typeof meta.logo === 'string' && meta.logo.startsWith('http')) ? meta.logo : null;
-
-                    return `
-                        <a href="${item.link}" class="bg-surface border border-outline p-8 rounded-3xl shadow-sm hover:border-primary hover:shadow-xl transition-all group flex flex-col h-full">
-                            <div class="w-14 h-14 ${logo ? '' : 'bg-primary/5'} rounded-2xl flex items-center justify-center text-primary mb-4 group-hover:bg-primary group-hover:text-white transition-all overflow-hidden shrink-0">
-                                ${logo ? `<img src="${logo}" class="w-full h-full object-contain">` : '<span class="material-symbols-outlined text-3xl">storefront</span>'}
-                            </div>
-
-                            <div onclick="event.preventDefault(); window.location.href='https://glyncorrwg.wales/community/directory?category=${category.slug}'" 
-                                 class="self-start bg-slate-100 text-slate-500 text-[9px] font-black px-3 py-1.5 rounded-full uppercase tracking-widest mb-6 group-hover:bg-primary group-hover:text-white transition-colors cursor-pointer">
-                                ${category.name}
-                            </div>
-
-                            <div class="mb-6 flex-grow">
-                                <h3 class="text-xl font-bold text-secondary mb-1 leading-tight line-clamp-1">${item.title.rendered}</h3>
-                                <p class="text-on-surface-variant text-sm font-medium leading-relaxed line-clamp-2">${meta.headline || ''}</p>
-                            </div>
-                            <div class="pt-6 border-t border-slate-50 flex items-center justify-between mt-auto">
-                                <span class="text-[9px] font-bold text-slate-400 uppercase tracking-tighter">${meta.foot_note || 'Verified'}</span>
-                                <div class="text-primary text-[10px] font-black flex items-center gap-1 uppercase">
-                                    View <span class="material-symbols-outlined text-xs">arrow_forward</span>
+                const res = await fetch(`${API_BASE}/wp/v2/notices?per_page=3&_embed`);
+                const notices = await res.json();
+                if (!notices.length) {
+                    container.innerHTML = `<div class="py-10 text-center text-slate-400 italic">No recent notices.</div>`;
+                    return;
+                }
+                let html = '';
+                notices.forEach((notice, idx) => {
+                    const date = new Date(notice.date).toLocaleDateString('en-GB', { day: 'numeric', month: 'short' });
+                    const img = notice._embedded?.['wp:featuredmedia']?.[0]?.source_url;
+                    if (idx === 0) {
+                        html += `
+                            <div onclick="window.location.href='${notice.link}'" class="cursor-pointer bg-white border border-outline rounded-2xl shadow-sm overflow-hidden flex flex-col md:flex-row mb-6 hover:shadow-md transition-shadow min-h-[200px]">
+                                ${img ? `<div class="md:w-1/3 h-48 md:h-full"><img src="${img}" class="w-full h-full object-cover"></div>` : ''}
+                                <div class="p-6 md:p-8 flex-1 flex flex-col justify-center">
+                                    <div class="flex justify-between items-start mb-2"><span class="bg-primary text-white text-[10px] font-black px-3 py-1 rounded-full uppercase">Latest Update</span><span class="text-xs text-slate-400 font-medium">${date}</span></div>
+                                    <h4 class="font-bold text-xl mb-2">${notice.title.rendered}</h4>
+                                    <div class="text-primary font-bold text-xs flex items-center gap-2">Read more <span class="material-symbols-outlined text-sm">arrow_forward</span></div>
                                 </div>
-                            </div>
-                        </a>`;
-                }).join('');
-
-                // Update Header Pills
-                pillContainer.innerHTML = `<button onclick="window.location.href='https://glyncorrwg.wales/community/directory'" class="bg-primary text-white px-6 py-2 rounded-full text-sm font-bold shadow-md">All Businesses</button>` + 
-                    activeCategories.map(cat => `
-                        <button onclick="window.location.href='https://glyncorrwg.wales/community/directory?category=${cat.slug}'" 
-                                class="bg-white border border-slate-200 text-slate-600 px-6 py-2 rounded-full text-sm font-bold hover:bg-slate-50 transition-colors">
-                            ${cat.name}
-                        </button>
-                    `).join('');
-
-                // Add Advert
-                html += `
-                    <div class="bg-slate-50 border border-dashed border-slate-300 p-8 rounded-3xl flex flex-col items-center justify-center text-center">
-                        <div class="w-12 h-12 bg-white rounded-2xl flex items-center justify-center text-slate-300 mb-4 shadow-sm">
-                            <span class="material-symbols-outlined text-2xl">add_business</span>
-                        </div>
-                        <h3 class="text-sm font-bold text-slate-500 mb-1">Your business</h3>
-                        <p class="text-[10px] text-slate-400 mb-6 px-2">Promote your business here for just £10/year.</p>
-                        <a href="/contact" class="bg-white border border-slate-200 text-slate-600 px-6 py-2 rounded-full text-[10px] font-bold hover:bg-slate-100 transition-colors uppercase tracking-widest">Enquire</a>
-                    </div>`;
-                
+                            </div><div class="grid grid-cols-1 md:grid-cols-2 gap-4">`;
+                    } else {
+                        html += `
+                            <div onclick="window.location.href='${notice.link}'" class="cursor-pointer bg-surface border border-outline rounded-xl p-6 shadow-sm hover:border-primary/50 transition-all flex flex-col justify-center min-h-[140px]">
+                                <div class="flex justify-between items-start mb-2"><h4 class="font-bold text-lg text-secondary truncate">${notice.title.rendered}</h4><span class="text-xs text-slate-400 font-medium">${date}</span></div>
+                                <div class="text-primary font-bold text-[10px] uppercase">View Details</div>
+                            </div>`;
+                    }
+                });
+                if (notices.length > 1) html += '</div>';
                 container.innerHTML = html;
-            } catch (err) {
-                container.innerHTML = `<div class="col-span-full text-center text-slate-400 italic">Feed offline.</div>`;
-            }
+            } catch (err) { container.innerHTML = `<div class="py-10 text-center text-slate-400 italic">Feed unavailable.</div>`; }
         }
 
-        // --- Weather & Transport ---
+        async function loadLiveEvents() {
+            const container = document.getElementById('events-feed-container');
+            try {
+                const res = await fetch(`${API_BASE}/noddfa/v1/portal-events?scope=future`);
+                const events = await res.json();
+                const items = events.filter(e => !e.is_private).slice(0, 3);
+                if (!items.length) {
+                    container.innerHTML = `<div class="col-span-3 py-10 text-center text-slate-500 italic">No activities this week.</div>`;
+                    return;
+                }
+                container.innerHTML = items.map(ev => `
+                    <div onclick="window.location.href='${ev.link}'" class="cursor-pointer bg-white border border-primary/5 rounded-xl overflow-hidden hover:shadow-lg transition-shadow flex flex-col h-full">
+                        <div class="h-48 bg-cover bg-center" style="background-image: url('${ev.banner_url}');"></div>
+                        <div class="p-6 flex flex-col flex-grow">
+                            <h3 class="text-xl font-bold mb-2 text-slate-900">${ev.title}</h3>
+                            <div class="flex items-center gap-2 text-primary text-sm font-bold mb-4"><span class="material-symbols-outlined text-base">calendar_today</span><span>${ev.event_date}</span></div>
+                            <div class="mt-auto bg-primary text-white font-bold py-3 rounded-lg text-center flex items-center justify-center gap-2">Details <span class="material-symbols-outlined text-sm">arrow_forward</span></div>
+                        </div>
+                    </div>`).join('');
+            } catch (err) { container.innerHTML = `<div class="col-span-3 py-10 text-center text-slate-500 italic">Events offline.</div>`; }
+        }
+
+        // --- Transport & Weather ---
+        async function fetchLiveBuses() {
+            const container = document.getElementById('bus-list');
+            try {
+                const res = await fetch(`${API_BASE}/noddfa/v1/transport/bus/5820AWG60316`);
+                const data = await res.json();
+                if (data.departures?.length) {
+                    container.innerHTML = data.departures.slice(0, 2).map(b => `
+                        <div class="flex items-start justify-between">
+                            <div class="flex items-center gap-3 mt-1"><span class="bg-primary text-white text-[10px] font-black px-2 py-1 rounded">${b.line}</span><span class="text-sm font-bold text-secondary truncate max-w-[120px]">${b.destination}</span></div>
+                            <div class="text-sm font-black bg-slate-100/50 px-3 py-1 rounded-lg tabular-nums">${b.scheduled.split('T')[1].substring(0, 5)}</div>
+                        </div>`).join('');
+                } else { container.innerHTML = `<div class="text-xs text-slate-400 italic">No buses found.</div>`; }
+            } catch (e) { container.innerHTML = `<div class="text-xs text-slate-400 italic">Data unavailable.</div>`; }
+        }
+
+        async function fetchTrains(code, id) {
+            const container = document.getElementById(id);
+            try {
+                const res = await fetch(`${API_BASE}/noddfa/v1/transport/train/${code}`);
+                const data = await res.json();
+                if (data.departures?.length) {
+                    container.innerHTML = data.departures.slice(0, 2).map(t => `
+                        <div class="flex items-start justify-between">
+                            <div class="flex items-center gap-3 mt-1"><span class="material-symbols-outlined text-primary text-sm">train</span><span class="text-sm font-bold text-secondary truncate max-w-[120px]">${t.destination}</span></div>
+                            <div class="text-sm font-black bg-slate-100/50 px-3 py-1 rounded-lg tabular-nums">${t.scheduled}</div>
+                        </div>`).join('');
+                } else { container.innerHTML = `<div class="text-xs text-slate-400 italic">No trains.</div>`; }
+            } catch (e) { container.innerHTML = `<div class="text-xs text-slate-400 italic">Unavailable.</div>`; }
+        }
+
         async function loadLiveWeather() {
             try {
                 const res = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=51.6617&longitude=-3.6122&current_weather=true`);
@@ -420,12 +449,63 @@
             } catch (e) { console.error("Weather error"); }
         }
 
-        // Initialize everything
+        // --- Refined Directory Logic ---
+        async function loadLiveDirectory() {
+            const container = document.getElementById('business-directory-container');
+            const pillContainer = document.getElementById('directory-category-pills');
+            try {
+                const res = await fetch(`${API_BASE}/wp/v2/directory?_embed&per_page=50`);
+                const allData = await res.json();
+                const businesses = allData.filter(i => i.directory_meta?.entry_type !== 'local_service');
+                businesses.sort(() => 0.5 - Math.random());
+                const selected = businesses.slice(0, 3);
+
+                const activeCats = [];
+                let html = selected.map(item => {
+                    const meta = item.directory_meta || {};
+                    const terms = item._embedded?.['wp:term']?.[0] || [];
+                    const cat = terms[0] || { name: 'Business', slug: 'business' };
+                    if (!activeCats.find(c => c.slug === cat.slug)) activeCats.push(cat);
+                    const logo = meta.logo?.startsWith('http') ? meta.logo : null;
+
+                    return `
+                        <a href="${item.link}" class="bg-surface border border-outline p-8 rounded-3xl shadow-sm hover:border-primary hover:shadow-xl transition-all group flex flex-col h-full">
+                            <div class="w-14 h-14 ${logo ? '' : 'bg-primary/5'} rounded-2xl flex items-center justify-center text-primary mb-4 group-hover:bg-primary group-hover:text-white transition-all overflow-hidden">
+                                ${logo ? `<img src="${logo}" class="w-full h-full object-contain">` : '<span class="material-symbols-outlined text-3xl">storefront</span>'}
+                            </div>
+                            <div onclick="event.preventDefault(); window.location.href='https://glyncorrwg.wales/community/directory?category=${cat.slug}'" 
+                                 class="self-start bg-primary text-white text-[9px] font-black px-3 py-1.5 rounded-full uppercase tracking-widest mb-6 cursor-pointer">
+                                ${cat.name}
+                            </div>
+                            <div class="mb-6 flex-grow">
+                                <h3 class="text-xl font-bold text-secondary mb-1 line-clamp-1">${item.title.rendered}</h3>
+                                <p class="text-on-surface-variant text-sm line-clamp-2">${meta.headline || ''}</p>
+                            </div>
+                            <div class="pt-6 border-t border-slate-50 flex items-center justify-between mt-auto">
+                                <span class="text-[9px] font-bold text-slate-400 uppercase tracking-tighter">${meta.foot_note || 'Verified'}</span>
+                                <div class="text-primary text-[10px] font-black flex items-center gap-1 uppercase">View <span class="material-symbols-outlined text-xs">arrow_forward</span></div>
+                            </div>
+                        </a>`;
+                }).join('');
+
+                pillContainer.innerHTML = `<button onclick="window.location.href='https://glyncorrwg.wales/community/directory'" class="bg-primary text-white px-6 py-2 rounded-full text-sm font-bold shadow-md">All Businesses</button>` + 
+                    activeCats.map(c => `<button onclick="window.location.href='https://glyncorrwg.wales/community/directory?category=${c.slug}'" class="bg-white border border-slate-200 text-slate-600 px-6 py-2 rounded-full text-sm font-bold hover:bg-slate-50 transition-colors">${c.name}</button>`).join('');
+
+                html += `<div class="bg-slate-50 border border-dashed border-slate-300 p-8 rounded-3xl flex flex-col items-center justify-center text-center"><div class="w-12 h-12 bg-white rounded-2xl flex items-center justify-center text-slate-300 mb-4 shadow-sm"><span class="material-symbols-outlined text-2xl">add_business</span></div><h3 class="text-sm font-bold text-slate-500 mb-1">Your business</h3><p class="text-[10px] text-slate-400 mb-6 px-2">Promote your business here for just £10/year.</p><a href="/contact" class="bg-white border border-slate-200 text-slate-600 px-6 py-2 rounded-full text-[10px] font-bold hover:bg-slate-100 transition-colors uppercase tracking-widest">Enquire</a></div>`;
+                container.innerHTML = html;
+            } catch (err) { container.innerHTML = `<div class="col-span-full text-center text-slate-400">Directory offline.</div>`; }
+        }
+
+        // --- Init ---
         document.addEventListener('DOMContentLoaded', () => {
             loadSharedComponents();
-            loadLiveDirectory();
+            loadLiveNotices();
+            loadLiveEvents();
             loadLiveWeather();
-            // Rest of your fetch functions here (loadLiveNotices, loadLiveEvents, loadLiveTransport)
+            loadLiveDirectory();
+            fetchLiveBuses();
+            fetchTrains('MST', 'maesteg-trains-list');
+            fetchTrains('PTA', 'pta-trains-list');
         });
     </script>
 </body>
