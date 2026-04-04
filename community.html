@@ -36,23 +36,6 @@
         .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; display: inline-block; }
         .line-clamp-1 { display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; overflow: hidden; }
         .line-clamp-2 { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
-        
-        @media (max-width: 768px) {
-            #nav-menu.active-menu {
-                display: flex !important;
-                flex-direction: column !important;
-                gap: 1.5rem !important;
-                padding: 2rem !important;
-                align-items: flex-start !important;
-                position: absolute !important;
-                top: 72px !important;
-                left: 0 !important;
-                width: 100% !important;
-                background: white !important;
-                z-index: 50 !important;
-                box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-            }
-        }
     </style>
 </head>
 <body class="bg-background font-body text-on-background">
@@ -78,27 +61,21 @@
                         
                         <div class="lg:col-span-8 space-y-16">
                             <section>
-                                <div class="mb-8">
-                                    <div class="flex items-center justify-between mb-6">
-                                        <h2 class="text-3xl font-headline font-bold text-secondary">Noticeboard</h2>
-                                        <a href="/community/noticeboard" class="flex items-center gap-2 text-primary font-bold text-sm hover:underline">
-                                            View all posts <span class="material-symbols-outlined text-sm">arrow_forward</span>
-                                        </a>
-                                    </div>
+                                <div class="flex items-center justify-between mb-8">
+                                    <h2 class="text-3xl font-headline font-bold text-secondary">Noticeboard</h2>
+                                    <a href="/community/noticeboard" class="flex items-center gap-2 text-primary font-bold text-sm hover:underline">
+                                        View all posts <span class="material-symbols-outlined text-sm">arrow_forward</span>
+                                    </a>
                                 </div>
-                                <div id="notices-feed-container" class="space-y-6">
-                                    <div class="py-10 text-center text-slate-400 italic">Fetching latest notices...</div>
-                                </div>
+                                <div id="notices-feed-container" class="space-y-6"></div>
                             </section>
 
                             <section>
-                                <div class="mb-8">
-                                    <div class="flex items-center justify-between mb-6">
-                                        <h2 class="text-3xl font-headline font-bold text-secondary">Local services</h2>
-                                        <a href="/community/directory?local=true" class="flex items-center gap-2 text-primary font-bold text-sm hover:underline">
-                                            View all Services <span class="material-symbols-outlined text-sm">arrow_forward</span>
-                                        </a>
-                                    </div>
+                                <div class="flex items-center justify-between mb-8">
+                                    <h2 class="text-3xl font-headline font-bold text-secondary">Local services</h2>
+                                    <a href="/community/directory?local=true" class="flex items-center gap-2 text-primary font-bold text-sm hover:underline">
+                                        View all Services <span class="material-symbols-outlined text-sm">arrow_forward</span>
+                                    </a>
                                 </div>
                                 <div id="local-services-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                                     <div class="py-10 text-center text-slate-400 italic col-span-full">Loading services...</div>
@@ -116,7 +93,7 @@
                                         <div class="text-xs text-slate-500 font-medium">Glyncorrwg, Wales</div>
                                     </div>
                                 </div>
-                                <p id="weather-desc" class="text-sm text-on-surface-variant leading-relaxed">Loading weather data...</p>
+                                <p id="weather-desc" class="text-sm text-on-surface-variant leading-relaxed">Loading weather...</p>
                             </div>
 
                             <div class="bg-white border border-slate-200 rounded-2xl p-8 shadow-sm">
@@ -129,13 +106,11 @@
                     </div>
 
                     <section class="mt-24">
-                        <div class="mb-10">
-                            <div class="flex items-center justify-between mb-6">
-                                <h2 class="text-3xl font-headline font-bold text-secondary">Business directory</h2>
-                                <a href="/community/directory" class="flex items-center gap-2 text-primary font-bold text-sm hover:underline">
-                                    View all Directory <span class="material-symbols-outlined text-sm">arrow_forward</span>
-                                </a>
-                            </div>
+                        <div class="flex items-center justify-between mb-10">
+                            <h2 class="text-3xl font-headline font-bold text-secondary">Business directory</h2>
+                            <a href="/community/directory" class="flex items-center gap-2 text-primary font-bold text-sm hover:underline">
+                                View all Directory <span class="material-symbols-outlined text-sm">arrow_forward</span>
+                            </a>
                         </div>
                         <div id="business-directory-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
                             <div class="py-10 text-center text-slate-400 italic col-span-full">Loading directory...</div>
@@ -164,7 +139,6 @@
     <script>
         const API_BASE = 'https://noddfa-j3nkslkrxc.live-website.com/wp-json';
 
-        // SHARED COMPONENTS
         async function loadSharedComponents() {
             try {
                 const [h, f] = await Promise.all([
@@ -176,64 +150,46 @@
             } catch (e) { console.error(e); }
         }
 
-        // DIRECTORY DYNAMIC LOGIC
-        async function loadDirectory() {
+        // Logic from page-directory.php applied to Hub Layout
+        async function loadDirectoryFeeds() {
             const localContainer = document.getElementById('local-services-grid');
             const businessContainer = document.getElementById('business-directory-grid');
 
             try {
-                // Fetching from the standard WP REST endpoint using your custom bridge
-                const res = await fetch(`${API_BASE}/wp/v2/directory?per_page=50&_embed`);
+                const res = await fetch(`${API_BASE}/noddfa/v1/directory`);
                 const items = await res.json();
 
-                let localHtml = '';
-                let businessHtml = '';
-                let localCount = 0;
-                let businessCount = 0;
-
-                items.forEach(item => {
-                    const meta = item.directory_meta; // Data from your functions.php bridge
-                    const isLocal = meta.entry_type === 'local';
-                    
-                    // Pixel Perfect Card Construction
-                    const cardHtml = `
-                        <a href="${item.link}" class="group bg-white p-8 rounded-[2rem] border border-slate-100 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all flex flex-col h-full relative">
-                            <div class="mb-8">
-                                <div class="w-16 h-16 bg-slate-50 rounded-2xl flex items-center justify-center text-primary mb-6 group-hover:scale-110 transition-transform overflow-hidden">
-                                    ${meta.logo 
-                                        ? `<img src="${meta.logo}" class="w-full h-full object-cover" />` 
-                                        : `<span class="material-symbols-outlined text-3xl">store</span>`
-                                    }
-                                </div>
-                                <h3 class="text-xl font-bold text-secondary mb-1 leading-tight line-clamp-1">${item.title.rendered}</h3>
-                                <p class="text-on-surface-variant text-sm font-medium leading-relaxed line-clamp-2">${meta.headline || ''}</p>
+                const createCard = (item) => `
+                    <a href="${item.url}" class="group bg-white p-8 rounded-[2rem] border border-slate-100 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all flex flex-col h-full relative">
+                        <div class="mb-8">
+                            <div class="w-16 h-16 bg-slate-50 rounded-2xl flex items-center justify-center text-primary mb-6 group-hover:scale-110 transition-transform overflow-hidden">
+                                ${item.logo 
+                                    ? `<img src="${item.logo}" class="w-full h-full object-cover" />` 
+                                    : `<span class="material-symbols-outlined text-3xl">store</span>`}
                             </div>
-                            <div class="pt-6 border-t border-slate-50 flex items-center justify-between mt-auto">
-                                <span class="text-[9px] font-bold text-slate-400 uppercase tracking-tighter">${meta.foot_note || 'Directory'}</span>
-                                <div class="text-primary text-[10px] font-black flex items-center gap-1 uppercase">
-                                    View <span class="material-symbols-outlined text-xs">arrow_forward</span>
-                                </div>
+                            <h3 class="text-xl font-bold text-secondary mb-1 leading-tight line-clamp-1">${item.name}</h3>
+                            <p class="text-on-surface-variant text-sm font-medium leading-relaxed line-clamp-2">${item.headline || ''}</p>
+                        </div>
+                        <div class="pt-6 border-t border-slate-50 flex items-center justify-between mt-auto">
+                            <span class="text-[9px] font-bold text-slate-400 uppercase tracking-tighter">${item.footnote || 'Directory'}</span>
+                            <div class="text-primary text-[10px] font-black flex items-center gap-1 uppercase">
+                                View <span class="material-symbols-outlined text-xs">arrow_forward</span>
                             </div>
-                        </a>`;
+                        </div>
+                    </a>`;
 
-                    if (isLocal && localCount < 3) {
-                        localHtml += cardHtml;
-                        localCount++;
-                    } else if (!isLocal && businessCount < 4) {
-                        businessHtml += cardHtml;
-                        businessCount++;
-                    }
-                });
+                // Filter logic identical to directory page
+                const localItems = items.filter(i => i.is_local).slice(0, 3);
+                const businessItems = items.filter(i => !i.is_local).slice(0, 4);
 
-                localContainer.innerHTML = localHtml || '<div class="col-span-full py-10 text-center text-slate-400 italic">No local services available.</div>';
-                businessContainer.innerHTML = businessHtml || '<div class="col-span-full py-10 text-center text-slate-400 italic">No business listings available.</div>';
+                localContainer.innerHTML = localItems.length ? localItems.map(createCard).join('') : '<p class="italic text-slate-400">No services found.</p>';
+                businessContainer.innerHTML = businessItems.length ? businessItems.map(createCard).join('') : '<p class="italic text-slate-400">No businesses found.</p>';
 
             } catch (err) {
                 console.error('Directory Fetch Error:', err);
             }
         }
 
-        // REMAINING DYNAMIC FEEDS
         async function loadLiveNotices() {
             try {
                 const res = await fetch(`${API_BASE}/wp/v2/notices?per_page=3&_embed`);
@@ -302,12 +258,11 @@
 
         document.addEventListener('DOMContentLoaded', () => {
             loadSharedComponents();
-            loadDirectory();
+            loadDirectoryFeeds();
             loadLiveNotices();
             loadLiveEvents();
             loadLiveWeather();
             loadLiveTransport();
-            setInterval(loadLiveTransport, 60000);
         });
     </script>
 </body>
